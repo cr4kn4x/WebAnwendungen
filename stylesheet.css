@@ -1,8 +1,32 @@
-p{
-    color: red;
-}
 
-
-p{
-    background-color: yellow;
-}
+.leiste {
+    background-color: black;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    height:10%;
+    
+  }
+  
+  /*.menü #myLinks {
+    display: none; //text nicht unterstrichen
+  }*/
+  
+  .leiste a {
+    color: white;
+    padding: 15px 20px;
+    text-decoration: none; /*Logo nicht unterstrichen*/
+    font-size: 20px;
+    
+  }
+  
+  .leiste a.icon {
+    background: black;
+    right: 0;
+    top: 0;
+  }
+  
+  .leiste a:hover {
+    background-color: #d3d3d3;
+    color: black;
+  }
