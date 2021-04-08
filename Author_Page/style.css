@@ -12,7 +12,7 @@ background-color:grey
 /* Body  Box */
 .author_body_container {
 	width:100%;
-	height:600px;
+	height:auto;
 	padding-left: 4%;
 	padding-right: 9%;
 	color:white;
@@ -28,18 +28,18 @@ background-color:grey
 	background-color: #444048;
 	height: 55px;
 	width: 100%;
-	border: 2px solid #FF8A11;
-	border-radius:10px;
+	margin-bottom:1%;
+	border: 2px solid #444048;
+	border-radius:35px;
 	padding-left:2%;
-	
 }
 
 
 .searchbar_container{
 	padding-top:1%;
-	padding-left:1%;
 	width:70%;
 	height:60px;
+	margin-bottom:2%;
 }
 
 
@@ -47,15 +47,15 @@ input[type="text"] {
 	font-weight:200;
 	width:70%;
 	height:75%;
-	border: 2px solid #FF8A11;
-	border-radius:10px;
+	border: 1px solid #444048;
+	border-radius:8px;
 }
 
 
 button[type="submit"] {
-	border: 2px solid #FF8A11;
+	border: 1px solid #444048;
 	width: 4%;
 	height:75%;
-	border-radius:10px;
+	border-radius:8px;
 }
 
