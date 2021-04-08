@@ -1,0 +1,61 @@
+
+
+
+* {box-sizing: border-box}
+
+body {margin:0}
+
+/*
+background-color:grey
+*/
+
+/* Body  Box */
+.author_body_container {
+	width:100%;
+	height:600px;
+	padding-left: 4%;
+	padding-right: 9%;
+	color:white;
+}
+
+
+.Author_name{
+	word-spacing: 20em;
+}
+
+
+.author_buble{
+	background-color: #444048;
+	height: 55px;
+	width: 100%;
+	border: 2px solid #FF8A11;
+	border-radius:10px;
+	padding-left:2%;
+	
+}
+
+
+.searchbar_container{
+	padding-top:1%;
+	padding-left:1%;
+	width:70%;
+	height:60px;
+}
+
+
+input[type="text"] {
+	font-weight:200;
+	width:70%;
+	height:75%;
+	border: 2px solid #FF8A11;
+	border-radius:10px;
+}
+
+
+button[type="submit"] {
+	border: 2px solid #FF8A11;
+	width: 4%;
+	height:75%;
+	border-radius:10px;
+}
+

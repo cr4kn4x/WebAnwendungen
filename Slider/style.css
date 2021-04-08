@@ -1,0 +1,119 @@
+
+* {box-sizing: border-box}
+body {margin:0;}
+	
+/* Slideshow Box */
+.slideshow_box {
+	width:100%;
+	height:800px;
+	position: absolute;
+	padding-top: 4%;
+	padding-left: 1%;
+	padding-right: 1%;
+	color:white;
+}
+
+
+/* Image class for images in slideshow <divs> */
+.slider_img{
+	width:100%;       /* --> 1 * 250px         */   
+	height: 60%;		/* --> 0.6 * 550px = xxx   Optimale Auflösung der Bilde 250 x 350px   */
+	border: 1px solid;
+	border-color: black;
+}
+
+
+/* Schrift orange */
+
+span{
+	color: #FF8A11;
+}
+
+/*    Slideshow Buttons  <--  //  -->     */
+.prev, .next {
+	cursor: pointer;
+	position: absolute;
+	top: 45%;
+	width: auto;
+	padding: 15px;
+	color: #FF8A11;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+/* Slider Buttons */
+.next {
+	margin-right: 5%;
+	right:0;
+	border-radius: 3px 0 0 3px;
+}
+
+.prev {
+	margin-left: 5%;
+	left:0;
+	border-radius: 3px 0 0 3px;
+}
+
+
+
+
+
+
+
+
+.Slide_text_orange{
+	text-align:center;
+	color:orange;
+}
+
+
+.Slide_text_black{
+	text-align:center;
+	color:black;
+}
+
+
+
+
+
+
+
+.prev:hover, .next:hover {
+	background-color: rgba(0,0,0,1);
+}
+
+/* changed: "position: absolute " */
+.mySlides{
+	width: 250px;
+	height: 550px;
+
+	
+	position: absolute;
+	margin-left: 10%;
+	margin-right: 10%;
+	
+	
+	border: 2px solid #000000;
+	border-radius:10px;
+	
+}
+ 
+/* Fading animation */
+.fade {
+	-webkit-animation-name: fade;
+	-webkit-animation-duration: 1.5s;
+	animation-name: fade;
+	animation-duration: 3s;
+}
+
+@-webkit-keyframes fade {
+	from {opacity: .05} 
+	to {opacity: 1}
+}
+
+@keyframes fade {
+	from {opacity: .05} 
+	to {opacity: 1}
+}
+
