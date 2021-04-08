@@ -76,7 +76,7 @@
 #footer a {
     color: #FF8A11;
     text-decoration: none;
-    padding-right: 10%;
+    padding-right: 13%;
 }
 
 #selectFooter {
@@ -90,9 +90,13 @@
 }
 
 #copyright {
-    width: 30px;
-    height: 30px;
-    float: right;
-    margin-right: 3%;
-    padding: 0;
+    background: url(Copyright.png);
+    background-size: contain;
+    position: absolute;
+    margin-left: 80%;
+    bottom: 3%;
+    right: 4%;
+    width: 38px;
+    height: 40px;
+
 }
