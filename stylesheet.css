@@ -1,0 +1,98 @@
+@font-face{
+    font-family: X-Files;
+    src: url(x-files.tff);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+#navigation {
+    background-color: #444048;
+    color: #FF8A11;
+    position: fixed;
+    width: 100%;
+    height: 10%;
+}
+
+#titel {
+    font-size: 3.3em;
+    color: white;
+    font-family: X-Files;
+    float: left;
+    margin-left: 3%;
+    margin-top: 2%;
+}
+
+#selectNav {
+    margin-left: 48%;
+    width: 46%;
+}
+
+#selectNav a {
+    color: #FF8A11;
+    text-decoration: none;
+    font-size: 1.4em;
+    padding-right: 10%;
+}
+
+#selectNav a:hover {
+    border-top: solid #FF8A11 2px;
+}
+
+#warenkorb {
+    width: auto;
+    height: 25px;
+}
+
+#logo {
+    background: url(Logo.png);
+    background-size: contain;
+    position: absolute;
+    margin-left: 90%;
+    margin-top: 2%;
+    top: 0;
+    width: 50px;
+    height: 55px;
+}
+
+.navElemente {
+    margin-top: 3%;
+}
+
+#main {
+    background-color: #8A9094;
+    width: 100%;
+    height: 90%;
+}
+
+#footer {
+    background-color: #444048;
+    width: 100%;
+    height: 10%;    
+}
+
+#footer a {
+    color: #FF8A11;
+    text-decoration: none;
+    padding-right: 10%;
+}
+
+#selectFooter {
+    margin-left: 30%;
+    padding-top: 3%;
+    width: 46%;
+}
+
+#selectFooter a:hover {
+    border-top: solid #FF8A11 2px;
+}
+
+#copyright {
+    width: 30px;
+    height: 30px;
+    float: right;
+    margin-right: 3%;
+    padding: 0;
+}
