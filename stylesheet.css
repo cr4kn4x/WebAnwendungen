@@ -51,14 +51,14 @@
     background-size: contain;
     position: absolute;
     margin-left: 90%;
-    margin-top: 2%;
+    margin-top: 1%;
     top: 0;
     width: 50px;
     height: 55px;
 }
 
 .navElemente {
-    margin-top: 3%;
+    margin-top: 2%;
 }
 
 #main {
@@ -76,12 +76,12 @@
 #footer a {
     color: #FF8A11;
     text-decoration: none;
-    padding-right: 13%;
+    padding-right: 20%;
 }
 
 #selectFooter {
     margin-left: 30%;
-    padding-top: 3%;
+    padding-top: 2%;
     width: 46%;
 }
 
