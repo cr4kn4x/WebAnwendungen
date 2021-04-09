@@ -17,7 +17,6 @@ onload = (event) =>{   // wird aufgerufen sobald Webseite geladen wird
 	showSlides(mid_slide);
 	/* --------------------------------- */
 
-    
 }
 
 

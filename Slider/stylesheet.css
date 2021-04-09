@@ -1,0 +1,246 @@
+* {box-sizing: border-box}
+body {margin:0}
+
+
+@font-face{
+    font-family: X-Files;
+    src: url(x-files.tff);
+}
+
+.navElemente {
+    margin: 0;
+    padding: 0;
+}
+
+#title_font{
+	margin: 0;
+    padding: 0;
+}
+
+
+#navigation {
+    background-color: #444048;
+    color: #FF8A11;
+    position: fixed;
+    width: 100%;
+    height: 10%;
+}
+
+#titel {
+    font-size: 3.3em;
+    color: white;
+    font-family: X-Files;
+    float: left;
+    margin-left: 3%;
+    margin-top: 2%;
+}
+
+#selectNav {
+    margin-left: 48%;
+    width: 46%;
+}
+
+#selectNav a {
+    color: #FF8A11;
+    text-decoration: none;
+    font-size: 1.4em;
+    padding-right: 10%;
+}
+
+#selectNav a:hover {
+    border-top: solid #FF8A11 2px;
+}
+
+#warenkorb {
+    width: auto;
+    height: 25px;
+}
+
+#logo {
+    background: url(Logo.png);
+    background-size: contain;
+    position: absolute;
+    margin-left: 90%;
+    margin-top: 1%;
+    top: 0;
+    width: 50px;
+    height: 55px;
+}
+
+.navElemente {
+    margin-top: 2%;
+}
+
+/* #main is now included in .author_body_container */
+
+
+#footer {
+	padding-top:auto;
+    background-color: #444048;
+    width: 100%;
+    height: 10%;    
+}
+
+#footer a {
+    color: #FF8A11;
+    text-decoration: none;
+    padding-right: 20%;
+}
+
+#selectFooter {
+    margin-left: 30%;
+    padding-top: 2%;
+    width: 46%;
+}
+
+#selectFooter a:hover {
+    border-top: solid #FF8A11 2px;
+}
+
+#copyright {
+    background: url(Copyright.png);
+    background-size: contain;
+    position: relative;
+    margin-left: 96%;
+    bottom: 19%;
+    margin-right:2%;
+    width: 38px;
+    height: 40px;
+}
+
+
+/** ------- HOME + Bestseller CSS ------------- */ 
+
+#Home_headline_box {
+	position: absolute;
+	padding-left:5%;
+	height:10%;
+}
+
+#Home_font {
+	color:red;
+}
+
+#Bestseller_font {
+	color: red;
+	padding-left:20%;
+}
+
+
+/* ---------------------------------------------------------------------------- */ 
+/* SLIDER */ 
+/* Slideshow Box */
+.slideshow_box {
+	background-color: #8A9094;
+	width:100%;
+	height:90%;
+	padding-bottom:4%;
+	padding-top:15%;
+	padding-left: 4%;
+	padding-right: 9%;
+	color:white;
+}
+
+
+/* Image class for images in slideshow <divs> */
+.slider_img{
+	width:100%;       /* --> 1 * 250px         */   
+	height: 60%;		/* --> 0.6 * 550px = xxx   Optimale Auflösung der Bilde 250 x 350px   */
+	border: 1px solid;
+	border-color: black;
+}
+
+
+/* Schrift orange */
+
+.Book_attribute_tag {
+	color: #FF8A11;
+}
+
+/*
+
+.Book_attribute {
+	
+}
+
+*/
+
+
+/*    Slideshow Buttons  <--  //  -->     */
+.prev, .next {
+	cursor: pointer;
+	position: absolute;
+	top: 45%;
+	width: auto;
+	padding: 15px;
+	color: #FF8A11;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+/* Slider Buttons */
+.next {
+	margin-right: 5%;
+	right:0;
+	border-radius: 3px 0 0 3px;
+}
+
+.prev {
+	margin-left: 5%;
+	left:0;
+	border-radius: 3px 0 0 3px;
+}
+
+
+
+.Slide_text_orange{
+	text-align:center;
+	color:orange;
+}
+
+.Slide_text_black{
+	text-align:center;
+	color:black;
+}
+
+.Slide_text{
+	padding-left:9%;
+}
+
+
+.prev:hover, .next:hover {
+	background-color: rgba(0,0,0,1);
+}
+
+/* changed: "position: absolute " */
+.mySlides{
+	position:absolute;
+	width: 250px;
+	height: 550px;
+	background-color:#444048;
+	margin-left: 10%;
+	margin-right: 10%;
+	border: 3px solid #000000;
+	border-radius:7px;	
+}
+ 
+/* Fading animation */
+.fade {
+	-webkit-animation-name: fade;
+	-webkit-animation-duration: 1.5s;
+	animation-name: fade;
+	animation-duration: 3s;
+}
+
+@-webkit-keyframes fade {
+	from {opacity: .05} 
+	to {opacity: 1}
+}
+
+@keyframes fade {
+	from {opacity: .05} 
+	to {opacity: 1}
+}
+
+
