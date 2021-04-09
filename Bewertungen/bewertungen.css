@@ -1,0 +1,33 @@
+#beschreibung {
+    color: #444048;
+    width: 90%;
+    height: 40px;
+    padding-top: 6%;
+    padding-left: 2%;
+}
+
+#first {
+    position: absolute;
+    background-color: #444048;
+    width: 20%;
+    height: 60%;
+    top: 20%;
+    left: 3%;
+    border-radius: 79px;
+
+    padding-top: 2%;
+    padding-left: 2%;
+}
+
+#second {
+    position: absolute;
+    background-color: #444048;
+    width: 65%;
+    height: 60%;
+    top: 20%;
+    right: 3%;
+    border-radius: 79px;
+
+    padding-top: 2%;
+    padding-left: 2%;
+}

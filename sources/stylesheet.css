@@ -18,11 +18,15 @@
 
 #titel {
     font-size: 3.3em;
-    color: white;
     font-family: X-Files;
     float: left;
     margin-left: 3%;
     margin-top: 2%;
+}
+
+#titel a {
+    text-decoration: none;
+    color: white;
 }
 
 #selectNav {
