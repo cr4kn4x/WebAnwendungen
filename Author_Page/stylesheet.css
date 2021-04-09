@@ -1,0 +1,165 @@
+* {box-sizing: border-box}
+body {margin:0}
+
+
+@font-face{
+    font-family: X-Files;
+    src: url(x-files.tff);
+}
+
+.navElemente {
+    margin: 0;
+    padding: 0;
+}
+
+#title_font{
+	margin: 0;
+    padding: 0;
+}
+
+
+
+
+#navigation {
+    background-color: #444048;
+    color: #FF8A11;
+    position: fixed;
+    width: 100%;
+    height: 10%;
+}
+
+#titel {
+    font-size: 3.3em;
+    color: white;
+    font-family: X-Files;
+    float: left;
+    margin-left: 3%;
+    margin-top: 2%;
+}
+
+#selectNav {
+    margin-left: 48%;
+    width: 46%;
+}
+
+#selectNav a {
+    color: #FF8A11;
+    text-decoration: none;
+    font-size: 1.4em;
+    padding-right: 10%;
+}
+
+#selectNav a:hover {
+    border-top: solid #FF8A11 2px;
+}
+
+#warenkorb {
+    width: auto;
+    height: 25px;
+}
+
+#logo {
+    background: url(Logo.png);
+    background-size: contain;
+    position: absolute;
+    margin-left: 90%;
+    margin-top: 1%;
+    top: 0;
+    width: 50px;
+    height: 55px;
+}
+
+.navElemente {
+    margin-top: 2%;
+}
+
+/* #main is now included in .author_body_container */
+
+
+#footer {
+    background-color: #444048;
+    width: 100%;
+    height: 10%;    
+}
+
+#footer a {
+    color: #FF8A11;
+    text-decoration: none;
+    padding-right: 20%;
+}
+
+#selectFooter {
+    margin-left: 30%;
+    padding-top: 2%;
+    width: 46%;
+}
+
+#selectFooter a:hover {
+    border-top: solid #FF8A11 2px;
+}
+
+#copyright {
+    background: url(Copyright.png);
+    background-size: contain;
+    position: absolute;
+    margin-left: 80%;
+    bottom: 3%;
+    right: 4%;
+    width: 38px;
+    height: 40px;
+
+}
+
+
+/* Body  Box */
+.author_body_container {
+	background-color: #8A9094;
+	width:100%;
+	height:90%;
+	padding-top:8%;
+	padding-left: 4%;
+	padding-right: 9%;
+	color:white;
+}
+
+
+.Author_name{
+	word-spacing: 20em;
+}
+
+
+.author_buble{
+	background-color: #444048;
+	height: 55px;
+	width: 100%;
+	margin-bottom:1%;
+	border: 2px solid #444048;
+	border-radius:35px;
+	padding-left:2%;
+}
+
+
+.searchbar_container{
+	padding-top:1%;
+	width:70%;
+	height:60px;
+	margin-bottom:2%;
+}
+
+
+input[type="text"] {
+	font-weight:200;
+	width:70%;
+	height:75%;
+	border: 1px solid #444048;
+	border-radius:8px;
+}
+
+
+button[type="submit"] {
+	border: 1px solid #444048;
+	width: 4%;
+	height:75%;
+	border-radius:8px;
+}
+
