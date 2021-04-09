@@ -18,8 +18,6 @@ body {margin:0}
 }
 
 
-
-
 #navigation {
     background-color: #444048;
     color: #FF8A11;
@@ -101,13 +99,12 @@ body {margin:0}
 #copyright {
     background: url(Copyright.png);
     background-size: contain;
-    position: absolute;
-    margin-left: 80%;
-    bottom: 3%;
-    right: 4%;
+    position: relative;
+    margin-left: 96%;
+    bottom: 19%;
+    margin-right:2%;
     width: 38px;
     height: 40px;
-
 }
 
 
@@ -115,16 +112,12 @@ body {margin:0}
 .author_body_container {
 	background-color: #8A9094;
 	width:100%;
-	height:90%;
+	height:auto;
+	padding-bottom:4%;
 	padding-top:8%;
 	padding-left: 4%;
 	padding-right: 9%;
 	color:white;
-}
-
-
-.Author_name{
-	word-spacing: 20em;
 }
 
 
@@ -142,7 +135,7 @@ body {margin:0}
 .searchbar_container{
 	padding-top:1%;
 	width:70%;
-	height:60px;
+	height:70px;
 	margin-bottom:2%;
 }
 
@@ -150,7 +143,7 @@ body {margin:0}
 input[type="text"] {
 	font-weight:200;
 	width:70%;
-	height:75%;
+	height:90%;
 	border: 1px solid #444048;
 	border-radius:8px;
 }
@@ -159,7 +152,19 @@ input[type="text"] {
 button[type="submit"] {
 	border: 1px solid #444048;
 	width: 4%;
-	height:75%;
+	height:90%;
 	border-radius:8px;
+}
+
+
+
+.Author_attribute_tag{
+	color:#FF8A11;
+	padding-left:10%;
+}
+
+
+.Author_name_tag{
+	padding-left:0%;
 }
 
