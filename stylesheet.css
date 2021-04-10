@@ -1,11 +1,9 @@
 
 .leiste {
     background-color: black;
-    position: -webkit-sticky;
-    position: sticky;
     top: 0;
     height:10%;
-    
+    text-align: center;
   }
   
   /*.menü #myLinks {
@@ -13,20 +11,27 @@
   }*/
   
   .leiste a {
-    color: white;
-    padding: 15px 20px;
+    color: orange;
+    margin-right: 10%;
+    margin-top: 50%;
     text-decoration: none; /*Logo nicht unterstrichen*/
-    font-size: 20px;
+    font-size: 30px;
+    transition: font-size .5s ease;
+    /*padding: 30px;
+    padding-top: 50px;*/
+
     
   }
-  
-  .leiste a.icon {
-    background: black;
-    right: 0;
-    top: 0;
-  }
+
+  /*#ebookHub{
+    padding-left: 10px;
+  }*/
   
   .leiste a:hover {
-    background-color: #d3d3d3;
-    color: black;
+    /*background-color: #d3d3d3;*/
+    color: red;
+    padding-top: 10px;
+    font-size: 3em;
+    
+
   }
