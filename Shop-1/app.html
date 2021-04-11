@@ -1,0 +1,539 @@
+<html>
+    <head>
+        <title>The Ebook Hub</title>
+        <link rel="stylesheet" href="stylesheet.css"/>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <meta charset="UTF-8"/>
+    </head>
+    
+    <body>
+        <div id="navigation">
+            <div id="titel" class="navElemente">
+                <p id="title_font">The Ebook Hub</p>
+            </div>
+
+            <div id="selectNav" class="navElemente">              
+                    <a href="">HOME</a>     
+                    <a href="">SHOP</a>   
+                    <a href="">AUTOREN</a>          
+                    <a href="">
+                        <img id="warenkorb" src="Warenkorb.png" alt="Warenkorb">
+                    </a>                 
+            </div>
+
+            <div id="logo"></div>
+        </div>   
+        
+        <div class="shop_body_container" id="shop_container">
+			<h1 id="shop_headline">Shop-Übersicht</h1>
+		
+		
+		
+			<div class="Left_container" id="l_container">
+			
+				<div id="filter_box">
+				
+					<p> Kategorien <button onclick="show()">button</button>  </p>
+				
+					<div class="elements">
+						<input type="checkbox" id="Fantasy"> 
+						<label for="Fantasy">Fantasy</label>
+
+					</div>
+
+					<div class="elements">
+						<input type="checkbox" id="Horror"> 
+						<label for="Horror">Horror</label>
+
+					</div>
+
+					<div class="elements">
+						<input type="checkbox" id="Humor"> 
+						<label for="Humor">Humor</label>
+
+					</div>
+
+					<div class="elements">
+						<input type="checkbox" id="Krimi"> 
+						<label for="Krimi">Krimi</label>
+
+					</div>
+
+					<div class="elements">
+						<input type="checkbox" id="Ratgeber"> 
+						<label for="Ratgeber">Ratgeber</label>
+
+					</div>
+
+					<div class="elements">
+						<input type="checkbox" id="Roman"> 
+						<label for="Roman">Roman</label>
+
+					</div>
+
+					<div class="elements">
+						<input type="checkbox" id="Sachbücher"> 
+						<label for="Sachbücher">Sachbücher</label>
+
+					</div>
+
+					<div class="elements">
+						<input type="checkbox" id="Thriller"> 
+						<label for="Thriller">Thriller</label>
+
+					</div>
+					
+
+					<p> Filter 1 </p>
+					<p> Filter 1 </p>
+					<p> Filter 1 </p>
+					<p> Filter 1 </p>
+
+					<div class="slidecontainer">
+						<input type="range" min="1" max="120" value="60" class="slider" id="myRange">
+						<p>Value: <span id="demo"></span></p>
+					</div>
+
+
+					<p> Filter 1 </p>
+					<p> Filter 1 </p>
+					<p> Filter 1 </p>
+					<p> Filter 1 </p>
+					<p> Filter 1 </p>
+					<p> Filter 1 </p>
+					<p> Filter 1 </p>
+					<p> Filter 1 </p>
+					<p> Filter 1 </p>
+					<p> Filter 1 </p>
+					<p> Filter 1 </p>
+					<p> Filter 1 </p>
+				</div>
+			
+			</div>
+			
+			<form class="searchbar_container">
+				<input type="text" placeholder="Nach Autor suchen..." name="search">
+				<button type="submit" >	<i class="fa fa-search"> </i>	</button>
+			</form>
+		
+			
+			<div class="artikel_buble">
+				<p>
+					<span class="Author_name_tag Author_attribute_tag">Name:</span>
+					<span class="Author_attribute"> Herman Meville </span>
+					
+					<span class="Author_attribute_tag">Alter:</span>
+					<span class="Author_attribute"> Herman Meville </span>
+					
+					<span class="Author_attribute_tag">Bücher:</span>
+					<span class="Author_attribute"> Buch1, Buch2, Buch3, Buch4, ...... </span>
+					
+				</p>
+			</div>
+			
+			<div class="artikel_buble">
+				<p>
+					<span class="Author_name_tag Author_attribute_tag">Name:</span>
+					<span class="Author_attribute"> Herman Meville </span>
+					
+					<span class="Author_attribute_tag">Alter:</span>
+					<span class="Author_attribute"> Herman Meville </span>
+					
+					<span class="Author_attribute_tag">Bücher:</span>
+					<span class="Author_attribute"> Buch1, Buch2, Buch3, Buch4, ...... </span>
+				</p>
+			</div>
+			
+			<div class="artikel_buble">
+				<p>
+					<span class="Author_name_tag Author_attribute_tag">Name:</span>
+					<span class="Author_attribute"> Herman Meville </span>
+					
+					<span class="Author_attribute_tag">Alter:</span>
+					<span class="Author_attribute"> Herman Meville </span>
+					
+					<span class="Author_attribute_tag">Bücher:</span>
+					<span class="Author_attribute"> Buch1, Buch2, Buch3, Buch4, ...... </span>
+					
+				</p>
+			</div>
+			
+			
+			<div class="artikel_buble">
+				<p>
+					<span class="Author_name_tag Author_attribute_tag">Name:</span>
+					<span class="Author_attribute"> Herman Meville </span>
+					
+					<span class="Author_attribute_tag">Alter:</span>
+					<span class="Author_attribute"> Herman Meville </span>
+					
+					<span class="Author_attribute_tag">Bücher:</span>
+					<span class="Author_attribute"> Buch1, Buch2, Buch3, Buch4, ...... </span>
+					
+				</p>
+			</div>
+			
+			
+			<div class="artikel_buble">
+				<p>
+					<span class="Author_name_tag Author_attribute_tag">Name:</span>
+					<span class="Author_attribute"> Herman Meville </span>
+					
+					<span class="Author_attribute_tag">Alter:</span>
+					<span class="Author_attribute"> Herman Meville </span>
+					
+					<span class="Author_attribute_tag">Bücher:</span>
+					<span class="Author_attribute"> Buch1, Buch2, Buch3, Buch4, ...... </span>
+					
+				</p>
+			</div>
+			
+			
+			<div class="artikel_buble">
+				<p>
+					<span class="Author_name_tag Author_attribute_tag">Name:</span>
+					<span class="Author_attribute"> Herman Meville </span>
+					
+					<span class="Author_attribute_tag">Alter:</span>
+					<span class="Author_attribute"> Herman Meville </span>
+					
+					<span class="Author_attribute_tag">Bücher:</span>
+					<span class="Author_attribute"> Buch1, Buch2, Buch3, Buch4, ...... </span>
+					
+				</p>
+			</div>
+			
+			
+			
+			<div class="artikel_buble">
+				<p>
+					<span class="Author_name_tag Author_attribute_tag">Name:</span>
+					<span class="Author_attribute"> Herman Meville </span>
+					
+					<span class="Author_attribute_tag">Alter:</span>
+					<span class="Author_attribute"> Herman Meville </span>
+					
+					<span class="Author_attribute_tag">Bücher:</span>
+					<span class="Author_attribute"> Buch1, Buch2, Buch3, Buch4, ...... </span>
+					
+				</p>
+			</div>
+			
+			
+			<div class="artikel_buble">
+				<p>
+					<span class="Author_name_tag Author_attribute_tag">Name:</span>
+					<span class="Author_attribute"> Herman Meville </span>
+					
+					<span class="Author_attribute_tag">Alter:</span>
+					<span class="Author_attribute"> Herman Meville </span>
+					
+					<span class="Author_attribute_tag">Bücher:</span>
+					<span class="Author_attribute"> Buch1, Buch2, Buch3, Buch4, ...... </span>
+					
+				</p>
+			</div>
+			
+			
+			<div class="artikel_buble">
+				<p>
+					<span class="Author_name_tag Author_attribute_tag">Name:</span>
+					<span class="Author_attribute"> Herman Meville </span>
+					
+					<span class="Author_attribute_tag">Alter:</span>
+					<span class="Author_attribute"> Herman Meville </span>
+					
+					<span class="Author_attribute_tag">Bücher:</span>
+					<span class="Author_attribute"> Buch1, Buch2, Buch3, Buch4, ...... </span>
+					
+				</p>
+			</div>
+			
+			
+			
+			<div class="artikel_buble">
+				<p>
+					<span class="Author_name_tag Author_attribute_tag">Name:</span>
+					<span class="Author_attribute"> Herman Meville </span>
+					
+					<span class="Author_attribute_tag">Alter:</span>
+					<span class="Author_attribute"> Herman Meville </span>
+					
+					<span class="Author_attribute_tag">Bücher:</span>
+					<span class="Author_attribute"> Buch1, Buch2, Buch3, Buch4, ...... </span>
+					
+				</p>
+			</div>
+			
+			
+			
+			
+			<div class="artikel_buble">
+				<p>
+					<span class="Author_name_tag Author_attribute_tag">Name:</span>
+					<span class="Author_attribute"> Herman Meville </span>
+					
+					<span class="Author_attribute_tag">Alter:</span>
+					<span class="Author_attribute"> Herman Meville </span>
+					
+					<span class="Author_attribute_tag">Bücher:</span>
+					<span class="Author_attribute"> Buch1, Buch2, Buch3, Buch4, ...... </span>
+					
+				</p>
+			</div>
+			
+			
+			
+			<div class="artikel_buble">
+				<p>
+					<span class="Author_name_tag Author_attribute_tag">Name:</span>
+					<span class="Author_attribute"> Herman Meville </span>
+					
+					<span class="Author_attribute_tag">Alter:</span>
+					<span class="Author_attribute"> Herman Meville </span>
+					
+					<span class="Author_attribute_tag">Bücher:</span>
+					<span class="Author_attribute"> Buch1, Buch2, Buch3, Buch4, ...... </span>
+					
+				</p>
+			</div>
+			
+			
+			
+			<div class="artikel_buble">
+				<p>
+					<span class="Author_name_tag Author_attribute_tag">Name:</span>
+					<span class="Author_attribute"> Herman Meville </span>
+					
+					<span class="Author_attribute_tag">Alter:</span>
+					<span class="Author_attribute"> Herman Meville </span>
+					
+					<span class="Author_attribute_tag">Bücher:</span>
+					<span class="Author_attribute"> Buch1, Buch2, Buch3, Buch4, ...... </span>
+					
+				</p>
+			</div>
+			
+			
+			
+			<div class="artikel_buble">
+				<p>
+					<span class="Author_name_tag Author_attribute_tag">Name:</span>
+					<span class="Author_attribute"> Herman Meville </span>
+					
+					<span class="Author_attribute_tag">Alter:</span>
+					<span class="Author_attribute"> Herman Meville </span>
+					
+					<span class="Author_attribute_tag">Bücher:</span>
+					<span class="Author_attribute"> Buch1, Buch2, Buch3, Buch4, ...... </span>
+					
+				</p>
+			</div>
+			
+			
+			<div class="artikel_buble">
+				<p>
+					<span class="Author_name_tag Author_attribute_tag">Name:</span>
+					<span class="Author_attribute"> Herman Meville </span>
+					
+					<span class="Author_attribute_tag">Alter:</span>
+					<span class="Author_attribute"> Herman Meville </span>
+					
+					<span class="Author_attribute_tag">Bücher:</span>
+					<span class="Author_attribute"> Buch1, Buch2, Buch3, Buch4, ...... </span>
+					
+				</p>
+			</div>
+			
+			
+			
+			<div class="artikel_buble">
+				<p>
+					<span class="Author_name_tag Author_attribute_tag">Name:</span>
+					<span class="Author_attribute"> Herman Meville </span>
+					
+					<span class="Author_attribute_tag">Alter:</span>
+					<span class="Author_attribute"> Herman Meville </span>
+					
+					<span class="Author_attribute_tag">Bücher:</span>
+					<span class="Author_attribute"> Buch1, Buch2, Buch3, Buch4, ...... </span>
+					
+				</p>
+			</div>
+			
+			
+			<div class="artikel_buble">
+				<p>
+					<span class="Author_name_tag Author_attribute_tag">Name:</span>
+					<span class="Author_attribute"> Herman Meville </span>
+					
+					<span class="Author_attribute_tag">Alter:</span>
+					<span class="Author_attribute"> Herman Meville </span>
+					
+					<span class="Author_attribute_tag">Bücher:</span>
+					<span class="Author_attribute"> Buch1, Buch2, Buch3, Buch4, ...... </span>
+					
+				</p>
+			</div>
+			
+			
+			
+			<div class="artikel_buble">
+				<p>
+					<span class="Author_name_tag Author_attribute_tag">Name:</span>
+					<span class="Author_attribute"> Herman Meville </span>
+					
+					<span class="Author_attribute_tag">Alter:</span>
+					<span class="Author_attribute"> Herman Meville </span>
+					
+					<span class="Author_attribute_tag">Bücher:</span>
+					<span class="Author_attribute"> Buch1, Buch2, Buch3, Buch4, ...... </span>
+					
+				</p>
+			</div>
+			
+			
+			<div class="artikel_buble">
+				<p>
+					<span class="Author_name_tag Author_attribute_tag">Name:</span>
+					<span class="Author_attribute"> Herman Meville </span>
+					
+					<span class="Author_attribute_tag">Alter:</span>
+					<span class="Author_attribute"> Herman Meville </span>
+					
+					<span class="Author_attribute_tag">Bücher:</span>
+					<span class="Author_attribute"> Buch1, Buch2, Buch3, Buch4, ...... </span>
+					
+				</p>
+			</div>
+			
+			
+			
+			<div class="artikel_buble">
+				<p>
+					<span class="Author_name_tag Author_attribute_tag">Name:</span>
+					<span class="Author_attribute"> Herman Meville </span>
+					
+					<span class="Author_attribute_tag">Alter:</span>
+					<span class="Author_attribute"> Herman Meville </span>
+					
+					<span class="Author_attribute_tag">Bücher:</span>
+					<span class="Author_attribute"> Buch1, Buch2, Buch3, Buch4, ...... </span>
+					
+				</p>
+			</div>
+			
+			
+			<div class="artikel_buble">
+				<p>
+					<span class="Author_name_tag Author_attribute_tag">Name:</span>
+					<span class="Author_attribute"> Herman Meville </span>
+					
+					<span class="Author_attribute_tag">Alter:</span>
+					<span class="Author_attribute"> Herman Meville </span>
+					
+					<span class="Author_attribute_tag">Bücher:</span>
+					<span class="Author_attribute"> Buch1, Buch2, Buch3, Buch4, ...... </span>
+					
+				</p>
+			</div>
+			
+			
+			
+			<div class="artikel_buble">
+				<p>
+					<span class="Author_name_tag Author_attribute_tag">Name:</span>
+					<span class="Author_attribute"> Herman Meville </span>
+					
+					<span class="Author_attribute_tag">Alter:</span>
+					<span class="Author_attribute"> Herman Meville </span>
+					
+					<span class="Author_attribute_tag">Bücher:</span>
+					<span class="Author_attribute"> Buch1, Buch2, Buch3, Buch4, ...... </span>
+					
+				</p>
+			</div>
+			
+			
+			<div class="artikel_buble">
+				<p>
+					<span class="Author_name_tag Author_attribute_tag">Name:</span>
+					<span class="Author_attribute"> Herman Meville </span>
+					
+					<span class="Author_attribute_tag">Alter:</span>
+					<span class="Author_attribute"> Herman Meville </span>
+					
+					<span class="Author_attribute_tag">Bücher:</span>
+					<span class="Author_attribute"> Buch1, Buch2, Buch3, Buch4, ...... </span>
+					
+				</p>
+			</div>
+			
+			
+			
+			<div class="artikel_buble">
+				<p>
+					<span class="Author_name_tag Author_attribute_tag">Name:</span>
+					<span class="Author_attribute"> Herman Meville </span>
+					
+					<span class="Author_attribute_tag">Alter:</span>
+					<span class="Author_attribute"> Herman Meville </span>
+					
+					<span class="Author_attribute_tag">Bücher:</span>
+					<span class="Author_attribute"> Buch1, Buch2, Buch3, Buch4, ...... </span>
+					
+				</p>
+			</div>
+			
+			
+			
+			<div class="artikel_buble">
+				<p>
+					<span class="Author_name_tag Author_attribute_tag">Name:</span>
+					<span class="Author_attribute"> Herman Meville </span>
+					
+					<span class="Author_attribute_tag">Alter:</span>
+					<span class="Author_attribute"> Herman Meville </span>
+					
+					<span class="Author_attribute_tag">Bücher:</span>
+					<span class="Author_attribute"> Buch1, Buch2, Buch3, Buch4, ...... </span>
+					
+				</p>
+			</div>
+			
+			
+			
+			<div class="artikel_buble">
+				<p>
+					<span class="Author_name_tag Author_attribute_tag">Name:</span>
+					<span class="Author_attribute"> Herman Meville </span>
+					
+					<span class="Author_attribute_tag">Alter:</span>
+					<span class="Author_attribute"> Herman Meville </span>
+					
+					<span class="Author_attribute_tag">Bücher:</span>
+					<span class="Author_attribute"> Buch1, Buch2, Buch3, Buch4, ...... </span>
+					
+				</p>
+			</div>
+			
+			
+			
+			
+			
+		
+			
+		</div>
+		
+		<script src="app.js"></script>
+
+        <div id="footer">
+            <div id="selectFooter" class="FooterElemente">              
+                <a href="">Impressum und Kontakt</a>     
+                <a href="">Datenschutz</a>   
+                <a href="">Widerrufsrecht</a>    
+            </div>
+            <div id="copyright"></div>
+        </div>
+    </body>
+</html>
