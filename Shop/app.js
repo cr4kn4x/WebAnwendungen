@@ -1,7 +1,4 @@
 
-
-
-
 function adjustLeftContainerHeight(){
 	var height_shop_container;
 	var shop_container = document.getElementById('shop_container');
@@ -11,4 +8,8 @@ function adjustLeftContainerHeight(){
 }
 
 
+
+
 adjustLeftContainerHeight();
+
+document.getElementsByID("shop_container").onresize = function() {adjustLeftContainerHeight()};
