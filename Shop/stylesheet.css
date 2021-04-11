@@ -4,7 +4,8 @@ body {margin:0}
 footer{
 	background-color: #444048;
     width: 100%;
-    height: 10%; 
+    height: 10%;
+    margin-bottom: 0%;
 }
 
 footer a{
@@ -124,28 +125,29 @@ footer a{
 	height:100%;
 	padding-top:8%;
 	color:white;
+    
 	
 }
 
 
 
 #filter_box{
-	float:left;
+	float: left;
 	background-color: #444048;
 	height: auto;
-	min-width:200px;
-	max-width:250px;
 	width: 15%;
 	padding:1%;
 	border-radius:35px;
 	margin-left: 1%;
+    margin-bottom: 10%;
+
 }
 
 
 .artikel_box{
 	margin-left:5%;
 	margin-top:1%;
-	float:left;
+	display: inline-block;
 	background-color: #444048;
 	height: auto;
 	width: 15%;
@@ -200,3 +202,4 @@ button[type="submit"] {
 /*.elements{
     display: none;
 }*/
+
