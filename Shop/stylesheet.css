@@ -1,19 +1,6 @@
 * {box-sizing: border-box}
 body {margin:0}
 
-footer{
-	margin-top:10%;
-	background-color: #444048;
-    width: 100%;
-    height: 10%; 
-}
-
-footer a{
-	color: #FF8A11;
-    text-decoration: none;
-    padding-right: 20%;
-}
-
 
 @font-face{
     font-family: X-Files;
@@ -86,9 +73,22 @@ footer a{
 
 /* #main is now included in .author_body_container */
 
+#shop_headline{
+	margin-left:1%;
+	color: #444048;
+}
 
+#footer {
+    background-color: #444048;
+    width: 100%;
+    height: 10%;    
+}
 
-
+#footer a {
+    color: #FF8A11;
+    text-decoration: none;
+    padding-right: 20%;
+}
 
 #selectFooter {
     margin-left: 30%;
@@ -111,67 +111,58 @@ footer a{
     height: 40px;
 }
 
-
-
-#shop_headline{
-	padding-left:1%;
-	color: #444048;
+#filter_box{
+	background-color: #444048;
+	height: auto;
+	width: auto;
+	padding:1%;
+	border-radius:35px;
+	margin-left: 1%;
+    margin-bottom: 10%;
 }
+
 
 /* Body  Box */
 .shop_body_container {
 	background-color: #8A9094;
 	width:100%;
-	height:90%;
+	height:auto;
 	padding-bottom:4%;
 	padding-top:8%;
-	padding-left: 1%;
+	padding-left: 4%;
+	padding-right: 9%;
 	color:white;
 }
 
-.Shop_artikel_container {
-	background-color: #8A9094;
-	height:90%;
-	width:84%;
+
+.Left_container{
+
 	float:left;
+	height:100%;
+	width:15%;
 }
 
-
-#filter_box{
-	float:left;
+.artikel_buble{
+	display:inline-block;
 	background-color: #444048;
-	height: auto;
-	min-width:200px;
-	max-width:250px;
-	width: 15%;
-	padding:1%;
+	height: 25%;
+	width: 20%;
+	margin-left:1%;
+	margin-bottom:1%;
+	border: 2px solid #444048;
 	border-radius:35px;
+	padding-left:2%;
 }
-
-
-.artikel_box{
-	margin-left:5%;
-	margin-top:1%;
-	float:left;
-	background-color: #444048;
-	height: auto;
-	width: 15%;
-	border-radius:30px;
-}
-
 
 
 .searchbar_container{
-	padding-left:1%;
-	float:left;
-	width:84%;
-	height:60px;
+	display:inline-block;
+	padding-top:1%;
+	width:70%;
+	height:70px;
+	margin-left:2%;
 	margin-bottom:2%;
 }
-
-
-
-
 
 
 input[type="text"] {
@@ -204,3 +195,6 @@ button[type="submit"] {
 	padding-left:0%;
 }
 
+/*.elements{
+    display: none;
+}*/
