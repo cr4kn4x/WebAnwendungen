@@ -8,6 +8,22 @@ onload = (event) =>{   // wird aufgerufen sobald Webseite geladen wird
 
 
 function show(){
-    console.log(elements1[0])
-    elements1.style.display = "invisible";
+    
+    console.log(elements1[0]);
+
+    if(elements1[0].style.display == "none"){
+        for(let x=0; x<=8; x++){
+            elements1[x].style.display = "block-inline";
+        } 
+    }
+
+    else{
+        for(let x=0; x<=8; x++){
+            elements1[x].style.display = "none";
+        }
+    }
+        
+
+
+    
 }
