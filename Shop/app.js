@@ -1,12 +1,13 @@
-var ulelements;
+var elements1;
 
 
 onload = (event) =>{   // wird aufgerufen sobald Webseite geladen wird
-    ulelements = document.getElementsByClassName("Kategorien");
+    elements1 = document.getElementsByClassName("elements");
 
 }
 
 
-function plus(){
-    ulelements.style.display = "invisible";
+function show(){
+    console.log(elements1[0])
+    elements1.style.display = "invisible";
 }
