@@ -2,18 +2,24 @@
 body {margin:0}
 
 
-
-.author_body_container a{
+.Author_link {
+	text-decoration:none;
 	color:white;
 }
 
 
-
-/*
-.author_body_container a{
+.Book_link{
 	text-decoration:none;
+	color:white;
 }
-*/	
+
+/*  Kann man sich überlegen */
+.Book_link:hover{
+	text-decoration: underline;
+}
+
+
+	
 
 
 
@@ -140,6 +146,7 @@ body {margin:0}
 
 
 .author_buble{
+	cursor: pointer;
 	background-color: #444048;
 	height: 55px;
 	width: 100%;

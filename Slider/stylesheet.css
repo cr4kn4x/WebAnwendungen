@@ -7,6 +7,15 @@ body {margin:0}
     src: url(x-files.tff);
 }
 
+.slideshow_box a{
+	color:white;
+	text-decoration:none;
+}
+
+
+
+
+
 
 .navElemente {
     margin: 0;
