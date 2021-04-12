@@ -23,7 +23,7 @@ body {margin:0}
     color: #FF8A11;
     position: fixed;
     width: 100%;
-    height: 10%;
+    height: 115px;
 }
 
 #titel {
@@ -81,7 +81,7 @@ body {margin:0}
 #footer {
     background-color: #444048;
     width: 100%;
-    height: 10%;    
+    height: 20%;   
 }
 
 #footer a {
@@ -127,7 +127,7 @@ body {margin:0}
 	background-color: #8A9094;
 	width:100%;
 	height:auto;
-	padding-bottom:4%;
+	padding-bottom:10%;
 	padding-top:8%;
 	padding-left: 4%;
 	padding-right: 9%;
@@ -136,7 +136,7 @@ body {margin:0}
 
 
 .Left_container{
-
+	padding-bottom:10%;
 	float:left;
 	height:100%;
 	width:15%;

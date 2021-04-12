@@ -23,7 +23,7 @@ body {margin:0}
     color: #FF8A11;
     position: fixed;
     width: 100%;
-    height: 10%;
+    height: 115px;
 }
 
 #titel {
@@ -77,7 +77,7 @@ body {margin:0}
 #footer {
     background-color: #444048;
     width: 100%;
-    height: 10%;    
+	height:100px; 
 }
 
 #footer a {

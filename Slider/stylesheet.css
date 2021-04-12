@@ -19,6 +19,7 @@ body {margin:0}
 
 
 #navigation {
+	min-height:100px;
     background-color: #444048;
     color: #FF8A11;
     position: fixed;

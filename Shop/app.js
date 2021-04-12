@@ -9,7 +9,6 @@ function adjustLeftContainerHeight(){
 
 
 
-
 adjustLeftContainerHeight();
 
-document.getElementsByID("shop_container").onresize = function() {adjustLeftContainerHeight()};
+window.addEventListener("resize", adjustLeftContainerHeight);
