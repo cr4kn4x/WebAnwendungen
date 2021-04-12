@@ -201,13 +201,13 @@ button[type="submit"] {
 
 
 .slidecontainer {
-    width: 10%;
+    width: 80%;
   }
   
   .slider {
     -webkit-appearance: none;
-    width: 9%;
-    height: 10px;
+    width: 100%;
+    height: 15px;
     border-radius: 5px;
     background: #d3d3d3;
     outline: none;
