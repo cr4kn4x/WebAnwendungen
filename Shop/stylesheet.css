@@ -1,5 +1,5 @@
 * {box-sizing: border-box}
-body {margin:0}
+body {margin:0; background-color:#8A9094}
 
 
 @font-face{
@@ -79,9 +79,11 @@ body {margin:0}
 }
 
 #footer {
+	display:inline-block;
     background-color: #444048;
     width: 100%;
-    height: 20%;   
+	height:10%;
+	min-height:100px;
 }
 
 #footer a {
@@ -89,6 +91,7 @@ body {margin:0}
     text-decoration: none;
     padding-right: 20%;
 }
+
 
 #selectFooter {
     margin-left: 30%;
