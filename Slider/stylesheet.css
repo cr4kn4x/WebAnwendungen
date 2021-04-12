@@ -7,6 +7,7 @@ body {margin:0}
     src: url(x-files.tff);
 }
 
+
 .navElemente {
     margin: 0;
     padding: 0;
@@ -23,10 +24,9 @@ body {margin:0}
     color: #FF8A11;
     position: fixed;
     width: 100%;
-	min-height:115px;
-    height: 10%;
-	margin-bottom:1%;
+    height: 115px;
 }
+
 
 #titel {
     font-size: 3.3em;
@@ -135,9 +135,8 @@ body {margin:0}
 /* SLIDER */ 
 /* Slideshow Box */
 .slideshow_box {
-
 	display:inline-block;
-	min-height:900px;
+	min-height:1000px;
 	background-color: #8A9094;
 	width:100%;
 	height:90%;
@@ -155,29 +154,14 @@ body {margin:0}
 	height: 60%;		/* --> 0.6 * 550px = xxx   Optimale Auflösung der Bilde 250 x 350px   */
 	border: 1px solid;
 	border-color: black;
+	margin-bottom:1%;
 }
-
-
-/* Schrift orange */
-
-.Book_attribute_tag {
-	color: #FF8A11;
-}
-
-/*
-
-.Book_attribute {
-	
-}
-
-*/
 
 
 /*    Slideshow Buttons  <--  //  -->     */
 .prev, .next {
 	cursor: pointer;
 	position: absolute;
-
 	top: 40%;
 	width: auto;
 	padding: 15px;
@@ -201,18 +185,9 @@ body {margin:0}
 
 
 .Slide_text_orange{
-	text-align:center;
 	color:orange;
 }
 
-.Slide_text_black{
-	text-align:center;
-	color:black;
-}
-
-.Slide_text{
-	padding-left:9%;
-}
 
 
 .prev:hover, .next:hover {
@@ -221,6 +196,7 @@ body {margin:0}
 
 /* changed: "position: absolute " */
 .mySlides{
+	cursor: pointer;
 	margin-top:3%;
 	position:absolute;
 	width: 250px;
@@ -248,6 +224,22 @@ body {margin:0}
 @keyframes fade {
 	from {opacity: .05} 
 	to {opacity: 1}
+}
+
+
+/* Star rating */
+
+.checked_star {
+  color: orange;
+}
+
+.myslide_text{
+	padding-left:1%;
+	padding-top:2%;
+}
+
+.Slide_text{
+	padding-left:3%;
 }
 
 
