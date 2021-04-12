@@ -58,50 +58,30 @@ function showSlides(n0,n1,n2) {
 		right_slide=slides.length-1;
 	}	
 
-
-
-	/*
-	slider_images[mid_slide].style.width = "230px";
-	slider_images[mid_slide].style.borderColor = "yellow";
-
-	
-	slider_images[right_slide].style.width = "200px";
-	slider_images[right_slide].style.borderColor = "";
-
-	slider_images[left_slide].style.width = "200px";
-	slider_images[left_slide].style.borderColor = "";
-	
-	*/
-
 	
 	slides[mid_slide].style.borderColor = "yellow";
-
 	slides[left_slide].style.borderColor = "";
-
-
 	slides[right_slide].style.borderColor = "";
 
-	
-	
-	
+
 	
 	slides[left_slide].style.display = "inline-block";     /* left Slide wird eingeblendet. */
 	slides[left_slide].style.left = "2%"; 
 	
-	slides[left_slide].style.width = "200px";
-	slides[left_slide].style.height = "450px";
+	slides[left_slide].style.width = "230px";
+	slides[left_slide].style.height = "500px";
  
 	slides[mid_slide].style.display = "inline-block";     /*  mid Slide wird eingeblendet. */
 	slides[mid_slide].style.left = "28%"; 
 	
-	slides[mid_slide].style.width = "250px";
-	slides[mid_slide].style.height = "550px";
+	slides[mid_slide].style.width = "300px";
+	slides[mid_slide].style.height = "600px";
 	
 	slides[right_slide].style.display = "inline-block";     /* right Slide wird eingeblendet. */
 	slides[right_slide].style.left = "59%";
 	
-	slides[right_slide].style.width = "200px";
-	slides[right_slide].style.height = "450px";
+	slides[right_slide].style.width = "230px";
+	slides[right_slide].style.height = "500px";
 	
 	
 	
