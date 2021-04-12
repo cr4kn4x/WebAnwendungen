@@ -19,11 +19,11 @@ body {margin:0}
 
 
 #navigation {
-	min-height:100px;
     background-color: #444048;
     color: #FF8A11;
     position: fixed;
     width: 100%;
+	min-height:115px;
     height: 10%;
 }
 
@@ -76,9 +76,10 @@ body {margin:0}
 
 
 #footer {
-	padding-top:auto;
-    background-color: #444048;
+	display:inline-block;
+	background-color: #444048;
     width: 100%;
+	min-height:100px;
     height: 10%;    
 }
 
@@ -112,19 +113,17 @@ body {margin:0}
 
 /** ------- HOME + Bestseller CSS ------------- */ 
 
-#Home_headline_box {
-	position: absolute;
-	padding-left:5%;
-	height:10%;
-}
+
 
 #Home_font {
-	color:red;
+	font-size:2em;
+	color:#444048;
 }
 
 #Bestseller_font {
-	color: red;
-	padding-left:20%;
+	font-size:3.7em;
+	color: #444048;
+	padding-left:35%;
 }
 
 
@@ -132,11 +131,13 @@ body {margin:0}
 /* SLIDER */ 
 /* Slideshow Box */
 .slideshow_box {
+	display:inline-block;
+	min-height:1000px;
 	background-color: #8A9094;
 	width:100%;
 	height:90%;
 	padding-bottom:4%;
-	padding-top:15%;
+	padding-top:5%;
 	padding-left: 4%;
 	padding-right: 9%;
 	color:white;
@@ -171,13 +172,12 @@ body {margin:0}
 .prev, .next {
 	cursor: pointer;
 	position: absolute;
-	top: 45%;
+
+	top: 40%;
 	width: auto;
 	padding: 15px;
 	color: #FF8A11;
-	display: flex;
-	justify-content: center;
-	align-items: center;
+	
 }
 
 /* Slider Buttons */
@@ -216,6 +216,7 @@ body {margin:0}
 
 /* changed: "position: absolute " */
 .mySlides{
+	margin-top:3%;
 	position:absolute;
 	width: 250px;
 	height: 550px;
