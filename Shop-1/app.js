@@ -29,24 +29,25 @@ function show(){
             elements1[x].style.display = "none";
         }
     }
-        
-
-
-    function function_plus(){
-        output.innerHTML = slider.value + 1;
-    }
-
-
-
-
-
-
-    
-    
-
-
 
 }
+
+
+
+function function_plus(){
+    console.log(slider.value);
+    
+    slider.value++;
+    output.innerHTML = slider.value;
+}
+
+function function_minus(){
+    console.log(slider.value);
+    
+    slider.value--;
+    output.innerHTML = slider.value;
+}
+
 
 
 

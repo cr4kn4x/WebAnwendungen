@@ -206,7 +206,7 @@ button[type="submit"] {
 
 
 .slidecontainer {
-    width: 80%;
+    width: 75%;
     margin-left: 10px;
   }
   
@@ -255,3 +255,18 @@ button[type="submit"] {
   .minus{
       float: left;
   }
+
+
+
+  /* Star rating */
+
+ 
+
+.checked_star {
+    color: orange;
+  }
+
+
+
+
+  
