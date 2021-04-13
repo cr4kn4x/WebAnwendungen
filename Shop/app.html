@@ -32,11 +32,15 @@
 			<div class="Left_container" id="l_container">
 
 				<div id="filter_box">
+
+					<p>Alle Bücher:</p>
 				
-					<p> Kategorien <button onclick="show()">button</button>  </p>
+					<div class="Ausblenden" onclick="show1()"><i class="fas fa-minus"></i></div>
+
+					<p> Kategorien:</p>
 				
 					<div class="elements">
-						<input type="checkbox" id="Fantasy"> 
+						<input type="checkbox" id="Fantasy" color="orange"> 
 						<label for="Fantasy">Fantasy</label>
 
 					</div>
@@ -84,12 +88,12 @@
 					</div>
 					
 
-					<p> Filter 1 </p>
-					<p> Filter 1 </p>
-					<p> Filter 1 </p>
-					<p> Preis: </p>
 					
-					<div>
+					<div class="Ausblenden" onclick="show2()"><i class="fas fa-minus"></i></div>
+					<p> Preis:</p>
+
+					
+					<div id="elements1">
 						<!--<div onclick="function_plus()" class="plus">+</div>-->
 
 						<div class="plus"><i onclick="function_plus()" class="fas fa-plus"></i></div>
@@ -99,21 +103,24 @@
 
 						<!--<div onclick="function_minus()" class="minus">-</div>-->
 
-						<div class="slidecontainer">
+						<!-- <div class="slidecontainer">
 							<p class="Space"><input type="range" min="1" max="120" value="60" class="slider" id="myRange">
 							0&#8364; <span id="demo"></span>&#8364; 120&#8364;</p>
+						</div> -->
+
+						<div class="slidecontainer">
+							<input type="range" min="1" max="120" value="60" class="slider" id="myRange">
+							<span id="Space1">0&#8364;</span> <span id="demo"></span><span>&#8364;</span> <span id="Space2">120&#8364;</span>
 						</div>
 
 					</div>
 					
 
 
-					<p> Filter 1 </p>
-					<p> Filter 1 </p>
-					<p> Filter 1 </p>
-					<p> Bewertungen</p>
+					<div class="Ausblenden" onclick="show3()"><i class="fas fa-minus"></i></div>
+					<p> Bewertungen:</p>
 
-					<div class = "Bewertungen">
+					<div class = "Bewertungen" id="elements2">
 						 
 
 						<p><input type="checkbox" id="1Sterne"><span class="fa fa-star checked_star"></span>
@@ -154,14 +161,7 @@
 					</div>
 
 
-					<p> Filter 1 </p>
-					<p> Filter 1 </p>
-					<p> Filter 1 </p>
-					<p> Filter 1 </p>
-					<p> Filter 1 </p>
-					<p> Filter 1 </p>
-					<p> Filter 1 </p>
-					<p> Filter 1 </p>
+					
 				</div>
 			
 			</div>

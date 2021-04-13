@@ -11,24 +11,79 @@ slider.oninput = function() {
 
 
 
-var elements1 = document.getElementsByClassName("elements");;
+var category = document.getElementsByClassName("elements"); //Kategorie
+var slider = document.getElementById("elements1"); //Slider
+var rating = document.getElementById("elements2"); //Bewertungen
 
 
-function show(){
+function show1(){
     
-    console.log(elements1[0]);
+    
 
-    if(elements1[0].style.display == "none"){
-        for(let x=0; x<=8; x++){
-            elements1[x].style.display = "block-inline";
-        } 
-    }
+    for (let x=0; x<=category.length; x++){
 
-    else{
-        for(let x=0; x<=8; x++){
-            elements1[x].style.display = "none";
+       
+        if(category[x].style.display == "none"){
+            
+            category[x].style.display = "block";
+            
+        }
+
+        else{
+            
+            category[x].style.display = "none";
+            
         }
     }
+    
+
+}
+
+
+function show2(){
+    
+    
+    
+
+    for (let x=0; x<=slider.length; x++){
+        
+        if(slider[x].style.display == "block"){
+            
+            slider[x].style.display = "block";
+            
+        }
+
+        else{
+            
+            slider[x].style.display = "none";
+            
+        }
+    }
+    
+
+}
+
+
+
+function show3(){
+    
+    
+
+    for (let x=0; x<=rating.length; x++){
+        
+        if(rating[x].style.display == "none"){
+            
+            rating[x].style.display = "block";
+            
+        }
+
+        else{
+            
+            rating[x].style.display = "none";
+            
+        }
+    }
+    
 
 }
 

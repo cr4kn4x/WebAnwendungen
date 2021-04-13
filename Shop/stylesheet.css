@@ -178,8 +178,22 @@ button[type="submit"] {
 }
 
 
+.Ausblenden{
+    float: left;
+}
+
+.elements{
+    display: none;
+}
+
+#elements1{
+    display: none;
+}
 
 
+#elements2{
+    display: none;
+}
 
 
 
@@ -187,7 +201,7 @@ button[type="submit"] {
 
 .slidecontainer {
     width: 75%;
-    margin-left: 10px;
+    display: inline-block;
   }
   
   .slider {
@@ -224,8 +238,13 @@ button[type="submit"] {
     cursor: pointer;
   }
 
-  .Space{
-      word-spacing: 25px;
+  #Space1{
+      margin-right: 30%;
+  }
+
+  #Space2{
+      float: right;
+      margin-right: 0%;
   }
 
   .plus{
@@ -234,7 +253,15 @@ button[type="submit"] {
   
   .minus{
       float: left;
+      margin-right: 5%;
   }
+
+
+
+
+
+
+
 
 
 
@@ -316,3 +343,4 @@ button[type="submit"] {
 	float:right;
 	font-size:2em;
 }
+
