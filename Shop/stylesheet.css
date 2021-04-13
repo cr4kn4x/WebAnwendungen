@@ -151,10 +151,10 @@ body {margin:0;
 
 .searchbar_container{
 	display:inline-block;
-	padding-top:1%;
+	padding-top:0%;
 	width:70%;
-	height:70px;
-	margin-left:2%;
+	height:75px;
+	margin-left:1%;
 	margin-bottom:2%;
 }
 
