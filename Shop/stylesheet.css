@@ -254,6 +254,7 @@ button[type="submit"] {
 /* Inside of artikel_buble */
 
 .artikel_buble{
+	max-height:400px;
 	min-width:320px;
 	min-height:390px;
 	display:inline-block;
