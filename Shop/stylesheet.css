@@ -117,6 +117,7 @@ body {margin:0;
 }
 
 #filter_box{
+	min-width:100px;
 	background-color: #444048;
 	height: auto;
 	width: auto;
@@ -253,6 +254,8 @@ button[type="submit"] {
 /* Inside of artikel_buble */
 
 .artikel_buble{
+	min-width:320px;
+	min-height:390px;
 	display:inline-block;
 	background-color: #444048;
 	height: 30%;
