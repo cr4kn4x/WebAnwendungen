@@ -1,0 +1,870 @@
+<html>
+    <head>
+        <title>The Ebook Hub</title>
+        <link rel="stylesheet" href="stylesheet.css"/>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <meta charset="UTF-8"/>
+    </head>
+    
+    <body>
+        <div id="navigation">
+            <div id="titel" class="navElemente">
+                <p id="title_font">The Ebook Hub</p>
+            </div>
+
+            <div id="selectNav" class="navElemente">              
+                    <a href="">HOME</a>     
+                    <a href="">SHOP</a>   
+                    <a href="">AUTOREN</a>          
+                    <a href="">
+                        <img id="warenkorb" src="Warenkorb.png" alt="Warenkorb">
+                    </a>                 
+            </div>
+
+            <div id="logo"></div>
+        </div>   
+        
+        <div class="shop_body_container" id="shop_container">
+			<h1 id="shop_headline">Shop-Übersicht</h1>
+		
+		
+		
+			<div class="Left_container" id="l_container">
+
+				<div id="filter_box">
+
+					<p>Alle Bücher:</p>
+				
+					
+					
+					<p class="filter_hover" onclick="show_cat()"><span id="span_cat">&#8722;</span> Kategorien:</p>
+					<div id="cat">
+					
+					
+				
+						<div class="elements">
+							<input type="checkbox" id="Fantasy" color="orange"> 
+							<label for="Fantasy">Fantasy</label>
+
+						</div>
+
+						<div class="elements">
+							<input type="checkbox" id="Horror"> 
+							<label for="Horror">Horror</label>
+
+						</div>
+
+						<div class="elements">
+							<input type="checkbox" id="Humor"> 
+							<label for="Humor">Humor</label>
+
+						</div>
+
+						<div class="elements">
+							<input type="checkbox" id="Krimi"> 
+							<label for="Krimi">Krimi</label>
+
+						</div>
+
+						<div class="elements">
+							<input type="checkbox" id="Ratgeber"> 
+							<label for="Ratgeber">Ratgeber</label>
+
+						</div>
+
+						<div class="elements">
+							<input type="checkbox" id="Roman"> 
+							<label for="Roman">Roman</label>
+
+						</div>
+
+						<div class="elements">
+							<input type="checkbox" id="Sachbücher"> 
+							<label for="Sachbücher">Sachbücher</label>
+
+						</div>
+
+						<div class="elements">
+							<input type="checkbox" id="Thriller"> 
+							<label for="Thriller">Thriller</label>
+
+						</div>
+						
+					
+					</div>
+					
+					
+					
+
+					
+						
+						<p class="filter_hover" onclick="show_price_slider()"><span id="span_price">&minus;</span> Preis:</p>
+						<div id="Price_box">
+							
+							<!--<div onclick="function_plus()" class="plus">+</div>-->
+
+							<div class="plus filter_hover"><span onclick="function_plus()">&plus;</span></div>
+
+
+							<div class="minus filter_hover"><span onclick="function_minus()">&minus;</span></div>
+
+							<!--<div onclick="function_minus()" class="minus">-</div>-->
+
+							<!-- <div class="slidecontainer">
+								<p class="Space"><input type="range" min="1" max="120" value="60" class="slider" id="myRange">
+								0&#8364; <span id="demo"></span>&#8364; 120&#8364;</p>
+							</div> -->
+
+							<div class="slidecontainer">
+								<input type="range" min="1" max="120" value="60" class="slider" id="myRange">
+								<p>
+								<span id="Space1">0&#8364;</span> <span id="demo"></span><span>&#8364;</span> <span id="Space2">120&#8364;</span>
+								</p>
+							</div>
+
+						</div>
+					
+
+
+					
+					
+					<p class="filter_hover" onclick="show_ratings()"><span id="span_rating">&minus;</span> Bewertungen:</p>
+
+					<div class = "Bewertungen" id="Rating_box">
+						 
+
+						<p><input type="checkbox" id="1Sterne">
+						<span class="fa fa-star checked_star"></span>
+						<span class="fa fa-star"></span>
+						<span class="fa fa-star"></span>
+						<span class="fa fa-star"></span>
+						<span class="fa fa-star"></span></p>
+
+						<p></p><input type="checkbox" id="2Sterne"><span class="fa fa-star checked_star"></span>
+						<span class="fa fa-star checked_star"></span>
+						<span class="fa fa-star"></span>
+						<span class="fa fa-star"></span>
+						<span class="fa fa-star"></span></p>
+
+
+						<p></p><input type="checkbox" id="3Sterne"><span class="fa fa-star checked_star"></span>
+						<span class="fa fa-star checked_star"></span>
+						<span class="fa fa-star checked_star"></span>
+						<span class="fa fa-star"></span>
+						<span class="fa fa-star"></span></p>
+
+
+						<p></p><input type="checkbox" id="4Sterne"><span class="fa fa-star checked_star"></span>
+						<span class="fa fa-star checked_star"></span>
+						<span class="fa fa-star checked_star"></span>
+						<span class="fa fa-star checked_star"></span>
+						<span class="fa fa-star"></span></p>
+
+
+						<p></p><input type="checkbox" id="5Sterne"><span class="fa fa-star checked_star"></span>
+						<span class="fa fa-star checked_star"></span>
+						<span class="fa fa-star checked_star"></span>
+						<span class="fa fa-star checked_star"></span>
+						<span class="fa fa-star checked_star"></span></p>
+
+
+
+					</div>
+
+
+					
+				</div>
+			
+			</div>
+			
+			<form class="searchbar_container">
+				<input type="text" placeholder="Nach Titel, Autor oder ISBN suchen..." name="search">
+				<button type="submit" >	<i class="fa fa-search"> </i>	</button>
+			</form>
+		
+			
+			<div class="artikel_buble">
+				<a href="https://www.google.com/">
+				
+				<img class="artikel_img_container" src="1.jpg"></img>
+				<div class="artikel_text_container">
+					<p>
+						<span class="Price_attribute">27,44&euro;</span>
+						<br><br>
+						
+						
+						<span class="Author_attribute_tag">Titel:</span>
+						<br>
+						<span class="Author_attribute"> VINLY COVERS 2020</span>
+						<br><br>
+						
+
+						<span class="Author_attribute_tag">Author:</span>
+						<br>
+						<span class="Author_attribute"> Tom Taeie </span>
+						<br><br>
+						
+						<span class="Author_attribute_tag">Genre:</span>
+						<br>
+						<span class="Author_attribute"> ????Vinly??? </span>
+						
+						<br><br>
+						
+						<span class="Author_attribute_tag">Bewertung:</span>
+						<span> (12) </span>
+						<br>
+						<div class="rating_container">
+							<span class="fa fa-star checked_star"></span>
+							<span class="fa fa-star checked_star"></span>
+							<span class="fa fa-star checked_star"></span>
+							<span class="fa fa-star"></span>
+							<span class="fa fa-star"></span>
+						</div>
+					</p>
+				</div>	
+				
+				</a>
+			</div>
+			
+			<div class="artikel_buble">
+				<a href="https://www.google.com/">
+				
+				<img class="artikel_img_container" src="1.jpg"></img>
+				<div class="artikel_text_container">
+					<p>
+						<span class="Price_attribute">27,44&euro;</span>
+						<br><br>
+						
+						
+						<span class="Author_attribute_tag">Titel:</span>
+						<br>
+						<span class="Author_attribute"> VINLY COVERS 2020</span>
+						<br><br>
+						
+
+						<span class="Author_attribute_tag">Author:</span>
+						<br>
+						<span class="Author_attribute"> Tom Taeie </span>
+						<br><br>
+						
+						<span class="Author_attribute_tag">Genre:</span>
+						<br>
+						<span class="Author_attribute"> ????Vinly??? </span>
+						
+						<br><br>
+						
+						<span class="Author_attribute_tag">Bewertung:</span>
+						<span> (12) </span>
+						<br>
+						<div class="rating_container">
+							<span class="fa fa-star checked_star"></span>
+							<span class="fa fa-star checked_star"></span>
+							<span class="fa fa-star checked_star"></span>
+							<span class="fa fa-star"></span>
+							<span class="fa fa-star"></span>
+						</div>
+					</p>
+				</div>	
+				
+				</a>
+			</div>
+			
+			<div class="artikel_buble">
+				<a href="https://www.google.com/">
+				
+				<img class="artikel_img_container" src="1.jpg"></img>
+				<div class="artikel_text_container">
+					<p>
+						<span class="Price_attribute">27,44&euro;</span>
+						<br><br>
+						
+						
+						<span class="Author_attribute_tag">Titel:</span>
+						<br>
+						<span class="Author_attribute"> VINLY COVERS 2020</span>
+						<br><br>
+						
+
+						<span class="Author_attribute_tag">Author:</span>
+						<br>
+						<span class="Author_attribute"> Tom Taeie </span>
+						<br><br>
+						
+						<span class="Author_attribute_tag">Genre:</span>
+						<br>
+						<span class="Author_attribute"> ????Vinly??? </span>
+						
+						<br><br>
+						
+						<span class="Author_attribute_tag">Bewertung:</span>
+						<span> (12) </span>
+						<br>
+						<div class="rating_container">
+							<span class="fa fa-star checked_star"></span>
+							<span class="fa fa-star checked_star"></span>
+							<span class="fa fa-star checked_star"></span>
+							<span class="fa fa-star"></span>
+							<span class="fa fa-star"></span>
+						</div>
+					</p>
+				</div>	
+				
+				</a>
+			</div>
+			
+			
+			<div class="artikel_buble">
+				<a href="https://www.google.com/">
+				
+				<img class="artikel_img_container" src="1.jpg"></img>
+				<div class="artikel_text_container">
+					<p>
+						<span class="Price_attribute">27,44&euro;</span>
+						<br><br>
+						
+						
+						<span class="Author_attribute_tag">Titel:</span>
+						<br>
+						<span class="Author_attribute"> VINLY COVERS 2020</span>
+						<br><br>
+						
+
+						<span class="Author_attribute_tag">Author:</span>
+						<br>
+						<span class="Author_attribute"> Tom Taeie </span>
+						<br><br>
+						
+						<span class="Author_attribute_tag">Genre:</span>
+						<br>
+						<span class="Author_attribute"> ????Vinly??? </span>
+						
+						<br><br>
+						
+						<span class="Author_attribute_tag">Bewertung:</span>
+						<span> (12) </span>
+						<br>
+						<div class="rating_container">
+							<span class="fa fa-star checked_star"></span>
+							<span class="fa fa-star checked_star"></span>
+							<span class="fa fa-star checked_star"></span>
+							<span class="fa fa-star"></span>
+							<span class="fa fa-star"></span>
+						</div>
+					</p>
+				</div>	
+				
+				</a>
+			</div>
+			
+			<div class="artikel_buble">
+				<a href="https://www.google.com/">
+				
+				<img class="artikel_img_container" src="1.jpg"></img>
+				<div class="artikel_text_container">
+					<p>
+						<span class="Price_attribute">27,44&euro;</span>
+						<br><br>
+						
+						
+						<span class="Author_attribute_tag">Titel:</span>
+						<br>
+						<span class="Author_attribute"> VINLY COVERS 2020</span>
+						<br><br>
+						
+
+						<span class="Author_attribute_tag">Author:</span>
+						<br>
+						<span class="Author_attribute"> Tom Taeie </span>
+						<br><br>
+						
+						<span class="Author_attribute_tag">Genre:</span>
+						<br>
+						<span class="Author_attribute"> ????Vinly??? </span>
+						
+						<br><br>
+						
+						<span class="Author_attribute_tag">Bewertung:</span>
+						<span> (12) </span>
+						<br>
+						<div class="rating_container">
+							<span class="fa fa-star checked_star"></span>
+							<span class="fa fa-star checked_star"></span>
+							<span class="fa fa-star checked_star"></span>
+							<span class="fa fa-star"></span>
+							<span class="fa fa-star"></span>
+						</div>
+					</p>
+				</div>	
+				
+				</a>
+			</div>
+			
+			
+			<div class="artikel_buble">
+				<a href="https://www.google.com/">
+				
+				<img class="artikel_img_container" src="1.jpg"></img>
+				<div class="artikel_text_container">
+					<p>
+						<span class="Price_attribute">27,44&euro;</span>
+						<br><br>
+						
+						
+						<span class="Author_attribute_tag">Titel:</span>
+						<br>
+						<span class="Author_attribute"> VINLY COVERS 2020</span>
+						<br><br>
+						
+
+						<span class="Author_attribute_tag">Author:</span>
+						<br>
+						<span class="Author_attribute"> Tom Taeie </span>
+						<br><br>
+						
+						<span class="Author_attribute_tag">Genre:</span>
+						<br>
+						<span class="Author_attribute"> ????Vinly??? </span>
+						
+						<br><br>
+						
+						<span class="Author_attribute_tag">Bewertung:</span>
+						<span> (12) </span>
+						<br>
+						<div class="rating_container">
+							<span class="fa fa-star checked_star"></span>
+							<span class="fa fa-star checked_star"></span>
+							<span class="fa fa-star checked_star"></span>
+							<span class="fa fa-star"></span>
+							<span class="fa fa-star"></span>
+						</div>
+					</p>
+				</div>	
+				
+				</a>
+			</div>
+			
+			<div class="artikel_buble">
+				<a href="https://www.google.com/">
+				
+				<img class="artikel_img_container" src="1.jpg"></img>
+				<div class="artikel_text_container">
+					<p>
+						<span class="Price_attribute">27,44&euro;</span>
+						<br><br>
+						
+						
+						<span class="Author_attribute_tag">Titel:</span>
+						<br>
+						<span class="Author_attribute"> VINLY COVERS 2020</span>
+						<br><br>
+						
+
+						<span class="Author_attribute_tag">Author:</span>
+						<br>
+						<span class="Author_attribute"> Tom Taeie </span>
+						<br><br>
+						
+						<span class="Author_attribute_tag">Genre:</span>
+						<br>
+						<span class="Author_attribute"> ????Vinly??? </span>
+						
+						<br><br>
+						
+						<span class="Author_attribute_tag">Bewertung:</span>
+						<span> (12) </span>
+						<br>
+						<div class="rating_container">
+							<span class="fa fa-star checked_star"></span>
+							<span class="fa fa-star checked_star"></span>
+							<span class="fa fa-star checked_star"></span>
+							<span class="fa fa-star"></span>
+							<span class="fa fa-star"></span>
+						</div>
+					</p>
+				</div>	
+				
+				</a>
+			</div>
+			
+			
+			
+			<div class="artikel_buble">
+				<a href="https://www.google.com/">
+				
+				<img class="artikel_img_container" src="1.jpg"></img>
+				<div class="artikel_text_container">
+					<p>
+						<span class="Price_attribute">27,44&euro;</span>
+						<br><br>
+						
+						
+						<span class="Author_attribute_tag">Titel:</span>
+						<br>
+						<span class="Author_attribute"> VINLY COVERS 2020</span>
+						<br><br>
+						
+
+						<span class="Author_attribute_tag">Author:</span>
+						<br>
+						<span class="Author_attribute"> Tom Taeie </span>
+						<br><br>
+						
+						<span class="Author_attribute_tag">Genre:</span>
+						<br>
+						<span class="Author_attribute"> ????Vinly??? </span>
+						
+						<br><br>
+						
+						<span class="Author_attribute_tag">Bewertung:</span>
+						<span> (12) </span>
+						<br>
+						<div class="rating_container">
+							<span class="fa fa-star checked_star"></span>
+							<span class="fa fa-star checked_star"></span>
+							<span class="fa fa-star checked_star"></span>
+							<span class="fa fa-star"></span>
+							<span class="fa fa-star"></span>
+						</div>
+					</p>
+				</div>	
+				
+				</a>
+			</div>
+			
+			<div class="artikel_buble">
+				<a href="https://www.google.com/">
+				
+				<img class="artikel_img_container" src="1.jpg"></img>
+				<div class="artikel_text_container">
+					<p>
+						<span class="Price_attribute">27,44&euro;</span>
+						<br><br>
+						
+						
+						<span class="Author_attribute_tag">Titel:</span>
+						<br>
+						<span class="Author_attribute"> VINLY COVERS 2020</span>
+						<br><br>
+						
+
+						<span class="Author_attribute_tag">Author:</span>
+						<br>
+						<span class="Author_attribute"> Tom Taeie </span>
+						<br><br>
+						
+						<span class="Author_attribute_tag">Genre:</span>
+						<br>
+						<span class="Author_attribute"> ????Vinly??? </span>
+						
+						<br><br>
+						
+						<span class="Author_attribute_tag">Bewertung:</span>
+						<span> (12) </span>
+						<br>
+						<div class="rating_container">
+							<span class="fa fa-star checked_star"></span>
+							<span class="fa fa-star checked_star"></span>
+							<span class="fa fa-star checked_star"></span>
+							<span class="fa fa-star"></span>
+							<span class="fa fa-star"></span>
+						</div>
+					</p>
+				</div>	
+				
+				</a>
+			</div>
+			
+			
+			
+			<div class="artikel_buble">
+				<a href="https://www.google.com/">
+				
+				<img class="artikel_img_container" src="1.jpg"></img>
+				<div class="artikel_text_container">
+					<p>
+						<span class="Price_attribute">27,44&euro;</span>
+						<br><br>
+						
+						
+						<span class="Author_attribute_tag">Titel:</span>
+						<br>
+						<span class="Author_attribute"> VINLY COVERS 2020</span>
+						<br><br>
+						
+
+						<span class="Author_attribute_tag">Author:</span>
+						<br>
+						<span class="Author_attribute"> Tom Taeie </span>
+						<br><br>
+						
+						<span class="Author_attribute_tag">Genre:</span>
+						<br>
+						<span class="Author_attribute"> ????Vinly??? </span>
+						
+						<br><br>
+						
+						<span class="Author_attribute_tag">Bewertung:</span>
+						<span> (12) </span>
+						<br>
+						<div class="rating_container">
+							<span class="fa fa-star checked_star"></span>
+							<span class="fa fa-star checked_star"></span>
+							<span class="fa fa-star checked_star"></span>
+							<span class="fa fa-star"></span>
+							<span class="fa fa-star"></span>
+						</div>
+					</p>
+				</div>	
+				
+				</a>
+			</div>
+			
+			<div class="artikel_buble">
+				<a href="https://www.google.com/">
+				
+				<img class="artikel_img_container" src="1.jpg"></img>
+				<div class="artikel_text_container">
+					<p>
+						<span class="Price_attribute">27,44&euro;</span>
+						<br><br>
+						
+						
+						<span class="Author_attribute_tag">Titel:</span>
+						<br>
+						<span class="Author_attribute"> VINLY COVERS 2020</span>
+						<br><br>
+						
+
+						<span class="Author_attribute_tag">Author:</span>
+						<br>
+						<span class="Author_attribute"> Tom Taeie </span>
+						<br><br>
+						
+						<span class="Author_attribute_tag">Genre:</span>
+						<br>
+						<span class="Author_attribute"> ????Vinly??? </span>
+						
+						<br><br>
+						
+						<span class="Author_attribute_tag">Bewertung:</span>
+						<span> (12) </span>
+						<br>
+						<div class="rating_container">
+							<span class="fa fa-star checked_star"></span>
+							<span class="fa fa-star checked_star"></span>
+							<span class="fa fa-star checked_star"></span>
+							<span class="fa fa-star"></span>
+							<span class="fa fa-star"></span>
+						</div>
+					</p>
+				</div>	
+				
+				</a>
+			</div>
+			
+			
+			
+			<div class="artikel_buble">
+				<a href="https://www.google.com/">
+				
+				<img class="artikel_img_container" src="1.jpg"></img>
+				<div class="artikel_text_container">
+					<p>
+						<span class="Price_attribute">27,44&euro;</span>
+						<br><br>
+						
+						
+						<span class="Author_attribute_tag">Titel:</span>
+						<br>
+						<span class="Author_attribute"> VINLY COVERS 2020</span>
+						<br><br>
+						
+
+						<span class="Author_attribute_tag">Author:</span>
+						<br>
+						<span class="Author_attribute"> Tom Taeie </span>
+						<br><br>
+						
+						<span class="Author_attribute_tag">Genre:</span>
+						<br>
+						<span class="Author_attribute"> ????Vinly??? </span>
+						
+						<br><br>
+						
+						<span class="Author_attribute_tag">Bewertung:</span>
+						<span> (12) </span>
+						<br>
+						<div class="rating_container">
+							<span class="fa fa-star checked_star"></span>
+							<span class="fa fa-star checked_star"></span>
+							<span class="fa fa-star checked_star"></span>
+							<span class="fa fa-star"></span>
+							<span class="fa fa-star"></span>
+						</div>
+					</p>
+				</div>	
+				
+				</a>
+			</div>
+			
+			<div class="artikel_buble">
+				<a href="https://www.google.com/">
+				
+				<img class="artikel_img_container" src="1.jpg"></img>
+				<div class="artikel_text_container">
+					<p>
+						<span class="Price_attribute">27,44&euro;</span>
+						<br><br>
+						
+						
+						<span class="Author_attribute_tag">Titel:</span>
+						<br>
+						<span class="Author_attribute"> VINLY COVERS 2020</span>
+						<br><br>
+						
+
+						<span class="Author_attribute_tag">Author:</span>
+						<br>
+						<span class="Author_attribute"> Tom Taeie </span>
+						<br><br>
+						
+						<span class="Author_attribute_tag">Genre:</span>
+						<br>
+						<span class="Author_attribute"> ????Vinly??? </span>
+						
+						<br><br>
+						
+						<span class="Author_attribute_tag">Bewertung:</span>
+						<span> (12) </span>
+						<br>
+						<div class="rating_container">
+							<span class="fa fa-star checked_star"></span>
+							<span class="fa fa-star checked_star"></span>
+							<span class="fa fa-star checked_star"></span>
+							<span class="fa fa-star"></span>
+							<span class="fa fa-star"></span>
+						</div>
+					</p>
+				</div>	
+				
+				</a>
+			</div>
+			
+			
+			
+			<div class="artikel_buble">
+				<a href="https://www.google.com/">
+				
+				<img class="artikel_img_container" src="1.jpg"></img>
+				<div class="artikel_text_container">
+					<p>
+						<span class="Price_attribute">27,44&euro;</span>
+						<br><br>
+						
+						
+						<span class="Author_attribute_tag">Titel:</span>
+						<br>
+						<span class="Author_attribute"> VINLY COVERS 2020</span>
+						<br><br>
+						
+
+						<span class="Author_attribute_tag">Author:</span>
+						<br>
+						<span class="Author_attribute"> Tom Taeie </span>
+						<br><br>
+						
+						<span class="Author_attribute_tag">Genre:</span>
+						<br>
+						<span class="Author_attribute"> ????Vinly??? </span>
+						
+						<br><br>
+						
+						<span class="Author_attribute_tag">Bewertung:</span>
+						<span> (12) </span>
+						<br>
+						<div class="rating_container">
+							<span class="fa fa-star checked_star"></span>
+							<span class="fa fa-star checked_star"></span>
+							<span class="fa fa-star checked_star"></span>
+							<span class="fa fa-star"></span>
+							<span class="fa fa-star"></span>
+						</div>
+					</p>
+				</div>	
+				
+				</a>
+			</div>
+			
+			<div class="artikel_buble">
+				<a href="https://www.google.com/">
+				
+				<img class="artikel_img_container" src="1.jpg"></img>
+				<div class="artikel_text_container">
+					<p>
+						<span class="Price_attribute">27,44&euro;</span>
+						<br><br>
+						
+						
+						<span class="Author_attribute_tag">Titel:</span>
+						<br>
+						<span class="Author_attribute"> VINLY COVERS 2020</span>
+						<br><br>
+						
+
+						<span class="Author_attribute_tag">Author:</span>
+						<br>
+						<span class="Author_attribute"> Tom Taeie </span>
+						<br><br>
+						
+						<span class="Author_attribute_tag">Genre:</span>
+						<br>
+						<span class="Author_attribute"> ????Vinly??? </span>
+						
+						<br><br>
+						
+						<span class="Author_attribute_tag">Bewertung:</span>
+						<span> (12) </span>
+						<br>
+						<div class="rating_container">
+							<span class="fa fa-star checked_star"></span>
+							<span class="fa fa-star checked_star"></span>
+							<span class="fa fa-star checked_star"></span>
+							<span class="fa fa-star"></span>
+							<span class="fa fa-star"></span>
+						</div>
+					</p>
+				</div>	
+				
+				</a>
+			</div>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+							
+		
+			
+		</div>
+		
+		<script src="app.js"></script>
+
+        <div id="footer">
+            <div id="selectFooter" class="FooterElemente">              
+                <a href="">Impressum und Kontakt</a>     
+                <a href="">Datenschutz</a>   
+                <a href="">Widerrufsrecht</a>    
+            </div>
+            <div id="copyright"></div>
+        </div>
+    </body>
+</html>
