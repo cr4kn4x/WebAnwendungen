@@ -67,11 +67,14 @@
 
 #main {
     background-color: #8A9094;
+
     width: 100%;
     height: 90%;
 }
 
 #footer {
+    position: absolute;
+    bottom: 0;
     background-color: #444048;
     width: 100%;
     height: 10%;
