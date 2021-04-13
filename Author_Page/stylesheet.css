@@ -1,5 +1,5 @@
 * {box-sizing: border-box}
-body {margin:0}
+body {margin:0; background-color:#8A9094}
 
 
 .Author_link {
@@ -137,6 +137,7 @@ body {margin:0}
 	background-color: #8A9094;
 	width:100%;
 	height:auto;
+	margin-bottom:10%;
 	padding-bottom:4%;
 	padding-top:8%;
 	padding-left: 4%;
