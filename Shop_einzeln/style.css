@@ -2,6 +2,10 @@
 * {box-sizing: border-box}
 body {margin:0; background-color:#444048}
 
+.kurzbeschr_box{
+	margin-right:10%;
+	font-size:1.2em;
+}
 
 @font-face{
     font-family: X-Files;
@@ -100,6 +104,12 @@ body {margin:0; background-color:#444048}
 	margin-top: 10%;
 	display:inline-block;
 }
+
+.biographie_buble a{
+	text-decoration:none;
+	color:white;
+}
+
 
 
 .author_image{
