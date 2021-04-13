@@ -32,91 +32,109 @@
 			<div class="Left_container" id="l_container">
 
 				<div id="filter_box">
+
+					<p>Alle Bücher:</p>
 				
-					<p> Kategorien <button onclick="show()">button</button>  </p>
+					
+					
+					<p class="filter_hover" onclick="show_cat()"><span id="span_cat">&#8722;</span> Kategorien:</p>
+					<div id="cat">
+					
+					
 				
-					<div class="elements">
-						<input type="checkbox" id="Fantasy"> 
-						<label for="Fantasy">Fantasy</label>
+						<div class="elements">
+							<input type="checkbox" id="Fantasy" color="orange"> 
+							<label for="Fantasy">Fantasy</label>
 
-					</div>
-
-					<div class="elements">
-						<input type="checkbox" id="Horror"> 
-						<label for="Horror">Horror</label>
-
-					</div>
-
-					<div class="elements">
-						<input type="checkbox" id="Humor"> 
-						<label for="Humor">Humor</label>
-
-					</div>
-
-					<div class="elements">
-						<input type="checkbox" id="Krimi"> 
-						<label for="Krimi">Krimi</label>
-
-					</div>
-
-					<div class="elements">
-						<input type="checkbox" id="Ratgeber"> 
-						<label for="Ratgeber">Ratgeber</label>
-
-					</div>
-
-					<div class="elements">
-						<input type="checkbox" id="Roman"> 
-						<label for="Roman">Roman</label>
-
-					</div>
-
-					<div class="elements">
-						<input type="checkbox" id="Sachbücher"> 
-						<label for="Sachbücher">Sachbücher</label>
-
-					</div>
-
-					<div class="elements">
-						<input type="checkbox" id="Thriller"> 
-						<label for="Thriller">Thriller</label>
-
-					</div>
-					
-
-					<p> Filter 1 </p>
-					<p> Filter 1 </p>
-					<p> Filter 1 </p>
-					<p> Preis: </p>
-					
-					<div>
-						<!--<div onclick="function_plus()" class="plus">+</div>-->
-
-						<div class="plus"><i onclick="function_plus()" class="fas fa-plus"></i></div>
-
-
-						<div class="minus"><i onclick="function_minus()" class="fas fa-minus"></i></div>
-
-						<!--<div onclick="function_minus()" class="minus">-</div>-->
-
-						<div class="slidecontainer">
-							<p class="Space"><input type="range" min="1" max="120" value="60" class="slider" id="myRange">
-							0&#8364; <span id="demo"></span>&#8364; 120&#8364;</p>
 						</div>
 
+						<div class="elements">
+							<input type="checkbox" id="Horror"> 
+							<label for="Horror">Horror</label>
+
+						</div>
+
+						<div class="elements">
+							<input type="checkbox" id="Humor"> 
+							<label for="Humor">Humor</label>
+
+						</div>
+
+						<div class="elements">
+							<input type="checkbox" id="Krimi"> 
+							<label for="Krimi">Krimi</label>
+
+						</div>
+
+						<div class="elements">
+							<input type="checkbox" id="Ratgeber"> 
+							<label for="Ratgeber">Ratgeber</label>
+
+						</div>
+
+						<div class="elements">
+							<input type="checkbox" id="Roman"> 
+							<label for="Roman">Roman</label>
+
+						</div>
+
+						<div class="elements">
+							<input type="checkbox" id="Sachbücher"> 
+							<label for="Sachbücher">Sachbücher</label>
+
+						</div>
+
+						<div class="elements">
+							<input type="checkbox" id="Thriller"> 
+							<label for="Thriller">Thriller</label>
+
+						</div>
+						
+					
 					</div>
+					
+					
+					
+
+					
+						
+						<p class="filter_hover" onclick="show_price_slider()"><span id="span_price">&minus;</span> Preis:</p>
+						<div id="Price_box">
+							
+							<!--<div onclick="function_plus()" class="plus">+</div>-->
+
+							<div class="plus filter_hover"><span onclick="function_plus()">&plus;</span></div>
+
+
+							<div class="minus filter_hover"><span onclick="function_minus()">&minus;</span></div>
+
+							<!--<div onclick="function_minus()" class="minus">-</div>-->
+
+							<!-- <div class="slidecontainer">
+								<p class="Space"><input type="range" min="1" max="120" value="60" class="slider" id="myRange">
+								0&#8364; <span id="demo"></span>&#8364; 120&#8364;</p>
+							</div> -->
+
+							<div class="slidecontainer">
+								<input type="range" min="1" max="120" value="60" class="slider" id="myRange">
+								<p>
+								<span id="Space1">0&#8364;</span> <span id="demo"></span><span>&#8364;</span> <span id="Space2">120&#8364;</span>
+								</p>
+							</div>
+
+						</div>
 					
 
 
-					<p> Filter 1 </p>
-					<p> Filter 1 </p>
-					<p> Filter 1 </p>
-					<p> Bewertungen</p>
+					
+					
+					<p class="filter_hover" onclick="show_ratings()"><span id="span_rating">&minus;</span> Bewertungen:</p>
 
-					<div class = "Bewertungen">
+					<div class = "Bewertungen" id="Rating_box">
 						 
 
-						<p><input type="checkbox" id="1Sterne"><span class="fa fa-star checked_star"></span>
+						<p><input type="checkbox" id="1Sterne">
+						<span class="fa fa-star checked_star"></span>
 						<span class="fa fa-star"></span>
 						<span class="fa fa-star"></span>
 						<span class="fa fa-star"></span>
@@ -154,14 +172,7 @@
 					</div>
 
 
-					<p> Filter 1 </p>
-					<p> Filter 1 </p>
-					<p> Filter 1 </p>
-					<p> Filter 1 </p>
-					<p> Filter 1 </p>
-					<p> Filter 1 </p>
-					<p> Filter 1 </p>
-					<p> Filter 1 </p>
+					
 				</div>
 			
 			</div>

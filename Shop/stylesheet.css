@@ -117,6 +117,7 @@ body {margin:0;
 }
 
 #filter_box{
+	font-size:1.6em;
 	min-width:100px;
 	background-color: #444048;
 	height: auto;
@@ -124,6 +125,13 @@ body {margin:0;
 	padding:2%;
 	border-radius:35px;
 }
+
+
+
+
+
+
+
 
 
 /* Body  Box */
@@ -140,7 +148,6 @@ body {margin:0;
 
 
 .Left_container{
-
 	float:left;
 	height:100%;
 	width:15%;
@@ -178,16 +185,16 @@ button[type="submit"] {
 }
 
 
-
-
-
+.filter_hover:hover{
+	cursor:pointer;
+}
 
 
 
 
 .slidecontainer {
     width: 75%;
-    margin-left: 10px;
+    display: inline-block;
   }
   
   .slider {
@@ -224,17 +231,31 @@ button[type="submit"] {
     cursor: pointer;
   }
 
-  .Space{
-      word-spacing: 25px;
+  #Space1{
+      margin-right: 30%;
+  }
+
+  #Space2{
+      float: right;
+      margin-right: 0%;
   }
 
   .plus{
+	  margin-right:5%;
       float: right;
   }
   
   .minus{
       float: left;
+      margin-right: 5%;
   }
+
+
+
+
+
+
+
 
 
 
@@ -249,14 +270,15 @@ button[type="submit"] {
 
 
 
-  
-  
+ 
 /* Inside of artikel_buble */
 
 .artikel_buble{
-	max-height:400px;
-	min-width:320px;
-	min-height:390px;
+	max-height:350px;
+	max-width:500px;
+	min-width:390px;
+	min-height:350px;
+	
 	display:inline-block;
 	background-color: #444048;
 	height: 30%;
@@ -264,7 +286,6 @@ button[type="submit"] {
 	margin-left:1%;
 	margin-bottom:1%;
 	border-radius:5%;
-	
 }
 
 .artikel_buble a {
@@ -316,3 +337,4 @@ button[type="submit"] {
 	float:right;
 	font-size:2em;
 }
+

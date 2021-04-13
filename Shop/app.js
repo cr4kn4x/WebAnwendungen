@@ -11,23 +11,60 @@ slider.oninput = function() {
 
 
 
-var elements1 = document.getElementsByClassName("elements");;
+ //Kategorie#
 
 
-function show(){
-    
-    console.log(elements1[0]);
 
-    if(elements1[0].style.display == "none"){
-        for(let x=0; x<=8; x++){
-            elements1[x].style.display = "block-inline";
-        } 
+
+
+function show_cat(){
+	var category_container = document.getElementById("cat");
+	var category_symbol = document.getElementById("span_cat");
+ 
+    if(category_container.style.display == "none"){
+        category_container.style.display = "block";
+		category_symbol.innerHTML="&minus;";
     }
 
     else{
-        for(let x=0; x<=8; x++){
-            elements1[x].style.display = "none";
+        category_container.style.display = "none";
+		category_symbol.innerHTML="&plus;";
+    }
+    
+    
+
+}
+
+
+function show_price_slider(){
+		var slider = document.getElementById("Price_box"); //Slider
+		var slider_symbol = document.getElementById("span_price");
+		
+        if(slider.style.display == "none"){
+            slider.style.display = "block";
+			slider_symbol.innerHTML="&minus;";
         }
+
+        else{
+            slider.style.display = "none";
+			slider_symbol.innerHTML="&plus;";
+        }
+    
+}
+
+
+
+function show_ratings(){
+	var rating = document.getElementById("Rating_box"); //Bewertungen
+	var rating_symbol = document.getElementById("span_rating");
+	if(rating.style.display == "none"){
+        rating.style.display = "block";
+		rating_symbol.innerHTML="&minus;";
+    }
+
+    else{
+        rating.style.display = "none";
+		rating_symbol.innerHTML="&plus;";
     }
 
 }
@@ -62,11 +99,7 @@ function adjustContainerHeight(){
 		
 		height_left_container = left_container.offsetHeight;
 		
-		console.log("1:")
-		console.log(height_shop_container)
-		
-		console.log("2:")
-		console.log(height_left_container)
+
 		
 		if(height_left_container > height_shop_container){
 			shop_container.style.height = height_left_container+4;
@@ -82,4 +115,7 @@ function adjustContainerHeight(){
     
 adjustContainerHeight();
 window.addEventListener("resize", adjustContainerHeight);
-    
+ 
+ 
+show_ratings();
+show_price_slider();
