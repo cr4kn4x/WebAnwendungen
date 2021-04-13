@@ -51,15 +51,37 @@ function function_minus(){
 
 
 
-function adjustLeftContainerHeight(){
-       var height_shop_container;
+function adjustContainerHeight(){
+		var height_shop_container;
+		var height_left_container;
         var shop_container = document.getElementById('shop_container');
         var left_container = document.getElementById('l_container');
+		
         height_shop_container = shop_container.offsetHeight;
-        left_container.style.height = height_shop_container;
-    }
+		
+		
+		height_left_container = left_container.offsetHeight;
+		
+		console.log("1:")
+		console.log(height_shop_container)
+		
+		console.log("2:")
+		console.log(height_left_container)
+		
+		if(height_left_container > height_shop_container){
+			console.log("TRUE");
+			shop_container.style.height = height_left_container+4;
+		}
+		
+		else{
+			console.log("FALSE");
+			left_container.style.height = height_shop_container;
+		}
+		
+        
+}
     
     
-    adjustLeftContainerHeight();
-    window.addEventListener("resize", adjustLeftContainerHeight);
+adjustContainerHeight();
+window.addEventListener("resize", adjustContainerHeight);
     
