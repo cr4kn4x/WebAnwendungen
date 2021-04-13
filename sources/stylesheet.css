@@ -14,6 +14,7 @@
     position: fixed;
     width: 100%;
     height: 10%;
+    min-height: 115px;
 }
 
 #titel {
@@ -74,7 +75,8 @@
 #footer {
     background-color: #444048;
     width: 100%;
-    height: 10%;    
+    height: 10%;  
+    min-height: 100px;  
 }
 
 #footer a {
