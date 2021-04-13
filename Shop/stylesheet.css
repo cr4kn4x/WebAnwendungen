@@ -267,6 +267,10 @@ button[type="submit"] {
 	
 }
 
+.artikel_buble a {
+	color:white;
+}
+
 
 .artikel_img_container{
 	float:left;
