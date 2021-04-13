@@ -136,7 +136,7 @@ body {margin:0}
 #Bestseller_font {
 	font-size:3.7em;
 	color: #444048;
-	padding-left:37%;
+	padding-left:41.5%;
 }
 
 
@@ -211,8 +211,8 @@ body {margin:0}
 	width: 250px;
 	height: 550px;
 	background-color:#444048;
-	margin-left: 10%;
-	margin-right: 10%;
+
+
 	border: 3px solid #000000;
 	border-radius:7px;	
 }
