@@ -1,0 +1,233 @@
+
+* {box-sizing: border-box}
+body {margin:0; background-color:#444048}
+
+
+@font-face{
+    font-family: X-Files;
+    src: url(x-files.tff);
+}
+
+.navElemente {
+    margin: 0;
+    padding: 0;
+}
+
+#title_font{
+	margin: 0;
+    padding: 0;
+}
+
+
+#navigation {
+    background-color: #444048;
+    color: #FF8A11;
+    position: fixed;
+    width: 100%;
+    height: 10%;
+    min-height: 115px;
+}
+
+#titel {
+    font-size: 3.3em;
+    color: white;
+    font-family: X-Files;
+    float: left;
+    margin-left: 3%;
+    margin-top: 2%;
+}
+
+#selectNav {
+    margin-left: 48%;
+    width: 46%;
+}
+
+#selectNav a {
+    color: #FF8A11;
+    text-decoration: none;
+    font-size: 1.4em;
+    padding-right: 10%;
+}
+
+#selectNav a:hover {
+    border-top: solid #FF8A11 2px;
+}
+
+#warenkorb {
+    width: auto;
+    height: 25px;
+}
+
+#logo {
+    background: url(Logo.png);
+    background-size: contain;
+    position: absolute;
+    margin-left: 90%;
+    margin-top: 1%;
+    top: 0;
+    width: 50px;
+    height: 55px;
+}
+
+.navElemente {
+    margin-top: 2%;
+}
+
+
+
+#footer {
+	display:inline-block;
+    background-color: #444048;
+    width: 100%;
+	min-height:100px;
+    height: 10%;   
+}
+
+
+#top_container{
+	height:auto;
+}
+
+.biographie_buble{
+	background-color: #444048;
+	height:auto;
+	width: 79%;
+	border-radius:30px;
+	padding-left:2%;
+	margin-top: 10%;
+	float: left;
+}
+
+
+.author_image{
+	display: inline-block;
+	margin-top: 10%;
+	height:100%;
+    width: 19%;
+    margin-left: 1%;
+	margin-right:1%;
+}
+
+
+
+#footer a {
+    color: #FF8A11;
+    text-decoration: none;
+    padding-right: 20%;
+}
+
+#selectFooter {
+    margin-left: 30%;
+    padding-top: 2%;
+    width: 46%;
+}
+
+#selectFooter a:hover {
+    border-top: solid #FF8A11 2px;
+}
+
+#copyright {
+    background: url(Copyright.png);
+    background-size: contain;
+    position: relative;
+    margin-left: 96%;
+    bottom: 19%;
+    margin-right:2%;
+    width: 38px;
+    height: 40px;
+}
+
+
+.Book_container{
+	background-color:#8A9094;
+	width:100%;
+	height:100%;
+	display:inline-block;
+	margin-bottom:10%;
+	margin-top:1%;
+}
+
+
+/* Body  Box */
+.author_body_container {
+	background-color:#8A9094;
+	width:100%;
+	padding-left: 4%;
+	color:white;
+	padding-top: 0.5%;
+}
+
+.Word_Spacing{
+	word-spacing: 250px;
+}
+
+.font_Color{
+	font-size:1.4em;
+	color: orange;
+}
+
+
+
+.author_buble{
+	background-color: #444048;
+	height: 90%;
+	width: 79%;
+	border-radius:100px;
+	padding-left:2%;
+	margin-top: 1%;
+	float: left;
+    margin-right: 1%;
+}
+
+button{
+	margin-right: 1%;
+	border-radius:100px;
+	background-color: #FF8A11;
+	border: none;
+	height: 100%;
+	width: 15%;
+	color: white;
+	float: right;
+	cursor: pointer;
+
+}
+
+
+
+img{
+	border-radius: 30px;
+	width: 100%;
+}
+
+.container_right{
+	padding-left:1%;
+	padding-top:0.2%;
+	padding-bottom:2%;
+	display: inline-block;
+	background-color: #444048;
+	margin-top: 1%;
+	border-radius: 30px;
+	width: 19%;
+}
+
+
+.Space{
+	float:right;
+	margin-right: 8%;
+}
+
+.font_container{
+	color: orange;
+}
+
+
+
+
+#bibb{
+	height:auto;
+	background-color:black;
+	padding-left:10%;
+	
+	float:left;
+	width:70%
+}
