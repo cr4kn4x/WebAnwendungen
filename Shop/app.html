@@ -24,225 +24,836 @@
             <div id="logo"></div>
         </div>   
         
-        <div class="shop_body_container">
+        <div class="shop_body_container" id="shop_container">
 			<h1 id="shop_headline">Shop-Übersicht</h1>
+		
+		
+		
+			<div class="Left_container" id="l_container">
+
+				<div id="filter_box">
+				
+					<p> Kategorien <button onclick="show()">button</button>  </p>
+				
+					<div class="elements">
+						<input type="checkbox" id="Fantasy"> 
+						<label for="Fantasy">Fantasy</label>
+
+					</div>
+
+					<div class="elements">
+						<input type="checkbox" id="Horror"> 
+						<label for="Horror">Horror</label>
+
+					</div>
+
+					<div class="elements">
+						<input type="checkbox" id="Humor"> 
+						<label for="Humor">Humor</label>
+
+					</div>
+
+					<div class="elements">
+						<input type="checkbox" id="Krimi"> 
+						<label for="Krimi">Krimi</label>
+
+					</div>
+
+					<div class="elements">
+						<input type="checkbox" id="Ratgeber"> 
+						<label for="Ratgeber">Ratgeber</label>
+
+					</div>
+
+					<div class="elements">
+						<input type="checkbox" id="Roman"> 
+						<label for="Roman">Roman</label>
+
+					</div>
+
+					<div class="elements">
+						<input type="checkbox" id="Sachbücher"> 
+						<label for="Sachbücher">Sachbücher</label>
+
+					</div>
+
+					<div class="elements">
+						<input type="checkbox" id="Thriller"> 
+						<label for="Thriller">Thriller</label>
+
+					</div>
+					
+
+					<p> Filter 1 </p>
+					<p> Filter 1 </p>
+					<p> Filter 1 </p>
+					<p> Preis: </p>
+					
+					<div>
+						<!--<div onclick="function_plus()" class="plus">+</div>-->
+
+						<div class="plus"><i onclick="function_plus()" class="fas fa-plus"></i></div>
+
+
+						<div class="minus"><i onclick="function_minus()" class="fas fa-minus"></i></div>
+
+						<!--<div onclick="function_minus()" class="minus">-</div>-->
+
+						<div class="slidecontainer">
+							<p class="Space"><input type="range" min="1" max="120" value="60" class="slider" id="myRange">
+							0&#8364; <span id="demo"></span>&#8364; 120&#8364;</p>
+						</div>
+
+					</div>
+					
+
+
+					<p> Filter 1 </p>
+					<p> Filter 1 </p>
+					<p> Filter 1 </p>
+					<p> Bewertungen</p>
+
+					<div class = "Bewertungen">
+						 
+
+						<p><input type="checkbox" id="1Sterne"><span class="fa fa-star checked_star"></span>
+						<span class="fa fa-star"></span>
+						<span class="fa fa-star"></span>
+						<span class="fa fa-star"></span>
+						<span class="fa fa-star"></span></p>
+
+						<p></p><input type="checkbox" id="2Sterne"><span class="fa fa-star checked_star"></span>
+						<span class="fa fa-star checked_star"></span>
+						<span class="fa fa-star"></span>
+						<span class="fa fa-star"></span>
+						<span class="fa fa-star"></span></p>
+
+
+						<p></p><input type="checkbox" id="3Sterne"><span class="fa fa-star checked_star"></span>
+						<span class="fa fa-star checked_star"></span>
+						<span class="fa fa-star checked_star"></span>
+						<span class="fa fa-star"></span>
+						<span class="fa fa-star"></span></p>
+
+
+						<p></p><input type="checkbox" id="4Sterne"><span class="fa fa-star checked_star"></span>
+						<span class="fa fa-star checked_star"></span>
+						<span class="fa fa-star checked_star"></span>
+						<span class="fa fa-star checked_star"></span>
+						<span class="fa fa-star"></span></p>
+
+
+						<p></p><input type="checkbox" id="5Sterne"><span class="fa fa-star checked_star"></span>
+						<span class="fa fa-star checked_star"></span>
+						<span class="fa fa-star checked_star"></span>
+						<span class="fa fa-star checked_star"></span>
+						<span class="fa fa-star checked_star"></span></p>
+
+
+
+					</div>
+
+
+					<p> Filter 1 </p>
+					<p> Filter 1 </p>
+					<p> Filter 1 </p>
+					<p> Filter 1 </p>
+					<p> Filter 1 </p>
+					<p> Filter 1 </p>
+					<p> Filter 1 </p>
+					<p> Filter 1 </p>
+				</div>
 			
-			<div id="filter_box">
-				
-				<p> Kategorien <button onclick="show()">button</button>  </p>
-				
-				<div class="elements">
-					<input type="checkbox" id="Fantasy"> 
-					<label for="Fantasy">Fantasy</label>
-
-				</div>
-
-				<div class="elements">
-					<input type="checkbox" id="Horror"> 
-					<label for="Horror">Horror</label>
-
-				</div>
-
-				<div class="elements">
-					<input type="checkbox" id="Humor"> 
-					<label for="Humor">Humor</label>
-
-				</div>
-
-				<div class="elements">
-					<input type="checkbox" id="Krimi"> 
-					<label for="Krimi">Krimi</label>
-
-				</div>
-
-				<div class="elements">
-					<input type="checkbox" id="Ratgeber"> 
-					<label for="Ratgeber">Ratgeber</label>
-
-				</div>
-
-				<div class="elements">
-					<input type="checkbox" id="Roman"> 
-					<label for="Roman">Roman</label>
-
-				</div>
-
-				<div class="elements">
-					<input type="checkbox" id="Sachbücher"> 
-					<label for="Sachbücher">Sachbücher</label>
-
-				</div>
-
-				<div class="elements">
-					<input type="checkbox" id="Thriller"> 
-					<label for="Thriller">Thriller</label>
-
-				</div>
-				
-
-
-
-
-				<p> Filter 1 </p>
-				<p> Filter 1 </p>
-				<p> Filter 1 </p>
-				<p> Filter 1 </p>
-				<p> Filter 1 </p>
-				<p> Filter 1 </p>
-				<p> Filter 1 </p>
-				<p> Filter 1 </p>
-				<p> Filter 1 </p>
-				<p> Filter 1 </p>
-				<p> Filter 1 </p>
-				<p> Filter 1 </p>
-				<p> Filter 1 </p>
-				<p> Filter 1 </p>
-				<p> Filter 1 </p>
-				<p> Filter 1 </p>
 			</div>
 			
-			
-			
-			
-			
-		
 			<form class="searchbar_container">
-				<input type="text" placeholder="Nach Autor suchen..." name="search">
+				<input type="text" placeholder="Nach Titel, Autor oder ISBN suchen..." name="search">
 				<button type="submit" >	<i class="fa fa-search"> </i>	</button>
 			</form>
 		
+			
+			<div class="artikel_buble">
+				<a href="https://www.google.com/">
+				
+				<img class="artikel_img_container" src="1.jpg"></img>
+				<div class="artikel_text_container">
+					<p>
+						<span class="Price_attribute">27,44&euro;</span>
+						<br><br>
+						
+						
+						<span class="Author_attribute_tag">Titel:</span>
+						<br>
+						<span class="Author_attribute"> VINLY COVERS 2020</span>
+						<br><br>
+						
+
+						<span class="Author_attribute_tag">Author:</span>
+						<br>
+						<span class="Author_attribute"> Tom Taeie </span>
+						<br><br>
+						
+						<span class="Author_attribute_tag">Genre:</span>
+						<br>
+						<span class="Author_attribute"> ????Vinly??? </span>
+						
+						<br><br>
+						
+						<span class="Author_attribute_tag">Bewertung:</span>
+						<span> (12) </span>
+						<br>
+						<div class="rating_container">
+							<span class="fa fa-star checked_star"></span>
+							<span class="fa fa-star checked_star"></span>
+							<span class="fa fa-star checked_star"></span>
+							<span class="fa fa-star"></span>
+							<span class="fa fa-star"></span>
+						</div>
+					</p>
+				</div>	
+				
+				</a>
+			</div>
+			
+			<div class="artikel_buble">
+				<a href="https://www.google.com/">
+				
+				<img class="artikel_img_container" src="1.jpg"></img>
+				<div class="artikel_text_container">
+					<p>
+						<span class="Price_attribute">27,44&euro;</span>
+						<br><br>
+						
+						
+						<span class="Author_attribute_tag">Titel:</span>
+						<br>
+						<span class="Author_attribute"> VINLY COVERS 2020</span>
+						<br><br>
+						
+
+						<span class="Author_attribute_tag">Author:</span>
+						<br>
+						<span class="Author_attribute"> Tom Taeie </span>
+						<br><br>
+						
+						<span class="Author_attribute_tag">Genre:</span>
+						<br>
+						<span class="Author_attribute"> ????Vinly??? </span>
+						
+						<br><br>
+						
+						<span class="Author_attribute_tag">Bewertung:</span>
+						<span> (12) </span>
+						<br>
+						<div class="rating_container">
+							<span class="fa fa-star checked_star"></span>
+							<span class="fa fa-star checked_star"></span>
+							<span class="fa fa-star checked_star"></span>
+							<span class="fa fa-star"></span>
+							<span class="fa fa-star"></span>
+						</div>
+					</p>
+				</div>	
+				
+				</a>
+			</div>
+			
+			<div class="artikel_buble">
+				<a href="https://www.google.com/">
+				
+				<img class="artikel_img_container" src="1.jpg"></img>
+				<div class="artikel_text_container">
+					<p>
+						<span class="Price_attribute">27,44&euro;</span>
+						<br><br>
+						
+						
+						<span class="Author_attribute_tag">Titel:</span>
+						<br>
+						<span class="Author_attribute"> VINLY COVERS 2020</span>
+						<br><br>
+						
+
+						<span class="Author_attribute_tag">Author:</span>
+						<br>
+						<span class="Author_attribute"> Tom Taeie </span>
+						<br><br>
+						
+						<span class="Author_attribute_tag">Genre:</span>
+						<br>
+						<span class="Author_attribute"> ????Vinly??? </span>
+						
+						<br><br>
+						
+						<span class="Author_attribute_tag">Bewertung:</span>
+						<span> (12) </span>
+						<br>
+						<div class="rating_container">
+							<span class="fa fa-star checked_star"></span>
+							<span class="fa fa-star checked_star"></span>
+							<span class="fa fa-star checked_star"></span>
+							<span class="fa fa-star"></span>
+							<span class="fa fa-star"></span>
+						</div>
+					</p>
+				</div>	
+				
+				</a>
+			</div>
+			
+			
+			<div class="artikel_buble">
+				<a href="https://www.google.com/">
+				
+				<img class="artikel_img_container" src="1.jpg"></img>
+				<div class="artikel_text_container">
+					<p>
+						<span class="Price_attribute">27,44&euro;</span>
+						<br><br>
+						
+						
+						<span class="Author_attribute_tag">Titel:</span>
+						<br>
+						<span class="Author_attribute"> VINLY COVERS 2020</span>
+						<br><br>
+						
+
+						<span class="Author_attribute_tag">Author:</span>
+						<br>
+						<span class="Author_attribute"> Tom Taeie </span>
+						<br><br>
+						
+						<span class="Author_attribute_tag">Genre:</span>
+						<br>
+						<span class="Author_attribute"> ????Vinly??? </span>
+						
+						<br><br>
+						
+						<span class="Author_attribute_tag">Bewertung:</span>
+						<span> (12) </span>
+						<br>
+						<div class="rating_container">
+							<span class="fa fa-star checked_star"></span>
+							<span class="fa fa-star checked_star"></span>
+							<span class="fa fa-star checked_star"></span>
+							<span class="fa fa-star"></span>
+							<span class="fa fa-star"></span>
+						</div>
+					</p>
+				</div>	
+				
+				</a>
+			</div>
+			
+			<div class="artikel_buble">
+				<a href="https://www.google.com/">
+				
+				<img class="artikel_img_container" src="1.jpg"></img>
+				<div class="artikel_text_container">
+					<p>
+						<span class="Price_attribute">27,44&euro;</span>
+						<br><br>
+						
+						
+						<span class="Author_attribute_tag">Titel:</span>
+						<br>
+						<span class="Author_attribute"> VINLY COVERS 2020</span>
+						<br><br>
+						
+
+						<span class="Author_attribute_tag">Author:</span>
+						<br>
+						<span class="Author_attribute"> Tom Taeie </span>
+						<br><br>
+						
+						<span class="Author_attribute_tag">Genre:</span>
+						<br>
+						<span class="Author_attribute"> ????Vinly??? </span>
+						
+						<br><br>
+						
+						<span class="Author_attribute_tag">Bewertung:</span>
+						<span> (12) </span>
+						<br>
+						<div class="rating_container">
+							<span class="fa fa-star checked_star"></span>
+							<span class="fa fa-star checked_star"></span>
+							<span class="fa fa-star checked_star"></span>
+							<span class="fa fa-star"></span>
+							<span class="fa fa-star"></span>
+						</div>
+					</p>
+				</div>	
+				
+				</a>
+			</div>
+			
+			
+			<div class="artikel_buble">
+				<a href="https://www.google.com/">
+				
+				<img class="artikel_img_container" src="1.jpg"></img>
+				<div class="artikel_text_container">
+					<p>
+						<span class="Price_attribute">27,44&euro;</span>
+						<br><br>
+						
+						
+						<span class="Author_attribute_tag">Titel:</span>
+						<br>
+						<span class="Author_attribute"> VINLY COVERS 2020</span>
+						<br><br>
+						
+
+						<span class="Author_attribute_tag">Author:</span>
+						<br>
+						<span class="Author_attribute"> Tom Taeie </span>
+						<br><br>
+						
+						<span class="Author_attribute_tag">Genre:</span>
+						<br>
+						<span class="Author_attribute"> ????Vinly??? </span>
+						
+						<br><br>
+						
+						<span class="Author_attribute_tag">Bewertung:</span>
+						<span> (12) </span>
+						<br>
+						<div class="rating_container">
+							<span class="fa fa-star checked_star"></span>
+							<span class="fa fa-star checked_star"></span>
+							<span class="fa fa-star checked_star"></span>
+							<span class="fa fa-star"></span>
+							<span class="fa fa-star"></span>
+						</div>
+					</p>
+				</div>	
+				
+				</a>
+			</div>
+			
+			<div class="artikel_buble">
+				<a href="https://www.google.com/">
+				
+				<img class="artikel_img_container" src="1.jpg"></img>
+				<div class="artikel_text_container">
+					<p>
+						<span class="Price_attribute">27,44&euro;</span>
+						<br><br>
+						
+						
+						<span class="Author_attribute_tag">Titel:</span>
+						<br>
+						<span class="Author_attribute"> VINLY COVERS 2020</span>
+						<br><br>
+						
+
+						<span class="Author_attribute_tag">Author:</span>
+						<br>
+						<span class="Author_attribute"> Tom Taeie </span>
+						<br><br>
+						
+						<span class="Author_attribute_tag">Genre:</span>
+						<br>
+						<span class="Author_attribute"> ????Vinly??? </span>
+						
+						<br><br>
+						
+						<span class="Author_attribute_tag">Bewertung:</span>
+						<span> (12) </span>
+						<br>
+						<div class="rating_container">
+							<span class="fa fa-star checked_star"></span>
+							<span class="fa fa-star checked_star"></span>
+							<span class="fa fa-star checked_star"></span>
+							<span class="fa fa-star"></span>
+							<span class="fa fa-star"></span>
+						</div>
+					</p>
+				</div>	
+				
+				</a>
+			</div>
+			
+			
+			
+			<div class="artikel_buble">
+				<a href="https://www.google.com/">
+				
+				<img class="artikel_img_container" src="1.jpg"></img>
+				<div class="artikel_text_container">
+					<p>
+						<span class="Price_attribute">27,44&euro;</span>
+						<br><br>
+						
+						
+						<span class="Author_attribute_tag">Titel:</span>
+						<br>
+						<span class="Author_attribute"> VINLY COVERS 2020</span>
+						<br><br>
+						
+
+						<span class="Author_attribute_tag">Author:</span>
+						<br>
+						<span class="Author_attribute"> Tom Taeie </span>
+						<br><br>
+						
+						<span class="Author_attribute_tag">Genre:</span>
+						<br>
+						<span class="Author_attribute"> ????Vinly??? </span>
+						
+						<br><br>
+						
+						<span class="Author_attribute_tag">Bewertung:</span>
+						<span> (12) </span>
+						<br>
+						<div class="rating_container">
+							<span class="fa fa-star checked_star"></span>
+							<span class="fa fa-star checked_star"></span>
+							<span class="fa fa-star checked_star"></span>
+							<span class="fa fa-star"></span>
+							<span class="fa fa-star"></span>
+						</div>
+					</p>
+				</div>	
+				
+				</a>
+			</div>
+			
+			<div class="artikel_buble">
+				<a href="https://www.google.com/">
+				
+				<img class="artikel_img_container" src="1.jpg"></img>
+				<div class="artikel_text_container">
+					<p>
+						<span class="Price_attribute">27,44&euro;</span>
+						<br><br>
+						
+						
+						<span class="Author_attribute_tag">Titel:</span>
+						<br>
+						<span class="Author_attribute"> VINLY COVERS 2020</span>
+						<br><br>
+						
+
+						<span class="Author_attribute_tag">Author:</span>
+						<br>
+						<span class="Author_attribute"> Tom Taeie </span>
+						<br><br>
+						
+						<span class="Author_attribute_tag">Genre:</span>
+						<br>
+						<span class="Author_attribute"> ????Vinly??? </span>
+						
+						<br><br>
+						
+						<span class="Author_attribute_tag">Bewertung:</span>
+						<span> (12) </span>
+						<br>
+						<div class="rating_container">
+							<span class="fa fa-star checked_star"></span>
+							<span class="fa fa-star checked_star"></span>
+							<span class="fa fa-star checked_star"></span>
+							<span class="fa fa-star"></span>
+							<span class="fa fa-star"></span>
+						</div>
+					</p>
+				</div>	
+				
+				</a>
+			</div>
+			
+			
+			
+			<div class="artikel_buble">
+				<a href="https://www.google.com/">
+				
+				<img class="artikel_img_container" src="1.jpg"></img>
+				<div class="artikel_text_container">
+					<p>
+						<span class="Price_attribute">27,44&euro;</span>
+						<br><br>
+						
+						
+						<span class="Author_attribute_tag">Titel:</span>
+						<br>
+						<span class="Author_attribute"> VINLY COVERS 2020</span>
+						<br><br>
+						
+
+						<span class="Author_attribute_tag">Author:</span>
+						<br>
+						<span class="Author_attribute"> Tom Taeie </span>
+						<br><br>
+						
+						<span class="Author_attribute_tag">Genre:</span>
+						<br>
+						<span class="Author_attribute"> ????Vinly??? </span>
+						
+						<br><br>
+						
+						<span class="Author_attribute_tag">Bewertung:</span>
+						<span> (12) </span>
+						<br>
+						<div class="rating_container">
+							<span class="fa fa-star checked_star"></span>
+							<span class="fa fa-star checked_star"></span>
+							<span class="fa fa-star checked_star"></span>
+							<span class="fa fa-star"></span>
+							<span class="fa fa-star"></span>
+						</div>
+					</p>
+				</div>	
+				
+				</a>
+			</div>
+			
+			<div class="artikel_buble">
+				<a href="https://www.google.com/">
+				
+				<img class="artikel_img_container" src="1.jpg"></img>
+				<div class="artikel_text_container">
+					<p>
+						<span class="Price_attribute">27,44&euro;</span>
+						<br><br>
+						
+						
+						<span class="Author_attribute_tag">Titel:</span>
+						<br>
+						<span class="Author_attribute"> VINLY COVERS 2020</span>
+						<br><br>
+						
+
+						<span class="Author_attribute_tag">Author:</span>
+						<br>
+						<span class="Author_attribute"> Tom Taeie </span>
+						<br><br>
+						
+						<span class="Author_attribute_tag">Genre:</span>
+						<br>
+						<span class="Author_attribute"> ????Vinly??? </span>
+						
+						<br><br>
+						
+						<span class="Author_attribute_tag">Bewertung:</span>
+						<span> (12) </span>
+						<br>
+						<div class="rating_container">
+							<span class="fa fa-star checked_star"></span>
+							<span class="fa fa-star checked_star"></span>
+							<span class="fa fa-star checked_star"></span>
+							<span class="fa fa-star"></span>
+							<span class="fa fa-star"></span>
+						</div>
+					</p>
+				</div>	
+				
+				</a>
+			</div>
+			
+			
+			
+			<div class="artikel_buble">
+				<a href="https://www.google.com/">
+				
+				<img class="artikel_img_container" src="1.jpg"></img>
+				<div class="artikel_text_container">
+					<p>
+						<span class="Price_attribute">27,44&euro;</span>
+						<br><br>
+						
+						
+						<span class="Author_attribute_tag">Titel:</span>
+						<br>
+						<span class="Author_attribute"> VINLY COVERS 2020</span>
+						<br><br>
+						
+
+						<span class="Author_attribute_tag">Author:</span>
+						<br>
+						<span class="Author_attribute"> Tom Taeie </span>
+						<br><br>
+						
+						<span class="Author_attribute_tag">Genre:</span>
+						<br>
+						<span class="Author_attribute"> ????Vinly??? </span>
+						
+						<br><br>
+						
+						<span class="Author_attribute_tag">Bewertung:</span>
+						<span> (12) </span>
+						<br>
+						<div class="rating_container">
+							<span class="fa fa-star checked_star"></span>
+							<span class="fa fa-star checked_star"></span>
+							<span class="fa fa-star checked_star"></span>
+							<span class="fa fa-star"></span>
+							<span class="fa fa-star"></span>
+						</div>
+					</p>
+				</div>	
+				
+				</a>
+			</div>
+			
+			<div class="artikel_buble">
+				<a href="https://www.google.com/">
+				
+				<img class="artikel_img_container" src="1.jpg"></img>
+				<div class="artikel_text_container">
+					<p>
+						<span class="Price_attribute">27,44&euro;</span>
+						<br><br>
+						
+						
+						<span class="Author_attribute_tag">Titel:</span>
+						<br>
+						<span class="Author_attribute"> VINLY COVERS 2020</span>
+						<br><br>
+						
+
+						<span class="Author_attribute_tag">Author:</span>
+						<br>
+						<span class="Author_attribute"> Tom Taeie </span>
+						<br><br>
+						
+						<span class="Author_attribute_tag">Genre:</span>
+						<br>
+						<span class="Author_attribute"> ????Vinly??? </span>
+						
+						<br><br>
+						
+						<span class="Author_attribute_tag">Bewertung:</span>
+						<span> (12) </span>
+						<br>
+						<div class="rating_container">
+							<span class="fa fa-star checked_star"></span>
+							<span class="fa fa-star checked_star"></span>
+							<span class="fa fa-star checked_star"></span>
+							<span class="fa fa-star"></span>
+							<span class="fa fa-star"></span>
+						</div>
+					</p>
+				</div>	
+				
+				</a>
+			</div>
+			
+			
+			
+			<div class="artikel_buble">
+				<a href="https://www.google.com/">
+				
+				<img class="artikel_img_container" src="1.jpg"></img>
+				<div class="artikel_text_container">
+					<p>
+						<span class="Price_attribute">27,44&euro;</span>
+						<br><br>
+						
+						
+						<span class="Author_attribute_tag">Titel:</span>
+						<br>
+						<span class="Author_attribute"> VINLY COVERS 2020</span>
+						<br><br>
+						
+
+						<span class="Author_attribute_tag">Author:</span>
+						<br>
+						<span class="Author_attribute"> Tom Taeie </span>
+						<br><br>
+						
+						<span class="Author_attribute_tag">Genre:</span>
+						<br>
+						<span class="Author_attribute"> ????Vinly??? </span>
+						
+						<br><br>
+						
+						<span class="Author_attribute_tag">Bewertung:</span>
+						<span> (12) </span>
+						<br>
+						<div class="rating_container">
+							<span class="fa fa-star checked_star"></span>
+							<span class="fa fa-star checked_star"></span>
+							<span class="fa fa-star checked_star"></span>
+							<span class="fa fa-star"></span>
+							<span class="fa fa-star"></span>
+						</div>
+					</p>
+				</div>	
+				
+				</a>
+			</div>
+			
+			<div class="artikel_buble">
+				<a href="https://www.google.com/">
+				
+				<img class="artikel_img_container" src="1.jpg"></img>
+				<div class="artikel_text_container">
+					<p>
+						<span class="Price_attribute">27,44&euro;</span>
+						<br><br>
+						
+						
+						<span class="Author_attribute_tag">Titel:</span>
+						<br>
+						<span class="Author_attribute"> VINLY COVERS 2020</span>
+						<br><br>
+						
+
+						<span class="Author_attribute_tag">Author:</span>
+						<br>
+						<span class="Author_attribute"> Tom Taeie </span>
+						<br><br>
+						
+						<span class="Author_attribute_tag">Genre:</span>
+						<br>
+						<span class="Author_attribute"> ????Vinly??? </span>
+						
+						<br><br>
+						
+						<span class="Author_attribute_tag">Bewertung:</span>
+						<span> (12) </span>
+						<br>
+						<div class="rating_container">
+							<span class="fa fa-star checked_star"></span>
+							<span class="fa fa-star checked_star"></span>
+							<span class="fa fa-star checked_star"></span>
+							<span class="fa fa-star"></span>
+							<span class="fa fa-star"></span>
+						</div>
+					</p>
+				</div>	
+				
+				</a>
+			</div>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+							
 		
-			
-			<div class="artikel_box"> 
-				<p> Artikel 1 </p>
-				<p> Artikel 1 </p>
-				<p> Artikel 1 </p>
-				<p> Artikel 1 </p>
-				<p> Artikel 1 </p>
-				<p> Artikel 1 </p>
-				<p> Artikel 1 </p>
-			</div>
-				
-			<div class="artikel_box"> 
-				<p> Artikel 1 </p>
-				<p> Artikel 1 </p>
-				<p> Artikel 1 </p>
-				<p> Artikel 1 </p>
-				<p> Artikel 1 </p>
-				<p> Artikel 1 </p>
-				<p> Artikel 1 </p>
-			</div>
-				
-			<div class="artikel_box"> 
-				<p> Artikel 1 </p>
-				<p> Artikel 1 </p>
-				<p> Artikel 1 </p>
-				<p> Artikel 1 </p>
-				<p> Artikel 1 </p>
-				<p> Artikel 1 </p>
-				<p> Artikel 1 </p>
-			</div>
-				
-				
-			<div class="artikel_box"> 
-				<p> Artikel 1 </p>
-				<p> Artikel 1 </p>
-				<p> Artikel 1 </p>
-				<p> Artikel 1 </p>
-				<p> Artikel 1 </p>
-				<p> Artikel 1 </p>
-				<p> Artikel 1 </p>
-			
-			
-			
-			</div>
-
-			<div class="artikel_box"> 
-				<p> Artikel 1 </p>
-				<p> Artikel 1 </p>
-				<p> Artikel 1 </p>
-				<p> Artikel 1 </p>
-				<p> Artikel 1 </p>
-				<p> Artikel 1 </p>
-				<p> Artikel 1 </p>
-			
-			
-			
-			</div>
-
-
-			<div class="artikel_box"> 
-				<p> Artikel 1 </p>
-				<p> Artikel 1 </p>
-				<p> Artikel 1 </p>
-				<p> Artikel 1 </p>
-				<p> Artikel 1 </p>
-				<p> Artikel 1 </p>
-				<p> Artikel 1 </p>
-			
-			
-			
-			</div>
-
-
-			<div class="artikel_box"> 
-				<p> Artikel 1 </p>
-				<p> Artikel 1 </p>
-				<p> Artikel 1 </p>
-				<p> Artikel 1 </p>
-				<p> Artikel 1 </p>
-				<p> Artikel 1 </p>
-				<p> Artikel 1 </p>
-			
-			
-			
-			</div>
-
-
-			<div class="artikel_box"> 
-				<p> Artikel 1 </p>
-				<p> Artikel 1 </p>
-				<p> Artikel 1 </p>
-				<p> Artikel 1 </p>
-				<p> Artikel 1 </p>
-				<p> Artikel 1 </p>
-				<p> Artikel 1 </p>
-			
-			
-			
-			</div>
-
-			<div class="artikel_box"> 
-				<p> Artikel 1 </p>
-				<p> Artikel 1 </p>
-				<p> Artikel 1 </p>
-				<p> Artikel 1 </p>
-				<p> Artikel 1 </p>
-				<p> Artikel 1 </p>
-				<p> Artikel 1 </p>
-			
-			
-			
-			</div>
-
-			
-
 			
 		</div>
 		
 		<script src="app.js"></script>
-		
-		
-		
-		<footer class="footer1">
-				<div id="selectFooter" class="FooterElemente">              
-					<a href="">Impressum und Kontakt</a>     
-					<a href="">Datenschutz</a>   
-					<a href="">Widerrufsrecht</a>    
-				</div>
-				<div id="copyright"></div>
-		</footer>
-		
-		
+
+        <div id="footer">
+            <div id="selectFooter" class="FooterElemente">              
+                <a href="">Impressum und Kontakt</a>     
+                <a href="">Datenschutz</a>   
+                <a href="">Widerrufsrecht</a>    
+            </div>
+            <div id="copyright"></div>
+        </div>
     </body>
 </html>
