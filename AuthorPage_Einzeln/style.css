@@ -85,12 +85,12 @@ body {margin:0; background-color:#444048}
 
 
 #top_container{
-	height:auto;
+	height:50%;
 }
 
 .biographie_buble{
 	background-color: #444048;
-	height:1px;
+	height:auto;
 	width: 79%;
 	border-radius:30px;
 	padding-left:2%;
@@ -150,6 +150,7 @@ body {margin:0; background-color:#444048}
 
 /* Body  Box */
 .author_body_container {
+	height:100%;
 	background-color:#8A9094;
 	width:100%;
 	padding-left: 4%;
@@ -161,7 +162,9 @@ body {margin:0; background-color:#444048}
 	word-spacing: 250px;
 }
 
+
 .font_Color{
+	font-size:1.4em;
 	color: orange;
 }
 

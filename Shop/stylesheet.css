@@ -274,11 +274,9 @@ button[type="submit"] {
 /* Inside of artikel_buble */
 
 .artikel_buble{
-	max-height:350px;
-	max-width:500px;
-	min-width:390px;
-	min-height:350px;
-	
+	max-height:400px;
+	min-width:500px;
+	min-height:380px;
 	display:inline-block;
 	background-color: #444048;
 	height: 30%;
