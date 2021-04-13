@@ -69,12 +69,10 @@ function adjustContainerHeight(){
 		console.log(height_left_container)
 		
 		if(height_left_container > height_shop_container){
-			console.log("TRUE");
 			shop_container.style.height = height_left_container+4;
 		}
 		
 		else{
-			console.log("FALSE");
 			left_container.style.height = height_shop_container;
 		}
 		
