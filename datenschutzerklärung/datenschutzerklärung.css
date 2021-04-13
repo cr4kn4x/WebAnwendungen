@@ -1,24 +1,23 @@
-#widerrufsrecht {
+#datenschutzerklärung {
     color: #444048;
     width: 90%;
-    height: auto;
+    height: 40px;
     padding-top: 6%;
     padding-left: 2%;
 }
 
-#main {
-    height: 100%;
-}
-
 #first {
-    position: absolute;
+    position: -webkit-sticky;
     background-color: #444048;
-    width: 55%;
-    height: 66%;
+
     top: 18%;
     left: 3%;
     border-radius: 79px;
 
     padding-top: 2%;
     padding-left: 2%;
+}
+
+p {
+    color: white;
 }
