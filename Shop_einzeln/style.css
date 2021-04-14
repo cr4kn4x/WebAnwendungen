@@ -2,6 +2,11 @@
 * {box-sizing: border-box}
 body {margin:0; background-color:#444048}
 
+#titel a {
+    text-decoration: none;
+    color: white;
+}
+
 .kurzbeschr_box{
 	margin-right:10%;
 	font-size:1.2em;

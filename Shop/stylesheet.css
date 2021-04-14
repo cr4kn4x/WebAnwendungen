@@ -3,6 +3,10 @@ body {margin:0;
     background-color:#8A9094;
 }
 
+#titel a {
+    text-decoration: none;
+    color: white;
+}
 
 @font-face{
     font-family: X-Files;
