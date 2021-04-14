@@ -157,9 +157,7 @@ body {margin:0; background-color:#444048}
 	padding-top: 0.5%;
 }
 
-.Word_Spacing{
-	word-spacing: 250px;
-}
+
 
 .font_Color{
 	font-size:1.4em;
@@ -169,28 +167,19 @@ body {margin:0; background-color:#444048}
 
 
 .author_buble{
+	margin-top:1%;
+	float:left;
+	cursor: pointer;
 	background-color: #444048;
-	height: 90%;
+	height: 55px;
 	width: 79%;
+	margin-bottom:1%;
+	border: 2px solid #444048;
 	border-radius:35px;
 	padding-left:2%;
-	margin-top: 1%;
-	float: left;
-    margin-right: 1%;
 }
 
-button{
-	margin-right: 1%;
-	border-radius:35px;
-	background-color: #FF8A11;
-	border: none;
-	height: 100%;
-	width: 15%;
-	color: white;
-	float: right;
-	cursor: pointer;
 
-}
 
 
 
@@ -208,6 +197,7 @@ img{
 	margin-top: 1%;
 	border-radius: 35px;
 	width: 19%;
+	margin-left: 1%;
 }
 
 
@@ -230,4 +220,81 @@ img{
 	
 	float:left;
 	width:70%
+}
+
+
+.Author_link {
+	text-decoration:none;
+	color:white;
+}
+
+
+.Book_links{
+	margin-left:0.7%;
+	width:100%;
+	text-decoration:none;
+	color:white;
+}
+
+/*  Kann man sich überlegen */
+.Book_link:hover{
+	text-decoration: underline;
+}
+
+
+.Book_link{
+	text-decoration:none;
+	color:white;
+	margin-left:0.5%;
+}
+
+
+/* NEUE Buble */
+
+
+.inside_buble_container{
+	/* Text middle */
+	display: flex;
+	align-items: center;
+	/*------- */
+	width:39.5%;
+	height:100%;
+	float:left;
+}
+
+.inside_buble_price_container{
+	/* Text middle */
+
+	display: flex;
+	align-items: center;
+	/*------- */
+	width:10%;
+	height:100%;
+	float:left;
+}
+
+
+.inside_buble_button_container{
+	/* Text middle */
+
+	display: flex;
+	align-items: center;
+	/*------- */
+	width:10%;
+	height:100%;
+	float:left;
+}
+
+
+.button_{
+	margin-right: 1%;
+	border-radius:100px;
+	background-color: #FF8A11;
+	border: none;
+	height: 90%;
+	width: 100%;
+	color: white;
+	float: right;
+	cursor: pointer;
+
 }
