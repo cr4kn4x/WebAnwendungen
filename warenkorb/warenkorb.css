@@ -73,3 +73,16 @@
 	height:100%;
 	float:left;
 }
+
+button{
+	margin-right: 1%;
+	border-radius:35px;
+	background-color: #FF8A11;
+	border: none;
+	height: 5%;
+	width: 40%;
+	color: white;
+	float: right;
+	cursor: pointer;
+
+}
