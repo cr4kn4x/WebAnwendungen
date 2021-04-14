@@ -92,7 +92,7 @@ body {margin:0; background-color:#444048}
 	background-color: #444048;
 	height:auto;
 	width: 79%;
-	border-radius:30px;
+	border-radius:35px;
 	padding-left:2%;
 	margin-top: 10%;
 	float: left;
@@ -172,7 +172,7 @@ body {margin:0; background-color:#444048}
 	background-color: #444048;
 	height: 90%;
 	width: 79%;
-	border-radius:100px;
+	border-radius:35px;
 	padding-left:2%;
 	margin-top: 1%;
 	float: left;
@@ -181,7 +181,7 @@ body {margin:0; background-color:#444048}
 
 button{
 	margin-right: 1%;
-	border-radius:100px;
+	border-radius:35px;
 	background-color: #FF8A11;
 	border: none;
 	height: 100%;
@@ -206,7 +206,7 @@ img{
 	display: inline-block;
 	background-color: #444048;
 	margin-top: 1%;
-	border-radius: 30px;
+	border-radius: 35px;
 	width: 19%;
 }
 
