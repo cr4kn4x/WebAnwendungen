@@ -122,3 +122,25 @@ body {
     height: 40px;
 
 }
+#paypal {
+    background: url(../sources/PayPal.svg.png);
+    background-size: contain;    
+    bottom: 1%;
+    width: 25%;
+    height: 2%;
+    padding-right: 20%;
+}
+#maestro {
+    background: url(../sources/maestro.png);
+    background-size: contain;    
+    bottom: 1%;
+    width: 10%;
+    height: 2%;
+}
+#mastercard {
+    background: url(../sources/1000px-Mastercard-logo.svg.png);
+    background-size: contain;    
+    bottom: 1%;
+    width: 9%;
+    height: 2%;
+}
