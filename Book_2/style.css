@@ -7,6 +7,11 @@ body {margin:0; background-color:#444048}
 	font-size:1.2em;
 }
 
+#titel a {
+    text-decoration: none;
+    color: white;
+}
+
 @font-face{
     font-family: X-Files;
     src: url(x-files.tff);

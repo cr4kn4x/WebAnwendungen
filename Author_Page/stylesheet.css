@@ -1,6 +1,10 @@
 * {box-sizing: border-box}
 body {margin:0; background-color:#8A9094}
 
+#titel a {
+    text-decoration: none;
+    color: white;
+}
 
 .Author_link {
 	text-decoration:none;

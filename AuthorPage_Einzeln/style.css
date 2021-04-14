@@ -2,6 +2,11 @@
 * {box-sizing: border-box}
 body {margin:0; background-color:#444048}
 
+#titel a {
+    text-decoration: none;
+    color: white;
+}
+
 
 @font-face{
     font-family: X-Files;
