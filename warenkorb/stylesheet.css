@@ -11,9 +11,9 @@
 #navigation {
     background-color: #444048;
     color: #FF8A11;
-    position: fixed;
+    position: absolute;
     width: 100%;
-    height: 10%;
+    height: auto;
 }
 
 #titel {
@@ -73,11 +73,16 @@
 }
 
 #footer {
-    position: absolute;
+    position: fixed;
     bottom: 0;
     background-color: #444048;
     width: 100%;
     height: 10%;
+    margin-top: 0px;
+    border-top-width: 0px;
+    border-top-style: solid;
+    padding-top: 0px;
+    min-height: 100px;
 }
 
 #footer a {
@@ -93,7 +98,7 @@
 }
 
 #selectFooter a:hover {
-    border-top: solid #FF8A11 2px;
+    border-bottom: solid #FF8A11 2px;
 }
 
 #copyright {
