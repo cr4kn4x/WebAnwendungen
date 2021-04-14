@@ -1,19 +1,23 @@
+
+* {
+    box-sizing: border-box
+}
+
+body {
+    margin: 0;
+    background-color: #8A9094
+}
 @font-face {
     font-family: X-Files;
     src: url(x-files.tff);
 }
 
-* {
-    margin: 0;
-    padding: 0;
-}
-
 #navigation {
     background-color: #444048;
     color: #FF8A11;
-    position: absolute;
+    position: fixed;
     width: 100%;
-    height: auto;
+    min-height: 115px;
 }
 
 #titel {
@@ -42,7 +46,7 @@
 }
 
 #selectNav a:hover {
-    border-top: solid #FF8A11 2px;
+    border-bottom: solid #FF8A11 2px;
 }
 
 #warenkorb {
@@ -51,7 +55,7 @@
 }
 
 #logo {
-    background: url(Logo.png);
+    background: url(../sources/Logo.png);
     background-size: contain;
     position: absolute;
     margin-left: 90%;
@@ -69,13 +73,19 @@
     background-color: #8A9094;
 
     width: 100%;
-    height: 90%;
+    height: auto;
+    margin-bottom: 10%;
+    padding-bottom: 4%;
+    padding-top: 8%;
+    padding-left: 4%;
+    padding-right: 9%;
+    color: white;
 }
 
 #footer {
-    position: fixed;
     bottom: 0;
     background-color: #444048;
+    position: absolute;
     width: 100%;
     height: 10%;
     margin-top: 0px;
@@ -102,12 +112,12 @@
 }
 
 #copyright {
-    background: url(Copyright.png);
+    background: url(../sources/Copyright.png);
     background-size: contain;
-    position: absolute;
-    margin-left: 80%;
-    bottom: 3%;
-    right: 4%;
+    position: relative;
+    margin-left: 96%;
+    bottom: 19%;
+    margin-right:2%;
     width: 38px;
     height: 40px;
 

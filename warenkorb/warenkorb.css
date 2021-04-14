@@ -2,6 +2,74 @@
     color: #444048;
     width: 20%;
     height: 10%;
-    top: auto;
-    padding-left: 3%;
+}
+
+.warenkorb_buble{
+	background-color: #444048;
+	height: 55px;
+	width: 60%;
+	margin-bottom:1%;
+	border-radius:35px;
+	padding-left:2%;
+}
+
+.inside_buble_container{
+	/* Text middle */
+	display: flex;
+	align-items: center;
+	/*------- */
+	width:20%;
+	height:100%;
+	float:left;
+}
+
+.Author_attribute{
+	color:white;
+	margin-right:3%;
+}
+
+.Author_attribute{
+	font-size:1.2em;
+	padding-left:1.8%;
+}
+
+.container_right{
+	padding-left:1%;
+	padding-top:0.2%;
+	padding-bottom:2%;
+	display: inline-block;
+	background-color: #444048;
+	margin-top: 1%;
+	border-radius: 35px;
+	width: 19%;
+}
+
+.author_buble{
+	background-color: #444048;
+	height: 5%;
+	width: 70%;
+	border-radius:35px;
+	padding-left:2%;
+	margin-top: 1%;
+	float: left;
+    margin-right: 1%;
+}
+
+.Book_container{
+	background-color:#8A9094;
+	width:100%;
+	height:100%;
+	display:inline-block;
+	margin-bottom:10%;
+	margin-top:1%;
+}
+
+.inside_buble_container{
+	/* Text middle */
+	display: flex;
+	align-items: center;
+	/*------- */
+	width:20%;
+	height:100%;
+	float:left;
 }
