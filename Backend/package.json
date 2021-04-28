@@ -6,9 +6,15 @@
     "start": "node ./bin/www"
   },
   "dependencies": {
+    "better-sqlite3": "^7.1.5",
     "cookie-parser": "^1.4.5",
+    "cors": "^2.8.5",
     "debug": "~2.6.9",
     "express": "~4.16.1",
+    "express-fileupload": "^1.2.1",
+    "express-fileuploader": "0.0.7",
+    "lodash": "^4.17.21",
+    "luxon": "^1.26.0",
     "morgan": "~1.9.1"
   }
 }
