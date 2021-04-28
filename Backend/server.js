@@ -52,13 +52,13 @@ try {
     app.use(morgan('dev'));
 
     // binding endpoints
-    //const TOPLEVELPATH = '/wba2api';
-    //helper.log('Binding enpoints, top level Path at ' + TOPLEVELPATH);
+    const TOPLEVELPATH = '/web2';
+    helper.log('Binding enpoints, top level Path at ' + TOPLEVELPATH);
     
-    //var serviceRouter = require('./services/land.js');
-    //app.use(TOPLEVELPATH, serviceRouter); 
+    var serviceRouter = require('./routes/buch.js');
+    app.use(TOPLEVELPATH, serviceRouter);
 
-    
+    //weitere endpoints   
 
     
 
