@@ -1,20 +1,19 @@
+// Load express module
 var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+// Create a router instance
+var router = express.Router();
 
+// Create an express instance
 var app = express();
 
-app.use(logger('dev'));
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+// Define a route for HTTP-GET on "/"
+router.get("/", (request, response) => {
+  // Write "Hello World" into the response object
+  response.send("Hello World!");
+});
 
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
+// Tell the express app to use the router
+app.use('/', router);
 
 module.exports = app;
