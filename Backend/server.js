@@ -13,8 +13,9 @@ try {
     helper.log('Connect database...');
     const Database = require('better-sqlite3');
     const dbOptions = { verbose: console.log };
-    const dbFile = './db/db.sqlite';
+    const dbFile = '.\db\datenbank.sqlite';
     const dbConnection = new Database(dbFile, dbOptions);
+    
 
     // create server
     const HTTP_PORT = 8000;
