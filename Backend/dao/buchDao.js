@@ -22,7 +22,7 @@ class BuchDao {
     }
 
     toString() {
-        helper.log('AdresseDao [_conn=' + this._conn + ']');
+        helper.log('BuchDao [_conn=' + this._conn + ']');
     }
 }
 

@@ -12,7 +12,7 @@ class ZahlungsartDao {
     loadById(id) {
         const zahlungsartDao = new ZahlungsartDao(this._conn);
 
-        var sql = 'SELECT * FROM Adresse WHERE ID=?';
+        var sql = 'SELECT * FROM Zahlungsart WHERE ID=?';
         var statement = this._conn.prepare(sql);
         var result = statement.get(id);
 
@@ -24,8 +24,8 @@ class ZahlungsartDao {
     }
 
     toString() {
-        helper.log('AdresseDao [_conn=' + this._conn + ']');
+        helper.log('ZahlungsartDao [_conn=' + this._conn + ']');
     }
 }
 
-module.exports = AdresseDao;
+module.exports = ZahlungsartDao;
