@@ -40,52 +40,52 @@
 					<p class="filter_hover" onclick="show_cat()"><span id="span_cat">&#8722;</span> Kategorien:</p>
 					<div id="cat">
 					
-					
+						<form>
 				
 						<div class="elements">
-							<input type="checkbox" id="Fantasy" color="orange"> 
+							<input name="cat_1" type="checkbox" id="Fantasy" color="orange"> 
 							<label for="Fantasy">Fantasy</label>
 
 						</div>
 
 						<div class="elements">
-							<input type="checkbox" id="Horror"> 
+							<input name="cat_2" type="checkbox" id="Horror"> 
 							<label for="Horror">Horror</label>
 
 						</div>
 
 						<div class="elements">
-							<input type="checkbox" id="Humor"> 
+							<input name="cat_3" type="checkbox" id="Humor"> 
 							<label for="Humor">Humor</label>
 
 						</div>
 
 						<div class="elements">
-							<input type="checkbox" id="Krimi"> 
+							<input name="cat_4" type="checkbox" id="Krimi"> 
 							<label for="Krimi">Krimi</label>
 
 						</div>
 
 						<div class="elements">
-							<input type="checkbox" id="Ratgeber"> 
+							<input name="cat_5" type="checkbox" id="Ratgeber"> 
 							<label for="Ratgeber">Ratgeber</label>
 
 						</div>
 
 						<div class="elements">
-							<input type="checkbox" id="Roman"> 
+							<input name="cat_6" type="checkbox" name="r" id="Roman"> 
 							<label for="Roman">Roman</label>
 
 						</div>
 
 						<div class="elements">
-							<input type="checkbox" id="Sachbücher"> 
+							<input name="cat_7" type="checkbox" id="Sachbücher"> 
 							<label for="Sachbücher">Sachbücher</label>
 
 						</div>
 
 						<div class="elements">
-							<input type="checkbox" id="Thriller"> 
+							<input name="cat_8" type="checkbox" id="Thriller"> 
 							<label for="Thriller">Thriller</label>
 
 						</div>
@@ -116,7 +116,7 @@
 							</div> -->
 
 							<div class="slidecontainer">
-								<input type="range" min="1" max="120" value="60" class="slider" id="myRange">
+								<input name="price" type="range" min="1" max="120" value="60" class="slider" id="myRange">
 								<p>
 								<span id="Space1">0&#8364;</span> <span id="demo"></span><span>&#8364;</span> <span id="Space2">120&#8364;</span>
 								</p>
@@ -132,45 +132,52 @@
 
 					<div class = "Bewertungen" id="Rating_box">
 						 
-
-						<p><input type="checkbox" id="1Sterne">
+						
+						
+						<p><input name="rating_1s" type="checkbox" id="1Sterne">
 						<span class="fa fa-star checked_star"></span>
 						<span class="fa fa-star"></span>
 						<span class="fa fa-star"></span>
 						<span class="fa fa-star"></span>
 						<span class="fa fa-star"></span></p>
 
-						<p></p><input type="checkbox" id="2Sterne"><span class="fa fa-star checked_star"></span>
+						<p></p><input name="rating_2s" type="checkbox" id="2Sterne">
+						<span class="fa fa-star checked_star"></span>
 						<span class="fa fa-star checked_star"></span>
 						<span class="fa fa-star"></span>
-						<span class="fa fa-star"></span>
-						<span class="fa fa-star"></span></p>
-
-
-						<p></p><input type="checkbox" id="3Sterne"><span class="fa fa-star checked_star"></span>
-						<span class="fa fa-star checked_star"></span>
-						<span class="fa fa-star checked_star"></span>
 						<span class="fa fa-star"></span>
 						<span class="fa fa-star"></span></p>
 
 
-						<p></p><input type="checkbox" id="4Sterne"><span class="fa fa-star checked_star"></span>
+						<p></p><input name="rating_3s" type="checkbox" id="3Sterne"><span class="fa fa-star checked_star"></span>
+						<span class="fa fa-star checked_star"></span>
+						<span class="fa fa-star checked_star"></span>
+						<span class="fa fa-star"></span>
+						<span class="fa fa-star"></span></p>
+
+
+						<p></p><input name="rating_4s" type="checkbox" id="4Sterne"><span class="fa fa-star checked_star"></span>
 						<span class="fa fa-star checked_star"></span>
 						<span class="fa fa-star checked_star"></span>
 						<span class="fa fa-star checked_star"></span>
 						<span class="fa fa-star"></span></p>
 
 
-						<p></p><input type="checkbox" id="5Sterne"><span class="fa fa-star checked_star"></span>
+						<p></p><input name="rating_5s" type="checkbox" id="5Sterne"><span class="fa fa-star checked_star"></span>
 						<span class="fa fa-star checked_star"></span>
 						<span class="fa fa-star checked_star"></span>
 						<span class="fa fa-star checked_star"></span>
 						<span class="fa fa-star checked_star"></span></p>
 
-
+						
+						
+						
 
 					</div>
+					
+						<input type="submit" value="submit"></input>
 
+					</form>
 
 					
 				</div>
