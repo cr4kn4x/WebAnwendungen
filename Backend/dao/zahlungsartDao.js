@@ -23,6 +23,28 @@ class ZahlungsartDao {
         return result;
     }
 
+    loadAll() {
+        var sql = 'SELECT * FROM Zahlungsart';
+        var statement = this._conn.prepare(sql);
+        var result = statement.all();
+
+        if (helper.isArrayEmpty(result)) 
+            return [];
+        
+        return helper.arrayObjectKeysToLower(result);
+    }
+
+    exists(id) {
+        var sql = 'SELECT COUNT(ID) AS cnt FROM Zahlungsart WHERE ID=?';
+        var statement = this._conn.prepare(sql);
+        var result = statement.get(id);
+
+        if (result.cnt == 1) 
+            return true;
+
+        return false;
+    }
+
     toString() {
         helper.log('ZahlungsartDao [_conn=' + this._conn + ']');
     }
