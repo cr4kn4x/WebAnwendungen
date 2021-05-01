@@ -3,6 +3,7 @@
         <title>The Ebook Hub</title>
         <link rel="stylesheet" href="CSS/shop_stylesheet.css"/>
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <meta charset="UTF-8"/>
     </head>
     
@@ -199,13 +200,11 @@
 						<span class="Price_attribute">27,44&euro;</span>
 						<br><br>
 						
-						
 						<span class="Author_attribute_tag">Titel:</span>
 						<br>
 						<span class="Author_attribute"> A Bear`s Bride Entwined Tales<br></span>
 						<br>
 						
-
 						<span class="Author_attribute_tag">Author:</span>
 						<br>
 						<span class="Author_attribute"> Shari L. Tapscott</span>
@@ -216,7 +215,7 @@
 						<span class="Author_attribute"> Roman </span>
 						
 						<br><br>
-						
+
 						<span class="Author_attribute_tag">Bewertung:</span>
 						<span> (12) </span>
 						<br>
@@ -229,52 +228,10 @@
 						</div>
 					</p>
 				</div>	
-				
 				</a>
 			</div>
 			
-			<div class="artikel_buble">
-				<a href="../Book_2/index.html">
-				
-				<img class="artikel_img_container" src="sources/3.jpg"></img>
-				<div class="artikel_text_container">
-					<p>
-						<span class="Price_attribute">27,44&euro;</span>
-						<br><br>
-						
-						
-						<span class="Author_attribute_tag">Titel:</span>
-						<br>
-						<span class="Author_attribute"> Die Nacht der fallenden Sterne<br> </span>
-						<br><br>
-						
-
-						<span class="Author_attribute_tag">Author:</span>
-						<br>
-						<span class="Author_attribute"> Jennifer Alice Jaeger </span>
-						<br><br>
-						
-						<span class="Author_attribute_tag">Genre:</span>
-						<br>
-						<span class="Author_attribute"> Roman </span>
-						
-						<br><br>
-						
-						<span class="Author_attribute_tag">Bewertung:</span>
-						<span> (203) </span>
-						<br>
-						<div class="rating_container">
-							<span class="fa fa-star checked_star"></span>
-							<span class="fa fa-star checked_star"></span>
-							<span class="fa fa-star checked_star"></span>
-							<span class="fa fa-star checked_star"></span>
-							<span class="fa fa-star checked_star"></span>
-						</div>
-					</p>
-				</div>	
-				
-				</a>
-			</div>
+			
 			
 			
 			
@@ -339,5 +296,82 @@
             </div>
             <div id="copyright"></div>
         </div>
+
+
+
+		<script>
+
+			$(document).ready(function() {
+            console.log('document page ready!');
+
+            	$.ajax({
+               		url: 'http://localhost:8000/web2/shop/gib/all',
+                	method: 'get',
+                	dataType: 'json'
+            	}).done(function (response) {
+					console.log("Daten erfolgreich geladen!");
+                	console.log(response);
+                	
+					var tmp="";
+
+					//append to id "#shop_container"
+
+					for (i = 0; i <= response.daten.length; i++) {
+						var obj = response.daten[i];
+
+						tmp += "<div class=\"artikel_buble\"><a href=\"http://localhost:8000/web2/buch/gib/";       //Das stimmt so nicht mit dem Href nur übergangsweise hier mal api abfrage gemacht,
+						tmp += obj.id + "\">";																		// zur teoretischen Kontrolle. Problem: Die Route existiert noch nicht.
+																													 // müsste localhost:8000/buch/ und dann +  ?id="28" Parameter Übergabe zur Buchseite
+																													 // Man könnte auf der Buchseite dann clienseitig die ID auswerten und an web2/buch/gib/:id die Daten holen
+																													// Die ID muss aber irgendwie von der ShopSeite zur Artikelseite gebracht werden. Noch
+																													// überfragt.
+
+						tmp += "<img class=\"artikel_img_container\" src=" + "obj.bildid id mit web2/bilder/gib/:id"  +"\"></img>";
+						tmp += "<div class=\"artikel_text_container\"> <p> "
+						tmp += "<span class=\"Price_attribute\">"  +  obj.preis +   "&euro;</span> <br><br>";
+
+						tmp += "<span class=\"Author_attribute_tag\">" + obj.titel +  ":</span> <br> ";
+						
+						tmp += "<span class=\" Author_attribute \">" + "obj.author id mit web2/autor/gib/:id" + "<br></span> <br><br>";
+						
+						tmp += "<span class=\"Author_attribute_tag\">Genre:" + "obj.genreid mit web2/genre/gib/:id" + "</span><br><br> ";
+
+						tmp += "<span class=\"Author_attribute_tag\">Bewertung:</span> <span>" + "obj.AnzahlBewerungen mit web2/bew/gibAnz/:id" + "</span> ";
+
+						// hier muss mit einer if abfrage wenn die Anzahl der Sterne geladen wurde dann entsprehend <span class="fa fa-star"></span> eingefügt werden.
+
+						tmp += "</p></div></a></div>";
+
+						
+						$("#shop_container").append(tmp);
+
+					}
+					
+
+
+
+
+            	}).fail(function (jqXHR, statusText, error) {
+                	console.log('Response Code: ' + jqXHR.status + ' - Fehlermeldung: ' + jqXHR.responseText);
+                	$('#output').html('Ein Fehler ist aufgetreten');
+            	});
+        	});
+
+		</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     </body>
 </html>
