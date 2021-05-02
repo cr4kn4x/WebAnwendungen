@@ -58,6 +58,7 @@ try {
     var serviceRouter = require('./routes/buch.js');
     app.use(TOPLEVELPATH, serviceRouter);
 
+
     serviceRouter = require('./routes/zahlungsart.js');
     app.use(TOPLEVELPATH, serviceRouter);
 
@@ -68,6 +69,28 @@ try {
     app.use(TOPLEVELPATH, serviceRouter);
     
     //weitere endpoints   
+
+    //---------------------------------------------------------------------------------------//
+
+
+    serviceRouter = require('./routes/shop.js');
+    app.use(TOPLEVELPATH, serviceRouter);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    //---------------------------------------------------------------------------------------//
+
 
     
 
