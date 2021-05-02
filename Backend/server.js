@@ -64,6 +64,8 @@ try {
     serviceRouter = require('./routes/bewertungen.js');
     app.use(TOPLEVELPATH, serviceRouter);
     
+    serviceRouter = require('./routes/user.js');
+    app.use(TOPLEVELPATH, serviceRouter);
     
     //weitere endpoints   
 
