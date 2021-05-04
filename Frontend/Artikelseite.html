@@ -167,6 +167,39 @@
 
 
 
+
+		<script>
+			//Grab Book ID from Link
+
+			console.log(get_url_ID("titelID"));
+
+
+
+
+
+
+
+
+
+
+
+
+			function get_url_ID(name)
+			{
+			name = name.replace(/[\[]/,"\\\[").replace(/[\]]/,"\\\]");
+			var regexS = "[\\?&amp;]"+name+"=([^&amp;#]*)";
+			var regex = new RegExp( regexS );
+			var results = regex.exec( window.location.href );
+
+			if ( results == null )
+				console.log("Es wurde keine ID übergeben!");
+			else
+				return results[1];
+			}
+		</script>
+
+
+
 	</body>
 	
 </html> 
