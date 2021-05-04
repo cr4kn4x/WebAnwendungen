@@ -1,3 +1,36 @@
+Skip to content
+Search or jump to…
+
+Pull requests
+Issues
+Marketplace
+Explore
+ 
+@cr4kn4x 
+Maxi-G
+/
+WebAnwendungen
+2
+00
+Code
+Issues
+7
+Pull requests
+1
+Actions
+Projects
+2
+Wiki
+Security
+Insights
+WebAnwendungen/Frontend/Shop.html
+@cr4kn4x
+cr4kn4x ID in Link übergeben + kleiner design fix
+Latest commit 481524c 13 minutes ago
+ History
+ 1 contributor
+374 lines (201 sloc)  9.47 KB
+  
 <html>
     <head>
         <title>The Ebook Hub</title>
@@ -235,48 +268,45 @@
 			
 			
 			
-			<div class="artikel_buble">
-				<a href="https://www.google.com/">
-				
-				<img class="artikel_img_container" src="sources/1.jpg"></img>
-				<div class="artikel_text_container">
-					<p>
-						<span class="Price_attribute">27,44&euro;</span>
-						<br><br>
-						
-						
-						<span class="Author_attribute_tag">Titel:</span>
-						<br>
-						<span class="Author_attribute"> DUMMY!<br></span>
-						<br><br>
-						
-
-						<span class="Author_attribute_tag">Author:</span>
-						<br>
-						<span class="Author_attribute"> ------ </span>
-						<br><br>
-						
-						<span class="Author_attribute_tag">Genre:</span>
-						<br>
-						<span class="Author_attribute"> --------- </span>
-						
-						<br><br>
-						
-						<span class="Author_attribute_tag">Bewertung:</span>
-						<span> (12) </span>
-						<br>
-						<div class="rating_container">
-							<span class="fa fa-star"></span>
-							<span class="fa fa-star"></span>
-							<span class="fa fa-star"></span>
-							<span class="fa fa-star"></span>
-							<span class="fa fa-star"></span>
-						</div>
-					</p>
-				</div>	
-				
-				</a>
-			</div>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
 			
 			
 			
@@ -288,6 +318,7 @@
 		
 		<script src="JS/shop.js"></script>
 
+		<div class="Footer_div">
         <div id="footer">
             <div id="selectFooter" class="FooterElemente">              
                 <a href="Impressum.html">Impressum und Kontakt</a>     
@@ -296,6 +327,7 @@
             </div>
             <div id="copyright"></div>
         </div>
+		</div>
 
 
 
@@ -316,16 +348,14 @@
 
 					//append to id "#shop_container"
 
-					for (i = 0; i <= response.daten.length; i++) {
+					for (i = 0; i <= response.daten.length-1; i++) {
 						var obj = response.daten[i];
-
-						tmp += "<div class=\"artikel_buble\"><a href=\"http://localhost:8000/web2/buch/gib/";       //Das stimmt so nicht mit dem Href nur übergangsweise hier mal api abfrage gemacht,
-						tmp += obj.id + "\">";																		// zur teoretischen Kontrolle. Problem: Die Route existiert noch nicht.
-																													 // müsste localhost:8000/buch/ und dann +  ?id="28" Parameter Übergabe zur Buchseite
-																													 // Man könnte auf der Buchseite dann clienseitig die ID auswerten und an web2/buch/gib/:id die Daten holen
-																													// Die ID muss aber irgendwie von der ShopSeite zur Artikelseite gebracht werden. Noch
-																													// überfragt.
-
+						var tmp="";
+						
+						console.log(i);
+						tmp += "<div class=\"artikel_buble\"><a href=\"shop.html/artikel/?titelID=";       //Titel ID mit JS auf Artikeleinzelseite abfragen. Funktion get_url_param wird noch definiert.
+						tmp += obj.id + "\">";
+						
 						tmp += "<img class=\"artikel_img_container\" src=" + "obj.bildid id mit web2/bilder/gib/:id"  +"\"></img>";
 						tmp += "<div class=\"artikel_text_container\"> <p> "
 						tmp += "<span class=\"Price_attribute\">"  +  obj.preis +   "&euro;</span> <br><br>";
@@ -344,9 +374,6 @@
 
 						
 						$("#shop_container").append(tmp);
-
-						
-						
 
 					}
 					
@@ -378,3 +405,15 @@
 
     </body>
 </html>
+© 2021 GitHub, Inc.
+Terms
+Privacy
+Security
+Status
+Docs
+Contact GitHub
+Pricing
+API
+Training
+Blog
+About
