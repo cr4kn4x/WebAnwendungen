@@ -273,6 +273,12 @@ button[type="submit"] {
 
 
 
+.Footer_div{
+	width:100%;
+	display:inline-block;
+	bottom:0;
+	
+}
 
  
 /* Inside of artikel_buble */
