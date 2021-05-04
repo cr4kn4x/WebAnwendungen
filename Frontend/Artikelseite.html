@@ -167,6 +167,46 @@
 
 
 
+		<script>
+
+			$(document).ready(function() {
+            console.log('document page ready!');
+
+            	$.ajax({
+               		url: 'http://localhost:8000/web2/shop/gib/id',
+                	method: 'get',
+                	dataType: 'json'
+            	}).done(function (response) {
+					console.log("Daten erfolgreich geladen!");
+                	console.log(response);
+                	
+					var tmp="";
+
+					//append to id "#shop_container"
+
+					for (i = 0; i <= response.daten.length; i++) {
+						var obj = response.daten[i];
+
+						tmp += "<p> Name: " + obj.titel + "</p>"															
+
+						
+						$("#shop_container").append(tmp);
+
+					}
+					
+
+
+
+
+            	}).fail(function (jqXHR, statusText, error) {
+                	console.log('Response Code: ' + jqXHR.status + ' - Fehlermeldung: ' + jqXHR.responseText);
+                	$('#output').html('Ein Fehler ist aufgetreten');
+            	});
+        	});
+
+		</script>
+
+
 	</body>
 	
 </html> 

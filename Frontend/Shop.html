@@ -186,7 +186,7 @@
 			</div>
 			
 			<form class="searchbar_container">
-				<input type="text" placeholder="Nach Titel, Autor oder ISBN suchen..." name="search">
+				<input type="text" placeholder="Nach Titel, Autor oder ISBN suchen..." name="search" id=searchid>
 				<button type="submit" >	<i class="fa fa-search"> </i>	</button>
 			</form>
 		
@@ -355,6 +355,46 @@
                 	console.log('Response Code: ' + jqXHR.status + ' - Fehlermeldung: ' + jqXHR.responseText);
                 	$('#output').html('Ein Fehler ist aufgetreten');
             	});
+
+
+
+				$("#searchid").keyup(function(){
+					var txt = $(this).val();
+
+					if (txt != ""){
+
+					}
+
+					else{
+						$.ajax({
+							url: '',
+							method: 'post',
+							dataType: 'text'
+							
+							}).done(function (response) {
+								console.log("Daten erfolgreich geladen!");
+								console.log(response);
+								
+								var tmp="";
+
+								
+
+								for (i = 0; i <= response.daten.length; i++) {
+									var obj = response.daten[i];
+
+
+
+
+
+								
+								}
+
+						})
+
+
+
+
+
         	});
 
 		</script>
