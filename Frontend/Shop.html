@@ -217,6 +217,25 @@
 			var ajaxBookpics=[];
 			var ajaxAuthors=[];
 			var ajaxGenres=[];
+
+			
+			function createStars(num){
+				var ratingString = "<div class=\"rating_container\">";
+				num = Math.round(num);
+				for(j=0;j<5;j++){
+					if(j<num){
+						ratingString += "<span class=\"fa fa-star checked_star\"></span>";
+					}
+					else{
+						ratingString+= "<span class=\"fa fa-star\"></span>";
+					}
+				}
+				ratingString+="</div>";
+				return ratingString;
+			}
+
+			
+
 			
 
 			function ajax_safeAllBooks(value){
@@ -341,7 +360,7 @@
 					tmp += "<span class=\"Author_attribute\">" + bookobj.titel +  ":</span> <br><br> ";
 					tmp += "<span class=\" Author_attribute_tag \">Author:</span><br>" + authorobj.name + "<br></span> <br>";
 					tmp += "<span class=\"Author_attribute_tag\">Genre:</span><br>  <span class=\"Author_attribute\"> "+ genreobj.bezeichnung + "</span><br><br>";
-					tmp += "<span class=\"Author_attribute_tag\">Bewertung:</span> <span>" + "obj.AnzahlBewerungen mit web2/bew/gibAnz/:id" + "</span> ";
+					tmp += "<span class=\"Author_attribute_tag\">Bewertung:</span> " + "(ANZAHL)" +  "<span>" + createStars(bookobj.gesamtbewertung) + "</span> ";
 					// hier muss mit einer if abfrage wenn die Anzahl der Sterne geladen wurde dann entsprehend <span class="fa fa-star"></span> eingefügt werden.
 					tmp += "</p></div></a></div>";
 					$("#shop_container").append(tmp);
@@ -395,24 +414,13 @@
 
 				}
 
-				
-
-
-
-
-
-
-
-
-
-
-
-
-
         	});
 
 
 
+			
+
+			
 			function getUrlParameterByName(name,url)
 			{
 				if (!url) url = window.location.href;
