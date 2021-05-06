@@ -301,34 +301,42 @@
 		<script>
 			var ajaxBooks;
 			var ajaxBookpics=[];
-			var ajaxRatings=[];
+			var ajaxAuthors=[];
+			var ajaxGenres=[];
 			
 
 			function ajax_safeAllBooks(value){
 				ajaxBooks=value;
+				// CALL additional ajax to get required data.
 				ajax_safePicsToBooks(value);
-				ajax_safeRatingToBooks(value);
+				ajax_safeAuthorToBooks(value);
+				ajax_safeGenreToBooks(value);
 			}
 
 			
-			function ajax_safeAdditionalData(value, mode){      // mode = 0 --> speicher Bild         mode = 1 --> speicher Bewertung
+			function ajax_safeAdditionalData(value, mode){      // mode = 0 --> speicher Bild         mode = 1 --> speicher Autor     mode = 2 --> speicher genre
 				switch(mode){
 					case 0:
 						ajaxBookpics.push(value.daten);
 						break;
 					case 1:
-						ajaxRatings.push(value.daten);
+						ajaxAuthors.push(value.daten);
+						break;
+					case 2:
+						ajaxGenres.push(value.daten);
 						break;
 				}
-				if(ajaxBookpics.length == ajaxBooks.length && ajaxRatings.length == ajaxBooks.length){
-					//Jetzt ist alles da! console.log("Alles ist da!")console.log(ajaxBooks);console.log(ajaxRatings);console.log(ajaxBookpicsPaths);
+
+				// WIRD BENÖTIGT WEGEN ASYNC.
+				if(ajaxBookpics.length == ajaxBooks.length && ajaxAuthors.length == ajaxBooks.length && ajaxGenres.length == ajaxBooks.length){
+					console.log(ajaxGenres);
 					ajaxToHTML();
 				}
 			}
 			
 			
 
-
+		
 
 			function ajax_safePicsToBooks(Books_Json){
 				for (i = 0; i <= Books_Json.length-1; i++) {
@@ -350,11 +358,12 @@
 			}
 
 
-			function ajax_safeRatingToBooks(Books_Json){
+	
+			function ajax_safeAuthorToBooks(Books_Json){
 				for (i = 0; i <= Books_Json.length-1; i++) {
 					obj = Books_Json[i];
 					$.ajax({
-               			url: 'http://localhost:8000/web2/bewertungen/gib/' + obj.id ,
+               			url: 'http://localhost:8000/web2/autor/gib/' + obj.authorid ,
                 		method: 'get',
                 		dataType: 'json'
             		}).done(function (response) {
@@ -362,7 +371,29 @@
 						ajax_safeAdditionalData(response,1);
 
             		}).fail(function (jqXHR, statusText, error) {
-						ajaxRatings.push("");                      //  Was tun wenn loadbyid für Bewerungen failed?
+						ajaxAuthors.push("");                      //  Was tun wenn loadbyid für Bewerungen failed?
+                		console.log('Response Code: ' + jqXHR.status + ' - Fehlermeldung: ' + jqXHR.responseText);
+                		$('#output').html('Ein Fehler ist aufgetreten');
+            		});
+				}
+			}
+			
+
+			
+
+			function ajax_safeGenreToBooks(Books_Json){
+				for (i = 0; i <= Books_Json.length-1; i++) {
+					obj = Books_Json[i];
+					$.ajax({
+               			url: 'http://localhost:8000/web2/buchgenre/gib/' + obj.genreid ,
+                		method: 'get',
+                		dataType: 'json'
+            		}).done(function (response) {
+						console.log(response);
+						ajax_safeAdditionalData(response,2);
+
+            		}).fail(function (jqXHR, statusText, error) {
+						ajaxGenres.push("");                      //  Was tun wenn loadbyid für Genre failed?
                 		console.log('Response Code: ' + jqXHR.status + ' - Fehlermeldung: ' + jqXHR.responseText);
                 		$('#output').html('Ein Fehler ist aufgetreten');
             		});
@@ -370,16 +401,22 @@
 			}
 
 			
+			
+			
 
 
 			function ajaxToHTML(){
 				for (i = 0; i <= ajaxBooks.length-1; i++) {
-
 					tmp="";
+
+
+					console.log(ajaxGenres);
+
 					bookobj = ajaxBooks[i];
 					bildobj = ajaxBookpics[i];
-					ratingObj = ajaxRatings[i];
-
+					authorobj = ajaxAuthors[i];
+					genreobj = ajaxGenres[i];
+			
 					tmp += "<div class=\"artikel_buble\"><a href=\"Artikelseite.html?titelID=";       
 					tmp += bookobj.id + "\">";
 					tmp += "<img class=\"artikel_img_container\" src=\""
@@ -387,16 +424,22 @@
 					tmp += "\"></img>";
 					tmp += "<div class=\"artikel_text_container\"> <p> "
 					tmp += "<span class=\"Price_attribute\">"  +  bookobj.preis +   "&euro;</span> <br><br>";
-					tmp += "<span class=\"Author_attribute_tag\">" + bookobj.titel +  ":</span> <br> ";
-					tmp += "<span class=\" Author_attribute \">" + "obj.author id mit web2/autor/gib/:id" + "<br></span> <br><br>";
-					tmp += "<span class=\"Author_attribute_tag\">Genre:" + "obj.genreid mit web2/genre/gib/:id" + "</span><br><br> ";
+
+					tmp += "<span class=\"Author_attribute_tag\">Titel:</span><br>";
+
+					tmp += "<span class=\"Author_attribute\">" + bookobj.titel +  ":</span> <br><br> ";
+
+					tmp += "<span class=\" Author_attribute_tag \">Author:</span><br>" + authorobj.name + "<br></span> <br>";
+
+					
+					tmp += "<span class=\"Author_attribute_tag\">Genre:</span><br>  <span class=\"Author_attribute\"> "+ genreobj.bezeichnung + "</span><br><br>";
+
+					
 					tmp += "<span class=\"Author_attribute_tag\">Bewertung:</span> <span>" + "obj.AnzahlBewerungen mit web2/bew/gibAnz/:id" + "</span> ";
 					// hier muss mit einer if abfrage wenn die Anzahl der Sterne geladen wurde dann entsprehend <span class="fa fa-star"></span> eingefügt werden.
 					tmp += "</p></div></a></div>";
 					$("#shop_container").append(tmp);
-			
 				}
-
 			}
 
 

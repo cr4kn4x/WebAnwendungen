@@ -81,6 +81,15 @@ try {
 
 
 
+    serviceRouter = require('./routes/autor.js');
+    app.use(TOPLEVELPATH, serviceRouter);
+
+
+    serviceRouter = require('./routes/buchgenre.js');
+    app.use(TOPLEVELPATH, serviceRouter);
+
+
+
 
 
 
