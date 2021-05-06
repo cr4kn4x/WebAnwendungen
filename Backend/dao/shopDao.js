@@ -21,6 +21,24 @@ class ShopDao {
     }
 
 
+
+    loadSuche(suchwort){
+    
+        console.log(suchwort);
+        var sql = 'SELECT * FROM BUCH WHERE TITEL= \'?\' ';
+
+        var statement = this._conn.prepare(sql);
+        var result = statement.all();
+
+        if (helper.isArrayEmpty(result)) 
+            return [];
+    
+        return helper.arrayObjectKeysToLower(result);
+
+
+    }
+
+
 }
 
 module.exports = ShopDao;

@@ -191,95 +191,9 @@
 			</form>
 		
 			
-			<div class="artikel_buble">
-				<a href="../Book_1/index.html">
-				
-				<img class="artikel_img_container" src="sources/2.jpg"></img>
-				<div class="artikel_text_container">
-					<p>
-						<span class="Price_attribute">27,44&euro;</span>
-						<br><br>
-						
-						<span class="Author_attribute_tag">Titel:</span>
-						<br>
-						<span class="Author_attribute"> A Bear`s Bride Entwined Tales<br></span>
-						<br>
-						
-						<span class="Author_attribute_tag">Author:</span>
-						<br>
-						<span class="Author_attribute"> Shari L. Tapscott</span>
-						<br><br>
-						
-						<span class="Author_attribute_tag">Genre:</span>
-						<br>
-						<span class="Author_attribute"> Roman </span>
-						
-						<br><br>
+			
+			
 
-						<span class="Author_attribute_tag">Bewertung:</span>
-						<span> (12) </span>
-						<br>
-						<div class="rating_container">
-							<span class="fa fa-star checked_star"></span>
-							<span class="fa fa-star checked_star"></span>
-							<span class="fa fa-star checked_star"></span>
-							<span class="fa fa-star"></span>
-							<span class="fa fa-star"></span>
-						</div>
-					</p>
-				</div>	
-				</a>
-			</div>
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-						
-		
 			
 		</div>
 		
@@ -409,7 +323,6 @@
 				for (i = 0; i <= ajaxBooks.length-1; i++) {
 					tmp="";
 
-
 					console.log(ajaxGenres);
 
 					bookobj = ajaxBooks[i];
@@ -424,17 +337,10 @@
 					tmp += "\"></img>";
 					tmp += "<div class=\"artikel_text_container\"> <p> "
 					tmp += "<span class=\"Price_attribute\">"  +  bookobj.preis +   "&euro;</span> <br><br>";
-
 					tmp += "<span class=\"Author_attribute_tag\">Titel:</span><br>";
-
 					tmp += "<span class=\"Author_attribute\">" + bookobj.titel +  ":</span> <br><br> ";
-
 					tmp += "<span class=\" Author_attribute_tag \">Author:</span><br>" + authorobj.name + "<br></span> <br>";
-
-					
 					tmp += "<span class=\"Author_attribute_tag\">Genre:</span><br>  <span class=\"Author_attribute\"> "+ genreobj.bezeichnung + "</span><br><br>";
-
-					
 					tmp += "<span class=\"Author_attribute_tag\">Bewertung:</span> <span>" + "obj.AnzahlBewerungen mit web2/bew/gibAnz/:id" + "</span> ";
 					// hier muss mit einer if abfrage wenn die Anzahl der Sterne geladen wurde dann entsprehend <span class="fa fa-star"></span> eingefügt werden.
 					tmp += "</p></div></a></div>";
@@ -447,34 +353,81 @@
 
 			// Hier vielelicht Parameter abfragen ob Filter gesetzt? Dann muss eigentlich nur url ändern?!
 			$(document).ready(function() {
-            	$.ajax({
-               		url: 'http://localhost:8000/web2/shop/gib/all',
-                	method: 'get',
-                	dataType: 'json'
-            	}).done(function (response) {
+
+					
+				var suche = getUrlParameterByName("search");
+
+				if (suche==null) {
+					console.log("Alle anzeigen");
+
+					$.ajax({
+						url: 'http://localhost:8000/web2/shop/gib/all',
+						method: 'get',
+						dataType: 'json'
+            		}).done(function (response) {
+					
 					ajax_safeAllBooks(response.daten);
-            	}).fail(function (jqXHR, statusText, error) {
-                	console.log('Response Code: ' + jqXHR.status + ' - Fehlermeldung: ' + jqXHR.responseText);
-                	$('#output').html('Ein Fehler ist aufgetreten');
-            	});
+
+            		}).fail(function (jqXHR, statusText, error) {
+						console.log('Response Code: ' + jqXHR.status + ' - Fehlermeldung: ' + jqXHR.responseText);
+						$('#output').html('Ein Fehler ist aufgetreten');
+            		});
+				}
+
+				else{
+					console.log(suche);
+					
+					console.log(suche);
+					$.ajax({
+						url: 'http://localhost:8000/web2/shop/gib/suche/'+suche,
+						method: 'get',
+						dataType: 'json'
+            		}).done(function (response) {
+					
+					ajax_safeAllBooks(response.daten);
+
+            		}).fail(function (jqXHR, statusText, error) {
+						console.log('Response Code: ' + jqXHR.status + ' - Fehlermeldung: ' + jqXHR.responseText);
+						$('#output').html('Ein Fehler ist aufgetreten');
+            		});
+
+					
+
+				}
+
+				
+
+
+
+
+
+
+
+
+
+
+
+
+
         	});
 
 
+
+			function getUrlParameterByName(name,url)
+			{
+				if (!url) url = window.location.href;
+					name = name.replace(/[\[\]]/g, "\\$&");
+					var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"), results = regex.exec(url);
+				if (!results) return null;
+
+				if (!results[2]) return '';
+
+				return decodeURIComponent(results[2].replace(/\+/g, " "));
+			}
+
+
+
 		</script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     </body>
 </html>
