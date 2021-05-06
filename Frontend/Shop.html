@@ -299,9 +299,69 @@
 
 
 		<script>
-
-
+			var ajaxBooks="";
+			var ajaxBookpicsPaths=[];
+			var ajaxRatings=[];
 			
+
+			function ajax_safeAllBooks(value){
+				ajaxBooks=value;
+				ajax_safePicsToBooks(value);
+			}
+
+
+
+			function ajax_safePicsToBooks(Books_Json){
+
+				for (i = 0; i <= Books_Json.length-1; i++) {
+					obj = Books_Json[i];
+					$.ajax({
+               			url: 'http://localhost:8000/web2/buchbild/gib/' + obj.id ,
+                		method: 'get',
+                		dataType: 'json'
+            		}).done(function (response) {
+						
+						ajaxBookpicsPaths.push(response.daten.bildpfad);
+
+            		}).fail(function (jqXHR, statusText, error) {
+						ajaxBookpicsPaths.push("");               //Hier könnte man den Pfad zu einem "default" Arikelbild reingeben.
+                		console.log('Response Code: ' + jqXHR.status + ' - Fehlermeldung: ' + jqXHR.responseText);
+                		$('#output').html('Ein Fehler ist aufgetreten');
+            		});
+				}
+
+				// Next call: "hole Bewertungen.." erst wenn die komplett durchgelaufen ist, kann HTML erzeugt werden!
+
+				ajax_safeRatingToBooks(Books_Json);
+				
+
+			}
+
+
+			function ajax_safeRatingToBooks(Books_Json){
+
+				for (i = 0; i <= Books_Json.length-1; i++) {
+					obj = Books_Json[i];
+					$.ajax({
+               			url: 'http://localhost:8000/web2/bewertungen/gib/' + obj.id ,
+                		method: 'get',
+                		dataType: 'json'
+            		}).done(function (response) {
+						
+						ajaxRatings.push(response.daten);
+
+            		}).fail(function (jqXHR, statusText, error) {
+						//ajaxRatings.push(" "," ");                      //  Was tun wenn loadbyid für Bewerungen failed?
+                		console.log('Response Code: ' + jqXHR.status + ' - Fehlermeldung: ' + jqXHR.responseText);
+                		$('#output').html('Ein Fehler ist aufgetreten');
+            		});
+				}
+
+				console.log(ajaxRatings);
+
+			}
+
+
 
 			$(document).ready(function() {
             console.log('document page ready!');
@@ -311,79 +371,18 @@
                 	method: 'get',
                 	dataType: 'json'
             	}).done(function (response) {
-					
-                	//console.log(response);
-                	
-					
-					
-
-					for (i = 0; i <= response.daten.length-1; i++) {
-						var obj = response.daten[i];
-						var tmp="";
-
-						
-
-						
-
-						
-						
-						var myajaxReturn;
-						
-						$.ajax({
-							url: 'http://localhost:8000/web2/buchbild/gib/'+obj.id,
-							method: 'get',
-							dataType: 'json'
-						}).done(function (response_pic) {
-					
-							myajaxReturn = response_pic.daten.bildpfad;
-							console.log(response_pic.daten.bildpfad);
-
-						}).fail(function (jqXHR, statusText, error) {
-                			console.log('Response Code: ' + jqXHR.status + ' - Fehlermeldung: ' + jqXHR.responseText);
-                			$('#output').html('Ein Fehler ist aufgetreten');
-            			});
-						console.log(myajaxReturn);
-
-
-					
-						
-						tmp += "<div class=\"artikel_buble\"><a href=\"Artikelseite.html?titelID=";       
-						tmp += obj.id + "\">";
-						tmp += "<img class=\"artikel_img_container\" src=\" "
-
-						tmp += "SOURCE";
-						
-						
-						tmp += "\"></img>";
-						tmp += "<div class=\"artikel_text_container\"> <p> "
-						tmp += "<span class=\"Price_attribute\">"  +  obj.preis +   "&euro;</span> <br><br>";
-
-						tmp += "<span class=\"Author_attribute_tag\">" + obj.titel +  ":</span> <br> ";
-						
-						tmp += "<span class=\" Author_attribute \">" + "obj.author id mit web2/autor/gib/:id" + "<br></span> <br><br>";
-						
-						tmp += "<span class=\"Author_attribute_tag\">Genre:" + "obj.genreid mit web2/genre/gib/:id" + "</span><br><br> ";
-
-						tmp += "<span class=\"Author_attribute_tag\">Bewertung:</span> <span>" + "obj.AnzahlBewerungen mit web2/bew/gibAnz/:id" + "</span> ";
-
-						// hier muss mit einer if abfrage wenn die Anzahl der Sterne geladen wurde dann entsprehend <span class="fa fa-star"></span> eingefügt werden.
-
-						tmp += "</p></div></a></div>";
-
-						
-						$("#shop_container").append(tmp);
-
-					}
-					
-
-
-
-
+					ajax_safeAllBooks(response.daten);
             	}).fail(function (jqXHR, statusText, error) {
                 	console.log('Response Code: ' + jqXHR.status + ' - Fehlermeldung: ' + jqXHR.responseText);
                 	$('#output').html('Ein Fehler ist aufgetreten');
             	});
         	});
+
+
+			
+		
+
+
 
 		</script>
 
