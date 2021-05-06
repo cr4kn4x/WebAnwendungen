@@ -375,26 +375,10 @@
 
 					
 				var suche = getUrlParameterByName("search");
+				var preis = getUrlParameterByName("price");
 
-				if (suche==null) {
-					console.log("Alle anzeigen");
-
-					$.ajax({
-						url: 'http://localhost:8000/web2/shop/gib/all',
-						method: 'get',
-						dataType: 'json'
-            		}).done(function (response) {
+				if (suche!=null) {
 					
-					ajax_safeAllBooks(response.daten);
-
-            		}).fail(function (jqXHR, statusText, error) {
-						console.log('Response Code: ' + jqXHR.status + ' - Fehlermeldung: ' + jqXHR.responseText);
-						$('#output').html('Ein Fehler ist aufgetreten');
-            		});
-				}
-
-				else{
-					console.log(suche);
 					
 					console.log(suche);
 					$.ajax({
@@ -410,11 +394,118 @@
 						$('#output').html('Ein Fehler ist aufgetreten');
             		});
 
+				}
+
+
+				else if (preis!=null) {
+
+
+
+
+					console.log(preis);
+					
+					
+					$.ajax({
+						url: 'http://localhost:8000/web2/shop/gib/preis/'+preis,
+						method: 'get',
+						dataType: 'json'
+					}).done(function (response) {
+					
+						ajax_safeAllBooks(response.daten);
+
+					}).fail(function (jqXHR, statusText, error) {
+						console.log('Response Code: ' + jqXHR.status + ' - Fehlermeldung: ' + jqXHR.responseText);
+						$('#output').html('Ein Fehler ist aufgetreten');
+					});
+				}
+
+				else{
+
+					console.log("Alle anzeigen");
+					
+					$.ajax({
+						url: 'http://localhost:8000/web2/shop/gib/all',
+						method: 'get',
+						dataType: 'json'
+            		}).done(function (response) {
+					
+					ajax_safeAllBooks(response.daten);
+
+            		}).fail(function (jqXHR, statusText, error) {
+						console.log('Response Code: ' + jqXHR.status + ' - Fehlermeldung: ' + jqXHR.responseText);
+						$('#output').html('Ein Fehler ist aufgetreten');
+            		});
+					
+
+
+
+
+
+					
 					
 
 				}
 
         	});
+
+
+
+
+
+			/*$(document).ready(function() {
+
+					
+				var preis = getUrlParameterByName("price");
+				
+				if (preis!=null) {
+
+
+
+
+					console.log(preis);
+					
+					
+					$.ajax({
+						url: 'http://localhost:8000/web2/shop/gib/preis/'+preis,
+						method: 'get',
+						dataType: 'json'
+					}).done(function (response) {
+					
+						ajax_safeAllBooks(response.daten);
+
+					}).fail(function (jqXHR, statusText, error) {
+						console.log('Response Code: ' + jqXHR.status + ' - Fehlermeldung: ' + jqXHR.responseText);
+						$('#output').html('Ein Fehler ist aufgetreten');
+					});
+				}
+
+				else{
+
+
+
+					console.log("Alle anzeigen");
+					
+
+					$.ajax({
+						url: 'http://localhost:8000/web2/shop/gib/all',
+						method: 'get',
+						dataType: 'json'
+					}).done(function (response) {
+					
+					ajax_safeAllBooks(response.daten);
+
+					}).fail(function (jqXHR, statusText, error) {
+						console.log('Response Code: ' + jqXHR.status + ' - Fehlermeldung: ' + jqXHR.responseText);
+						$('#output').html('Ein Fehler ist aufgetreten');
+					});
+					
+					
+
+					
+
+				}
+
+				});*/
 
 
 
