@@ -25,7 +25,7 @@ class ShopDao {
     loadSuche(suchwort){
     
         console.log(suchwort);
-        var sql = 'SELECT * FROM BUCH WHERE TITEL= \'?\' ';
+        var sql = "SELECT * FROM BUCH WHERE ISBN LIKE '%" + suchwort + "%' OR Titel LIKE '%" + suchwort + "%'" ;
 
         var statement = this._conn.prepare(sql);
         var result = statement.all();
