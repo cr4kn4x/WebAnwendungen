@@ -142,7 +142,6 @@ body {margin:0;
 .shop_body_container {
 	background-color: #8A9094;
 	width:100%;
-	min-height:900px;
 	height:auto;
 	padding-bottom:4%;
 	padding-top:8%;
@@ -236,19 +235,7 @@ button[type="submit"] {
     cursor: pointer;
   }
 
-  #Space1{
-      margin-right: 25%;
-  }
 
-  #Space2{
-      float: right;
-      margin-right: 0%;
-  }
-
-  .plus{
-	  margin-right:5%;
-      float: right;
-  }
   
   .minus{
       float: left;
@@ -345,9 +332,3 @@ button[type="submit"] {
 
 
 
-.Footer_div{
-	width:100%;
-	display:inline-block;
-	bottom:0;
-	
-}
