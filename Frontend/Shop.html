@@ -360,7 +360,7 @@
 					tmp += "<span class=\"Author_attribute\">" + bookobj.titel +  ":</span> <br><br> ";
 					tmp += "<span class=\" Author_attribute_tag \">Author:</span><br>" + authorobj.name + "<br></span> <br>";
 					tmp += "<span class=\"Author_attribute_tag\">Genre:</span><br>  <span class=\"Author_attribute\"> "+ genreobj.bezeichnung + "</span><br><br>";
-					tmp += "<span class=\"Author_attribute_tag\">Bewertung:</span> " + "(ANZAHL)" +  "<span>" + createStars(bookobj.gesamtbewertung) + "</span> ";
+					tmp += "<span class=\"Author_attribute_tag\">Bewertung:</span> (" + bookobj.anzahlbew +  ") <span>" + createStars(bookobj.gesamtbewertung) + "</span> ";
 					// hier muss mit einer if abfrage wenn die Anzahl der Sterne geladen wurde dann entsprehend <span class="fa fa-star"></span> eingefügt werden.
 					tmp += "</p></div></a></div>";
 					$("#shop_container").append(tmp);
