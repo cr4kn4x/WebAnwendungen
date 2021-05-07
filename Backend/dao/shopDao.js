@@ -59,6 +59,25 @@ class ShopDao {
 
 
 
+    loadRat(rat){
+    
+        console.log(rat);
+        var sql = "SELECT * FROM BUCH WHERE CAST(Gesamtbewertung AS INTEGER) == " + rat;
+
+        var statement = this._conn.prepare(sql);
+        var result = statement.all();
+
+        if (helper.isArrayEmpty(result)) 
+            return [];
+    
+        return helper.arrayObjectKeysToLower(result);
+
+
+    }
+
+
+
+
 
 
 }

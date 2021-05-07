@@ -56,6 +56,23 @@ serviceRouter.get('/shop/gib/preis/:preis', function(request, response) {
 
 
 
+serviceRouter.get('/shop/gib/rating/:rat', function(request, response) {
+
+    helper.log("Route ShopSuche: Client requested all records");
+    const shopDao = new ShopDao(request.app.locals.dbConnection);
+    try {
+        var result = shopDao.loadRat(request.params.rat);
+        helper.log('Route ShopSuche: All records loaded');
+        response.status(200).json(helper.jsonMsgOK(result));
+    } catch (ex) {
+        helper.logError('Service Adresse: Error loading records. Exception occured: ' + ex.message);
+        response.status(400).json(helper.jsonMsgError(ex.message));
+    }
+});
+
+
+
+
 
 
 

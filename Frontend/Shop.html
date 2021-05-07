@@ -377,6 +377,13 @@
 				var suche = getUrlParameterByName("search");
 				var preis = getUrlParameterByName("price");
 
+				var rat1 = getUrlParameterByName("rating_1s");
+				var rat2 = getUrlParameterByName("rating_2s");
+				var rat3 = getUrlParameterByName("rating_3s");
+				var rat4 = getUrlParameterByName("rating_4s");
+				var rat5 = getUrlParameterByName("rating_5s");
+
+
 				if (suche!=null) {
 					
 					
@@ -418,6 +425,62 @@
 						$('#output').html('Ein Fehler ist aufgetreten');
 					});
 				}
+
+
+
+				else if ((rat1!=null) || (rat2!=null) || (rat3!=null) || (rat4!=null) || (rat5!=null)) {
+
+
+					if (rat1!=null){
+
+						console.log(rat1);
+						
+
+
+						$.ajax({
+							url: 'http://localhost:8000/web2/shop/gib/rating/'+ 1,
+							method: 'get',
+							dataType: 'json'
+						}).done(function (response) {
+
+							ajax_safeAllBooks(response.daten);
+
+						}).fail(function (jqXHR, statusText, error) {
+							console.log('Response Code: ' + jqXHR.status + ' - Fehlermeldung: ' + jqXHR.responseText);
+							$('#output').html('Ein Fehler ist aufgetreten');
+						});
+
+
+					}
+
+
+					else if (rat2!=null){
+
+						console.log(rat2);
+
+
+
+						$.ajax({
+							url: 'http://localhost:8000/web2/shop/gib/rating/'+ 2,
+							method: 'get',
+							dataType: 'json'
+						}).done(function (response) {
+
+							ajax_safeAllBooks(response.daten);
+
+						}).fail(function (jqXHR, statusText, error) {
+							console.log('Response Code: ' + jqXHR.status + ' - Fehlermeldung: ' + jqXHR.responseText);
+							$('#output').html('Ein Fehler ist aufgetreten');
+						});
+
+
+					}
+
+						
+				
+				}
+
+
 
 				else{
 
