@@ -134,7 +134,6 @@
 					<div class = "Bewertungen" id="Rating_box">
 						 
 						
-						
 						<p><input name="rating_1s" type="checkbox" id="1Sterne">
 						<span class="fa fa-star checked_star"></span>
 						<span class="fa fa-star"></span>
@@ -170,18 +169,18 @@
 						<span class="fa fa-star checked_star"></span>
 						<span class="fa fa-star checked_star"></span></p>
 
-						
-						
-						
-
 					</div>
 					
 						<input type="submit" value="submit"></input>
 
 					</form>
 
+
+
 					
 				</div>
+
+				
 			
 			</div>
 			
@@ -189,105 +188,19 @@
 				<input type="text" placeholder="Nach Titel, Autor oder ISBN suchen..." name="search">
 				<button type="submit" >	<i class="fa fa-search"> </i>	</button>
 			</form>
-		
 			
-			<div class="artikel_buble">
-				<a href="../Book_1/index.html">
-				
-				<img class="artikel_img_container" src="sources/2.jpg"></img>
-				<div class="artikel_text_container">
-					<p>
-						<span class="Price_attribute">27,44&euro;</span>
-						<br><br>
-						
-						<span class="Author_attribute_tag">Titel:</span>
-						<br>
-						<span class="Author_attribute"> A Bear`s Bride Entwined Tales<br></span>
-						<br>
-						
-						<span class="Author_attribute_tag">Author:</span>
-						<br>
-						<span class="Author_attribute"> Shari L. Tapscott</span>
-						<br><br>
-						
-						<span class="Author_attribute_tag">Genre:</span>
-						<br>
-						<span class="Author_attribute"> Roman </span>
-						
-						<br><br>
 
-						<span class="Author_attribute_tag">Bewertung:</span>
-						<span> (12) </span>
-						<br>
-						<div class="rating_container">
-							<span class="fa fa-star checked_star"></span>
-							<span class="fa fa-star checked_star"></span>
-							<span class="fa fa-star checked_star"></span>
-							<span class="fa fa-star"></span>
-							<span class="fa fa-star"></span>
-						</div>
-					</p>
-				</div>	
-				</a>
-			</div>
 			
 			
 			
 			
-			
-			<div class="artikel_buble">
-				<a href="https://www.google.com/">
-				
-				<img class="artikel_img_container" src="sources/1.jpg"></img>
-				<div class="artikel_text_container">
-					<p>
-						<span class="Price_attribute">27,44&euro;</span>
-						<br><br>
-						
-						
-						<span class="Author_attribute_tag">Titel:</span>
-						<br>
-						<span class="Author_attribute"> DUMMY!<br></span>
-						<br><br>
-						
 
-						<span class="Author_attribute_tag">Author:</span>
-						<br>
-						<span class="Author_attribute"> ------ </span>
-						<br><br>
-						
-						<span class="Author_attribute_tag">Genre:</span>
-						<br>
-						<span class="Author_attribute"> --------- </span>
-						
-						<br><br>
-						
-						<span class="Author_attribute_tag">Bewertung:</span>
-						<span> (12) </span>
-						<br>
-						<div class="rating_container">
-							<span class="fa fa-star"></span>
-							<span class="fa fa-star"></span>
-							<span class="fa fa-star"></span>
-							<span class="fa fa-star"></span>
-							<span class="fa fa-star"></span>
-						</div>
-					</p>
-				</div>	
-				
-				</a>
-			</div>
-			
-			
-			
-			
-						
-		
 			
 		</div>
 		
 		<script src="JS/shop.js"></script>
 
+		<div class="Footer_div">
         <div id="footer">
             <div id="selectFooter" class="FooterElemente">              
                 <a href="Impressum.html">Impressum und Kontakt</a>     
@@ -296,82 +209,388 @@
             </div>
             <div id="copyright"></div>
         </div>
+		</div>
 
 
 
 		<script>
+			var ajaxBooks;
+			var ajaxBookpics=[];
+			var ajaxAuthors=[];
+			var ajaxGenres=[];
 
+			
+			function createStars(num){
+				var ratingString = "<div class=\"rating_container\">";
+				num = Math.round(num);
+				for(j=0;j<5;j++){
+					if(j<num){
+						ratingString += "<span class=\"fa fa-star checked_star\"></span>";
+					}
+					else{
+						ratingString+= "<span class=\"fa fa-star\"></span>";
+					}
+				}
+				ratingString+="</div>";
+				return ratingString;
+			}
+
+			
+
+			
+
+			function ajax_safeAllBooks(value){
+				ajaxBooks=value;
+				// CALL additional ajax to get required data.
+				ajax_safePicsToBooks(value);
+				ajax_safeAuthorToBooks(value);
+				ajax_safeGenreToBooks(value);
+			}
+
+			
+			function ajax_safeAdditionalData(value, mode){      // mode = 0 --> speicher Bild         mode = 1 --> speicher Autor     mode = 2 --> speicher genre
+				switch(mode){
+					case 0:
+						ajaxBookpics.push(value.daten);
+						break;
+					case 1:
+						ajaxAuthors.push(value.daten);
+						break;
+					case 2:
+						ajaxGenres.push(value.daten);
+						break;
+				}
+
+				// WIRD BENÖTIGT WEGEN ASYNC.
+				if(ajaxBookpics.length == ajaxBooks.length && ajaxAuthors.length == ajaxBooks.length && ajaxGenres.length == ajaxBooks.length){
+					console.log(ajaxGenres);
+					ajaxToHTML();
+				}
+			}
+			
+			
+
+		
+
+			function ajax_safePicsToBooks(Books_Json){
+				for (i = 0; i <= Books_Json.length-1; i++) {
+					obj = Books_Json[i];
+					$.ajax({
+               			url: 'http://localhost:8000/web2/buchbild/gib/' + obj.bildid ,
+                		method: 'get',
+                		dataType: 'json'
+            		}).done(function (response) {
+
+						ajax_safeAdditionalData(response,0);
+
+            		}).fail(function (jqXHR, statusText, error) {
+						ajaxBookpics.push("");               //Hier könnte man den Pfad zu einem "default" Arikelbild reingeben.
+                		console.log('Response Code: ' + jqXHR.status + ' - Fehlermeldung: ' + jqXHR.responseText);
+                		$('#output').html('Ein Fehler ist aufgetreten');
+            		});
+				}	
+			}
+
+
+	
+			function ajax_safeAuthorToBooks(Books_Json){
+				for (i = 0; i <= Books_Json.length-1; i++) {
+					obj = Books_Json[i];
+					$.ajax({
+               			url: 'http://localhost:8000/web2/autor/gib/' + obj.authorid ,
+                		method: 'get',
+                		dataType: 'json'
+            		}).done(function (response) {
+
+						ajax_safeAdditionalData(response,1);
+
+            		}).fail(function (jqXHR, statusText, error) {
+						ajaxAuthors.push("");                      //  Was tun wenn loadbyid für Bewerungen failed?
+                		console.log('Response Code: ' + jqXHR.status + ' - Fehlermeldung: ' + jqXHR.responseText);
+                		$('#output').html('Ein Fehler ist aufgetreten');
+            		});
+				}
+			}
+			
+
+			
+
+			function ajax_safeGenreToBooks(Books_Json){
+				for (i = 0; i <= Books_Json.length-1; i++) {
+					obj = Books_Json[i];
+					$.ajax({
+               			url: 'http://localhost:8000/web2/buchgenre/gib/' + obj.genreid ,
+                		method: 'get',
+                		dataType: 'json'
+            		}).done(function (response) {
+						console.log(response);
+						ajax_safeAdditionalData(response,2);
+
+            		}).fail(function (jqXHR, statusText, error) {
+						ajaxGenres.push("");                      //  Was tun wenn loadbyid für Genre failed?
+                		console.log('Response Code: ' + jqXHR.status + ' - Fehlermeldung: ' + jqXHR.responseText);
+                		$('#output').html('Ein Fehler ist aufgetreten');
+            		});
+				}
+			}
+
+			
+			
+			
+
+
+			function ajaxToHTML(){
+				for (i = 0; i <= ajaxBooks.length-1; i++) {
+					tmp="";
+
+					console.log(ajaxGenres);
+
+					bookobj = ajaxBooks[i];
+					bildobj = ajaxBookpics[i];
+					authorobj = ajaxAuthors[i];
+					genreobj = ajaxGenres[i];
+			
+					tmp += "<div class=\"artikel_buble\"><a href=\"Artikelseite.html?titelID=";       
+					tmp += bookobj.id + "\">";
+					tmp += "<img class=\"artikel_img_container\" src=\""
+			   		tmp += bildobj.bildpfad;
+					tmp += "\"></img>";
+					tmp += "<div class=\"artikel_text_container\"> <p> "
+					tmp += "<span class=\"Price_attribute\">"  +  bookobj.preis +   "&euro;</span> <br><br>";
+					tmp += "<span class=\"Author_attribute_tag\">Titel:</span><br>";
+					tmp += "<span class=\"Author_attribute\">" + bookobj.titel +  ":</span> <br><br> ";
+					tmp += "<span class=\" Author_attribute_tag \">Author:</span><br>" + authorobj.name + "<br></span> <br>";
+					tmp += "<span class=\"Author_attribute_tag\">Genre:</span><br>  <span class=\"Author_attribute\"> "+ genreobj.bezeichnung + "</span><br><br>";
+					tmp += "<span class=\"Author_attribute_tag\">Bewertung:</span> (" + bookobj.anzahlbew +  ") <span>" + createStars(bookobj.gesamtbewertung) + "</span> ";
+					// hier muss mit einer if abfrage wenn die Anzahl der Sterne geladen wurde dann entsprehend <span class="fa fa-star"></span> eingefügt werden.
+					tmp += "</p></div></a></div>";
+					$("#shop_container").append(tmp);
+				}
+			}
+
+
+
+
+			// Hier vielelicht Parameter abfragen ob Filter gesetzt? Dann muss eigentlich nur url ändern?!
 			$(document).ready(function() {
-            console.log('document page ready!');
 
-            	$.ajax({
-               		url: 'http://localhost:8000/web2/shop/gib/all',
-                	method: 'get',
-                	dataType: 'json'
-            	}).done(function (response) {
-					console.log("Daten erfolgreich geladen!");
-                	console.log(response);
-                	
-					var tmp="";
+					
+				var suche = getUrlParameterByName("search");
+				var preis = getUrlParameterByName("price");
 
-					//append to id "#shop_container"
+				var rat1 = getUrlParameterByName("rating_1s");
+				var rat2 = getUrlParameterByName("rating_2s");
+				var rat3 = getUrlParameterByName("rating_3s");
+				var rat4 = getUrlParameterByName("rating_4s");
+				var rat5 = getUrlParameterByName("rating_5s");
 
-					for (i = 0; i <= response.daten.length; i++) {
-						var obj = response.daten[i];
 
-						tmp += "<div class=\"artikel_buble\"><a href=\"http://localhost:8000/web2/buch/gib/";       //Das stimmt so nicht mit dem Href nur übergangsweise hier mal api abfrage gemacht,
-						tmp += obj.id + "\">";																		// zur teoretischen Kontrolle. Problem: Die Route existiert noch nicht.
-																													 // müsste localhost:8000/buch/ und dann +  ?id="28" Parameter Übergabe zur Buchseite
-																													 // Man könnte auf der Buchseite dann clienseitig die ID auswerten und an web2/buch/gib/:id die Daten holen
-																													// Die ID muss aber irgendwie von der ShopSeite zur Artikelseite gebracht werden. Noch
-																													// überfragt.
+				if (suche!=null) {
+					
+					
+					console.log(suche);
+					$.ajax({
+						url: 'http://localhost:8000/web2/shop/gib/suche/'+suche,
+						method: 'get',
+						dataType: 'json'
+            		}).done(function (response) {
+					
+					ajax_safeAllBooks(response.daten);
 
-						tmp += "<img class=\"artikel_img_container\" src=" + "obj.bildid id mit web2/bilder/gib/:id"  +"\"></img>";
-						tmp += "<div class=\"artikel_text_container\"> <p> "
-						tmp += "<span class=\"Price_attribute\">"  +  obj.preis +   "&euro;</span> <br><br>";
+            		}).fail(function (jqXHR, statusText, error) {
+						console.log('Response Code: ' + jqXHR.status + ' - Fehlermeldung: ' + jqXHR.responseText);
+						$('#output').html('Ein Fehler ist aufgetreten');
+            		});
 
-						tmp += "<span class=\"Author_attribute_tag\">" + obj.titel +  ":</span> <br> ";
+				}
+
+
+				else if (preis!=null) {
+
+
+
+
+					console.log(preis);
+					
+					
+					$.ajax({
+						url: 'http://localhost:8000/web2/shop/gib/preis/'+preis,
+						method: 'get',
+						dataType: 'json'
+					}).done(function (response) {
+					
+						ajax_safeAllBooks(response.daten);
+
+					}).fail(function (jqXHR, statusText, error) {
+						console.log('Response Code: ' + jqXHR.status + ' - Fehlermeldung: ' + jqXHR.responseText);
+						$('#output').html('Ein Fehler ist aufgetreten');
+					});
+				}
+
+
+
+				else if ((rat1!=null) || (rat2!=null) || (rat3!=null) || (rat4!=null) || (rat5!=null)) {
+
+
+					if (rat1!=null){
+
+						console.log(rat1);
 						
-						tmp += "<span class=\" Author_attribute \">" + "obj.author id mit web2/autor/gib/:id" + "<br></span> <br><br>";
-						
-						tmp += "<span class=\"Author_attribute_tag\">Genre:" + "obj.genreid mit web2/genre/gib/:id" + "</span><br><br> ";
 
-						tmp += "<span class=\"Author_attribute_tag\">Bewertung:</span> <span>" + "obj.AnzahlBewerungen mit web2/bew/gibAnz/:id" + "</span> ";
 
-						// hier muss mit einer if abfrage wenn die Anzahl der Sterne geladen wurde dann entsprehend <span class="fa fa-star"></span> eingefügt werden.
+						$.ajax({
+							url: 'http://localhost:8000/web2/shop/gib/rating/'+ 1,
+							method: 'get',
+							dataType: 'json'
+						}).done(function (response) {
 
-						tmp += "</p></div></a></div>";
+							ajax_safeAllBooks(response.daten);
 
-						
-						$("#shop_container").append(tmp);
+						}).fail(function (jqXHR, statusText, error) {
+							console.log('Response Code: ' + jqXHR.status + ' - Fehlermeldung: ' + jqXHR.responseText);
+							$('#output').html('Ein Fehler ist aufgetreten');
+						});
+
 
 					}
+
+
+					else if (rat2!=null){
+
+						console.log(rat2);
+
+
+
+						$.ajax({
+							url: 'http://localhost:8000/web2/shop/gib/rating/'+ 2,
+							method: 'get',
+							dataType: 'json'
+						}).done(function (response) {
+
+							ajax_safeAllBooks(response.daten);
+
+						}).fail(function (jqXHR, statusText, error) {
+							console.log('Response Code: ' + jqXHR.status + ' - Fehlermeldung: ' + jqXHR.responseText);
+							$('#output').html('Ein Fehler ist aufgetreten');
+						});
+
+
+					}
+
+						
+				
+				}
+
+
+
+				else{
+
+					console.log("Alle anzeigen");
+					
+					$.ajax({
+						url: 'http://localhost:8000/web2/shop/gib/all',
+						method: 'get',
+						dataType: 'json'
+            		}).done(function (response) {
+					
+					ajax_safeAllBooks(response.daten);
+
+            		}).fail(function (jqXHR, statusText, error) {
+						console.log('Response Code: ' + jqXHR.status + ' - Fehlermeldung: ' + jqXHR.responseText);
+						$('#output').html('Ein Fehler ist aufgetreten');
+            		});
 					
 
 
 
 
-            	}).fail(function (jqXHR, statusText, error) {
-                	console.log('Response Code: ' + jqXHR.status + ' - Fehlermeldung: ' + jqXHR.responseText);
-                	$('#output').html('Ein Fehler ist aufgetreten');
-            	});
+
+					
+					
+
+				}
+
         	});
 
+
+
+
+
+			/*$(document).ready(function() {
+
+					
+				var preis = getUrlParameterByName("price");
+				
+				if (preis!=null) {
+
+
+
+
+					console.log(preis);
+					
+					
+					$.ajax({
+						url: 'http://localhost:8000/web2/shop/gib/preis/'+preis,
+						method: 'get',
+						dataType: 'json'
+					}).done(function (response) {
+					
+						ajax_safeAllBooks(response.daten);
+
+					}).fail(function (jqXHR, statusText, error) {
+						console.log('Response Code: ' + jqXHR.status + ' - Fehlermeldung: ' + jqXHR.responseText);
+						$('#output').html('Ein Fehler ist aufgetreten');
+					});
+				}
+
+				else{
+
+
+
+					console.log("Alle anzeigen");
+					
+
+					$.ajax({
+						url: 'http://localhost:8000/web2/shop/gib/all',
+						method: 'get',
+						dataType: 'json'
+					}).done(function (response) {
+					
+					ajax_safeAllBooks(response.daten);
+
+					}).fail(function (jqXHR, statusText, error) {
+						console.log('Response Code: ' + jqXHR.status + ' - Fehlermeldung: ' + jqXHR.responseText);
+						$('#output').html('Ein Fehler ist aufgetreten');
+					});
+					
+					
+
+					
+
+				}
+
+				});*/
+
+
+
+			
+
+			
+			function getUrlParameterByName(name,url)
+			{
+				if (!url) url = window.location.href;
+					name = name.replace(/[\[\]]/g, "\\$&");
+					var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"), results = regex.exec(url);
+				if (!results) return null;
+
+				if (!results[2]) return '';
+
+				return decodeURIComponent(results[2].replace(/\+/g, " "));
+			}
+
+
+
 		</script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     </body>
 </html>

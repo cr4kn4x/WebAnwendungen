@@ -119,3 +119,5 @@ window.addEventListener("resize", adjustContainerHeight);
  
 show_ratings();
 show_price_slider();
+
+adjustContainerHeight();
