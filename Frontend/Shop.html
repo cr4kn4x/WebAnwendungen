@@ -29,66 +29,64 @@
 			<h1 id="shop_headline">Shop-Übersicht</h1>
 		
 		
-		
 			<div class="Left_container" id="l_container">
 
 				<div id="filter_box">
 
-					<p>Alle Bücher:</p>
+					<a href="Shop.html"><p>Alle Bücher:</p></a>
 				
 					
 					
 					<p class="filter_hover" onclick="show_cat()"><span id="span_cat">&#8722;</span> Kategorien:</p>
 					<div id="cat">
 					
-						<form>
+						<form onuload="updtpr()" id="Filter_container">
 				
 						<div class="elements">
-							<input name="cat_1" type="checkbox" id="Fantasy" color="orange"> 
+							<input class="catCheckbox" name="c01" type="checkbox" id="01" color="orange"> 
 							<label for="Fantasy">Fantasy</label>
 
 						</div>
 
 						<div class="elements">
-							<input name="cat_2" type="checkbox" id="Horror"> 
+							<input class="catCheckbox" name="c02" type="checkbox" id="02"> 
 							<label for="Horror">Horror</label>
 
 						</div>
 
 						<div class="elements">
-							<input name="cat_3" type="checkbox" id="Humor"> 
+							<input class="catCheckbox" name="c03" type="checkbox" id="03"> 
 							<label for="Humor">Humor</label>
 
 						</div>
 
 						<div class="elements">
-							<input name="cat_4" type="checkbox" id="Krimi"> 
+							<input class="catCheckbox" name="c04" type="checkbox" id="04"> 
 							<label for="Krimi">Krimi</label>
 
 						</div>
 
 						<div class="elements">
-							<input name="cat_5" type="checkbox" id="Ratgeber"> 
+							<input class="catCheckbox" name="c05" type="checkbox" id="05"> 
 							<label for="Ratgeber">Ratgeber</label>
 
 						</div>
 
 						<div class="elements">
-							<input name="cat_6" type="checkbox" name="r" id="Roman"> 
+							<input class="catCheckbox" name="c06" type="checkbox" id="06"> 
 							<label for="Roman">Roman</label>
 
 						</div>
 
 						<div class="elements">
-							<input name="cat_7" type="checkbox" id="Sachbücher"> 
+							<input class="catCheckbox" name="c07" type="checkbox" id="07"> 
 							<label for="Sachbücher">Sachbücher</label>
 
 						</div>
 
 						<div class="elements">
-							<input name="cat_8" type="checkbox" id="Thriller"> 
+							<input class="catCheckbox" name="c08" type="checkbox" id="08"> 
 							<label for="Thriller">Thriller</label>
-
 						</div>
 						
 					
@@ -102,22 +100,16 @@
 						<p class="filter_hover" onclick="show_price_slider()"><span id="span_price">&minus;</span> Preis:</p>
 						<div id="Price_box">
 							
-							<!--<div onclick="function_plus()" class="plus">+</div>-->
+					
 
 							<div class="plus filter_hover"><span onclick="function_plus()">&plus;</span></div>
 
 
 							<div class="minus filter_hover"><span onclick="function_minus()">&minus;</span></div>
 
-							<!--<div onclick="function_minus()" class="minus">-</div>-->
-
-							<!-- <div class="slidecontainer">
-								<p class="Space"><input type="range" min="1" max="120" value="60" class="slider" id="myRange">
-								0&#8364; <span id="demo"></span>&#8364; 120&#8364;</p>
-							</div> -->
 
 							<div class="slidecontainer">
-								<input name="price" type="range" min="1" max="120" value="60" class="slider" id="myRange">
+								<input name="p" type="range" min="1" max="120" value="120" class="slider" id="myRange">
 								<p>
 								<span id="Space1">0&#8364;</span> <span id="demo"></span><span>&#8364;</span> <span id="Space2">120&#8364;</span>
 								</p>
@@ -134,14 +126,14 @@
 					<div class = "Bewertungen" id="Rating_box">
 						 
 						
-						<p><input name="rating_1s" type="checkbox" id="1Sterne">
+						<p><input class="ratingCheckbox" name="r1" type="checkbox" id="1Sterne">
 						<span class="fa fa-star checked_star"></span>
 						<span class="fa fa-star"></span>
 						<span class="fa fa-star"></span>
 						<span class="fa fa-star"></span>
 						<span class="fa fa-star"></span></p>
 
-						<p></p><input name="rating_2s" type="checkbox" id="2Sterne">
+						<p></p><input class="ratingCheckbox" name="r2" type="checkbox" id="2Sterne">
 						<span class="fa fa-star checked_star"></span>
 						<span class="fa fa-star checked_star"></span>
 						<span class="fa fa-star"></span>
@@ -149,21 +141,21 @@
 						<span class="fa fa-star"></span></p>
 
 
-						<p></p><input name="rating_3s" type="checkbox" id="3Sterne"><span class="fa fa-star checked_star"></span>
+						<p></p><input class="ratingCheckbox" name="r3" type="checkbox" id="3Sterne"><span class="fa fa-star checked_star"></span>
 						<span class="fa fa-star checked_star"></span>
 						<span class="fa fa-star checked_star"></span>
 						<span class="fa fa-star"></span>
 						<span class="fa fa-star"></span></p>
 
 
-						<p></p><input name="rating_4s" type="checkbox" id="4Sterne"><span class="fa fa-star checked_star"></span>
+						<p></p><input class="ratingCheckbox" name="r4" type="checkbox" id="4Sterne"><span class="fa fa-star checked_star"></span>
 						<span class="fa fa-star checked_star"></span>
 						<span class="fa fa-star checked_star"></span>
 						<span class="fa fa-star checked_star"></span>
 						<span class="fa fa-star"></span></p>
 
 
-						<p></p><input name="rating_5s" type="checkbox" id="5Sterne"><span class="fa fa-star checked_star"></span>
+						<p></p><input class="ratingCheckbox" name="r5" type="checkbox" id="5Sterne"><span class="fa fa-star checked_star"></span>
 						<span class="fa fa-star checked_star"></span>
 						<span class="fa fa-star checked_star"></span>
 						<span class="fa fa-star checked_star"></span>
@@ -188,11 +180,6 @@
 				<input type="text" placeholder="Nach Titel, Autor oder ISBN suchen..." name="search">
 				<button type="submit" >	<i class="fa fa-search"> </i>	</button>
 			</form>
-			
-
-			
-			
-			
 			
 
 			
@@ -263,7 +250,7 @@
 
 				// WIRD BENÖTIGT WEGEN ASYNC.
 				if(ajaxBookpics.length == ajaxBooks.length && ajaxAuthors.length == ajaxBooks.length && ajaxGenres.length == ajaxBooks.length){
-					console.log(ajaxGenres);
+					//console.log(ajaxGenres);
 					ajaxToHTML();
 				}
 			}
@@ -323,7 +310,7 @@
                 		method: 'get',
                 		dataType: 'json'
             		}).done(function (response) {
-						console.log(response);
+						//console.log(response);
 						ajax_safeAdditionalData(response,2);
 
             		}).fail(function (jqXHR, statusText, error) {
@@ -343,7 +330,7 @@
 				for (i = 0; i <= ajaxBooks.length-1; i++) {
 					tmp="";
 
-					console.log(ajaxGenres);
+					//console.log(ajaxGenres);
 
 					bookobj = ajaxBooks[i];
 					bildobj = ajaxBookpics[i];
@@ -388,7 +375,7 @@
 				if (suche!=null) {
 					
 					
-					console.log(suche);
+					//console.log(suche);
 					$.ajax({
 						url: 'http://localhost:8000/web2/shop/gib/suche/'+suche,
 						method: 'get',
@@ -409,8 +396,7 @@
 
 
 
-
-					console.log(preis);
+					//console.log(preis);
 					
 					
 					$.ajax({
@@ -434,7 +420,7 @@
 
 					if (rat1!=null){
 
-						console.log(rat1);
+						//console.log(rat1);
 						
 
 
@@ -457,7 +443,7 @@
 
 					else if (rat2!=null){
 
-						console.log(rat2);
+						//console.log(rat2);
 
 
 
@@ -485,7 +471,7 @@
 
 				else{
 
-					console.log("Alle anzeigen");
+					//console.log("Alle anzeigen");
 					
 					$.ajax({
 						url: 'http://localhost:8000/web2/shop/gib/all',
@@ -499,77 +485,81 @@
 						console.log('Response Code: ' + jqXHR.status + ' - Fehlermeldung: ' + jqXHR.responseText);
 						$('#output').html('Ein Fehler ist aufgetreten');
             		});
-					
-
-
-
-
-
-					
-					
 
 				}
 
         	});
 
 
+		
 
 
-
-			/*$(document).ready(function() {
-
-					
-				var preis = getUrlParameterByName("price");
+			function TestCatAndButtonSet(){
+				var catBoxes = document.getElementsByClassName("catCheckbox");
+				var control_cat = 0;
+				var Kategorien=[];
+				var Ratings=[];
+				for(var i=0; i<catBoxes.length; i++){
+					if (getUrlParameterByName(catBoxes[i].name) == "on"){
+						Kategorien.push(catBoxes[i].name)
+						catBoxes[i].checked=true;
+						control_cat=1;
+					}
+				}
+				var ratBoxes = document.getElementsByClassName("ratingCheckbox")
+				var control_rat=0;
+				for(var i=0; i<ratBoxes.length;i++){
+					if (getUrlParameterByName(ratBoxes[i].name) == "on"){
+						Ratings.push(ratBoxes[i])   // Man kann auch Ratings.push(ratBox[i].id ## die id == Rating Id auf der DB --> kein parsing mehr!)
+						ratBoxes[i].checked=true;				// gleiches gilt für die Kategorien.. !
+						control_rat=1
+					}
+				}
+				if(control_rat==1){
+					show_ratings();
+				}
+		
 				
-				if (preis!=null) {
+				if(getUrlParameterByName("p")!= null){
+					document.getElementById("myRange").value=String(getUrlParameterByName("p"));
+				}
+			
 
-
-
-
-					console.log(preis);
-					
-					
-					$.ajax({
-						url: 'http://localhost:8000/web2/shop/gib/preis/'+preis,
-						method: 'get',
-						dataType: 'json'
-					}).done(function (response) {
-					
-						ajax_safeAllBooks(response.daten);
-
-					}).fail(function (jqXHR, statusText, error) {
-						console.log('Response Code: ' + jqXHR.status + ' - Fehlermeldung: ' + jqXHR.responseText);
-						$('#output').html('Ein Fehler ist aufgetreten');
-					});
+				// Preis muss nicht abgefragt werden, da der eh immer mit drin ist. WEnn User nix ändert dann ist preis einfach gleich maximal fertig.
+				//Der Preis (max Value) muss dynamisch erzeugt werden.
+				if(control_cat==1 && control_rat==1){
+					console.log("Kategorie und Rating");
+					console.log(Kategorien);
+					console.log(Ratings);
 				}
 
-				else{
-
-
-
-					console.log("Alle anzeigen");
-					
-
-					$.ajax({
-						url: 'http://localhost:8000/web2/shop/gib/all',
-						method: 'get',
-						dataType: 'json'
-					}).done(function (response) {
-					
-					ajax_safeAllBooks(response.daten);
-
-					}).fail(function (jqXHR, statusText, error) {
-						console.log('Response Code: ' + jqXHR.status + ' - Fehlermeldung: ' + jqXHR.responseText);
-						$('#output').html('Ein Fehler ist aufgetreten');
-					});
-					
-					
-
-					
-
+				else if(control_rat == 0 && control_cat==0){
+					console.log("Kein Filter")
 				}
 
-				});*/
+				else if(control_cat == 1){
+					console.log("Nur Kategorie");
+					console.log(Kategorien);
+				}
+
+				else if(control_rat == 1){
+					console.log("Nur Rating");
+					console.log(Ratings);
+				}
+			}
+
+			TestCatAndButtonSet()
+			
+			
+
+
+			
+			
+			
+			
+
+
+	
 
 
 
@@ -582,14 +572,10 @@
 					name = name.replace(/[\[\]]/g, "\\$&");
 					var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"), results = regex.exec(url);
 				if (!results) return null;
-
 				if (!results[2]) return '';
-
 				return decodeURIComponent(results[2].replace(/\+/g, " "));
 			}
-
-
-
+		
 		</script>
 
     </body>
