@@ -5,6 +5,21 @@ var serviceRouter = express.Router();
 
 helper.log('- Route Buchgenre');
 
+serviceRouter.get('/buchgenre/gib/all', function(request, response) {
+    helper.log("Route Kategorie: Client requested all records");
+
+    const buchgenreDao = new BuchgenreDao(request.app.locals.dbConnection);
+    try {
+        var result = buchgenreDao.loadAll();
+        helper.log('Route Kategorien: All records loaded');
+        response.status(200).json(helper.jsonMsgOK(result));
+    } catch (ex) {
+        helper.logError('Service Adresse: Error loading records. Exception occured: ' + ex.message);
+        response.status(400).json(helper.jsonMsgError(ex.message));
+    }
+});
+
+
 serviceRouter.get('/buchgenre/gib/:id', function(request, response) {
     helper.log('Route Buchgenre: Client requested one record, id=' + request.params.id);
 
@@ -18,6 +33,11 @@ serviceRouter.get('/buchgenre/gib/:id', function(request, response) {
         response.status(400).json(helper.jsonMsgError(ex.message));
     }
 });
+
+
+
+
+
 
 //weitere Anfragen
 

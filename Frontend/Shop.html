@@ -38,59 +38,14 @@
 					
 					
 					<p class="filter_hover" onclick="show_cat()"><span id="span_cat">&#8722;</span> Kategorien:</p>
-					<div id="cat">
+					<form id="Filter_container">
+
+						<div id="cat">
 					
-						<form id="Filter_container">
-				
-						<div class="elements">
-							<input class="catCheckbox" name="c01" type="checkbox" id="01" color="orange"> 
-							<label for="Fantasy">Fantasy</label>
-
-						</div>
-
-						<div class="elements">
-							<input class="catCheckbox" name="c02" type="checkbox" id="02"> 
-							<label for="Horror">Horror</label>
-
-						</div>
-
-						<div class="elements">
-							<input class="catCheckbox" name="c03" type="checkbox" id="03"> 
-							<label for="Humor">Humor</label>
-
-						</div>
-
-						<div class="elements">
-							<input class="catCheckbox" name="c04" type="checkbox" id="04"> 
-							<label for="Krimi">Krimi</label>
-
-						</div>
-
-						<div class="elements">
-							<input class="catCheckbox" name="c05" type="checkbox" id="05"> 
-							<label for="Ratgeber">Ratgeber</label>
-
-						</div>
-
-						<div class="elements">
-							<input class="catCheckbox" name="c06" type="checkbox" id="06"> 
-							<label for="Roman">Roman</label>
-
-						</div>
-
-						<div class="elements">
-							<input class="catCheckbox" name="c07" type="checkbox" id="07"> 
-							<label for="Sachbücher">Sachbücher</label>
-
-						</div>
-
-						<div class="elements">
-							<input class="catCheckbox" name="c08" type="checkbox" id="08"> 
-							<label for="Thriller">Thriller</label>
-						</div>
 						
-					
-					</div>
+				
+				
+						</div>
 					
 					
 					
@@ -162,7 +117,7 @@
 						<span class="fa fa-star checked_star"></span></p>
 
 					</div>
-					
+						<a href="Shop.html"><input style="margin-left:10%; margin-right: 14%;" type="button" value="reset"></input></a>
 						<input type="submit" value="submit"></input>
 
 					</form>
@@ -202,9 +157,11 @@
 
 		<script>
 			var ajaxBooks;
+			var ajaxKategorien;
 			var ajaxBookpics=[];
 			var ajaxAuthors=[];
 			var ajaxGenres=[];
+			
 
 			
 			function createStars(num){
@@ -223,12 +180,43 @@
 			}
 
 			
+			function loadKategorien(){
+				$.ajax({
+					url: 'http://localhost:8000/web2/buchgenre/gib/all',
+					method: 'get',
+					dataType: 'json'
+            	}).done(function (response) {
+
+					createHtmlKategorien(response.daten);
+
+            	}).fail(function (jqXHR, statusText, error) {
+					console.log('Response Code: ' + jqXHR.status + ' - Fehlermeldung: ' + jqXHR.responseText);
+					$('#output').html('Ein Fehler ist aufgetreten');
+            	});
+			}
+
+			
+			
+			function createHtmlKategorien(value){
+				for(var i=0; i<value.length;i++){
+					tmp="";
+					identifier=""
+					if(value[i].id.length==2){identifier=value[i].id;}else{identifier="0"+value[i].id}
+					tmp += "<div class=\"elements\"><input class=\"catCheckbox\" name=\"c" + identifier + "\" ";
+					tmp += "type=\"checkbox\" id=" + identifier + " color=\"orange\">"
+					tmp += "<label for=" + identifier + ">" + value[i].bezeichnung + "</label>" + "</div>"
+					$("#cat").append(tmp)
+				}
+				
+				// Man kann erst testen wenn der dynamische Code des Filters erzeugt wurde deswegen macht es Sinn das hier zu machen.
+				TestCatAndButtonSet();
+			}
 
 			
 
 			function ajax_safeAllBooks(value){
 				ajaxBooks=value;
-				// CALL additional ajax to get required data.
+				// CALL additional ajax to get required additional data.
 				ajax_safePicsToBooks(value);
 				ajax_safeAuthorToBooks(value);
 				ajax_safeGenreToBooks(value);
@@ -355,20 +343,24 @@
 				}
 			}
 
+			
+
 
 
 
 			// Hier vielelicht Parameter abfragen ob Filter gesetzt? Dann muss eigentlich nur url ändern?!
 			$(document).ready(function() {
+				loadKategorien();
 				
 				//
-				TestCatAndButtonSet();
+				
 				//
+
+				
 				
 				
 				var suche = getUrlParameterByName("search");
 				var preis = getUrlParameterByName("price");
-
 				var rat1 = getUrlParameterByName("rating_1s");
 				var rat2 = getUrlParameterByName("rating_2s");
 				var rat3 = getUrlParameterByName("rating_3s");
@@ -493,6 +485,7 @@
 				}
 
         	});
+
 
 
 		

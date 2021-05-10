@@ -9,6 +9,19 @@ class BuchgenreDao {
         return this._conn;
     }
 
+    loadAll() {
+        var sql = 'SELECT * FROM BUCHGENRE';
+        var statement = this._conn.prepare(sql);
+        var result = statement.all();
+
+        if (helper.isArrayEmpty(result)) 
+            return [];
+    
+        return helper.arrayObjectKeysToLower(result);
+    }
+
+    
+
     loadById(id) {
         var sql = 'SELECT * FROM Buchgenre WHERE ID=?';
         var statement = this._conn.prepare(sql);
