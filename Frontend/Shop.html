@@ -530,6 +530,9 @@
 			
 				// Preis muss nicht abgefragt werden, da der eh immer mit drin ist. WEnn User nix ändert dann ist preis einfach gleich maximal fertig.
 				//Der Preis (max Value) muss dynamisch erzeugt werden.
+
+				var preis = getUrlParameterByName("p");
+
 				if(control_cat==1 && control_rat==1){
 					console.log("Kategorie und Rating");
 					var str="";
@@ -560,7 +563,7 @@
 					
 					
 					$.ajax({
-							url: 'http://localhost:8000/web2/shop/gib/katrat/'+ str + 'x' + str1,
+							url: 'http://localhost:8000/web2/shop/gib/katrat/'+ str + 'x' + str1 + 'x' + preis,
 							method: 'get',
 							dataType: 'json'
 						}).done(function (response) {
@@ -617,6 +620,9 @@
             		});
 				}
 
+				
+				
+				
 				else if(control_cat == 1){
 					console.log("Nur Kategorie");
 					console.log(Kategorien);
@@ -630,7 +636,7 @@
 
 
 					$.ajax({
-						url: 'http://localhost:8000/web2/shop/gib/kat/'+ str,
+						url: 'http://localhost:8000/web2/shop/gib/kat/'+ str + 'x' + preis,
 						method: 'get',
 						dataType: 'json'
 					}).done(function (response) {
@@ -662,7 +668,7 @@
 
 
 					$.ajax({
-						url: 'http://localhost:8000/web2/shop/gib/rat/'+ str1,
+						url: 'http://localhost:8000/web2/shop/gib/rat/'+ str1 + 'x' + preis,
 						method: 'get',
 						dataType: 'json'
 					}).done(function (response) {
