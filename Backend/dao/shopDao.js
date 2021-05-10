@@ -84,6 +84,7 @@ class ShopDao {
         var all = para.split("x");
         var kats = all[0].split("c");
         var rats = all[1].split("r");
+        var preis = all[2];
 
         var finalrats = [];
         var finalkats = [];
@@ -160,7 +161,7 @@ class ShopDao {
 
         }
 
-        sql += ")"
+        sql += ") AND (Preis <= " + parseFloat(preis) + ")";
 
 
         
@@ -189,9 +190,12 @@ class ShopDao {
 
         console.log(para);
 
+        var all = para.split("x");
         
-        var rats = para.split("r");
-
+        
+        var rats = all[0].split("r");
+        var preis = all[1];
+        
         var finalrats = [];
 
         
@@ -208,7 +212,7 @@ class ShopDao {
         }
         
         
-        var sql= "SELECT * FROM BUCH WHERE" ;
+        var sql= "SELECT * FROM BUCH WHERE (" ;
 
         for(var i = 0; i<finalrats.length; i++){
 
@@ -224,6 +228,8 @@ class ShopDao {
 
 
         }
+
+        sql += ") AND (Preis <= " + parseFloat(preis) + ")"; 
 
 
         
@@ -249,37 +255,33 @@ class ShopDao {
 
     loadKat(para){
 
+
         console.log(para);
 
-       
-        var kats = para.split("c");
-        
 
+        var all = para.split("x");
+        console.log(all);
+        
+        var kats = all[0].split("c");
+        var preis = all[1];
         
         var finalkats = [];
-        
 
         
-
-
         for(var i = 0; i<kats.length; i++){
-            
+
 
             if(kats[i].length == 2 ){
 
-                finalkats.push(parseInt(kats[i]));
-
                 console.log(parseInt(kats[i]));
-
+                finalkats.push(parseInt(kats[i]));
 
             }
 
-
         }
-
-
         
-        var sql= "SELECT * FROM BUCH WHERE" ;
+        
+        var sql= "SELECT * FROM BUCH WHERE (" ;
 
         console.log(finalkats);
 
@@ -298,6 +300,8 @@ class ShopDao {
 
         }
 
+        sql += ") AND (Preis <= " + parseFloat(preis) + ")"; 
+
 
         
         console.log(sql);
@@ -311,9 +315,19 @@ class ShopDao {
             return [];
     
         return helper.arrayObjectKeysToLower(result);
+        
+
+        
 
 
+        
+
+
+        
     }
+
+
+    
 
 
 
