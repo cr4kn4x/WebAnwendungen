@@ -324,20 +324,15 @@
 
 			function ajaxToHTML(){
 
-				console.log(ajaxBooks);
-				console.log(ajaxAuthors);
-				console.log(ajaxBookpics);
-				console.log(ajaxGenres);
-
 				for (i = 0; i < ajaxBooks.length; i++) {
 					tmp="";
 
 					bookobj = ajaxBooks[i];
-					
-					bildobj = ajaxBookpics[i];
-					authorobj = ajaxAuthors[i];
-					genreobj = ajaxGenres[i];
-			
+
+					for(var j=0; j<ajaxBookpics.length; j++){if(ajaxBookpics[j].buchid==bookobj.id){bildobj=ajaxBookpics[j];console.log(bildobj);break;}}
+					for(var j=0; j<ajaxAuthors.length; j++){if(ajaxAuthors[j].id==bookobj.authorid){authorobj=ajaxAuthors[j];break;}}
+					for(var j=0; j<ajaxGenres.length; j++){if(ajaxGenres[j].id==bookobj.genreid){genreobj=ajaxGenres[j];break;}}
+		
 					tmp += "<div class=\"artikel_buble\"><a href=\"Artikelseite.html?titelID=";       
 					tmp += bookobj.id + "\">";
 					tmp += "<img class=\"artikel_img_container\" src=\""
