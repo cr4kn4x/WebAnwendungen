@@ -522,7 +522,7 @@
 				var control_rat=0;
 				for(var i=0; i<ratBoxes.length;i++){
 					if (getUrlParameterByName(ratBoxes[i].name) == "on"){
-						Ratings.push(ratBoxes[i])   // Man kann auch Ratings.push(ratBox[i].id ## die id == Rating Id auf der DB --> kein parsing mehr!)
+						Ratings.push(ratBoxes[i].name)   // Man kann auch Ratings.push(ratBox[i].id ## die id == Rating Id auf der DB --> kein parsing mehr!)
 						ratBoxes[i].checked=true;				// gleiches gilt für die Kategorien.. !
 						control_rat=1
 					}
@@ -538,6 +538,7 @@
 				if(control_cat==1 && control_rat==1){
 					console.log("Kategorie und Rating");
 					var str="";
+					var str1 = "";
 					for (var i=0; i<Kategorien.length; i++){
 						
 						
@@ -547,13 +548,24 @@
 
 						
 
+						
+
 
 
 
 
 					}
+					
+					for(var i = 0; i<Ratings.length; i++){
+
+
+
+						str1 += Ratings[i];
+					}
+					
+					
 					$.ajax({
-							url: 'http://localhost:8000/web2/shop/gib/katrat/'+ str,
+							url: 'http://localhost:8000/web2/shop/gib/katrat/'+ str + 'x' + str1,
 							method: 'get',
 							dataType: 'json'
 						}).done(function (response) {
@@ -574,7 +586,20 @@
 				}
 
 				else if(control_rat == 0 && control_cat==0){
+					
 					console.log("Kein Filter")
+					$.ajax({
+						url: 'http://localhost:8000/web2/shop/gib/all',
+						method: 'get',
+						dataType: 'json'
+            		}).done(function (response) {
+					
+					ajax_safeAllBooks(response.daten);
+
+            		}).fail(function (jqXHR, statusText, error) {
+						console.log('Response Code: ' + jqXHR.status + ' - Fehlermeldung: ' + jqXHR.responseText);
+						$('#output').html('Ein Fehler ist aufgetreten');
+            		});
 				}
 
 				else if(control_cat == 1){

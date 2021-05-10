@@ -1,3 +1,4 @@
+const { startsWith } = require('lodash');
 const helper = require('../helper.js');
 
 class ShopDao {
@@ -78,22 +79,94 @@ class ShopDao {
 
     loadKatRat(para){
 
-        //console.log(para);
-        var p;
-        var p2;
-        p = para.split("c");
-        p2 = [];
+        console.log(para);
 
-        helper.log(p);
+        var all = para.split("x");
+        var kats = all[0].split("c");
+        var rats = all[1].split("r");
 
-        for (let i=0; p.length; i++){
+        var finalrats = [];
+        var finalkats = [];
+        
 
-            p2[i] = parseInt(p[1]);
+        
+
+
+        for(var i = 0; i<kats.length; i++){
+            
+
+            if(kats[i].length == 2 ){
+
+                finalkats.push(parseInt(kats[i]));
+
+                console.log(parseInt(kats[i]));
+
+
+            }
+
 
         }
-        helper.log(p);
+
+
         
-        var sql = "SELECT * FROM BUCH";
+        for(var i = 0; i<rats.length; i++){
+
+
+            if(rats[i].length == 1 ){
+
+                console.log(parseInt(rats[i]));
+                finalrats.push(parseInt(rats[i]));
+
+            }
+
+        }
+        
+        
+        var sql= "SELECT * FROM BUCH WHERE (" ;
+
+        console.log(finalkats);
+
+        for(var i = 0; i<finalkats.length; i++){
+
+            sql += " GenreID = '" + finalkats[i] + "'";
+
+            if(i < finalkats.length - 1){
+
+                sql += " OR "
+
+            }
+
+            
+
+
+        }
+
+        sql += ") AND ("
+
+        console.log(finalrats);
+
+        for(var i = 0; i<finalrats.length; i++){
+
+            sql += " ROUND(Gesamtbewertung) = " + finalrats[i];
+
+            if(i < finalrats.length - 1){
+
+                sql += " OR "
+
+            }
+
+            
+
+
+        }
+
+        sql += ")"
+
+
+        
+        console.log(sql);
+        
+       
 
         var statement = this._conn.prepare(sql);
         var result = statement.all();
