@@ -216,6 +216,14 @@
 
 			function ajax_safeAllBooks(value){
 				ajaxBooks=value;
+
+				//Finde das teuerste Buch der angezeigten Ergebnisse
+				var maxPrice=0;
+				if(ajaxBooks.length==0){maxPrice=20}else{for(var i=0;i<ajaxBooks.length;i++){if(ajaxBooks[i].preis>maxPrice){maxPrice=ajaxBooks[i].preis}}}
+				//Das Maximal Attribut und die Value entsprechend anpassen im Preissilder.. Checke leider nicht ganz warum das nicht so richtig klappt. Inhalt von Span???
+				console.log(maxPrice);
+
+
 				// CALL additional ajax to get required additional data.
 				ajax_safePicsToBooks(value);
 				ajax_safeAuthorToBooks(value);
