@@ -223,7 +223,7 @@
 				//Das Maximal Attribut und die Value entsprechend anpassen im Preissilder.. Checke leider nicht ganz warum das nicht so richtig klappt. Inhalt von Span???
 				console.log(maxPrice);
 
-
+				
 				// CALL additional ajax to get required additional data.
 				ajax_safePicsToBooks(value);
 				ajax_safeAuthorToBooks(value);
@@ -256,7 +256,7 @@
 		
 
 			function ajax_safePicsToBooks(Books_Json){
-				for (i = 0; i <= Books_Json.length-1; i++) {
+				for (i = 0; i < Books_Json.length; i++) {
 					obj = Books_Json[i];
 					$.ajax({
                			url: 'http://localhost:8000/web2/buchbild/gib/' + obj.bildid ,
@@ -277,7 +277,7 @@
 
 	
 			function ajax_safeAuthorToBooks(Books_Json){
-				for (i = 0; i <= Books_Json.length-1; i++) {
+				for (i = 0; i <Books_Json.length; i++) {
 					obj = Books_Json[i];
 					$.ajax({
                			url: 'http://localhost:8000/web2/autor/gib/' + obj.authorid ,
@@ -323,12 +323,17 @@
 
 
 			function ajaxToHTML(){
-				for (i = 0; i <= ajaxBooks.length-1; i++) {
+
+				console.log(ajaxBooks);
+				console.log(ajaxAuthors);
+				console.log(ajaxBookpics);
+				console.log(ajaxGenres);
+
+				for (i = 0; i < ajaxBooks.length; i++) {
 					tmp="";
 
-					//console.log(ajaxGenres);
-
 					bookobj = ajaxBooks[i];
+					
 					bildobj = ajaxBookpics[i];
 					authorobj = ajaxAuthors[i];
 					genreobj = ajaxGenres[i];
@@ -404,12 +409,13 @@
 					
 					
 					$.ajax({
-						url: 'http://localhost:8000/web2/shop/gib/preis/'+preis,
+						url: 'http://localhost:8000/web2/shop/gib/preis/'+ preis,
 						method: 'get',
 						dataType: 'json'
 					}).done(function (response) {
 					
 						ajax_safeAllBooks(response.daten);
+					
 
 					}).fail(function (jqXHR, statusText, error) {
 						console.log('Response Code: ' + jqXHR.status + ' - Fehlermeldung: ' + jqXHR.responseText);
@@ -511,6 +517,7 @@
 						control_cat=1;
 					}
 				}
+
 				var ratBoxes = document.getElementsByClassName("ratingCheckbox")
 				var control_rat=0;
 				for(var i=0; i<ratBoxes.length;i++){
