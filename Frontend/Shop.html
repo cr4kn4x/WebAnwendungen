@@ -372,7 +372,7 @@
 				
 				
 				
-				var suche = getUrlParameterByName("search");
+				/*var suche = getUrlParameterByName("search");
 				var preis = getUrlParameterByName("price");
 				var rat1 = getUrlParameterByName("rating_1s");
 				var rat2 = getUrlParameterByName("rating_2s");
@@ -496,7 +496,7 @@
 						$('#output').html('Ein Fehler ist aufgetreten');
             		});
 
-				}
+				}*/
 
         	});
 
@@ -537,6 +537,33 @@
 				//Der Preis (max Value) muss dynamisch erzeugt werden.
 				if(control_cat==1 && control_rat==1){
 					console.log("Kategorie und Rating");
+					var str="";
+					for (var i=0; i<Kategorien.length; i++){
+						
+						
+
+						str += Kategorien[i];
+						console.log(str);
+
+						
+
+
+
+
+
+					}
+					$.ajax({
+							url: 'http://localhost:8000/web2/shop/gib/katrat/'+ str,
+							method: 'get',
+							dataType: 'json'
+						}).done(function (response) {
+
+							ajax_safeAllBooks(response.daten);
+
+						}).fail(function (jqXHR, statusText, error) {
+							console.log('Response Code: ' + jqXHR.status + ' - Fehlermeldung: ' + jqXHR.responseText);
+							$('#output').html('Ein Fehler ist aufgetreten');
+						});
 					console.log(Kategorien);
 					console.log(Ratings);
 				}
