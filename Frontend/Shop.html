@@ -576,6 +576,7 @@
 							console.log('Response Code: ' + jqXHR.status + ' - Fehlermeldung: ' + jqXHR.responseText);
 							$('#output').html('Ein Fehler ist aufgetreten');
 						});
+
 					console.log(Kategorien);
 					console.log(Ratings);
 				}
@@ -583,6 +584,25 @@
 				else if(getUrlParameterByName("search") != null ){
 					console.log("Suche");
 					document.getElementById("suche").value=getUrlParameterByName("search");
+					var suche = getUrlParameterByName("search");
+
+					
+					$.ajax({
+						url: 'http://localhost:8000/web2/shop/gib/suche/'+suche,
+						method: 'get',
+						dataType: 'json'
+            		}).done(function (response) {
+					
+					ajax_safeAllBooks(response.daten);
+
+            		}).fail(function (jqXHR, statusText, error) {
+						console.log('Response Code: ' + jqXHR.status + ' - Fehlermeldung: ' + jqXHR.responseText);
+						$('#output').html('Ein Fehler ist aufgetreten');
+            		});
+
+
+
+
 				}
 
 				else if(control_rat == 0 && control_cat==0){
@@ -605,11 +625,59 @@
 				else if(control_cat == 1){
 					console.log("Nur Kategorie");
 					console.log(Kategorien);
+
+					for(var i = 0; i<Kategorien.length; i++){
+
+
+
+						str += Kategorien[i];
+					}
+
+
+					$.ajax({
+						url: 'http://localhost:8000/web2/shop/gib/kat/'+ str,
+						method: 'get',
+						dataType: 'json'
+					}).done(function (response) {
+
+						ajax_safeAllBooks(response.daten);
+
+					}).fail(function (jqXHR, statusText, error) {
+						console.log('Response Code: ' + jqXHR.status + ' - Fehlermeldung: ' + jqXHR.responseText);
+						$('#output').html('Ein Fehler ist aufgetreten');
+					});
+
+
+
+
+					
 				}
 
 				else if(control_rat == 1){
 					console.log("Nur Rating");
 					console.log(Ratings);
+
+
+					for(var i = 0; i<Ratings.length; i++){
+
+
+
+						str1 += Ratings[i];
+					}
+
+
+					$.ajax({
+						url: 'http://localhost:8000/web2/shop/gib/rat/'+ str1,
+						method: 'get',
+						dataType: 'json'
+					}).done(function (response) {
+
+						ajax_safeAllBooks(response.daten);
+
+					}).fail(function (jqXHR, statusText, error) {
+						console.log('Response Code: ' + jqXHR.status + ' - Fehlermeldung: ' + jqXHR.responseText);
+						$('#output').html('Ein Fehler ist aufgetreten');
+					});
 				}
 
 

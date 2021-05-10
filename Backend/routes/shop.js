@@ -96,6 +96,44 @@ serviceRouter.get('/shop/gib/katrat/:para', function(request, response) {
 
 
 
+serviceRouter.get('/shop/gib/rat/:para', function(request, response) {
+
+    helper.log(request.params.para);
+
+    helper.log("Route ShopSuche: Client requested all records");
+    const shopDao = new ShopDao(request.app.locals.dbConnection);
+    try {
+        var result = shopDao.loadRat(request.params.para);
+        helper.log('Route ShopSuche: All records loaded');
+        response.status(200).json(helper.jsonMsgOK(result));
+    } catch (ex) {
+        helper.logError('Service Adresse: Error loading records. Exception occured: ' + ex.message);
+        response.status(400).json(helper.jsonMsgError(ex.message));
+    }
+});
+
+
+
+
+serviceRouter.get('/shop/gib/kat/:para', function(request, response) {
+
+    helper.log(request.params.para);
+
+    helper.log("Route ShopSuche: Client requested all records");
+    const shopDao = new ShopDao(request.app.locals.dbConnection);
+    try {
+        var result = shopDao.loadKat(request.params.para);
+        helper.log('Route ShopSuche: All records loaded');
+        response.status(200).json(helper.jsonMsgOK(result));
+    } catch (ex) {
+        helper.logError('Service Adresse: Error loading records. Exception occured: ' + ex.message);
+        response.status(400).json(helper.jsonMsgError(ex.message));
+    }
+});
+
+
+
+
 
 
 
