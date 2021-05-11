@@ -67,18 +67,6 @@
     padding: 2%;
 }
 
-#confirm {
-    color: white;
-    font-weight: bold;
-    font-size: 1em;
-    background-color: #FF8A11;
-    border: none;
-    border-radius: 79px;
-    width: 15%;
-    height: 6%;
-    margin-left: 80%;
-}
-
 .checked_star {   
     color: orange; 
 }
@@ -87,4 +75,52 @@
     color: white;
     font-size: 2em;
     padding-left: 2%;
+    margin: 5% 0%;
+}
+
+#rating {
+    width: 30%;
+    height: 90%;
+    float: left;
+    margin-left: 2%;
+}
+
+#select_and_confirm {
+    width: 60%;
+    height: 90%;
+    margin: 0% 3%;
+    float: right;
+}
+
+#book {
+    width: 100%;
+    height: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+#book a {
+    color: white;
+    text-decoration: none;
+    margin: 4% 10%;
+    font-size: 1.5em;
+}
+
+#confirm_container {
+    width: 100%;
+    height: 20%;
+}
+
+#confirm {
+    color: white;
+    font-weight: bold;
+    font-size: 1em;
+    background-color: #FF8A11;
+    border: none;
+    border-radius: 79px;
+    width: 15%;
+    height: 30%;    
+    margin-left: 80%;
+    margin-top: 8%;
 }
