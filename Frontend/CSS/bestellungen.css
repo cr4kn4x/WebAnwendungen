@@ -98,7 +98,7 @@
 }
 
 #printer {
-    background: url(printer.png);
+    background: url(../sources/printer.png);
     background-size: contain;
     position: absolute;
     right: 5%;

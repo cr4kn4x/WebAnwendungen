@@ -10,7 +10,7 @@ body {margin:0;
 
 @font-face{
     font-family: X-Files;
-    src: url(x-files.tff);
+    src: url(../sources/x-files.ttf);
 }
 
 .navElemente {
@@ -64,7 +64,7 @@ body {margin:0;
 }
 
 #logo {
-    background: url(Logo.png);
+    background: url(../sources/Logo.png);
     background-size: contain;
     position: absolute;
     margin-left: 90%;
@@ -110,7 +110,7 @@ body {margin:0;
 }
 
 #copyright {
-    background: url(Copyright.png);
+    background: url(../sources/Copyright.png);
     background-size: contain;
     position: relative;
     margin-left: 96%;
@@ -120,15 +120,7 @@ body {margin:0;
     height: 40px;
 }
 
-#filter_box{
-	font-size:1.6em;
-	min-width:100px;
-	background-color: #444048;
-	height: auto;
-	width: auto;
-	padding:2%;
-	border-radius:35px;
-}
+
 
 
 
@@ -151,10 +143,28 @@ body {margin:0;
 }
 
 
+
+#filter_box{
+	font-size:1.6em;
+	min-width:204px;
+    min-height:523px;
+    max-width: 260px;
+	background-color: #444048;
+	height: auto;
+	width: auto;
+	padding:2%;
+	border-radius:35px;
+    
+}
+
 .Left_container{
+    min-width:205px;
+    min-height:524px;
+    max-width: 260px;
 	float:left;
 	height:100%;
 	width:15%;
+    margin-bottom: 4%;
 }
 
 
@@ -299,7 +309,6 @@ button[type="submit"] {
 	font-size:1.7em;
 }
 
-
 .Author_attribute_tag{
 	color:#FF8A11;
 	font-size:1.5em;
@@ -319,4 +328,38 @@ button[type="submit"] {
 
 
 
+#Space1{
+    float:left;
+    margin-right: 4%;
+}
 
+#Space2{
+    display: inline-block;
+    margin-right: 4%;
+}
+
+.plus{
+    margin-right:5%;
+    float: right;
+}
+
+.minus{
+    float: left;
+    margin-right: 5%;
+}
+
+
+#NoResults{
+    color:#444048;
+    text-align:center;
+}
+
+
+.filter_buttons{
+    background-color:#FF8A11;
+    color:white;
+	border-radius:35px;
+	border: none;
+	cursor: pointer;
+
+}

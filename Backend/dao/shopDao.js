@@ -25,7 +25,7 @@ class ShopDao {
 
     loadSuche(suchwort){
     
-        console.log(suchwort);
+        //console.log(suchwort);
         var sql = "SELECT * FROM BUCH WHERE ISBN LIKE '%" + suchwort + "%' OR Titel LIKE '%" + suchwort + "%' OR AuthorID = (SELECT ID FROM Autor WHERE Name LIKE '%" + suchwort + "%')";
 
         var statement = this._conn.prepare(sql);
@@ -36,7 +36,18 @@ class ShopDao {
     
         return helper.arrayObjectKeysToLower(result);
 
+    }
 
+
+    loadmaxPreis(){
+        var sql = 'SELECT Preis FROM Buch WHERE Preis = (SELECT MAX(Preis) FROM Buch);';
+        var statement = this._conn.prepare(sql);
+        var result = statement.all();
+
+        if (helper.isArrayEmpty(result)) 
+            return [];
+    
+        return helper.arrayObjectKeysToLower(result);
     }
 
 
@@ -223,8 +234,6 @@ class ShopDao {
                 sql += " OR "
 
             }
-
-            
 
 
         }

@@ -9,7 +9,7 @@ body {
 }
 @font-face {
     font-family: X-Files;
-    src: url(x-files.tff);
+    src: url(../sources/x-files.ttf);
 }
 
 #navigation {
@@ -120,5 +120,4 @@ body {
     margin-right:2%;
     width: 38px;
     height: 40px;
-
 }

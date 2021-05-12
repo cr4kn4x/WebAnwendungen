@@ -36,7 +36,7 @@ body {margin:0; background-color:#8A9094}
 
 @font-face{
     font-family: X-Files;
-    src: url(x-files.tff);
+    src: url(../sources/x-files.ttf);
 }
 
 .navElemente {
@@ -91,7 +91,7 @@ body {margin:0; background-color:#8A9094}
 }
 
 #logo {
-    background: url(Logo.png);
+    background: url(../sources/Logo.png);
     background-size: contain;
     position: absolute;
     margin-left: 90%;
@@ -131,7 +131,7 @@ body {margin:0; background-color:#8A9094}
 }
 
 #copyright {
-    background: url(Copyright.png);
+    background: url(../sources/Copyright.png);
     background-size: contain;
     position: relative;
     margin-left: 96%;

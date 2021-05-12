@@ -7,9 +7,10 @@ body {
     margin: 0;
     background-color: #8A9094
 }
+
 @font-face {
     font-family: X-Files;
-    src: url(x-files.tff);
+    src: url(../sources/x-files.ttf);
 }
 
 #navigation {

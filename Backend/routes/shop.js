@@ -23,6 +23,23 @@ serviceRouter.get('/shop/gib/all', function(request, response) {
 //
 
 
+serviceRouter.get('/shop/gib/maxprice', function(request, response) {
+    helper.log("Route Shop: Client maxPrice");
+
+    const shopDao = new ShopDao(request.app.locals.dbConnection);
+    try {
+        var result = shopDao.loadmaxPreis();
+        helper.log('Route Shop: MaxPrice records loaded');
+        response.status(200).json(helper.jsonMsgOK(result));
+    } catch (ex) {
+        helper.logError('Service Adresse: Error loading records. Exception occured: ' + ex.message);
+        response.status(400).json(helper.jsonMsgError(ex.message));
+    }
+});
+
+
+
+
 
 serviceRouter.get('/shop/gib/suche/:suchwort', function(request, response) {
 

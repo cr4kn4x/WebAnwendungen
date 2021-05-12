@@ -26,14 +26,14 @@
         </div>   
         
         <div class="shop_body_container" id="shop_container">
-			<h1 id="shop_headline">Shop-Übersicht</h1>
+			<h1 id="shop_headline">Shop</h1>
 		
 		
 			<div class="Left_container" id="l_container">
 
 				<div id="filter_box">
 
-					<a href="Shop.html"><p>Alle Bücher:</p></a>
+					<a href="Shop.html"></a>
 				
 					
 					
@@ -54,21 +54,10 @@
 						
 						<p class="filter_hover" onclick="show_price_slider()"><span id="span_price">&minus;</span> Preis:</p>
 						<div id="Price_box">
-							
-					
-
 							<div class="plus filter_hover"><span onclick="function_plus()">&plus;</span></div>
-
-
 							<div class="minus filter_hover"><span onclick="function_minus()">&minus;</span></div>
 
 
-							<div class="slidecontainer">
-								<input id="myRange" name="p" type="range" min="1" max="120" value="120" class="slider">
-								<p>
-								<span id="Space1">0&#8364;</span> <span id="demo"></span><span>&#8364;</span> <span id="Space2">120&#8364;</span>
-								</p>
-							</div>
 
 						</div>
 					
@@ -117,8 +106,8 @@
 						<span class="fa fa-star checked_star"></span></p>
 
 					</div>
-						<a href="Shop.html"><input style="margin-left:10%; margin-right: 14%;" type="button" value="reset"></input></a>
-						<input type="submit" value="submit"></input>
+						<a href="Shop.html"><input style="margin-left: 6%;" class="filter_buttons" type="button" value="zurücksetzen"></input></a>
+						<input class="filter_buttons" type="submit" value="anwenden"></input>
 
 					</form>
 
@@ -135,8 +124,7 @@
 				<input type="text" placeholder="Nach Titel, Autor oder ISBN suchen..." id="suche" name="search">
 				<button type="submit" >	<i class="fa fa-search"> </i>	</button>
 			</form>
-			
-
+		
 			
 		</div>
 		
@@ -217,17 +205,18 @@
 			function ajax_safeAllBooks(value){
 				ajaxBooks=value;
 
-				//Finde das teuerste Buch der angezeigten Ergebnisse
-				var maxPrice=0;
-				if(ajaxBooks.length==0){maxPrice=20}else{for(var i=0;i<ajaxBooks.length;i++){if(ajaxBooks[i].preis>maxPrice){maxPrice=ajaxBooks[i].preis}}}
-				//Das Maximal Attribut und die Value entsprechend anpassen im Preissilder.. Checke leider nicht ganz warum das nicht so richtig klappt. Inhalt von Span???
-				console.log(maxPrice);
-
+				if(ajaxBooks.length==0){
+					var tmp = "<h1 id=\"NoResults\">Keine Suchergebnisse gefunden</h1>"
+					$("#shop_container").append(tmp);
+				}
 				
+				else{
+					ajax_safePicsToBooks(value);
+					ajax_safeAuthorToBooks(value);
+					ajax_safeGenreToBooks(value);
+				}
 				// CALL additional ajax to get required additional data.
-				ajax_safePicsToBooks(value);
-				ajax_safeAuthorToBooks(value);
-				ajax_safeGenreToBooks(value);
+				
 			}
 
 			
@@ -318,8 +307,45 @@
 			}
 
 			
-			
-			
+			function Price_Slider_HTML(max_pr){
+				tmp="";
+
+				$.ajax({
+               		url: 'http://localhost:8000/web2/shop/gib/maxprice',
+                	method: 'get',
+                	dataType: 'json'
+            	}).done(function (response) {
+					var max_preis = Math.ceil(response.daten[0].preis);;
+					var value = max_preis;
+
+					if(getUrlParameterByName("p")!=null){
+						value=Math.ceil(getUrlParameterByName("p"));
+					}
+
+					tmp=" <div class=\"slidecontainer\"><input id=\"myRange\" name=\"p\" type=\"range\" min=\"0\"";
+					tmp += "max=\"" + max_preis + "\"";
+					tmp += "value=\"" + value + "\" class=\"slider\"><p><span id=\"Space1\">0&#8364; - </span>";
+					tmp += "<span id=\"demo\">" + value + "</span><span>&#8364; </span><span id=\"Space2\">";
+					tmp += max_preis + "&#8364;</span></p></div> ";
+					$("#Price_box").append(tmp);
+
+					var slider = document.getElementById("myRange");
+					var output = document.getElementById("demo");
+					output.innerHTML = slider.value;
+
+					slider.oninput = function() {
+  						output.innerHTML = this.value;
+					}
+
+
+            	}).fail(function (jqXHR, statusText, error) {
+                	console.log('Response Code: ' + jqXHR.status + ' - Fehlermeldung: ' + jqXHR.responseText);
+                	$('#output').html('Ein Fehler ist aufgetreten');
+            	});
+
+
+				
+			}
 
 
 			function ajaxToHTML(){
@@ -329,7 +355,7 @@
 
 					bookobj = ajaxBooks[i];
 
-					for(var j=0; j<ajaxBookpics.length; j++){if(ajaxBookpics[j].buchid==bookobj.id){bildobj=ajaxBookpics[j];console.log(bildobj);break;}}
+					for(var j=0; j<ajaxBookpics.length; j++){if(ajaxBookpics[j].buchid==bookobj.id){bildobj=ajaxBookpics[j];break;}}
 					for(var j=0; j<ajaxAuthors.length; j++){if(ajaxAuthors[j].id==bookobj.authorid){authorobj=ajaxAuthors[j];break;}}
 					for(var j=0; j<ajaxGenres.length; j++){if(ajaxGenres[j].id==bookobj.genreid){genreobj=ajaxGenres[j];break;}}
 		
@@ -360,138 +386,8 @@
 			$(document).ready(function() {
 				loadKategorien();
 				
-				//
-				
-				//
-
-				
-				
-				
-				/*var suche = getUrlParameterByName("search");
-				var preis = getUrlParameterByName("price");
-				var rat1 = getUrlParameterByName("rating_1s");
-				var rat2 = getUrlParameterByName("rating_2s");
-				var rat3 = getUrlParameterByName("rating_3s");
-				var rat4 = getUrlParameterByName("rating_4s");
-				var rat5 = getUrlParameterByName("rating_5s");
-
-
-				if (suche!=null) {
-					
-					
-					//console.log(suche);
-					$.ajax({
-						url: 'http://localhost:8000/web2/shop/gib/suche/'+suche,
-						method: 'get',
-						dataType: 'json'
-            		}).done(function (response) {
-					
-					ajax_safeAllBooks(response.daten);
-
-            		}).fail(function (jqXHR, statusText, error) {
-						console.log('Response Code: ' + jqXHR.status + ' - Fehlermeldung: ' + jqXHR.responseText);
-						$('#output').html('Ein Fehler ist aufgetreten');
-            		});
-
-				}
-
-
-				else if (preis!=null) {
-
-
-
-					//console.log(preis);
-					
-					
-					$.ajax({
-						url: 'http://localhost:8000/web2/shop/gib/preis/'+ preis,
-						method: 'get',
-						dataType: 'json'
-					}).done(function (response) {
-					
-						ajax_safeAllBooks(response.daten);
-					
-
-					}).fail(function (jqXHR, statusText, error) {
-						console.log('Response Code: ' + jqXHR.status + ' - Fehlermeldung: ' + jqXHR.responseText);
-						$('#output').html('Ein Fehler ist aufgetreten');
-					});
-				}
-
-
-
-				else if ((rat1!=null) || (rat2!=null) || (rat3!=null) || (rat4!=null) || (rat5!=null)) {
-
-
-					if (rat1!=null){
-
-						//console.log(rat1);
-						
-
-
-						$.ajax({
-							url: 'http://localhost:8000/web2/shop/gib/rating/'+ 1,
-							method: 'get',
-							dataType: 'json'
-						}).done(function (response) {
-
-							ajax_safeAllBooks(response.daten);
-
-						}).fail(function (jqXHR, statusText, error) {
-							console.log('Response Code: ' + jqXHR.status + ' - Fehlermeldung: ' + jqXHR.responseText);
-							$('#output').html('Ein Fehler ist aufgetreten');
-						});
-
-
-					}
-
-
-					else if (rat2!=null){
-
-						//console.log(rat2);
-
-
-
-						$.ajax({
-							url: 'http://localhost:8000/web2/shop/gib/rating/'+ 2,
-							method: 'get',
-							dataType: 'json'
-						}).done(function (response) {
-
-							ajax_safeAllBooks(response.daten);
-
-						}).fail(function (jqXHR, statusText, error) {
-							console.log('Response Code: ' + jqXHR.status + ' - Fehlermeldung: ' + jqXHR.responseText);
-							$('#output').html('Ein Fehler ist aufgetreten');
-						});
-
-
-					}
-
-						
-				
-				}
-
-
-
-				else{
-
-					//console.log("Alle anzeigen");
-					
-					$.ajax({
-						url: 'http://localhost:8000/web2/shop/gib/all',
-						method: 'get',
-						dataType: 'json'
-            		}).done(function (response) {
-					
-					ajax_safeAllBooks(response.daten);
-
-            		}).fail(function (jqXHR, statusText, error) {
-						console.log('Response Code: ' + jqXHR.status + ' - Fehlermeldung: ' + jqXHR.responseText);
-						$('#output').html('Ein Fehler ist aufgetreten');
-            		});
-
-				}*/
+				Price_Slider_HTML();
+		
 
         	});
 
@@ -539,25 +435,12 @@
 					var str1 = "";
 					for (var i=0; i<Kategorien.length; i++){
 						
-						
-
 						str += Kategorien[i];
 						console.log(str);
-
-						
-
-						
-
-
-
-
-
 					}
+
 					
 					for(var i = 0; i<Ratings.length; i++){
-
-
-
 						str1 += Ratings[i];
 					}
 					
@@ -574,9 +457,6 @@
 							console.log('Response Code: ' + jqXHR.status + ' - Fehlermeldung: ' + jqXHR.responseText);
 							$('#output').html('Ein Fehler ist aufgetreten');
 						});
-
-					console.log(Kategorien);
-					console.log(Ratings);
 				}
 
 				else if(getUrlParameterByName("search") != null ){
@@ -591,33 +471,52 @@
 						dataType: 'json'
             		}).done(function (response) {
 					
-					ajax_safeAllBooks(response.daten);
+						ajax_safeAllBooks(response.daten);
 
             		}).fail(function (jqXHR, statusText, error) {
 						console.log('Response Code: ' + jqXHR.status + ' - Fehlermeldung: ' + jqXHR.responseText);
 						$('#output').html('Ein Fehler ist aufgetreten');
             		});
-
-
-
-
 				}
+
 
 				else if(control_rat == 0 && control_cat==0){
 					
-					console.log("Kein Filter")
-					$.ajax({
-						url: 'http://localhost:8000/web2/shop/gib/all',
-						method: 'get',
-						dataType: 'json'
-            		}).done(function (response) {
-					
-					ajax_safeAllBooks(response.daten);
+					if(preis != null){
+						
 
-            		}).fail(function (jqXHR, statusText, error) {
-						console.log('Response Code: ' + jqXHR.status + ' - Fehlermeldung: ' + jqXHR.responseText);
-						$('#output').html('Ein Fehler ist aufgetreten');
-            		});
+						$.ajax({
+							url: 'http://localhost:8000/web2/shop/gib/preis/'+preis,
+							method: 'get',
+							dataType: 'json'
+						}).done(function (response) {
+
+							ajax_safeAllBooks(response.daten);
+
+						}).fail(function (jqXHR, statusText, error) {
+							console.log('Response Code: ' + jqXHR.status + ' - Fehlermeldung: ' + jqXHR.responseText);
+							$('#output').html('Ein Fehler ist aufgetreten');
+						});
+
+					}
+
+					else{	
+					
+
+						$.ajax({
+							url: 'http://localhost:8000/web2/shop/gib/all',
+							method: 'get',
+							dataType: 'json'
+						}).done(function (response) {
+						
+							ajax_safeAllBooks(response.daten);
+
+						}).fail(function (jqXHR, statusText, error) {
+							console.log('Response Code: ' + jqXHR.status + ' - Fehlermeldung: ' + jqXHR.responseText);
+							$('#output').html('Ein Fehler ist aufgetreten');
+						});
+					}
+				
 				}
 
 				
@@ -628,9 +527,6 @@
 					console.log(Kategorien);
 
 					for(var i = 0; i<Kategorien.length; i++){
-
-
-
 						str += Kategorien[i];
 					}
 
@@ -647,25 +543,15 @@
 						console.log('Response Code: ' + jqXHR.status + ' - Fehlermeldung: ' + jqXHR.responseText);
 						$('#output').html('Ein Fehler ist aufgetreten');
 					});
-
-
-
-
 					
 				}
 
 				else if(control_rat == 1){
-					console.log("Nur Rating");
-					console.log(Ratings);
-
+		
 
 					for(var i = 0; i<Ratings.length; i++){
-
-
-
 						str1 += Ratings[i];
 					}
-
 
 					$.ajax({
 						url: 'http://localhost:8000/web2/shop/gib/rat/'+ str1 + 'x' + preis,
