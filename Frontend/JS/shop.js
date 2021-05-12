@@ -83,6 +83,7 @@ function function_minus(){
 
 
 function adjustContainerHeight(){
+        console.log("ADJUST");
 		var height_shop_container;
 		var height_left_container;
         var shop_container = document.getElementById('shop_container');
@@ -107,8 +108,10 @@ function adjustContainerHeight(){
 }
     
     
-adjustContainerHeight();
+
 window.addEventListener("resize", adjustContainerHeight);
+window.addEventListener("onload", adjustContainerHeight);
+
  
  
 show_ratings();
