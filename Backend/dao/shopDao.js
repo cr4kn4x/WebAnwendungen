@@ -87,7 +87,7 @@ class ShopDao {
 
     loadPreis(preis){
     
-        console.log(preis);
+        
         var sql = "SELECT * FROM BUCH WHERE Preis <= " + parseFloat(preis);
 
         var statement = this._conn.prepare(sql);
@@ -107,7 +107,7 @@ class ShopDao {
 
     loadRat(rat){
     
-        console.log(rat);
+        
         var sql = "SELECT * FROM BUCH WHERE CAST(Gesamtbewertung AS INTEGER) == " + rat;
 
         var statement = this._conn.prepare(sql);
@@ -125,7 +125,7 @@ class ShopDao {
 
     loadKatRat(para){
 
-        console.log(para);
+        
 
         var all = para.split("x");
         var kats = all[0].split("c");
@@ -171,8 +171,7 @@ class ShopDao {
         
         var sql= "SELECT * FROM BUCH WHERE (" ;
 
-        console.log(finalkats);
-
+        
         for(var i = 0; i<finalkats.length; i++){
 
             sql += " GenreID = '" + finalkats[i] + "'";
@@ -190,8 +189,7 @@ class ShopDao {
 
         sql += ") AND ("
 
-        console.log(finalrats);
-
+        
         for(var i = 0; i<finalrats.length; i++){
 
             sql += " ROUND(Gesamtbewertung) = " + finalrats[i];
@@ -207,7 +205,7 @@ class ShopDao {
 
 
         
-        console.log(sql);
+        
         
        
 
@@ -231,7 +229,7 @@ class ShopDao {
 
     loadRat(para){
 
-        console.log(para);
+      
 
         var all = para.split("x");
         
@@ -274,7 +272,6 @@ class ShopDao {
 
 
         
-        console.log(sql);
         
        
 
@@ -325,7 +322,7 @@ class ShopDao {
         
         var sql= "SELECT * FROM BUCH WHERE (" ;
 
-        console.log(finalkats);
+        
 
         for(var i = 0; i<finalkats.length; i++){
 
@@ -346,9 +343,8 @@ class ShopDao {
 
 
         
-        console.log(sql);
+      
         
-       
 
         var statement = this._conn.prepare(sql);
         var result = statement.all();
@@ -361,13 +357,6 @@ class ShopDao {
 
         
     }
-
-
-    
-
-
-
-
 
 }
 

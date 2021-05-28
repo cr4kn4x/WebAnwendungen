@@ -13,7 +13,12 @@ try {
     helper.log('Connect database...');
     const Database = require('better-sqlite3');
     const dbOptions = { verbose: console.log };
-    const dbFile = './Backend/db/datenbank.sqlite';
+
+
+    const dbFile = './db/datenbank.sqlite';     
+
+
+
     helper.log(dbFile);
     const dbConnection = new Database(dbFile, dbOptions);
     
@@ -130,3 +135,4 @@ try {
 } catch (ex) {
     helper.logError(ex);
 }
+
