@@ -1,6 +1,31 @@
 const { startsWith } = require('lodash');
 const helper = require('../helper.js');
 
+
+
+
+const BuchbildDao = require("../dao/buchbildDao.js");
+const AutorDao = require("../dao/autorDao.js");
+const BuchgenreDao = require('../dao/buchgenreDao.js');
+
+
+function loadAdditionalData(json_books, dbConnection) {
+    for(var i=0; i<json_books.length; i++){
+        // Bildpfad einfügen
+        buchbildDao = new BuchbildDao(dbConnection);
+        json_books[i]["bildpfad"]=buchbildDao.loadById(json_books[i]["bildid"])["bildpfad"];
+        // Autor Name einfügen
+        autorDao = new AutorDao(dbConnection);
+        json_books[i]["autor_name"]=autorDao.loadById(json_books[i]["authorid"])["name"];
+        // Genre einfügen
+        buchgenreDao = new BuchgenreDao(dbConnection);
+        json_books[i]["genre"]=buchgenreDao.loadById(json_books[i]["genreid"])["bezeichnung"];
+    }
+}
+
+
+
+
 class ShopDao {
     constructor(dbConnection) {
         this._conn = dbConnection;
@@ -10,6 +35,9 @@ class ShopDao {
         return this._conn;
     }
 
+
+  
+
     loadAll() {
         var sql = 'SELECT * FROM BUCH';
         var statement = this._conn.prepare(sql);
@@ -18,7 +46,10 @@ class ShopDao {
         if (helper.isArrayEmpty(result)) 
             return [];
     
-        return helper.arrayObjectKeysToLower(result);
+
+        loadAdditionalData(helper.arrayObjectKeysToLower(result),this._conn);
+        return result;
+
     }
 
 
@@ -34,6 +65,7 @@ class ShopDao {
         if (helper.isArrayEmpty(result)) 
             return [];
     
+        loadAdditionalData(helper.arrayObjectKeysToLower(result),this._conn);
         return helper.arrayObjectKeysToLower(result);
 
     }
@@ -47,6 +79,7 @@ class ShopDao {
         if (helper.isArrayEmpty(result)) 
             return [];
     
+        
         return helper.arrayObjectKeysToLower(result);
     }
 
@@ -63,6 +96,7 @@ class ShopDao {
         if (helper.isArrayEmpty(result)) 
             return [];
     
+        loadAdditionalData(helper.arrayObjectKeysToLower(result),this._conn);
         return helper.arrayObjectKeysToLower(result);
 
 
@@ -82,6 +116,7 @@ class ShopDao {
         if (helper.isArrayEmpty(result)) 
             return [];
     
+        loadAdditionalData(helper.arrayObjectKeysToLower(result),this._conn);
         return helper.arrayObjectKeysToLower(result);
 
 
@@ -166,10 +201,6 @@ class ShopDao {
                 sql += " OR "
 
             }
-
-            
-
-
         }
 
         sql += ") AND (Preis <= " + parseFloat(preis) + ")";
@@ -185,7 +216,8 @@ class ShopDao {
 
         if (helper.isArrayEmpty(result)) 
             return [];
-    
+
+        loadAdditionalData(helper.arrayObjectKeysToLower(result),this._conn);
         return helper.arrayObjectKeysToLower(result);
 
 
@@ -251,7 +283,8 @@ class ShopDao {
 
         if (helper.isArrayEmpty(result)) 
             return [];
-    
+        
+        loadAdditionalData(helper.arrayObjectKeysToLower(result),this._conn);
         return helper.arrayObjectKeysToLower(result);
 
 
@@ -322,15 +355,9 @@ class ShopDao {
 
         if (helper.isArrayEmpty(result)) 
             return [];
-    
+        
+        loadAdditionalData(helper.arrayObjectKeysToLower(result),this._conn);
         return helper.arrayObjectKeysToLower(result);
-        
-
-        
-
-
-        
-
 
         
     }

@@ -174,9 +174,7 @@
 					method: 'get',
 					dataType: 'json'
             	}).done(function (response) {
-
 					createHtmlKategorien(response.daten);
-
             	}).fail(function (jqXHR, statusText, error) {
 					console.log('Response Code: ' + jqXHR.status + ' - Fehlermeldung: ' + jqXHR.responseText);
 					$('#output').html('Ein Fehler ist aufgetreten');
@@ -204,107 +202,18 @@
 
 			function ajax_safeAllBooks(value){
 				ajaxBooks=value;
-
 				if(ajaxBooks.length==0){
 					var tmp = "<h1 id=\"NoResults\">Keine Suchergebnisse gefunden</h1>"
 					$("#shop_container").append(tmp);
 				}
-				
 				else{
-					ajax_safePicsToBooks(value);
-					ajax_safeAuthorToBooks(value);
-					ajax_safeGenreToBooks(value);
-				}
-				// CALL additional ajax to get required additional data.
-				
-			}
-
-			
-			function ajax_safeAdditionalData(value, mode){      // mode = 0 --> speicher Bild         mode = 1 --> speicher Autor     mode = 2 --> speicher genre
-				switch(mode){
-					case 0:
-						ajaxBookpics.push(value.daten);
-						break;
-					case 1:
-						ajaxAuthors.push(value.daten);
-						break;
-					case 2:
-						ajaxGenres.push(value.daten);
-						break;
-				}
-
-				// WIRD BENÖTIGT WEGEN ASYNC.
-				if(ajaxBookpics.length == ajaxBooks.length && ajaxAuthors.length == ajaxBooks.length && ajaxGenres.length == ajaxBooks.length){
-					//console.log(ajaxGenres);
-					ajaxToHTML();
+					ajaxToHTML(ajaxBooks);
 				}
 			}
-			
-			
-
-		
-
-			function ajax_safePicsToBooks(Books_Json){
-				for (i = 0; i < Books_Json.length; i++) {
-					obj = Books_Json[i];
-					$.ajax({
-               			url: 'http://localhost:8000/web2/buchbild/gib/' + obj.bildid ,
-                		method: 'get',
-                		dataType: 'json'
-            		}).done(function (response) {
-
-						ajax_safeAdditionalData(response,0);
-
-            		}).fail(function (jqXHR, statusText, error) {
-						ajaxBookpics.push("");               //Hier könnte man den Pfad zu einem "default" Arikelbild reingeben.
-                		console.log('Response Code: ' + jqXHR.status + ' - Fehlermeldung: ' + jqXHR.responseText);
-                		$('#output').html('Ein Fehler ist aufgetreten');
-            		});
-				}	
-			}
-
 
 	
-			function ajax_safeAuthorToBooks(Books_Json){
-				for (i = 0; i <Books_Json.length; i++) {
-					obj = Books_Json[i];
-					$.ajax({
-               			url: 'http://localhost:8000/web2/autor/gib/' + obj.authorid ,
-                		method: 'get',
-                		dataType: 'json'
-            		}).done(function (response) {
 
-						ajax_safeAdditionalData(response,1);
-
-            		}).fail(function (jqXHR, statusText, error) {
-						ajaxAuthors.push("");                      //  Was tun wenn loadbyid für Bewerungen failed?
-                		console.log('Response Code: ' + jqXHR.status + ' - Fehlermeldung: ' + jqXHR.responseText);
-                		$('#output').html('Ein Fehler ist aufgetreten');
-            		});
-				}
-			}
-			
-
-			
-
-			function ajax_safeGenreToBooks(Books_Json){
-				for (i = 0; i <= Books_Json.length-1; i++) {
-					obj = Books_Json[i];
-					$.ajax({
-               			url: 'http://localhost:8000/web2/buchgenre/gib/' + obj.genreid ,
-                		method: 'get',
-                		dataType: 'json'
-            		}).done(function (response) {
-						//console.log(response);
-						ajax_safeAdditionalData(response,2);
-
-            		}).fail(function (jqXHR, statusText, error) {
-						ajaxGenres.push("");                      //  Was tun wenn loadbyid für Genre failed?
-                		console.log('Response Code: ' + jqXHR.status + ' - Fehlermeldung: ' + jqXHR.responseText);
-                		$('#output').html('Ein Fehler ist aufgetreten');
-            		});
-				}
-			}
+		
 
 			
 			function Price_Slider_HTML(max_pr){
@@ -337,14 +246,11 @@
   						output.innerHTML = this.value;
 					}
 
-
             	}).fail(function (jqXHR, statusText, error) {
                 	console.log('Response Code: ' + jqXHR.status + ' - Fehlermeldung: ' + jqXHR.responseText);
                 	$('#output').html('Ein Fehler ist aufgetreten');
             	});
 
-
-				
 			}
 
 
@@ -354,22 +260,17 @@
 					tmp="";
 
 					bookobj = ajaxBooks[i];
-
-					for(var j=0; j<ajaxBookpics.length; j++){if(ajaxBookpics[j].buchid==bookobj.id){bildobj=ajaxBookpics[j];break;}}
-					for(var j=0; j<ajaxAuthors.length; j++){if(ajaxAuthors[j].id==bookobj.authorid){authorobj=ajaxAuthors[j];break;}}
-					for(var j=0; j<ajaxGenres.length; j++){if(ajaxGenres[j].id==bookobj.genreid){genreobj=ajaxGenres[j];break;}}
-		
 					tmp += "<div class=\"artikel_buble\"><a href=\"Artikelseite.html?titelID=";       
 					tmp += bookobj.id + "\">";
 					tmp += "<img class=\"artikel_img_container\" src=\""
-			   		tmp += bildobj.bildpfad;
+			   		tmp += bookobj.bildpfad;
 					tmp += "\"></img>";
 					tmp += "<div class=\"artikel_text_container\"> <p> "
 					tmp += "<span class=\"Price_attribute\">"  +  bookobj.preis +   "&euro;</span> <br><br>";
 					tmp += "<span class=\"Author_attribute_tag\">Titel:</span><br>";
 					tmp += "<span class=\"Author_attribute\">" + bookobj.titel +  "</span> <br><br> ";
-					tmp += "<span class=\" Author_attribute_tag \">Author:</span><br>" + authorobj.name + "<br></span> <br>";
-					tmp += "<span class=\"Author_attribute_tag\">Genre:</span><br>  <span class=\"Author_attribute\"> "+ genreobj.bezeichnung + "</span><br><br>";
+					tmp += "<span class=\" Author_attribute_tag \">Author:</span><br>" + bookobj.autor_name + "<br></span> <br>";
+					tmp += "<span class=\"Author_attribute_tag\">Genre:</span><br>  <span class=\"Author_attribute\"> "+ bookobj.genre + "</span><br><br>";
 					tmp += "<span class=\"Author_attribute_tag\">Bewertung:</span> (" + bookobj.anzahlbew +  ") <span>" + createStars(bookobj.gesamtbewertung) + "</span> ";
 					// hier muss mit einer if abfrage wenn die Anzahl der Sterne geladen wurde dann entsprehend <span class="fa fa-star"></span> eingefügt werden.
 					tmp += "</p></div></a></div>";
@@ -388,10 +289,7 @@
 			// Hier vielelicht Parameter abfragen ob Filter gesetzt? Dann muss eigentlich nur url ändern?!
 			$(document).ready(function() {
 				loadKategorien();
-				
 				Price_Slider_HTML();
-		
-
         	});
 
 

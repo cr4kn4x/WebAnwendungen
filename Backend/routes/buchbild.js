@@ -7,7 +7,7 @@ helper.log('- Route Buchbild');
 
 serviceRouter.get('/buchbild/gib/:id', function(request, response) {
     helper.log('Route Buchbild: Client requested one record, id=' + request.params.id);
-
+    
     const buchbildDao = new BuchbildDao(request.app.locals.dbConnection);
     try {
         var result = buchbildDao.loadById(request.params.id);
