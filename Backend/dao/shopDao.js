@@ -21,6 +21,8 @@ function loadAdditionalData(json_books, dbConnection) {
         buchgenreDao = new BuchgenreDao(dbConnection);
         json_books[i]["genre"]=buchgenreDao.loadById(json_books[i]["genreid"])["bezeichnung"];
     }
+
+    return json_books;
 }
 
 
@@ -45,10 +47,10 @@ class ShopDao {
 
         if (helper.isArrayEmpty(result)) 
             return [];
-    
 
-        loadAdditionalData(helper.arrayObjectKeysToLower(result),this._conn);
-        return result;
+      
+        
+        return loadAdditionalData(helper.arrayObjectKeysToLower(result),this._conn);
 
     }
 
@@ -318,11 +320,8 @@ class ShopDao {
             }
 
         }
-        
-        
+         
         var sql= "SELECT * FROM BUCH WHERE (" ;
-
-        
 
         for(var i = 0; i<finalkats.length; i++){
 
@@ -333,18 +332,10 @@ class ShopDao {
                 sql += " OR "
 
             }
-
-            
-
-
         }
 
         sql += ") AND (Preis <= " + parseFloat(preis) + ")"; 
 
-
-        
-      
-        
 
         var statement = this._conn.prepare(sql);
         var result = statement.all();

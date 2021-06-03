@@ -6,6 +6,7 @@ Object.fromEntries = l => l.reduce((a, [k,v]) => ({...a, [k]: v}), {})
 const helper = require('./helper.js');
 const fileHelper = require('./fileHelper.js');
 helper.log('Starting server...');
+const path = require("path");
 
 
 try {
@@ -14,8 +15,7 @@ try {
     const Database = require('better-sqlite3');
     const dbOptions = { verbose: console.log };
 
-
-    const dbFile = './db/datenbank.sqlite';     
+    const dbFile = path.join(__dirname, "/db/datenbank.sqlite");     
 
 
 

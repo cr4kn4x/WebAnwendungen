@@ -3,6 +3,7 @@
 	<head>
 		<link href="CSS/artikel_style.css" rel="stylesheet">
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 		<meta charset="UTF-8"/>
 	</head>
 
@@ -29,128 +30,9 @@
 		
 		
 		
-		<div class="author_body_container">
+		<div class="author_body_container" id="artikel_container">
 		
 		
-			<div id="top_container">
-				<div class="author_image" id="author_img">
-					<img class="img_Author" src="sources/5.jpg" alt="author_image" />
-				</div>
-			
-			
-				<div class="biographie_buble" id="bio_bb">
-					<p> <span class="price_tag">27,44 &euro;</span>  </p>
-						
-						<div class="book_attributes_tag"> 
-							<p>Titel:</p>
-							<a href="https://www.google.com/"> <p> Autor:</p> </a>
-							<p>Kategorie:</p>
-							<p>Kategorie:</p>
-							<p>ISBN:</p>
-							<p>Bewertung:</p>
-						</div>
-							
-						<div class="book_attributes"> 
-							<p>Titel</p>
-							<a href="https://www.google.com/"> <p> Shari L. Tapscott</p> </a>
-							<p>Roman</p>
-							<p> ISBN 2389712343287958278959872597834 </p>
-							<p>
-							<span class="fa fa-star checked_star"></span>
-                            <span class="fa fa-star checked_star"></span>
-                            <span class="fa fa-star checked_star"></span>
-                            <span class="fa fa-star"></span>
-                            <span class="fa fa-star"></span>
-							(12 Bewertungen)</p>
-						</div>
-						
-						
-						
-						
-						<div class="kurzbeschr_box">
-							<p id="kurzbeschr_headline">Kurzbeschreibung:</p>
-							<p>
-							sJDKLlkdsfjlksad
-							gfsdklfjklsadf
-							skdljaflksdajklksdaf
-							ksljadfjlsdakfjlksdajkfl
-							klsdajfklsadjf
-							ppjkasdfklasdjkflsda
-							kjsadfjklsdafjlksfd
-							</p>
-							
-							<p>
-							sJDKLlkdsfjlksad
-							gfsdklfjklsadf
-							skdljaflksdajklksdaf
-							ksljadfjlsdakfjlksdajkfl
-							klsdajfklsadjf
-							ppjkasdfklasdjkflsda
-							kjsadfjklsdafjlksfd
-							</p>
-							
-							<p>
-							sJDKLlkdsfjlksad
-							gfsdklfjklsadf
-							skdljaflksdajklksdaf
-							ksljadfjlsdakfjlksdajkfl
-							klsdajfklsadjf
-							ppjkasdfklasdjkflsda
-							kjsadfjklsdafjlksfd
-							</p>
-							
-							
-							<p>
-							sJDKLlkdsfjlksad
-							gfsdklfjklsadf
-							skdljaflksdajklksdaf
-							ksljadfjlsdakfjlksdajkfl
-							klsdajfklsadjf
-							ppjkasdfklasdjkflsda
-							kjsadfjklsdafjlksfd
-							</p>
-							
-							
-							<p>
-							sJDKLlkdsfjlksad
-							gfsdklfjklsadf
-							skdljaflksdajklksdaf
-							ksljadfjlsdakfjlksdajkfl
-							klsdajfklsadjf
-							ppjkasdfklasdjkflsda
-							kjsadfjklsdafjlksfd
-							</p>
-							
-							
-							<p>
-							sJDKLlkdsfjlksad
-							gfsdklfjklsadf
-							skdljaflksdajklksdaf
-							ksljadfjlsdakfjlksdajkfl
-							klsdajfklsadjf
-							ppjkasdfklasdjkflsda
-							kjsadfjklsdafjlksfd
-							</p>
-						
-						</div>
-						
-						<a href="Shop.html">
-						<button class="buttons" id="back_button" type="button">zur&uuml;ck zum Shop</button>
-						</a>
-						
-						<a href="Warenkorb.html">
-						<button class="buttons" id="cart_button" type="button" onclick="cart_function()">in den Warenkorb</button>
-						</a>
-						
-						
-						
-						
-				</div>
-				
-				
-			
-			
-			</div>
 		</div>
 
 		
@@ -171,7 +53,69 @@
 		<script>
 			//Grab Book ID from Link
 
-			console.log(get_url_ID("titelID"));
+			var book_id = get_url_ID("titelID");
+			console.log(book_id);
+			
+
+			$.ajax({
+				url: 'http://localhost:8000/web2/buch/gib/' + book_id,
+				method: 'get',
+				dataType: 'json'
+
+				}).done(function (response) {
+
+					ajaxToHTML(response.daten);
+
+				}).fail(function (jqXHR, statusText, error) {
+					console.log('Response Code: ' + jqXHR.status + ' - Fehlermeldung: ' + jqXHR.responseText);
+					$('#output').html('Ein Fehler ist aufgetreten');
+			});
+
+
+			function ajaxToHTML(json_book){
+				tmp= "<div id=\"top_container\"> <div class=\"author_image\" id=\"author_img\"> <img class=\"img_Author\"";
+				tmp+="src=\"" + json_book["bildpfad"] +"\"" + "alt=\"author_image\" /> </div>";
+				tmp+= "<div class=\"biographie_buble\" id=\"bio_bb\"> <p> <span class=\"price_tag\">"  + json_book["preis"] + "&euro;</span></p>";
+				tmp+= "<div class=\"book_attributes_tag\"> <p>Titel:</p>";
+				tmp += "<a href=\"https://www.google.com/\"> <p> Autor:</p> </a> <p>Kategorie:</p <p>ISBN:</p><p>Bewertung:</p> </div>";      //Author href noch nicht dynamisch
+				tmp += "<div class=\"book_attributes\"> <p>" + json_book["titel"] + "</p>" + "<a href=\"127.0.0.1/author_id=1/\"> <p> " + json_book["autor_name"] + "</p> </a>";
+				tmp += "<p>" + json_book["genre"] + "</p>";
+				tmp += "<p>" +  json_book["isbn"] +  "</p><p>" ;
+				tmp += createStars(json_book["gesamtbewertung"]);
+				tmp += "(" + json_book["anzahlbew"] + "Bewertungen)</p></div> <div class=\"kurzbeschr_box\"> <p id=\"kurzbeschr_headline\"> Kurzbeschreibung:</p>"; 
+				tmp += "<p>"   + json_book["kurzbeschreibung"] +   "</p>";
+				tmp+= "</div> <a href=\"Shop.html\">";      // Shop.html entsprechend ersetzen
+				tmp += "<button class=\"buttons\" id=\"back_button\" type=\"button\">zur&uuml;ck zum Shop</button></a>";
+				tmp += "<a href=\"Warenkorb.html\">";     // Warenkorb.html entsprechend ersetzen
+				tmp += "<button class=\"buttons\" id=\"cart_button\" type=\"button\" onclick=\"cart_function()\">in den Warenkorb</button></a></div></div>";
+				$("#artikel_container").append(tmp);
+			}
+
+
+			function createStars(num){
+				var ratingString = "<div class=\"rating_container\">";
+				num = Math.round(num);
+				for(j=0;j<5;j++){
+					if(j<num){
+						ratingString += "<span class=\"fa fa-star checked_star\"></span>";
+					}
+					else{
+						ratingString+= "<span class=\"fa fa-star\"></span>";
+					}
+				}
+				ratingString+="</div>";
+				return ratingString;
+			}
+
+
+
+
+
+
+
+
+
+
 
 
 			function get_url_ID(name)

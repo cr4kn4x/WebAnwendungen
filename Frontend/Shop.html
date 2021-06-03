@@ -258,7 +258,6 @@
 
 				for (i = 0; i < ajaxBooks.length; i++) {
 					tmp="";
-
 					bookobj = ajaxBooks[i];
 					tmp += "<div class=\"artikel_buble\"><a href=\"Artikelseite.html?titelID=";       
 					tmp += bookobj.id + "\">";
@@ -430,7 +429,7 @@
 					for(var i = 0; i<Kategorien.length; i++){
 						str += Kategorien[i];
 					}
-
+                                                               // gib/kat/ cat01cat02cat03x20
 
 					$.ajax({
 						url: 'http://localhost:8000/web2/shop/gib/kat/'+ str + 'x' + preis,
