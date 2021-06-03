@@ -22,7 +22,6 @@ serviceRouter.get('/shop/gib/all', function(request, response) {
 
 //
 
-
 serviceRouter.get('/shop/gib/maxprice', function(request, response) {
     helper.log("Route Shop: Client maxPrice");
 

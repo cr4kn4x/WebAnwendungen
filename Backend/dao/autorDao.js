@@ -9,6 +9,17 @@ class AutorDao {
         return this._conn;
     }
 
+    loadAll() {
+        var sql= 'SELECT * FROM AUTOR';
+        var statement = this._conn.prepare(sql);
+        var result = statement.all();
+
+        if (helper.isArrayEmpty(result)) 
+            return [];      
+        
+        return helper.arrayObjectKeysToLower(result);
+    }
+
     loadById(id) {
         var sql = 'SELECT * FROM Autor WHERE ID=?';
         var statement = this._conn.prepare(sql);

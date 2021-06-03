@@ -3,6 +3,7 @@
         <title>The Ebook Hub</title>
         <link rel="stylesheet" href="CSS/AuthorPage.css"/>
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <meta charset="UTF-8"/>
     </head>
     
@@ -24,76 +25,21 @@
             <div id="logo"></div>
         </div>   
         
-        <div class="author_body_container">
+        <div class="author_body_container" id="author_container">
 			<h1 style="color:#444048">Autoren</h1>
 		
 			<form class="searchbar_container">
 				<input type="text" placeholder="Nach Autor suchen..." name="search">
 				<button type="submit" >	<i class="fa fa-search"> </i>	</button>
-			</form>
-		
+			</form>	
 			
-			<div class="author_buble">
-				<a href="AuthorPageEinzeln.html" class="Author_link">
-						
-						<div class="inside_buble_container">
-							<span class="Author_attribute_tag">Name: </span>
-							<span class="Author_attribute"> Shari L. Tapscott </span>
-						</div>
 					
-						<div class="inside_buble_container">
-							<span class="Author_attribute_tag">Alter: </span>
-							<span class="Author_attribute"> 44 Jahre </span>
-						</div>
-					
-						<div class="inside_buble_books_container">
-							<span class="Author_attribute_tag">Bücher: </span>
-							
-							<div class="Book_links">
-								<a class="Book_link" href="../Book_1/index.html">A Bear`s Bride Entwined Tales Vol. 3,</a>
-								<a class="Book_link">Buch 2 (DUMMY)</a>
-							</div>
-							
-						</div>
-				</a>
-			</div>
 			
-			
-			<div class="author_buble">
-				<a href="AuthorPageEinzeln.html" class="Author_link">
-						
-						<div class="inside_buble_container">
-							<span class="Author_attribute_tag">Name: </span>
-							<span class="Author_attribute"> Jennifer Alice Jager </span>
-						</div>
-					
-						<div class="inside_buble_container">
-							<span class="Author_attribute_tag">Alter: </span>
-							<span class="Author_attribute"> 43 Jahre </span>
-						</div>
-					
-						<div class="inside_buble_books_container">
-							<span class="Author_attribute_tag">Bücher: </span>
-							
-							<div class="Book_links">
-								<a class="Book_link" href="../Book_2/index.html">Die Nacht der fallenden Sterne,</a>
-								<a class="Book_link">Buch 2 (DUMMY)</a>
-							</div>
-							
-						</div>
-				</a>
-			</div>
-			
-			
-			
-	
 			
 		</div>
 		
 		
-		<script src="script.js"></script>
-
-        <div id="footer">
+		<div id="footer">
             <div id="selectFooter" class="FooterElemente">              
                 <a href="Impressum.html">Impressum und Kontakt</a>     
                 <a href="Datenschutzerklärung.html">Datenschutz</a>   
@@ -101,5 +47,44 @@
             </div>
             <div id="copyright"></div>
         </div>
+
+		<script>
+			$.ajax({
+				url: 'http://localhost:8000/web2/autor/gib/alle',
+				method: 'get',
+				dataType: 'json'
+			}).done(function (response) {
+				ajaxToHTML(response.daten);
+			}).fail(function (jqXHR, statusText, error) {
+					console.log('Response Code: ' + jqXHR.status + ' - Fehlermeldung: ' + jqXHR.responseText);
+					$('#output').html('Ein Fehler ist aufgetreten');
+			});
+
+			function ajaxToHTML(json_autoren) {
+				for (let i =0; i<json_autoren.length; i++) {
+					autorobj = json_autoren[i];				
+					console.log(json_autoren)
+					tmp="<div class=\"author_buble\">"
+					tmp+="<a href=\"https://www.google.com/\"\" class=\"Author_link\">"
+					tmp+="<div class=\"inside_buble_container\">"
+					tmp+="<span class=\"Author_attribute_tag\">Name: </span>"
+					tmp+="<span class=\"Author_attribute\">" + autorobj["name"] + "</span>"
+					tmp+="</div>"
+					tmp+="<div class=\"inside_buble_container\">"
+					tmp+="<span class=\"Author_attribute_tag\">Alter: </span>"
+					tmp+="<span class=\"Author_attribute\">" + autorobj["age"] + "</span>"
+					tmp+="</div>"
+					tmp+="<div class=\"inside_buble_books_container\">"
+					tmp+="<span class=\"Author_attribute_tag\">Bücher: </span>"
+					tmp+="<div class=\"Book_links\">"
+					tmp+="<a class=\"Book_link\" href=\"https://www.google.com/\">Buchname</a>"
+					tmp+="</div>"
+					tmp+="</div>"
+					tmp+="</a>"
+					tmp+="</div"
+					$("#author_container").append(tmp)
+				}
+			}
+		</script>
     </body>
 </html>

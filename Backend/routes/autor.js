@@ -5,6 +5,20 @@ var serviceRouter = express.Router();
 
 helper.log('- Route Autor');
 
+serviceRouter.get('/autor/gib/alle', function(request, response) {
+    helper.log("Route Autor: Client requested all records");
+
+    const autorDao = new AutorDao(request.app.locals.dbConnection);
+    try {
+        var result = autorDao.loadAll();
+        helper.log('Route Autor: All records loaded');
+        response.status(200).json(helper.jsonMsgOK(result));
+    } catch (ex) {
+        helper.logError('Service Adresse: Error loading records. Exception occured: ' + ex.message);
+        response.status(400).json(helper.jsonMsgError(ex.message));
+    }
+});
+
 serviceRouter.get('/autor/gib/:id', function(request, response) {
     helper.log('Route Autor: Client requested one record, id=' + request.params.id);
 
