@@ -60,6 +60,26 @@ class AutorDao {
     toString() {
         helper.log('AutorDao [_conn=' + this._conn + ']');
     }
+
+
+    loadSuche(suchwort){
+    
+        
+        var sql = "SELECT * FROM Autor WHERE Name LIKE '%" + suchwort + "%'";
+
+        var statement = this._conn.prepare(sql);
+        var result = statement.all();
+
+        if (helper.isArrayEmpty(result)) 
+            return [];
+    
+        
+        return helper.arrayObjectKeysToLower(result);
+
+    }
+
+
+
 }
 
 module.exports = AutorDao;
