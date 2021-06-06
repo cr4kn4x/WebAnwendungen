@@ -3,6 +3,7 @@
         <title>The Ebook Hub</title>
         <link rel="stylesheet" href="CSS/home_stylesheet.css"/>
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <meta charset="UTF-8"/>
     </head>
     
@@ -30,10 +31,10 @@
 	<body>
 	
 		
-		<a class="prev" onclick="plusSlides(1)">&#10094;</a>       	<! Unicode: Heavy Left-Pointing Angle Quotation Mark Ornament   &#10094 >
-		<a class="next" onclick="plusSlides(-1)">&#10095;</a> 			<! Unicode: Heavy Right-Pointing Angle Quotation Mark Ornament  &#10094 >
+		<a class="prev" onclick="plusSlides(1)">&#10094;</a>       	<!-- Unicode: Heavy Left-Pointing Angle Quotation Mark Ornament   &#10094 -->
+		<a class="next" onclick="plusSlides(-1)">&#10095;</a> 			<!-- Unicode: Heavy Right-Pointing Angle Quotation Mark Ornament  &#10094 -->
         
-        <div class="slideshow_box">
+        <div class="slideshow_box" id="slideshow_box">
 		
 		<div class="Home_box">
 			<span id="Home_font"> Home  </span> 
@@ -46,185 +47,18 @@
 		
 		
 			
-			<div class="mySlides fade">
-			
-				<a href="https://www.google.com/">
-				
-				<img src="sources/1.jpg" class="slider_img">
-				
-				<figcaption>
-					<div class="Slide_text">
-						<!-- Buch Tag mit Attribut -->
-						<span class="Slide_text_orange">Titel:</span> <br>
-						<div class="myslide_text">
-							THE ART OF VINLY COVERS 2010 <br><br>
-						</div >
-						
-						<!-- Autor Tag mit Attribut -->
-						<span class="Slide_text_orange">Autor:</span> <br>
-						<div class="myslide_text">
-							Tom Brunner <br><br>
-						</div >
-						
-						<!-- Bewertung Tag mit Bewertung -->
-						<span class="Slide_text_orange">Bewertung:</span> <br>
-						<div class="myslide_text">
-							<span class="fa fa-star checked_star"></span>
-							<span class="fa fa-star checked_star"></span>
-							<span class="fa fa-star checked_star"></span>
-							<span class="fa fa-star"></span>
-							<span class="fa fa-star"></span>
-						</div>
-					<div>
-				</figcaption>
-				
-				
-				</a>
-				
-			</div>
-
-			<div class="mySlides fade">
-			
-				<a href="../Book_1/index.html">
-				<img src="sources/2.jpg" class="slider_img">
-				
-				<figcaption>
-					<div class="Slide_text">
-						<!-- Buch Tag mit Attribut -->
-						<span class="Slide_text_orange">Titel:</span> <br>
-						<div class="myslide_text">
-							A Bears Bride vol.3 <br><br>
-						</div >
-						
-						<!-- Autor Tag mit Attribut -->
-						<span class="Slide_text_orange">Autor:</span> <br>
-						<div class="myslide_text">
-							Share L. Tapscott <br><br>
-						</div >
-						
-						<!-- Bewertung Tag mit Bewertung -->
-						<span class="Slide_text_orange">Bewertung:</span> <br>
-						<div class="myslide_text">
-							<span class="fa fa-star checked_star"></span>
-							<span class="fa fa-star checked_star"></span>
-							<span class="fa fa-star checked_star"></span>
-							<span class="fa fa-star checked_star"></span>
-							<span class="fa fa-star checked_star"></span>
-						</div>
-					<div>
-				</figcaption>
-				</a>
-			</div>
-
-			<div class="mySlides fade">
-				<a href="../Book_2/index.html">
-				<img src="sources/3.jpg" class="slider_img">
-				
-				
-				<figcaption>
-					<div class="Slide_text">
-						<!-- Buch Tag mit Attribut -->
-						<span class="Slide_text_orange">Titel:</span> <br>
-						<div class="myslide_text">
-							Die Nacht der fallenden Sterne <br><br>
-						</div >
-						
-						<!-- Autor Tag mit Attribut -->
-						<span class="Slide_text_orange">Autor:</span> <br>
-						<div class="myslide_text">
-							Jennifer Alice Jaeger <br><br>
-						</div >
-						
-						<!-- Bewertung Tag mit Bewertung -->
-						<span class="Slide_text_orange">Bewertung:</span> <br>
-						<div class="myslide_text">
-							<span class="fa fa-star checked_star"></span>
-							<span class="fa fa-star checked_star"></span>
-							<span class="fa fa-star checked_star"></span>
-							<span class="fa fa-star checked_star"></span>
-							<span class="fa fa-star"></span>
-						</div>
-					<div>
-				</figcaption>
-				</a>
-			</div>
-			
-			<div class="mySlides fade">
-				<a href="https://www.google.com/">
-				<img src="sources/4.jpg" class="slider_img">
-				<figcaption>
-					<div class="Slide_text">
-						<!-- Buch Tag mit Attribut -->
-						<span class="Slide_text_orange">Titel:</span> <br>
-						<div class="myslide_text">
-							In the Night Wood <br><br>
-						</div >
-						
-						<!-- Autor Tag mit Attribut -->
-						<span class="Slide_text_orange">Autor:</span> <br>
-						<div class="myslide_text">
-							Dale Bailey <br><br>
-						</div >
-						
-						<!-- Bewertung Tag mit Bewertung -->
-						<span class="Slide_text_orange">Bewertung:</span> <br>
-						<div class="myslide_text">
-							<span class="fa fa-star checked_star"></span>
-							<span class="fa fa-star checked_star"></span>
-							<span class="fa fa-star checked_star"></span>
-							<span class="fa fa-star checked_star"></span>
-							<span class="fa fa-star checked_star"></span>
-						</div>
-					<div>
-				</figcaption>
-				</a>
-				
-				
-			</div>
-			
-			
-			<div class="mySlides fade">
-				<img src="sources/5.jpg" class="slider_img">  
-				<a href="https://www.google.com/">
-
-				<figcaption>
-					<div class="Slide_text">
-						<!-- Buch Tag mit Attribut -->
-						<span class="Slide_text_orange">Titel:</span> <br>
-						<div class="myslide_text">
-							Drachen Kralle die Klaue des Morero <br><br>
-						</div >
-						
-						<!-- Autor Tag mit Attribut -->
-						<span class="Slide_text_orange">Autor:</span> <br>
-						<div class="myslide_text">
-							Janika Hoffmann <br><br>
-						</div >
-						
-						<!-- Bewertung Tag mit Bewertung -->
-						<span class="Slide_text_orange">Bewertung:</span> <br>
-						<div class="myslide_text">
-							<span class="fa fa-star checked_star"></span>
-							<span class="fa fa-star checked_star"></span>
-							<span class="fa fa-star"></span>
-							<span class="fa fa-star"></span>
-							<span class="fa fa-star"></span>
-						</div>
-					<div>
-				</figcaption>
-				</a>
-			</div>
 			
 			
 			
 			
 		</div>
+
 		
 		
 		
 		
 		
-		<script src="JS/home.js"></script>
+		
 
 
          <div id="footer">
@@ -239,4 +73,218 @@
 		
 		
     </body>
+
+
+
+	<script>
+
+			$(async () => {
+				
+				await load_Bestseller();
+							
+        	});
+
+			async function load_Bestseller() {
+				let response = await fetch('http://localhost:8000/web2/buch/lade_Bestseller');
+				let json_books = await response.json();
+				await ajaxToHTML(json_books.daten);
+				
+			}	
+
+
+			
+			
+			
+		 	function ajaxToHTML(json_books) {
+				
+				
+				
+				for(let i=0; i<json_books.length; i++){
+					json_obj = json_books[i]
+					
+					tmp = "<div class=\"mySlides fade\"> <a href=\"Artikelseite.html?titelID=" + json_obj["id"] + "\">";
+					tmp += "<img src=\"" + json_obj["bildpfad"] + "\" class=\"slider_img\">";
+					tmp+="<figcaption>";
+					tmp+="<div class=\"Slide_text\">";
+					tmp+="<span class=\"Slide_text_orange\">Titel: </span> <br>";
+					tmp+="<div class=\"myslide_text\">";
+					tmp+= json_obj["titel"] + "<br><br>";
+					tmp+="</div>";
+					tmp+="<span class=\"Slide_text_orange\">Autor: </span> <br>";
+					tmp+="<div class=\"myslide_text\">";
+					tmp+= json_obj["autor_name"] + "<br><br>";
+					tmp+="</div >";
+					tmp+="<span class=\"Slide_text_orange\">Bewertung:</span> <br>";
+					tmp+="<div class=\"myslide_text\">";
+					tmp+= createStars(json_obj["gesamtbewertung"]);
+					tmp+= "<span>(" + json_obj["anzahlbew"] + ")</span>";
+					tmp+="</div>";
+					tmp+="</div>";
+					tmp+="</figcaption>";
+					tmp+="</a>";
+					tmp+="</div>";
+
+					console.log(json_obj["bildpfad"]);
+
+					$("#slideshow_box").append(tmp);
+						
+					}
+
+
+					start_Slider();
+					
+
+					
+				}
+
+
+
+
+
+
+
+				function getUrlParameterByName(name,url)
+				{
+					if (!url) url = window.location.href;
+						name = name.replace(/[\[\]]/g, "\\$&");
+						var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"), results = regex.exec(url);
+					if (!results) return null;
+					if (!results[2]) return '';
+					return decodeURIComponent(results[2].replace(/\+/g, " "));
+				}
+
+
+
+				function createStars(num){
+					var ratingString = "<div class=\"rating_container\">";
+					num = Math.round(num);
+					for(j=0;j<5;j++){
+						if(j<num){
+							ratingString += "<span class=\"fa fa-star checked_star\"></span>";
+						}
+						else{
+							ratingString+= "<span class=\"fa fa-star\"></span>";
+						}
+					}
+					ratingString+="</div>";
+					return ratingString;
+				}
+
+
+
+
+			
+
+			var mid_slide;
+			var left_slide;
+			var right_slide;
+			var slides;
+			var slider_images;
+
+
+
+
+			function start_Slider(){   // wird aufgerufen sobald Webseite geladen wird
+				slides = document.getElementsByClassName("mySlides");
+				console.log(slides);
+				slider_images = document.getElementsByClassName("slider_img");
+
+				mid_slide = 1;
+				left_slide= 0;
+				right_slide = 2;
+				
+				/* First show */
+				showSlides(mid_slide);
+				/* --------------------------------- */
+
+			}
+
+
+			function plusSlides(n) {
+			showSlides(mid_slide+=n, left_slide+=n, right_slide+=n);
+			}
+
+
+			function showSlides(n0,n1,n2) {
+			
+				
+
+				for (let i = 0; i < slides.length; i++) {
+					slides[i].style.display = "none";       /* Alle Slides werden "deaktiviert" */
+				}
+
+
+				/*------------ n0 : mid_slide */
+				if( n0 > slides.length-1 ){
+					mid_slide=0;
+				}
+				else if( n0 < 0 ) {
+					mid_slide=slides.length-1;
+				}
+			
+				/*------------ n1 : left_slide */
+				if( n1 > slides.length-1 ){
+					left_slide=0;
+				}
+				else if( n1 < 0 ) {
+					left_slide=slides.length-1;
+				}
+			
+				/*------------ n2 : right_slide */
+				if( n2 > slides.length-1 ){
+					right_slide=0;
+				}
+				else if( n2 < 0 ) {
+					right_slide=slides.length-1;
+				}	
+
+				
+				
+				slides[mid_slide].style.borderColor = "yellow";
+				slides[left_slide].style.borderColor = "";
+				slides[right_slide].style.borderColor = "";
+
+
+				
+				slides[left_slide].style.display = "inline-block";     /* left Slide wird eingeblendet. */
+				slides[left_slide].style.left = "2%"; 
+				
+				slides[left_slide].style.width = "230px";
+				slides[left_slide].style.height = "500px";
+			
+				slides[mid_slide].style.display = "inline-block";     /*  mid Slide wird eingeblendet. */
+				slides[mid_slide].style.left = "28%"; 
+				
+				slides[mid_slide].style.width = "300px";
+				slides[mid_slide].style.height = "600px";
+				
+				slides[right_slide].style.display = "inline-block";     /* right Slide wird eingeblendet. */
+				slides[right_slide].style.left = "59%";
+				
+				slides[right_slide].style.width = "230px";
+				slides[right_slide].style.height = "500px";
+				
+				
+				
+				
+				
+
+				
+				
+					
+			}
+
+
+
+
+
+
+
+
+
+
+	</script>
+	
+	
+
 </html>

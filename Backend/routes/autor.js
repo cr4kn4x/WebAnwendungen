@@ -47,6 +47,21 @@ serviceRouter.get('/autor/gib/:id', function(request, response) {
     }
 });
 
+
+serviceRouter.get('/autor/gib/suche/:suchwort', function(request, response) {
+    helper.log('Route Autor: Client requested one record, id=' + request.params.loadById);
+
+    const autorDao = new AutorDao(request.app.locals.dbConnection);
+    try {
+        var result = autorDao.loadSuche(request.params.suchwort);
+        helper.log('Route Autor: Record loaded');
+        response.status(200).json(helper.jsonMsgOK(result));
+    } catch (ex) {
+        helper.logError('Service Adresse: Error loading record by id. Exception occured: ' + ex.message);
+        response.status(400).json(helper.jsonMsgError(ex.message));
+    }
+});
+
 //weitere Anfragen
 
 module.exports = serviceRouter;

@@ -50,9 +50,24 @@
 
 		<script>
 			$(async () => {
-				let json_autoren = await load_author();
-				await load_authorbooks(json_autoren);				
+				if (getUrlParameterByName("search") != null){
+					let json_autoren = await load_selectauthors(getUrlParameterByName("search"));   //lade Autoren die zum Suchwort passen
+					console.log(json_autoren);
+					await load_authorbooks(json_autoren);
+				}
+				else{
+					let json_autoren = await load_author();    //lade alle Autoren
+					await load_authorbooks(json_autoren);
+				}
+				
+							
         	});
+
+			async function load_selectauthors(suchwort) {
+				let response = await fetch('http://localhost:8000/web2/autor/gib/suche/' + suchwort);
+				let json_autoren = await response.json();
+				return json_autoren.daten;
+			}	
 			
 			async function load_author() {
 				let response = await fetch('http://localhost:8000/web2/autor/gib/alle');
@@ -101,6 +116,22 @@
 					tmp+="</div>"
 					$("#author_container").append(tmp)
 				}
+
+
+
+
+
+
+
+				function getUrlParameterByName(name,url)
+					{
+						if (!url) url = window.location.href;
+							name = name.replace(/[\[\]]/g, "\\$&");
+							var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"), results = regex.exec(url);
+						if (!results) return null;
+						if (!results[2]) return '';
+						return decodeURIComponent(results[2].replace(/\+/g, " "));
+					}
 		</script>
     </body>
 </html>
