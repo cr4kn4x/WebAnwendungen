@@ -4,7 +4,9 @@
     <title>The Ebook Hub</title>
     <link rel="stylesheet" href="CSS/warenkorb_stylesheet.css" />
     <link rel="stylesheet" href="CSS/warenkorb.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <meta charset="UTF-8" />
+    <script src="JS/sessionHandling.js"></script>
 </head>
 
 <body>
@@ -29,49 +31,8 @@
         <div id="warenkorb">
             <h1 style="color: #444048;">Warenkorb</h1>
         </div>
-        <div class="Book_container">
-            <div class="author_buble">
-                <div class="inside_buble_container">
-                    <span class="Author_attribute"> Moby Dick </span>
-                </div>
-                <div class="inside_buble_container">
-                    <span class="Author_attribute"> Herman Melville </span>
-                </div>
-                <div class="inside_buble_container">
-                    <span class="Author_attribute"> Roman </span>
-                </div>
-                <div class="inside_buble_container">
-                    <span class="Author_attribute" style="color: #FF8A11;"> 32,65€ </span>
-                </div>
-            </div>
-            <div class="author_buble">
-                <div class="inside_buble_container">
-                    <span class="Author_attribute"> Moby Dick </span>
-                </div>
-                <div class="inside_buble_container">
-                    <span class="Author_attribute"> Herman Melville </span>
-                </div>
-                <div class="inside_buble_container">
-                    <span class="Author_attribute"> Roman </span>
-                </div>
-                <div class="inside_buble_container">
-                    <span class="Author_attribute" style="color: #FF8A11;"> 32,65€</span>
-                </div>
-            </div>
-            <div class="author_buble">
-                <div class="inside_buble_container">
-                    <span class="Author_attribute"> Moby Dick </span>
-                </div>
-                <div class="inside_buble_container">
-                    <span class="Author_attribute"> Herman Melville </span>
-                </div>
-                <div class="inside_buble_container">
-                    <span class="Author_attribute"> Roman </span>
-                </div>
-                <div class="inside_buble_container">
-                    <span class="Author_attribute" style="color: #FF8A11;"> 32,65€ </span>
-                </div>
-            </div>
+        <div class="Book_container" id="Book_container">
+            
 
             <div class="container_right">
                 <h2>Gesamtbetrag:</h2> 
@@ -113,6 +74,46 @@
             </div>
             <div id="copyright"></div>
     </div>
+
+
+    <script>
+        $(async () => {
+            await loadBasket();			
+        });
+
+        async function loadBasket() {
+            let books = getSessionItem("id").split(',');
+            //Duplikate entfernen
+            books = new Set(books);
+            books = Array.from(books)
+            console.log(books)
+            for (let i=0; i<books.length; i++) {
+                let response = await fetch("http://localhost:8000/web2/buch/gib/" + books[i]);
+                let json_books = await response.json()
+                await ajaxToHTML(json_books.daten);
+                console.log("finish")
+            }
+        }
+
+        function ajaxToHTML(json_book) {
+            console.log(json_book)
+            tmp="<div class=\"author_buble\">";
+            tmp+="<div class=\"inside_buble_container\">";
+            tmp+="<span class=\"Author_attribute\">" + json_book.titel + "</span>";
+            tmp+="</div>";
+            tmp+="<div class=\"inside_buble_container\">";
+            tmp+="<span class=\"Author_attribute\">" + json_book.autor_name + "</span>";
+            tmp+="</div>";
+            tmp+="<div class=\"inside_buble_container\">";
+            tmp+="<span class=\"Author_attribute\">" + json_book.genre + "</span>";
+            tmp+="</div>";
+            tmp+="<div class=\"inside_buble_container\">";
+            tmp+="<span class=\"Author_attribute\" style=\"color: #FF8A11;\">" + json_book.preis + "&euro;</span>";
+            tmp+="</div>";
+            tmp+="</div>";
+            $("#Book_container").append(tmp);
+        }
+    </script>
 </body>
 
 </html>

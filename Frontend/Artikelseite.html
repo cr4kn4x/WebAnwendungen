@@ -4,6 +4,7 @@
 		<link href="CSS/artikel_style.css" rel="stylesheet">
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+		<script src="JS/sessionHandling.js"></script>
 		<meta charset="UTF-8"/>
 	</head>
 
@@ -53,22 +54,22 @@
 		<script>
 			//Grab Book ID from Link
 			$(async () => {
-				var book_id = get_url_ID("titelID");
-				console.log(book_id);		
+				var book_id = get_url_ID("titelID");			
 
-				$.ajax({
-					url: 'http://localhost:8000/web2/buch/gib/' + book_id,
-					method: 'get',
-					dataType: 'json'
+				let response = await fetch("http://localhost:8000/web2/buch/gib/" + book_id);
+				let buch = await response.json()
+				await ajaxToHTML(buch.daten)
+				
+				$("#cart_button").click(() => {		
+					if (getSessionItem("id") == null) {
+						setSessionItem("id", book_id)
+					}else {
+						setSessionItem("id", getSessionItem("id") + "," + book_id);
+					}
+				})
 
-					}).done(function (response) {
 
-						ajaxToHTML(response.daten);
-
-					}).fail(function (jqXHR, statusText, error) {
-						console.log('Response Code: ' + jqXHR.status + ' - Fehlermeldung: ' + jqXHR.responseText);
-						$('#output').html('Ein Fehler ist aufgetreten');
-				});			
+			
         	});
 			
 
@@ -119,7 +120,8 @@
 				console.log("Es wurde keine ID übergeben!");
 			else
 				return results[1];
-			}
+			}			
+			
 		</script>
 
 	</body>
