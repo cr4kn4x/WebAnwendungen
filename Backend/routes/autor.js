@@ -19,6 +19,20 @@ serviceRouter.get('/autor/gib/alle', function(request, response) {
     }
 });
 
+/* serviceRouter.get('/autor/lade_von_autor/', function(request, response) {
+    helper.log('Route Buch: Client requested all records from authors');
+
+    const autorDao = new AutorDao(request.app.locals.dbConnection);
+    try {
+        var result = autorDao.loadByAuthorId();
+        helper.log('Route Buch: Record loaded');
+        response.status(200).json(helper.jsonMsgOK(result));
+    } catch (ex) {
+        helper.logError('Service Adresse: Error loading record by id. Exception occured: ' + ex.message);
+        response.status(400).json(helper.jsonMsgError(ex.message));
+    }
+}); */
+
 serviceRouter.get('/autor/gib/:id', function(request, response) {
     helper.log('Route Autor: Client requested one record, id=' + request.params.id);
 

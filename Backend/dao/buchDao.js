@@ -48,6 +48,20 @@ class BuchDao {
         return loadAdditionalData(helper.objectKeysToLower(result),this._conn);
     }
 
+    loadByAuthorId(id) {
+        var sql = 'SELECT * FROM BUCH WHERE authorid=' + id;
+        //        var sql = 'SELECT * FROM BUCH INNER JOIN AUTOR ON BUCH.AUTHORID = AUTOR.ID';
+
+        var statement = this._conn.prepare(sql);
+        var result = statement.all();
+
+
+        if (helper.isArrayEmpty(result)) 
+            return [];      
+        
+        return helper.arrayObjectKeysToLower(result);
+    }
+
     toString() {
         helper.log('BuchDao [_conn=' + this._conn + ']');
     }

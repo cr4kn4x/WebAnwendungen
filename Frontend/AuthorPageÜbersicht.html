@@ -49,23 +49,28 @@
         </div>
 
 		<script>
-			$.ajax({
-				url: 'http://localhost:8000/web2/autor/gib/alle',
-				method: 'get',
-				dataType: 'json'
-			}).done(function (response) {
-				ajaxToHTML(response.daten);
-			}).fail(function (jqXHR, statusText, error) {
-					console.log('Response Code: ' + jqXHR.status + ' - Fehlermeldung: ' + jqXHR.responseText);
-					$('#output').html('Ein Fehler ist aufgetreten');
-			});
+			$(async () => {
+				let json_autoren = await load_author();
+				await load_authorbooks(json_autoren);				
+        	});
+			
+			async function load_author() {
+				let response = await fetch('http://localhost:8000/web2/autor/gib/alle');
+				let json_autoren = await response.json();
+				return json_autoren.daten;
+			}	
 
-			function ajaxToHTML(json_autoren) {
-				for (let i =0; i<json_autoren.length; i++) {
-					autorobj = json_autoren[i];				
-					console.log(json_autoren)
+			async function load_authorbooks(json_autoren) {
+				for (let i=0; i<json_autoren.length; i++) {
+					let response = await fetch('http://localhost:8000/web2/buch/lade_von_autor/' + json_autoren[i]["id"]);
+					let json_authorbooks = await response.json();
+					await ajaxToHTML(json_autoren[i], json_authorbooks.daten);	
+				}				
+			}
+
+		 	function ajaxToHTML(autorobj, json_authorbooks) {
 					tmp="<div class=\"author_buble\">"
-					tmp+="<a href=\"https://www.google.com/\"\" class=\"Author_link\">"
+					tmp+="<a href=\"AuthorPageEinzeln.html?authorID=" + autorobj["id"] + "\" class=\"Author_link\">"
 					tmp+="<div class=\"inside_buble_container\">"
 					tmp+="<span class=\"Author_attribute_tag\">Name: </span>"
 					tmp+="<span class=\"Author_attribute\">" + autorobj["name"] + "</span>"
@@ -75,16 +80,27 @@
 					tmp+="<span class=\"Author_attribute\">" + autorobj["age"] + "</span>"
 					tmp+="</div>"
 					tmp+="<div class=\"inside_buble_books_container\">"
-					tmp+="<span class=\"Author_attribute_tag\">Bücher: </span>"
-					tmp+="<div class=\"Book_links\">"
-					tmp+="<a class=\"Book_link\" href=\"https://www.google.com/\">Buchname</a>"
-					tmp+="</div>"
+					tmp+="<span class=\"Author_attribute_tag\">Bücher: </span>"	
+
+					if (json_authorbooks.length <= 0) {
+						tmp+="<a class=\"Book_link\" href=\"\">Kein Buch vorhanden.</a>";	
+					}else {
+						for (let i=0; i<json_authorbooks.length; i++) {
+							if (i == json_authorbooks.length-1) {
+								console.log("ID von Autorübersicht:")
+								console.log(json_authorbooks[i]["id"])
+								tmp+="<a class=\"Book_link\" href=\"Artikelseite.html?titelID=" + json_authorbooks[i]["id"] + "\">" + json_authorbooks[i]["titel"] + " </a>";	
+							}else {
+								tmp+="<a class=\"Book_link\" href=\"Artikelseite.html?titelID=" + json_authorbooks[i]["id"] + "\">" + json_authorbooks[i]["titel"] + ", </a>";	
+							}
+						}
+					}
+					
 					tmp+="</div>"
 					tmp+="</a>"
-					tmp+="</div"
+					tmp+="</div>"
 					$("#author_container").append(tmp)
 				}
-			}
 		</script>
     </body>
 </html>

@@ -3,6 +3,7 @@
 	<head>
 		<link href="CSS/Author_einzeln.css" rel="stylesheet">
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 		<meta charset="UTF-8"/>
 	</head>
 
@@ -33,25 +34,7 @@
 		
 		
 			<div id="top_container">
-				<div class="biographie_buble" id="bio_bb">
-					<p>
-						<span class="font_Color">Biografie</span> <br>
-						<div class="bio_text">
-							Shari L. Tapscott writes young adult fantasy and humorous contemporary fiction. When she's not writing or reading, she enjoys gardening, making soap, and pretending she can sing.
-							She loves white chocolate mochas, furry animals, spending time with her family, and characters who refuse to behave.<br><br>
-							Tapscott lives in western Colorado with her husband, son, daughter, and two very spoiled Saint Bernards. 
-						</div> 
-						 
 						
-					</p>
-				</div>
-	
-			
-			<div class="author_image" id="author_img">
-				<img class="img_Author" src="sources/6.jpg" alt="author_image" />
-			</div>
-			
-			
 			</div>
 
 			<div class="Book_container">
@@ -215,10 +198,85 @@
             <div id="copyright"></div>
         </div>
 
+		
+		<script>
+			let author_id = get_url_ID("authorID");
+			cosnole.log(author_id);
+
+			$.ajax({
+				url: 'http://localhost:8000/web2/autor/gib/' + author_id,
+				method: 'get',
+				dataType: 'json'
+				
+				}).done(function (response) {
+
+					ajaxToHTML(response.daten);
+
+				}).fail(function (jqXHR, statusText, error) {
+					console.log('Response Code: ' + jqXHR.status + ' - Fehlermeldung: ' + jqXHR.responseText);
+					$('#output').html('Ein Fehler ist aufgetreten');
+			
+			});
+
+			function ajaxToHTML(json_author) {
+				tmp="<div id=\"top_container\">"
+				tmp+="<div class=\"biographie_buble\" id=\"bio_bb\">"
+				tmp+="<p>"
+				tmp+="<span class=\"font_Color\">Biografie</span> <br>"
+				tmp+="<div class=\"bio_text\">"
+				tmp+="Shari L. Tapscott writes young adult fantasy and humorous contemporary fiction. When she's not writing or reading, she enjoys gardening, making soap, and pretending she can sing."
+				tmp+="She loves white chocolate mochas, furry animals, spending time with her family, and characters who refuse to behave.<br><br>"
+				tmp+="Tapscott lives in western Colorado with her husband, son, daughter, and two very spoiled Saint Bernards."
+				tmp+="</div>"
+				tmp+="</p>"
+				tmp+="</div>"
+				tmp+="<div class=\"author_image\" id=\"author_img\">"
+				tmp+="<img class=\"img_Author\" src=\"" + json_author["bildpfad"] + "\" alt=\"author_image\" />"
+				tmp+="</div>"
+				tmp+="</div>"
+
+				tmp+="<div class=\"Book_container\">"
+				tmp+="<div class=\"author_buble\">"
+				tmp+="<p>"
+				tmp+="Der goldene <span class=\"Word_Spacing\">Topf Roman 60,44</span> &euro; <a href=\"https://www.google.com/\"><button type=\"button\">Zum Buch</button></a>"
+				tmp+="</p>"
+				tmp += "</div>"
+				tmp+="</div>"
+				tmp+="<div class=\"container_right\">"
+				tmp+="<p><span class=\"font_container\">Name:</span> <span class=\"Space\">Hermann Hesse</span></p>"
+				tmp+="<p><span class=\"font_container\">Alter:</span><span class=\"Space\"> 78 Jahre </span></p>"
+				tmp+="<p><span class=\"font_container\">Geboren:</span> <span class=\"Space\">22.01.1877</span></p>"
+				tmp+="<p><span class=\"font_container\">Gestorben:</span> <span class=\"Space\">22.01.1921</span></p>"
+				tmp+="<p><span class=\"font_container\">Publikationen:</span> <span class=\"Space\">42</span></p>"
+				tmp+="<p><span class=\"font_container\">Genres:</span> <span class=\"Space\">Roman,<br> Klassiker, Erzählungen, Biografie</span></p>"
+				tmp+="</div>"
+
+			}$("author_container").append(tmp);
 
 
-	</body>
-	
+			//Funktion um Bücher des Autors zu holen
+			function loadBooks(id) {
+				$.ajax({
+							url: 'http://localhost:8000/web2/buch/lade_von_autor/'+ id,
+							method: 'get',
+							dataType: 'json'
+						}).done(function (response) {
+
+							createHtmlBooks(response.daten);
+
+						}).fail(function (jqXHR, statusText, error) {
+							console.log('Response Code: ' + jqXHR.status + ' - Fehlermeldung: ' + jqXHR.responseText);
+							$('#output').html('Ein Fehler ist aufgetreten');
+						});
+			}
+		
+
+			function createHtmlBooks(author_books) {
+				for (let i=0; i < author_books.length; i++) {
+
+				}
+			}
+
+		</script>
+	</body>	
 </html> 
-
-

@@ -52,24 +52,25 @@
 
 		<script>
 			//Grab Book ID from Link
+			$(async () => {
+				var book_id = get_url_ID("titelID");
+				console.log(book_id);		
 
-			var book_id = get_url_ID("titelID");
-			console.log(book_id);
+				$.ajax({
+					url: 'http://localhost:8000/web2/buch/gib/' + book_id,
+					method: 'get',
+					dataType: 'json'
+
+					}).done(function (response) {
+
+						ajaxToHTML(response.daten);
+
+					}).fail(function (jqXHR, statusText, error) {
+						console.log('Response Code: ' + jqXHR.status + ' - Fehlermeldung: ' + jqXHR.responseText);
+						$('#output').html('Ein Fehler ist aufgetreten');
+				});			
+        	});
 			
-
-			$.ajax({
-				url: 'http://localhost:8000/web2/buch/gib/' + book_id,
-				method: 'get',
-				dataType: 'json'
-
-				}).done(function (response) {
-
-					ajaxToHTML(response.daten);
-
-				}).fail(function (jqXHR, statusText, error) {
-					console.log('Response Code: ' + jqXHR.status + ' - Fehlermeldung: ' + jqXHR.responseText);
-					$('#output').html('Ein Fehler ist aufgetreten');
-			});
 
 
 			function ajaxToHTML(json_book){
