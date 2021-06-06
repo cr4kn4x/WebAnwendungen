@@ -5,8 +5,12 @@ var right_slide;
 var slides;
 var slider_images;
 
-onload = (event) =>{   // wird aufgerufen sobald Webseite geladen wird
+
+
+
+function start_Slider(){   // wird aufgerufen sobald Webseite geladen wird
     slides = document.getElementsByClassName("mySlides");
+	console.log(slides);
     slider_images = document.getElementsByClassName("slider_img");
 
     mid_slide = 1;

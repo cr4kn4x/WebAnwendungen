@@ -48,6 +48,39 @@ class BuchDao {
         return loadAdditionalData(helper.objectKeysToLower(result),this._conn);
     }
 
+
+
+
+
+
+    loadBestseller() {
+        var sql = 'SELECT * FROM BUCH ORDER BY Gesamtbewertung DESC, AnzahlBew DESC LIMIT 3';
+        var statement = this._conn.prepare(sql);
+        var result = statement.all();
+
+
+        var statement = this._conn.prepare(sql);
+        var result = statement.all();
+
+
+        if (helper.isArrayEmpty(result)) 
+            return [];      
+        
+        for (let i=0; i<result.length; i++){
+
+            result[i] = loadAdditionalData(helper.objectKeysToLower(result[i]),this._conn);
+
+
+        }
+
+        return result;
+    }
+
+
+
+
+
+
     loadByAuthorId(id) {
         var sql = 'SELECT * FROM BUCH WHERE authorid=' + id;
         //        var sql = 'SELECT * FROM BUCH INNER JOIN AUTOR ON BUCH.AUTHORID = AUTOR.ID';
