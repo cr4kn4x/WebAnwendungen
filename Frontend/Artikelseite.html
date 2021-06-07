@@ -23,6 +23,7 @@
                     <a href="AuthorPageÜbersicht.html">AUTOREN</a>          
                     <a href="Warenkorb.html">
                     <img id="warenkorb" src="sources/Warenkorb.png" alt="Warenkorb">
+					<span id="anzahl_bestellungen"></span>
                     </a>                 
             </div>
 
@@ -60,15 +61,18 @@
 				let buch = await response.json()
 				await ajaxToHTML(buch.daten)
 				
-				$("#cart_button").click(() => {		
+				await $("#cart_button").click(() => {					
 					if (getSessionItem("id") == null) {
 						setSessionItem("id", book_id)
-					}else {
+					}else if(valueExistsSessionItem("id", book_id) == false) {
 						setSessionItem("id", getSessionItem("id") + "," + book_id);
 					}
 				})
+
+				await loadWarenkorb();
         	});
-			
+
+					
 
 
 			function ajaxToHTML(json_book){

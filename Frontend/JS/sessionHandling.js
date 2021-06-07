@@ -1,3 +1,5 @@
+//const { values } = require("lodash");
+
 // sets or overwrites an value in local storage
 function setSessionItem(label, value) {
     localStorage.setItem(label, value);
@@ -12,6 +14,22 @@ function getSessionItem(label) {
 // checks, if an item exists in local storage
 function existsSessionItem(label) {
     return !isNullOrUndefined(getSessionItem(label));
+}
+
+// checks, if an value exists in local storage
+function valueExistsSessionItem(label, value) {
+    values = localStorage.getItem(label);
+    if (values.length > 0) {
+        array = values.split(',')
+    
+        if (array.includes(value)) {
+            return true;
+        }else {
+            return false;
+        }
+    }else {
+        return false;
+    }  
 }
 
 // sets or overwrites an json object as value to local storage
@@ -66,4 +84,10 @@ function isJSONString(str) {
 // function checks if given value is null or undefined
 function isNullOrUndefined(val) {
     return val === null || val === undefined;
+}
+
+//Anzeige Warenkorb laden
+function loadWarenkorb() {
+    let laenge = getSessionItem("id").split(',').length;
+    $("#anzahl_bestellungen").text(laenge);
 }

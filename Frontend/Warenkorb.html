@@ -100,9 +100,6 @@
         async function loadBasket() {
             
                 let books = getSessionItem("id").split(',');
-                //Duplikate entfernen
-                books = new Set(books);
-                books = Array.from(books)
                 console.log(books)
                 
                 preise_books=[];
