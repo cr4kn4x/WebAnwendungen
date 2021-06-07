@@ -67,9 +67,6 @@
 						setSessionItem("id", getSessionItem("id") + "," + book_id);
 					}
 				})
-
-
-			
         	});
 			
 
@@ -88,8 +85,8 @@
 				tmp += "<p>"   + json_book["kurzbeschreibung"] +   "</p>";
 				tmp+= "</div> <a href=\"Shop.html\">";      // Shop.html entsprechend ersetzen
 				tmp += "<button class=\"buttons\" id=\"back_button\" type=\"button\">zur&uuml;ck zum Shop</button></a>";
-				tmp += "<a href=\"Warenkorb.html\">";     // Warenkorb.html entsprechend ersetzen
-				tmp += "<button class=\"buttons\" id=\"cart_button\" type=\"button\" onclick=\"cart_function()\">in den Warenkorb</button></a></div></div>";
+				tmp += "<a href=\"Shop.html\">";     // Warenkorb.html entsprechend ersetzen
+				tmp += "<button class=\"buttons\" id=\"cart_button\" type=\"button\">in den Warenkorb</button></a></div></div>";
 				$("#artikel_container").append(tmp);
 			}
 

@@ -22,6 +22,12 @@
 	float:left;
 }
 
+.Warenkorb_artikel{
+	display: inline-block;
+	width: 80%;
+}
+
+
 .Author_attribute{
 	color:white;
 	margin-right:3%;
@@ -33,10 +39,12 @@
 }
 
 .container_right{
+	float:right;
+	display: block;
+	min-width:210px;
 	padding-left:1%;
 	padding-right: 1%;
 	padding-bottom:2%;
-	display: inline-block;
 	background-color: #444048;
 	margin-top: 1%;
 	border-radius: 35px;
@@ -69,7 +77,7 @@ input[type=radio]:checked + img {
 .author_buble{
 	background-color: #444048;
 	height: 5%;
-	width: 70%;
+	width: 90%;
 	border-radius:35px;
 	padding-left:2%;
 	margin-top: 1%;
@@ -108,10 +116,15 @@ button{
 	border-radius:35px;
 	background-color: #FF8A11;
 	border: none;
-	height: 5%;
+	height: 3.2%;
 	width: 40%;
 	color: white;
 	float: right;
 	cursor: pointer;
+}
 
+
+#gesamtbetrag{
+	margin:0;
+	font-size: 2em;
 }

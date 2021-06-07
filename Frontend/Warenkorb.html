@@ -5,6 +5,7 @@
     <link rel="stylesheet" href="CSS/warenkorb_stylesheet.css" />
     <link rel="stylesheet" href="CSS/warenkorb.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <meta charset="UTF-8" />
     <script src="JS/sessionHandling.js"></script>
 </head>
@@ -31,12 +32,18 @@
         <div id="warenkorb">
             <h1 style="color: #444048;">Warenkorb</h1>
         </div>
-        <div class="Book_container" id="Book_container">
+
+        
+        <div class="Book_container">
             
+            <div class="Warenkorb_artikel" id="Book_container">
+
+
+            </div>
 
             <div class="container_right">
                 <h2>Gesamtbetrag:</h2> 
-                <p style="color: #FF8A11;">97,96 €</p>
+                <p id="gesamtbetrag" style="color: #FF8A11;"></p>
                 <p>(inkl. MwSt.)</p>
                 <form class="zahlung">
                     <h2>Zahlungsmethode:</h2>
@@ -52,12 +59,6 @@
                         <input type="radio" name="art" value="mastercard">
                         <img src="sources/1000px-Mastercard-logo.svg.png" width="80px">
                     </label><br>-->
-                </form>
-                <h2>Email Adresse:</h2>
-                <form class="Email_container">
-                    <input type="text" placeholder=" Vorname:" name="search">
-                    <input type="text" placeholder=" Nachname:" name="search">
-                    <input type="text" placeholder=" Email:" name="search">
                 </form>
                 <br><br>
                 <div><a href="Bestellbestaetigung.html"><button type="button"
@@ -78,25 +79,52 @@
 
     <script>
         $(async () => {
-            await loadBasket();			
+            
+            if(existsSessionItem("id")){
+                let price_array = await loadBasket();	
+                const reducer = (accumulator, currentValue) => accumulator + currentValue;
+                let gesamtpreis = price_array.reduce(reducer).toFixed(2);
+                $("#gesamtbetrag").text(gesamtpreis + "€");
+            }
+            
+            else{
+                let tmp="<h1 style=\"color:#FF8A11;margin-left:40%; margin-top:15%;\"> Warenkorb ist leer!</h1>";
+                $("#Book_container").append(tmp);
+                $("#gesamtbetrag").text("0.00€");
+            }
+            
+
+            
         });
 
         async function loadBasket() {
-            let books = getSessionItem("id").split(',');
-            //Duplikate entfernen
-            books = new Set(books);
-            books = Array.from(books)
-            console.log(books)
-            for (let i=0; i<books.length; i++) {
-                let response = await fetch("http://localhost:8000/web2/buch/gib/" + books[i]);
-                let json_books = await response.json()
-                await ajaxToHTML(json_books.daten);
-                console.log("finish")
-            }
+            
+                let books = getSessionItem("id").split(',');
+                //Duplikate entfernen
+                books = new Set(books);
+                books = Array.from(books)
+                console.log(books)
+                
+                preise_books=[];
+
+                for (let i=0; i<books.length; i++) {
+                    let response = await fetch("http://localhost:8000/web2/buch/gib/" + books[i]);
+                    let json_books = await response.json()
+                    preise_books.push(json_books.daten["preis"])
+                    await ajaxToHTML(json_books.daten);
+                }
+
+                return preise_books;
+                }
+            
+
+        async function calculate_gesamtpreis(json_book){
+            gesamtpreis = json_book["preis"];
+            return gesamtpreis;
         }
 
         function ajaxToHTML(json_book) {
-            console.log(json_book)
+            console.log(json_book);
             tmp="<div class=\"author_buble\">";
             tmp+="<div class=\"inside_buble_container\">";
             tmp+="<span class=\"Author_attribute\">" + json_book.titel + "</span>";
@@ -110,9 +138,35 @@
             tmp+="<div class=\"inside_buble_container\">";
             tmp+="<span class=\"Author_attribute\" style=\"color: #FF8A11;\">" + json_book.preis + "&euro;</span>";
             tmp+="</div>";
+            tmp+="<div class=\"inside_buble_container\">";
+            tmp+="<span class=\"Author_attribute\" style=\"color: #FF8A11;\">" + "<i onclick=\"deleteArtikel(+" + json_book.id + ")\" style=\"font-size:24px\" class=\"fa\">&#xf014;</i>";
+            tmp+="</div>";
             tmp+="</div>";
             $("#Book_container").append(tmp);
         }
+
+        function deleteArtikel(id){
+            let session_items=getSessionItem("id").split(",");
+            let new_seesion_items=[];
+            for(let i=0; i<session_items.length;i++){
+                if(session_items[i] != id){
+                    new_seesion_items.push(session_items[i]);
+                }
+            }
+        
+            if(new_seesion_items.length>0){
+                setSessionItem("id",new_seesion_items.toString());
+            }
+            else{
+                removeSessionItem("id");
+            }
+
+            location.reload();
+        }
+
+
+
+
     </script>
 </body>
 
