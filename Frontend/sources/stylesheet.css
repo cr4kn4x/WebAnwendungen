@@ -75,22 +75,20 @@
 
 #footer {
     background-color: #444048;
-    width: 100%;
-    height: 10%;  
-    min-height: 100px;  
+    width: 95%;
+    padding-top:3%;
+    padding-right: 5%;
+    min-height: 70px;
 }
 
 #footer a {
     color: #FF8A11;
     text-decoration: none;
-    padding-right: 20%;
+    margin: 0% 10%;
+    float: left;
+    padding-top:0.5%;
 }
 
-#selectFooter {
-    margin-left: 30%;
-    padding-top: 2%;
-    width: 46%;
-}
 
 #selectFooter a:hover {
     border-top: solid #FF8A11 2px;
@@ -99,11 +97,7 @@
 #copyright {
     background: url(Copyright.png);
     background-size: contain;
-    position: absolute;
-    margin-left: 80%;
-    bottom: 3%;
-    right: 4%;
     width: 38px;
     height: 40px;
-
+    float: right;
 }

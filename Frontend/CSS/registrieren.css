@@ -31,23 +31,17 @@
     margin: 1% 0%;
 }
 
-#registrieren_container {
-    margin-bottom: 5%;
+#login_container {
+    margin-bottom: 17%;
 }
 
-#registrieren {
+#zum_login {
     color: #FF8A11;
 }
 
-#vergessen_container {
-    margin: 7% 0%;
-}
 
-.vergessen {
-    color: #8A9094;
-}
 
-#login_button {
+#registrieren_button {
     background-color: #FF8A11;
     color: white;
     float:right;
@@ -57,10 +51,9 @@
 	height:40px;
     border-radius:100px;
     border:0px;
-    margin-top: 10%;
     position: relative;
 }
 
-#login_button:hover{
+#registrieren_button:hover{
 	cursor:pointer;
 }

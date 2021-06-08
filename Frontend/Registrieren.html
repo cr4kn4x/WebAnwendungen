@@ -2,7 +2,7 @@
     <head>
         <title>The Ebook Hub</title>
         <link rel="stylesheet" href="sources/stylesheet.css"/>
-        <link rel="stylesheet" href="CSS/login.css"/>
+        <link rel="stylesheet" href="CSS/registrieren.css"/>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 		<script src="JS/sessionHandling.js"></script>
         <meta charset="UTF-8"/>
@@ -31,7 +31,7 @@
         <div id="main">
             <div id="outer_login">
                 <div id="inner_login">
-                    <p id="page_titel">Login:</p>
+                    <p id="page_titel">Registrieren:</p>
                     <p>Email:</p>
                     <form>
                         <input type="text" placeholder="mustermann@gamil.com" name="email">
@@ -40,24 +40,23 @@
                     <form>
                         <input type="text" placeholder="****************" name="passwort">
                     </form>
-                    <p id="registrieren_container"><a id="registrieren" href="Registrieren.html">Registrieren</a></p>
-                    <div id="vergessen_container">
-                        <p><a class="vergessen" href="Impressum.html">Passwort vergessen?</a></p>
-                        <p class="vergessen">Setzen Sie sich mit uns in Verbindung unter Impressum und Kontakt.</p>
-                    </div>
+                    <p>Passwort wiederholen:</p>
+                    <form>
+                        <input type="text" placeholder="****************" name="passwort">
+                    </form>
+                    <p id="login_container"><a id="zum_login" href="Login.html">Haben Sie bereits ein Konto? Hier zum Login.</a></p>
+                    
 
-                    <button id="login_button" type="button">Login</button>
+                    <button id="registrieren_button" type="button">Registrieren</button>
                 </div>
             </div>             
         </div>
 
         <div id="footer">
-            <div id="selectFooter" class="FooterElemente">              
-                <a href="Impressum.html">Impressum und Kontakt</a>     
-                <a href="Datenschutzerklärung.html">Datenschutz</a>   
-                <a href="Widerrufsrecht.html">Widerrufsrecht</a>     
-                <div id="copyright"></div>
-            </div>
+            <a href="Impressum.html">Impressum und Kontakt</a>     
+            <a href="Datenschutzerklärung.html">Datenschutz</a>   
+            <a href="Widerrufsrecht.html">Widerrufsrecht</a>     
+            <div id="copyright"></div>
         </div>
     </body>
 </html>
