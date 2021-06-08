@@ -4,6 +4,7 @@
 		<link href="CSS/Author_einzeln.css" rel="stylesheet">
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+		<script src="JS/sessionHandling.js"></script>
 		<meta charset="UTF-8"/>
 	</head>
 
@@ -19,9 +20,11 @@
             <div id="selectNav" class="navElemente">              
                     <a href="Home.html">HOME</a>     
                     <a href="Shop.html">SHOP</a>   
-                    <a href="AuthorPageÜbersicht.html">AUTOREN</a>          
+                    <a href="AuthorPageÜbersicht.html">AUTOREN</a>      
+					<a href="Profil.html">Profil</a>            
                     <a href="Warenkorb.html">
                     <img id="warenkorb" src="sources/Warenkorb.png" alt="Warenkorb">
+					<span id="anzahl_bestellungen"></span>
                     </a>                 
             </div>
 
@@ -202,20 +205,11 @@
 		<script>
 			let author_id = get_url_ID("authorID");
 			cosnole.log(author_id);
-
-			$.ajax({
-				url: 'http://localhost:8000/web2/autor/gib/' + author_id,
-				method: 'get',
-				dataType: 'json'
-				
-				}).done(function (response) {
-
-					ajaxToHTML(response.daten);
-
-				}).fail(function (jqXHR, statusText, error) {
-					console.log('Response Code: ' + jqXHR.status + ' - Fehlermeldung: ' + jqXHR.responseText);
-					$('#output').html('Ein Fehler ist aufgetreten');
 			
+			$(async () => {
+				let respnse = await fetch("http://localhost:8000/web2/autor/gib/" + author_id);
+				await ajaxToHTML(response.json());
+				await loadWarenkorb();
 			});
 
 			function ajaxToHTML(json_author) {

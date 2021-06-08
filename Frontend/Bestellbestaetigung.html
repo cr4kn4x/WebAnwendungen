@@ -3,6 +3,8 @@
         <title>The Ebook Hub</title>
         <link rel="stylesheet" href="sources/stylesheet.css"/>
         <link rel="stylesheet" href="CSS/bestellungen.css"/>
+        <script src="JS/sessionHandling.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <meta charset="UTF-8"/>
     </head>
     
@@ -16,8 +18,10 @@
                     <a href="Home.html">HOME</a>     
                     <a href="Shop.html">SHOP</a>   
                     <a href="AuthorPageÜbersicht.html">AUTOREN</a>          
+                    <a href="Profil.html">Profil</a>        
                     <a href="Warenkorb.html">
                     <img id="warenkorb" src="sources/Warenkorb.png" alt="Warenkorb">
+                    <span id="anzahl_bestellungen"></span>
                     </a>                 
             </div>
 
@@ -85,5 +89,12 @@
             </div>
             <div id="copyright"></div>
         </div>
+
+        <script>
+            $(async () => {
+                await loadWarenkorb();
+            });
+
+        </script>
     </body>
 </html>

@@ -4,6 +4,7 @@
         <link rel="stylesheet" href="CSS/AuthorPage.css"/>
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+		<script src="JS/sessionHandling.js"></script>
         <meta charset="UTF-8"/>
     </head>
     
@@ -16,9 +17,11 @@
             <div id="selectNav" class="navElemente">              
                     <a href="Home.html">HOME</a>     
                     <a href="Shop.html">SHOP</a>   
-                    <a href="AuthorPageÜbersicht.html">AUTOREN</a>          
+                    <a href="AuthorPageÜbersicht.html">AUTOREN</a>    
+					<a href="Profil.html">Profil</a>              
                     <a href="Warenkorb.html">
                     <img id="warenkorb" src="sources/Warenkorb.png" alt="Warenkorb">
+					<span id="anzahl_bestellungen"></span>
                     </a>                 
             </div>
 
@@ -60,7 +63,7 @@
 					await load_authorbooks(json_autoren);
 				}
 				
-							
+				await loadWarenkorb();			
         	});
 
 			async function load_selectauthors(suchwort) {

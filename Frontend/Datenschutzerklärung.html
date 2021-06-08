@@ -4,6 +4,8 @@
     <title>The Ebook Hub</title>
     <link rel="stylesheet" href="CSS/datenschutzerklärung_stylesheet.css" />
     <link rel="stylesheet" href="CSS/datenschutzerklärung.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="JS/sessionHandling.js"></script>
     <meta charset="UTF-8" />
 </head>
 
@@ -16,9 +18,11 @@
        <div id="selectNav" class="navElemente">              
                 <a href="Home.html">HOME</a>     
                 <a href="Shop.html">SHOP</a>   
-                <a href="AuthorPageÜbersicht.html">AUTOREN</a>          
+                <a href="AuthorPageÜbersicht.html">AUTOREN</a>      
+                <a href="Profil.html">Profil</a>            
                 <a href="Warenkorb.html">
                 <img id="warenkorb" src="sources/Warenkorb.png" alt="Warenkorb">
+                <span id="anzahl_bestellungen"></span>
                 </a>                 
             </div>
 
@@ -217,7 +221,13 @@
                 <a href="Widerrufsrecht.html">Widerrufsrecht</a>     
             </div>
             <div id="copyright"></div>
-		</div>
+	</div>
+
+    <script>
+        $(async() => {
+            await loadWarenkorb();
+        });
+    </script>
 </body>
 
 </html>
