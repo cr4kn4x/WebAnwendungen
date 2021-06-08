@@ -138,7 +138,7 @@
             tmp+="<span class=\"Author_attribute\" style=\"color: #FF8A11;\">" + json_book.preis.toString().replace(".",",") + "&euro;</span>";
             tmp+="</div>";
             tmp+="<div class=\"inside_buble_container\">";
-            tmp+="<span class=\"Author_attribute\" style=\"color: #FF8A11;\">" + "<i onclick=\"deleteArtikel(+" + json_book.id + ")\" style=\"font-size:24px\" class=\"fa\">&#xf014;</i>";
+            tmp+="<span class=\"Author_attribute\" style=\"color: #FF8A11;\">" + "<i style=\"cursor: pointer;\" onclick=\"deleteArtikel(+" + json_book.id + ")\" style=\"font-size:24px\" class=\"fa\">&#xf014;</i>";
             tmp+="</div>";
             tmp+="</div>";
             $("#Book_container").append(tmp);
