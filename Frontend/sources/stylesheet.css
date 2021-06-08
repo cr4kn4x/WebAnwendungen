@@ -39,7 +39,7 @@
     color: #FF8A11;
     text-decoration: none;
     font-size: 1.4em;
-    padding-right: 10%;
+    padding-right: 5%;
 }
 
 #selectNav a:hover {
@@ -70,6 +70,7 @@
     background-color: #8A9094;
     width: 100%;
     height: 90%;
+    padding-top: 9%;;
 }
 
 #footer {

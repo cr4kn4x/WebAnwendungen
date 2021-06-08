@@ -1,0 +1,63 @@
+<html>
+    <head>
+        <title>The Ebook Hub</title>
+        <link rel="stylesheet" href="sources/stylesheet.css"/>
+        <link rel="stylesheet" href="CSS/login.css"/>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+		<script src="JS/sessionHandling.js"></script>
+        <meta charset="UTF-8"/>
+    </head>
+    
+    <body>
+        <div id="navigation">
+            <div id="titel" class="navElemente">
+                <a id="title_font" href="Home.html">The Ebook Hub</a>
+            </div>
+
+            <div id="selectNav" class="navElemente">              
+                    <a href="Home.html">HOME</a>     
+                    <a href="Shop.html">SHOP</a>   
+                    <a href="AuthorPageÜbersicht.html">AUTOREN</a>          
+                    <a href="Profil.html">Profil</a>
+                    <a href="Warenkorb.html">
+                    <img id="warenkorb" src="sources/Warenkorb.png" alt="Warenkorb">
+                    <span id="anzahl_bestellungen"></span>
+                    </a>                 
+            </div>
+
+            <div id="logo"></div>
+        </div>   
+        
+        <div id="main">
+            <div id="outer_login">
+                <div id="inner_login">
+                    <p id="page_titel">Login:</p>
+                    <p>Email:</p>
+                    <form>
+                        <input type="text" placeholder="mustermann@gamil.com" name="email">
+                    </form>
+                    <p>Passwort:</p>
+                    <form>
+                        <input type="text" placeholder="****************" name="passwort">
+                    </form>
+                    <p id="registrieren_container"><a id="registrieren" href="Registrieren.html">Registrieren</a></p>
+                    <div id="vergessen_container">
+                        <p><a class="vergessen" href="Impressum.html">Passwort vergessen?</a></p>
+                        <p class="vergessen">Setzen Sie sich mit uns in Verbindung unter Impressum und Kontakt.</p>
+                    </div>
+
+                    <button id="login_button" type="button">Login</button>
+                </div>
+            </div>             
+        </div>
+
+        <div id="footer">
+            <div id="selectFooter" class="FooterElemente">              
+                <a href="Impressum.html">Impressum und Kontakt</a>     
+                <a href="Datenschutzerklärung.html">Datenschutz</a>   
+                <a href="Widerrufsrecht.html">Widerrufsrecht</a>     
+            </div>
+            <div id="copyright"></div>
+        </div>
+    </body>
+</html>

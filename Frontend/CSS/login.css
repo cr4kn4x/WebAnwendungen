@@ -1,0 +1,70 @@
+#outer_login {
+    display: inline-block;
+    width: 50%;
+    height: 70%;
+    margin: 5% 25%;
+    background-color: #444048;
+    border-radius: 20px;
+}
+
+#inner_login {
+    margin: 5%;
+    height: 100%;
+    color: white;
+}
+
+#inner_login a {
+    text-decoration: none;
+}
+
+#page_titel {
+    font-size: 2em;
+    margin-bottom: 5%;
+}
+
+#inner_login h2 {
+    margin-bottom: 3%;
+}
+
+#inner_login input {
+    background-color: white;
+    border-radius: 20px;
+    width: 60%;
+    height: 7%;
+    padding-left: 2%;
+    margin: 1% 0%;
+}
+
+#registrieren_container {
+    margin-bottom: 5%;
+}
+
+#registrieren {
+    color: #FF8A11;
+}
+
+#vergessen_container {
+    margin: 7% 0%;
+}
+
+.vergessen {
+    color: #8A9094;
+}
+
+#login_button {
+    background-color: #FF8A11;
+    color: white;
+    float:right;
+    min-width:180px;
+	font-size:1.3em;
+    width:15%;
+	height:40px;
+    border-radius:100px;
+    border:0px;
+    margin-top: 10%;
+    position: relative;
+}
+
+#login:hover{
+	cursor:pointer;
+}
