@@ -59,13 +59,17 @@ try {
     // binding endpoints
     const TOPLEVELPATH = '/web2';
     helper.log('Binding enpoints, top level Path at ' + TOPLEVELPATH);
+
+
+    
+
+    
     
     var serviceRouter = require('./routes/buch.js');
     app.use(TOPLEVELPATH, serviceRouter);
 
     var serviceRouter = require('./routes/buchbild.js');
     app.use(TOPLEVELPATH, serviceRouter);
-
 
     serviceRouter = require('./routes/zahlungsart.js');
     app.use(TOPLEVELPATH, serviceRouter);
@@ -76,14 +80,9 @@ try {
     serviceRouter = require('./routes/user.js');
     app.use(TOPLEVELPATH, serviceRouter);
     
-    //weitere endpoints   
-
-    //---------------------------------------------------------------------------------------//
-
 
     serviceRouter = require('./routes/shop.js');
     app.use(TOPLEVELPATH, serviceRouter);
-
 
 
     serviceRouter = require('./routes/autor.js');
@@ -94,27 +93,14 @@ try {
     app.use(TOPLEVELPATH, serviceRouter);
 
 
-
-
-
-
-    
-
-
-
-
-
-
-
-
-
-
-
-
-    //---------------------------------------------------------------------------------------//
+  
+    //HTML, CSS und Medien
+    serviceRouter = require('./routes/sites.js');
+    app.use(serviceRouter);
 
 
     
+
 
     // send default error message if no matching endpoint found
     app.use(function (request, response) {
