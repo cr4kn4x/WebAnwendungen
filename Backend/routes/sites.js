@@ -31,9 +31,9 @@ serviceRouter.get('/Backend/sources/bookImages/:file_name', function(request, re
 });
 
 // author images
-serviceRouter.get('/Backend/sources/bookImages/:file_name', function(request, response) {
+serviceRouter.get('/Backend/sources/authorImages/:file_name', function(request, response) {
     console.log(request.params.file_name);
-    response.sendFile(path.join(__dirname, '../../Backend/sources/bookImages/'+request.params.file_name));
+    response.sendFile(path.join(__dirname, '../../Backend/sources/authorImages/'+request.params.file_name));
 });
 
 //HTML-Pages
