@@ -1,0 +1,62 @@
+<html>
+    <head>
+        <title>The Ebook Hub</title>
+        <link rel="stylesheet" href="sources/stylesheet.css"/>
+        <link rel="stylesheet" href="CSS/profil.css"/>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+		<script src="JS/sessionHandling.js"></script>
+        <meta charset="UTF-8"/>
+    </head>
+    
+    <body>
+        <div id="navigation">
+            <div id="titel" class="navElemente">
+                <a id="title_font" href="Home.html">The Ebook Hub</a>
+            </div>
+
+            <div id="selectNav" class="navElemente">              
+                    <a href="Home.html">HOME</a>     
+                    <a href="Shop.html">SHOP</a>   
+                    <a href="AuthorPageÜbersicht.html">AUTOREN</a>          
+                    <a href="Profil.html">Profil</a>
+                    <a href="Warenkorb.html">
+                    <img id="warenkorb" src="sources/Warenkorb.png" alt="Warenkorb">
+                    <span id="anzahl_bestellungen"></span>
+                    </a>                 
+            </div>
+
+            <div id="logo"></div>
+        </div>   
+        
+        <div id="main">
+            <div id="headline_container">
+                <h1 id="profil_headline">Profil</h1>
+                <p>Gekaufte Bücher</p>
+            </div>            
+            <form class="searchbar_container">
+				<input type="text" placeholder="Nach Titel, Autor oder ISBN suchen..." id="suche" name="search">
+				<button type="submit" >	<i class="fa fa-search"> </i>	</button>
+			</form>
+            
+            <div id="right_container">
+                <!-- evtl Kategorien hinzufügen-->
+
+                <div id="button_container">
+                    <button class="buttons" id="download_button" type="button">Download</button>
+                    <button class="buttons" id="bewerten_button" type="button">Bewerten</button>
+                    <button class="buttons" id="abmelden_button" type="button">Abmelden</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="footer">
+            <div id="selectFooter" class="FooterElemente">              
+                <a href="Impressum.html">Impressum und Kontakt</a>     
+                <a href="Datenschutzerklärung.html">Datenschutz</a>   
+                <a href="Widerrufsrecht.html">Widerrufsrecht</a>     
+                <div id="copyright"></div>
+            </div>
+        </div>
+    </body>
+</html>

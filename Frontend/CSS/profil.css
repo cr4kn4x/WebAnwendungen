@@ -1,0 +1,66 @@
+#headline_container {
+    padding-left:1%;
+    width: auto;
+}
+
+#profil_headline {	
+	color: #444048;
+}
+
+.searchbar_container{
+	display:inline-block;
+	width:50%;
+	height:65px;
+    margin-top:2%;
+	margin-left:1%;
+	margin-bottom:2%;
+}
+
+input[type="text"] {
+	padding-left:1%;
+	font-size:1em;
+	width:90%;
+	height:80%;
+	border: 1px solid #444048;
+	border-radius:15px;
+}
+
+button[type="submit"] {
+	min-width:40px;
+	border: 1px solid #444048;
+	width: 5%;
+	height:80%;
+	border-radius:15px;
+}
+
+#right_container {
+    float: right;
+    width: 10%;
+    height: 30%;
+    margin-right: 5%;
+    padding-top: 32%;
+}
+
+.buttons {
+    background-color: #FF8A11;
+    color: white;
+    float:right;
+    min-width:180px;
+	font-size:1.3em;
+    width:15%;
+	height:40px;
+    border-radius:100px;
+    border:0px;
+    margin-left: 1%;
+    margin-top: 4%;
+    position: relative;
+}
+
+.buttons:hover {
+    cursor:pointer;
+}
+
+#button_container {
+    width: 100%;
+    height: 100%;
+}
