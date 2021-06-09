@@ -88,6 +88,9 @@ function isNullOrUndefined(val) {
 
 //Anzeige Warenkorb laden
 function loadWarenkorb() {
-    let laenge = getSessionItem("id").split(',').length;
-    $("#anzahl_bestellungen").text(laenge);
+    let laenge = getSessionItem("id");
+    if (laenge != null) {
+        laenge = laenge.split(',').length;
+        $("#anzahl_bestellungen").text(laenge);
+    }
 }

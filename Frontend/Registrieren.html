@@ -34,15 +34,15 @@
                     <p id="page_titel">Registrieren:</p>
                     <p>Email:</p>
                     <form>
-                        <input type="text" placeholder="mustermann@gamil.com" name="email">
+                        <input type="email" placeholder="mustermann@gmail.com" id="email">
                     </form>
                     <p>Passwort:</p>
                     <form>
-                        <input type="text" placeholder="****************" name="passwort">
+                        <input type="password" placeholder="****************" id="passwort">
                     </form>
                     <p>Passwort wiederholen:</p>
                     <form>
-                        <input type="text" placeholder="****************" name="passwort">
+                        <input type="password" placeholder="****************" id="passwort_pruefen">
                     </form>
                     <p id="login_container"><a id="zum_login" href="Login.html">Haben Sie bereits ein Konto? Hier zum Login.</a></p>
                     
@@ -58,5 +58,52 @@
             <a href="Widerrufsrecht.html">Widerrufsrecht</a>     
             <div id="copyright"></div>
         </div>
+
+        <script>
+            $(async() => {
+                await loadWarenkorb();
+                await $("#registrieren_button").click(() => {
+                    const emailInput = $("#email");
+                    const pwInput = $("#passwort");
+                    const pw_pruefenInput = $("#passwort_pruefen");
+
+                    //evtl bezeichner anpassen
+                    const newUser = {
+                        email: emailInput.val(),
+                        pw: pwInput.val(),
+                        pw_pruefen: pw_pruefenInput.val(),
+                    };
+                    
+                    let response = await fetch("/web2/user", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
+                        body: JSON.stringify(newUser),
+                    });
+                    
+                    if(response.status != 200) {
+                        showError("Failed to create new Guestbook entry!");
+                        return;
+                    }  
+                    
+                    emailInput.val('');
+                    pwInput.val('');
+                    pw_pruefenInput.val('');
+
+                    //session Cookie mit response und auf Profilseite linken
+                
+                });
+                //await andere Seite laden mit session
+            });
+
+            function ueberpruefePasswort(pw, pw_pruefen) {
+                if (pw === pw_pruefen) {
+                    return true;
+                }else {
+                    return false;
+                }
+            }
+        </script>
     </body>
 </html>
