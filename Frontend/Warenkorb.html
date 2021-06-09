@@ -86,7 +86,7 @@
                 let price_array = await loadBasket();	
                 const reducer = (accumulator, currentValue) => accumulator + currentValue;
                 let gesamtpreis = price_array.reduce(reducer).toFixed(2);
-                $("#gesamtbetrag").text(gesamtpreis + "€");
+                $("#gesamtbetrag").text(gesamtpreis.toString().replace(".",",") + "€");
             }
             
             else{
@@ -126,19 +126,23 @@
             console.log(json_book);
             tmp="<div class=\"author_buble\">";
             tmp+="<div class=\"inside_buble_container\">";
+            tmp+="<a class=\"Author_attribute item_url\" href=\"Artikelseite.html?titelID=" + json_book.id +"\"" //
             tmp+="<span class=\"Author_attribute\">" + json_book.titel + "</span>";
+            tmp+="</a>"; //
             tmp+="</div>";
             tmp+="<div class=\"inside_buble_container\">";
+            tmp+="<a class=\"Author_attribute item_url\" href=\"AuthorPageEinzeln.html?authorID=" + json_book.authorid +"\"" //
             tmp+="<span class=\"Author_attribute\">" + json_book.autor_name + "</span>";
+            tmp+= "</a>"; //
             tmp+="</div>";
             tmp+="<div class=\"inside_buble_container\">";
             tmp+="<span class=\"Author_attribute\">" + json_book.genre + "</span>";
             tmp+="</div>";
             tmp+="<div class=\"inside_buble_container\">";
-            tmp+="<span class=\"Author_attribute\" style=\"color: #FF8A11;\">" + json_book.preis + "&euro;</span>";
+            tmp+="<span class=\"Author_attribute\" style=\"color: #FF8A11;\">" + json_book.preis.toString().replace(".",",") + "&euro;</span>";
             tmp+="</div>";
             tmp+="<div class=\"inside_buble_container\">";
-            tmp+="<span class=\"Author_attribute\" style=\"color: #FF8A11;\">" + "<i onclick=\"deleteArtikel(+" + json_book.id + ")\" style=\"font-size:24px\" class=\"fa\">&#xf014;</i>";
+            tmp+="<span class=\"Author_attribute\" style=\"color: #FF8A11;\">" + "<i style=\"cursor: pointer;\" onclick=\"deleteArtikel(+" + json_book.id + ")\" style=\"font-size:24px\" class=\"fa\">&#xf014;</i>";
             tmp+="</div>";
             tmp+="</div>";
             $("#Book_container").append(tmp);

@@ -145,3 +145,11 @@ body {
     width: 9%;
     height: 2%;
 }
+
+.item_url{
+    text-decoration: none;
+}
+
+.item_url:hover{
+    text-decoration:underline;
+}

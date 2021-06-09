@@ -251,7 +251,7 @@
 			   		tmp += bookobj.bildpfad;
 					tmp += "\"></img>";
 					tmp += "<div class=\"artikel_text_container\"> <p> "
-					tmp += "<span class=\"Price_attribute\">"  +  bookobj.preis +   "&euro;</span> <br><br>";
+					tmp += "<span class=\"Price_attribute\">"  +  bookobj.preis.toString().replace(".",",") +   "&euro;</span> <br><br>";
 					tmp += "<span class=\"Author_attribute_tag\">Titel:</span><br>";
 					tmp += "<span class=\"Author_attribute\">" + bookobj.titel +  "</span> <br><br> ";
 					tmp += "<span class=\" Author_attribute_tag \">Author:</span><br>" + bookobj.autor_name + "<br></span> <br>";

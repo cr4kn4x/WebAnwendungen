@@ -79,7 +79,7 @@
 			function ajaxToHTML(json_book){
 				tmp= "<div id=\"top_container\"> <div class=\"author_image\" id=\"author_img\"> <img class=\"img_Author\"";
 				tmp+="src=\"" + json_book["bildpfad"] +"\"" + "alt=\"author_image\" /> </div>";
-				tmp+= "<div class=\"biographie_buble\" id=\"bio_bb\"> <p> <span class=\"price_tag\">"  + json_book["preis"] + "&euro;</span></p>";
+				tmp+= "<div class=\"biographie_buble\" id=\"bio_bb\"> <p> <span class=\"price_tag\">"  + json_book["preis"].toString().replace(".",",") + "&euro;</span></p>";
 				tmp+= "<div class=\"book_attributes_tag\"> <p>Titel:</p>";
 				tmp += "<a href=\"https://www.google.com/\"> <p> Autor:</p> </a> <p>Kategorie:</p <p>ISBN:</p><p>Bewertung:</p> </div>";      //Author href noch nicht dynamisch
 				tmp += "<div class=\"book_attributes\"> <p>" + json_book["titel"] + "</p>" + "<a href=\"127.0.0.1/author_id=1/\"> <p> " + json_book["autor_name"] + "</p> </a>";
