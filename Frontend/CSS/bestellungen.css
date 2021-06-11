@@ -2,7 +2,6 @@
     color: #444048;
     width: 90%;
     height: 40px;
-    padding-top: 6%;
     padding-left: 2%;
 }
 
@@ -32,7 +31,6 @@
 
 #first p.text-orange {
     color: #FF8A11;
-    padding-top: 9%;
 }
 
 #first button {
@@ -109,4 +107,11 @@
     border: none;
 }
 
+#printer:hover {
+    cursor:pointer;
+}
 
+
+#profile_button:hover{
+	cursor:pointer;
+}

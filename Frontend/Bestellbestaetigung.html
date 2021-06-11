@@ -34,46 +34,22 @@
             </div>
 
             <div id="first">
-                <p class="text-orange">Vielen Dank Max für deinen Einkauf.</p>
-                <p>Ihr Bestellung wird an die folgende Emailadresse
-                    max.mustermann@web.de gesendet.</p>
-                <p class="text-orange">Wir wünschen dir viel Spaß mit deinem Produkt.</p>
-                <p>Wenn du Zeit hast, bewerte doch bitte das Buch für andere
-                    Benutzer.</p>
-                <form method="GET" action="../Bewertungen/bewertungen.html">
-                    <button type="submit">Jetzt bewerten</button>
-                </form>
+                <p class="text-orange">Vielen Dank für deinen Einkauf.</p>
+                <p>Die Bücher wurden deinem Profil hinzugefügt.</p>
+                <a href="Profil.html"><button id="profile_button" type="button">Zum Profil</button></a>
+
+
+             
             </div>
 
             <div id="second">
-                <table>
+                <table id="container_table">
                     <tr>
                         <th>Titel</th>
                         <th>ISBN</th>
                         <th class="preise">Brutto</th>
                     </tr>
-                    <tr>
-                        <td>Moby Dick</td>
-                        <td>978-3-86680-192-9</td>
-                        <td class="preise">32,65€</td>
-                    </tr>
-
-                    <tr>
-                        <td>Moby Dick</td>
-                        <td>978-3-86680-192-9</td>
-                        <td class="preise">32,65€</td>
-                    </tr>
-
-                    <tr>
-                        <td>Moby Dick</td>
-                        <td>978-3-86680-192-9</td>
-                        <td class="preise">32,65€</td>
-                    </tr>
-                    <tr>
-                        <td class="ergebnis">Gesamtbetrag</td>
-                        <td class="ergebnis"></td>
-                        <td class="ergebnis preise">97,95€</td>  
-                    </tr>
+                   
                 </table>   
                 <form method="GET" action="">
                     <button type="submit" id="printer"></a>               
@@ -92,8 +68,58 @@
 
         <script>
             $(async () => {
-                await loadWarenkorb();
+                if(existsSessionItem("id")){
+                let price_array = await loadItems();	
+                const reducer = (accumulator, currentValue) => accumulator + currentValue;
+                let gesamtpreis = price_array.reduce(reducer).toFixed(2);
+                $("#gesamtbetrag").text(gesamtpreis.toString().replace(".",",") + "€");
+            }else {
+                let tmp="<h1 style=\"color:#FF8A11;margin-left:40%; margin-top:15%;\"> Ein Fehler ist aufgetreten</h1>";
+                $("#container_table").append(tmp);
+                $("#gesamtbetrag").text("0.00€");
+            }
+            
+            await clearSession();
             });
+
+            function ajaxToHTML(item) {  
+                tmp = "<tr>"              
+                tmp += "<td>" + item.titel + "</td>";
+                tmp += "<td>" + item.isbn + "</td>"
+                tmp += "<td class=\"preise\">" + item.preis + "&euro;</td>";
+                tmp += "</tr>"
+                $("#container_table").append(tmp);
+            }
+
+            function ajaxToHTML2() {                 
+                tmp = "<tr>"
+                tmp += "<td class=\"ergebnis\">Gesamtbetrag</td>";
+                tmp += "<td class=\"ergebnis\"></td>";
+                tmp += "<td id=\"gesamtbetrag\" class=\"ergebnis preise\">97,95€</td>";
+                tmp += "</tr>";
+                $("#container_table").append(tmp);
+            }
+
+            async function loadItems() {                
+                let books = getSessionItem("id").split(',');
+                console.log(books)
+                    
+                preise_books=[];
+
+                for (let i=0; i<books.length; i++) {
+                    let response = await fetch("http://localhost:8000/web2/buch/gib/" + books[i]);
+                    let json_books = await response.json()
+                    preise_books.push(json_books.daten["preis"])
+                    await ajaxToHTML(json_books.daten);
+                }
+                await ajaxToHTML2();
+                return preise_books;
+            }
+            
+            async function calculate_gesamtpreis(json_book){
+                gesamtpreis = json_book["preis"];
+                return gesamtpreis;
+            }
 
         </script>
     </body>

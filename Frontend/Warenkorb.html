@@ -101,20 +101,19 @@
 
         async function loadBasket() {
             
-                let books = getSessionItem("id").split(',');
-                console.log(books)
+            let books = getSessionItem("id").split(',');
+            console.log(books)
                 
-                preise_books=[];
+            preise_books=[];
 
-                for (let i=0; i<books.length; i++) {
-                    let response = await fetch("http://localhost:8000/web2/buch/gib/" + books[i]);
-                    let json_books = await response.json()
-                    preise_books.push(json_books.daten["preis"])
-                    await ajaxToHTML(json_books.daten);
-                }
-
-                return preise_books;
-                }
+            for (let i=0; i<books.length; i++) {
+                let response = await fetch("http://localhost:8000/web2/buch/gib/" + books[i]);
+                let json_books = await response.json()
+                preise_books.push(json_books.daten["preis"])
+                await ajaxToHTML(json_books.daten);
+            }
+            return preise_books;
+        }
             
 
         async function calculate_gesamtpreis(json_book){
