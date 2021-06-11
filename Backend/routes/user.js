@@ -2,6 +2,7 @@ const helper = require('../helper.js');
 const UserDao = require('../dao/userDao');
 const express = require('express');
 var serviceRouter = express.Router();
+const validator = require('validator');
 
 helper.log('- Route User');
 
@@ -47,34 +48,27 @@ serviceRouter.get('/user/existiert/:id', function(request, response) {
     }
 });
 
-serviceRouter.post('/user', function(request, response) {
+
+
+serviceRouter.post('/Registrieren.html', function(request, response) {
     helper.log('Route User: Client requested creation of new record');
+        console.log(request.body);
+        
+        if(request.body.pw && request.body.pw_pruefen && request.body.email){
+            const userDao = new UserDao(request.app.locals.dbConnection);
 
-    var errorMsgs=[];      
-    if (helper.isUndefined(request.body.vorname)) 
-        errorMsgs.push('vorname fehlt');
-    if (helper.isUndefined(request.body.nachname)) 
-        errorMsgs.push('nachname fehlt');
-    if (helper.isUndefined(request.body.email)) 
-        errorMsgs.push('email fehlt');
-    if (!helper.isEmail(request.body.email)) 
-        errorMsgs.push('email hat ein falsches Format');    
-    
-    if (errorMsgs.length > 0) {
-        helper.log('Route User: Creation not possible, data missing');
-        response.status(400).json(helper.jsonMsgError('Hinzufügen nicht möglich. Fehlende Daten: ' + helper.concatArray(errorMsgs)));
-        return;
-    }
-
-    const userDao = new UserDao(request.app.locals.dbConnection);
-    try {
-        var result = userDao.create(request.body.vorname, request.body.nachname, request.body.email);
-        helper.log('Route User: Record inserted');
-        response.status(200).json(helper.jsonMsgOK(result));
-    } catch (ex) {
-        helper.logError('Route User: Error creating new record. Exception occured: ' + ex.message);
-        response.status(400).json(helper.jsonMsgError(ex.message));
-    }    
+            if(request.body.pw == request.body.pw_pruefen && validator.isEmail(request.body.email) && userDao.exists(request.body.email)){
+                try {
+                    var result = userDao.create(request.body.email, request.body.pw);
+                    helper.log('Route User: Record inserted');
+                    response.status(200).json(helper.jsonMsgOK(result));
+                } catch (ex) {
+                    helper.logError('Route User: Error creating new record. Exception occured: ' + ex.message);
+                    response.status(400).json(helper.jsonMsgError(ex.message));
+                } 
+            }
+        }
+       
 });
 
 serviceRouter.delete('/user/:id', function(request, response) {

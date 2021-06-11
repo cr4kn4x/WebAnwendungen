@@ -32,10 +32,10 @@ class UserDao {
         return helper.arrayObjectKeysToLower(result);
     }
 
-    exists(id) {
-        var sql = 'SELECT COUNT(ID) AS cnt FROM User WHERE ID=?';
+    exists(email) {
+        var sql = 'SELECT COUNT(Email) AS cnt FROM User WHERE Email=?';
         var statement = this._conn.prepare(sql);
-        var result = statement.get(id);
+        var result = statement.get(email);
 
         if (result.cnt == 1) 
             return true;
@@ -43,10 +43,10 @@ class UserDao {
         return false;
     }
 
-    create(vorname = '', nachname = '', email = '') {
-        var sql = 'INSERT INTO User (Vorname,Nachname,Email) VALUES (?,?,?)';
+    create(email = '', password = '') {
+        var sql = 'INSERT INTO User (Email,Passwort) VALUES (?,?)';
         var statement = this._conn.prepare(sql);
-        var params = [vorname, nachname, email];
+        var params = [email, password];
         var result = statement.run(params);
 
         if (result.changes != 1) 

@@ -36,6 +36,7 @@ serviceRouter.get('/Backend/sources/authorImages/:file_name', function(request, 
     response.sendFile(path.join(__dirname, '../../Backend/sources/authorImages/'+request.params.file_name));
 });
 
+/*
 //HTML-Pages
 serviceRouter.get('/:site_name', function(request, response) {
     response.sendFile(path.join(__dirname, '../../Frontend/'+request.params.site_name));
@@ -45,7 +46,7 @@ serviceRouter.get('/:site_name', function(request, response) {
 serviceRouter.get('/', function(request, response) {
     response.sendFile(path.join(__dirname, '../../Frontend/Home.html'));
 });
-
+*/
 
 
 

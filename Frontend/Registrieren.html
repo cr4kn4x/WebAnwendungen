@@ -33,21 +33,23 @@
                 <div id="inner_login">
                     <p id="page_titel">Registrieren:</p>
                     <p>Email:</p>
-                    <form>
-                        <input type="email" placeholder="mustermann@gmail.com" id="email">
-                    </form>
+                    <form method="post" action="\Registrieren.html" id="registrieren_form">
+                        <input type="email" name="email" placeholder="mustermann@gmail.com" id="email">
+                    
                     <p>Passwort:</p>
-                    <form>
-                        <input type="password" placeholder="****************" id="passwort">
-                    </form>
+                    
+                        <input type="password" name="password1" placeholder="****************" id="passwort">
+                    
                     <p>Passwort wiederholen:</p>
-                    <form>
-                        <input type="password" placeholder="****************" id="passwort_pruefen">
+            
+                        <input type="password" name="password2" placeholder="****************" id="passwort_pruefen">
+                        <p><button id="registrieren_button" type="button">Registrieren</button></p>
+
                     </form>
                     <p id="login_container"><a id="zum_login" href="Login.html">Haben Sie bereits ein Konto? Hier zum Login.</a></p>
                     
 
-                    <button id="registrieren_button" type="button">Registrieren</button>
+
                 </div>
             </div>             
         </div>
@@ -60,9 +62,11 @@
         </div>
 
         <script>
-            $(async() => {
+            $(async() => {                
                 await loadWarenkorb();
-                await $("#registrieren_button").click(() => {
+
+
+                $("#registrieren_button").click(async() => {
                     const emailInput = $("#email");
                     const pwInput = $("#passwort");
                     const pw_pruefenInput = $("#passwort_pruefen");
@@ -74,7 +78,8 @@
                         pw_pruefen: pw_pruefenInput.val(),
                     };
                     
-                    let response = await fetch("/web2/user", {
+
+                    let response = await fetch("web2/Registrieren.html", {
                         method: "POST",
                         headers: {
                             "Content-Type": "application/json",
@@ -82,10 +87,15 @@
                         body: JSON.stringify(newUser),
                     });
                     
+
                     if(response.status != 200) {
-                        showError("Failed to create new Guestbook entry!");
+                        console.log("Failed to create new Guestbook entry!");
                         return;
                     }  
+                    else{
+                        console.log(response.body);
+                    }
+                    
                     
                     emailInput.val('');
                     pwInput.val('');
@@ -96,6 +106,12 @@
                 });
                 //await andere Seite laden mit session
             });
+
+            
+
+            
+            
+          
 
             function ueberpruefePasswort(pw, pw_pruefen) {
                 if (pw === pw_pruefen) {
