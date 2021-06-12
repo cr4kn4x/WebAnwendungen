@@ -241,10 +241,10 @@ img{
     color:#FF8A11;
 }
 
-.book_attributes{
+.book_attributes {
 	display:inline-block;
 	padding-right:4%;
-	width:auto;
+	width:50%;
 	font-size:1.6em;
 }
 
@@ -282,3 +282,8 @@ img{
 .closebtn:hover {
   color: black;
 }
+
+#anzahl_gesamtbewertungen {
+    margin-left: 2%;
+}
+
