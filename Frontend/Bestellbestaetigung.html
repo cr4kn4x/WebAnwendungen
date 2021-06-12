@@ -69,17 +69,21 @@
         <script>
             $(async () => {
                 if(existsSessionItem("id")){
-                let price_array = await loadItems();	
-                const reducer = (accumulator, currentValue) => accumulator + currentValue;
-                let gesamtpreis = price_array.reduce(reducer).toFixed(2);
-                $("#gesamtbetrag").text(gesamtpreis.toString().replace(".",",") + "€");
-            }else {
-                let tmp="<h1 style=\"color:#FF8A11;margin-left:40%; margin-top:15%;\"> Ein Fehler ist aufgetreten</h1>";
-                $("#container_table").append(tmp);
-                $("#gesamtbetrag").text("0.00€");
-            }
+                    let price_array = await loadItems();	
+                    const reducer = (accumulator, currentValue) => accumulator + currentValue;
+                    let gesamtpreis = price_array.reduce(reducer).toFixed(2);
+                    $("#gesamtbetrag").text(gesamtpreis.toString().replace(".",",") + "€");
+                }else {
+                    let tmp="<h1 style=\"color:#FF8A11;margin-left:40%; margin-top:15%;\"> Ein Fehler ist aufgetreten</h1>";
+                    $("#container_table").append(tmp);
+                    $("#gesamtbetrag").text("0.00€");
+                }
             
-            await clearSession();
+                await clearSession();
+
+                await $("#printer").click(() => {
+                    window.print()
+                });
             });
 
             function ajaxToHTML(item) {  
