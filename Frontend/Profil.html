@@ -46,6 +46,7 @@
                     <button class="buttons" id="download_button" type="button">Download</button>
                     <button class="buttons" id="bewerten_button" type="button">Bewerten</button>
                     <button class="buttons" id="abmelden_button" type="button">Abmelden</button>
+                    <button class="buttons" id="delete_button" type="button">Profil löschen</button>
                 </div>
             </div>
         </div>
@@ -59,4 +60,25 @@
             </div>
         </div>
     </body>
+
+    <script>
+        $(async() => {
+            await $("#abmelden_button").click(() => {
+                //Funktion aufrufen um Cookie zu löschen
+            });
+
+            await $("#delete_button").click(() => {
+                //Abmelden aufrufen und aus Datenbank löschen
+
+                //User ID bekommen
+                let response = fetch("/web2/user/" + id);
+            });
+
+            function deleteCookie() {
+                //Cookie löschen
+            }
+        });
+
+        
+    </script>
 </html>
