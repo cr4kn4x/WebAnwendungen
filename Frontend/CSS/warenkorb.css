@@ -76,6 +76,7 @@ input[type=radio]:checked + img {
 
 .author_buble{
 	background-color: #444048;
+	min-height: 75px;
 	height: 5%;
 	width: 90%;
 	border-radius:35px;
@@ -102,10 +103,8 @@ input[type=radio]:checked + img {
 }
 
 .inside_buble_container{
-	/* Text middle */
 	display: flex;
 	align-items: center;
-	/*------- */
 	width:20%;
 	height:100%;
 	float:left;

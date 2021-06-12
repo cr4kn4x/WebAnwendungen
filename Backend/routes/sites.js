@@ -45,6 +45,9 @@ serviceRouter.get('/AuthorPageEinzeln.html', function(request, response) {
 });
 
 
+serviceRouter.get('/Warenkorb.html', function(request, response) {
+    response.sendFile(path.join(__dirname, '../../Frontend/Warenkorb.html'));
+});
 
 
 /*
