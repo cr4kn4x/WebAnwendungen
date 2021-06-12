@@ -121,7 +121,8 @@
 					tmp+="<span class=\"Slide_text_orange\">Bewertung:</span> <br>";
 					tmp+="<div class=\"myslide_text\">";
 					tmp+= createStars(json_obj["gesamtbewertung"]);
-					tmp+= "<span>(" + json_obj["anzahlbew"] + ")</span>";
+					tmp+= "<span id=\"anzahl_gesamtbewertungen\">(" + json_obj["anzahlbew"] + ")</span>";
+					tmp+="</div>";
 					tmp+="</div>";
 					tmp+="</div>";
 					tmp+="</figcaption>";
@@ -170,7 +171,6 @@
 							ratingString+= "<span class=\"fa fa-star\"></span>";
 						}
 					}
-					ratingString+="</div>";
 					return ratingString;
 				}
 
