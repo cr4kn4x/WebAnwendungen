@@ -93,7 +93,7 @@ try {
     serviceRouter = require('./routes/buchgenre.js');
     app.use(TOPLEVELPATH, serviceRouter);
 
-
+    
   
     //HTML, CSS und Medien
     serviceRouter = require('./routes/sites.js');

@@ -36,11 +36,23 @@ serviceRouter.get('/Backend/sources/authorImages/:file_name', function(request, 
     response.sendFile(path.join(__dirname, '../../Backend/sources/authorImages/'+request.params.file_name));
 });
 
+serviceRouter.get('/Artikelseite.html', function(request, response) {
+    response.sendFile(path.join(__dirname, '../../Frontend/Artikelseite.html'));
+});
+
+serviceRouter.get('/AuthorPageEinzeln.html', function(request, response) {
+    response.sendFile(path.join(__dirname, '../../Frontend/AuthorPageEinzeln.html'));
+});
+
+
+
+
 /*
 //HTML-Pages
 serviceRouter.get('/:site_name', function(request, response) {
     response.sendFile(path.join(__dirname, '../../Frontend/'+request.params.site_name));
 });
+
 
 // Home Page
 serviceRouter.get('/', function(request, response) {
