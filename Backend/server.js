@@ -126,7 +126,9 @@ try {
         {id:3, email: 'Alice@gmail.com', password: 'pass3'}
     ]
     
-
+    app.get('/', (request, response) => {
+        response.sendFile(path.join(__dirname, '../Frontend/Home.html'));
+    })
     
     app.get('/shop.html', (request,response) => {
         console.log(request.session.userID)
@@ -143,6 +145,13 @@ try {
         response.sendFile(path.join(__dirname, '../Frontend/shop.html'));
     })
 
+    app.get('/Profil.html', (request,response) => {
+        if(request.session.userID==undefined){
+            response.sendFile(path.join(__dirname, '../Frontend/Login.html'));
+        }else{
+            response.sendFile(path.join(__dirname, '../Frontend/Profil.html'));
+        }
+    })
 
     app.get('/login.html', (request,response) => {
         if(request.session.userID==undefined){
@@ -152,7 +161,7 @@ try {
         else{
             response.sendFile(path.join(__dirname, '../Frontend/shop.html'));
         }
-    })
+    }) 
 
 
     app.post('/login.html', (request,response) => {
@@ -188,22 +197,6 @@ try {
         response.sendFile(path.join(__dirname, '../Frontend/Registrieren.html'));
        
     })
-
-
-    
-        
-        
-
-    
-
-
-
-
-
-
-
-
-    
 
 
     // send default error message if no matching endpoint found

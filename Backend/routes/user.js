@@ -1,6 +1,7 @@
 const helper = require('../helper.js');
 const UserDao = require('../dao/userDao');
 const express = require('express');
+const session = require('express-session');
 var serviceRouter = express.Router();
 const validator = require('validator');
 
@@ -71,19 +72,25 @@ serviceRouter.post('/Registrieren.html', function(request, response) {
        
 });
 
-serviceRouter.delete('/user/:id', function(request, response) {
-    helper.log('Route User: Client requested deletion of record, id=' + request.params.id);
+serviceRouter.delete('/user', function(request, response) {
+    helper.log('Route User: Client requested deletion of record, id=' + request.session.userID);
 
     const userDao = new UserDao(request.app.locals.dbConnection);
     try {
-        var obj = userDao.loadById(request.params.id);
-        userDao.delete(request.params.id);
-        helper.log('Route User: Deletion of record successfull, id=' + request.params.id);
+        var obj = userDao.loadById(request.session.userID);
+        userDao.delete(request.session.userID);
+        helper.log('Route User: Deletion of record successfull, id=' + request.session.userID);
         response.status(200).json(helper.jsonMsgOK({ 'gelöscht': true, 'eintrag': obj }));
     } catch (ex) {
         helper.logError('Route User: Error deleting record. Exception occured: ' + ex.message);
         response.status(400).json(helper.jsonMsgError(ex.message));
     }
+});
+
+
+serviceRouter.delete('/user/abmelden', function(request, response) {
+    helper.log('Route User: Client requested deletion of Session');
+    request.session.destroy();   
 });
 
 module.exports = serviceRouter;

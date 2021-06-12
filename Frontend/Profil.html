@@ -64,18 +64,27 @@
     <script>
         $(async() => {
             await $("#abmelden_button").click(() => {
-                //Funktion aufrufen um Cookie zu löschen
+                await session_termination();
+                await fetch('/login.html')
             });
 
             await $("#delete_button").click(() => {
                 //Abmelden aufrufen und aus Datenbank löschen
 
-                //User ID bekommen
-                let response = fetch("/web2/user/" + id);
+                
+                let response = await fetch("web2/user", {
+                    method: "DELETE",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                });
+
+
+                session_termination();
             });
 
-            function deleteCookie() {
-                //Cookie löschen
+            function session_termination() {                
+                fetch("/web2/user/abmelden");                                
             }
         });
 
