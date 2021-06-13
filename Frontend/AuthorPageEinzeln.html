@@ -146,9 +146,25 @@
 				tmp+="</div>";
 				tmp+="</div>";
 				
+
+
+				if (json_authorbooks.length <= 0) {
+						tmp+="<a class=\"Book_link\" href=\"\">Kein Buch vorhanden.</a>";	
+					}else {
+						for (let i=0; i<json_authorbooks.length; i++) {
+				
+							tmp+= "<div class=\"Book_container\">" + "<div class=\"author_buble\">";
+							tmp+="<p> Der goldene <span class=\"Word_Spacing\">Topf Roman" + json_authorbooks[i]["preis"] + "</span> &euro; <a href=\"Artikelseite.html/" + json_authorbooks[i]["id"] + "\"><button type=\"button\">Zum Buch</button></a>";	
+							tmp+="</p>" + "</div>" + "</div>";
+							}
+						}
+
+
+
+				/*json_authorbooks[i]["id"]
 				tmp+="<div class=\"Book_container\">" + "<div class=\"author_buble\">";
 				tmp+="<p> Der goldene <span class=\"Word_Spacing\">Topf Roman" + "</span> &euro; <a href=\"https://www.google.com/\"><button type=\"button\">Zum Buch</button></a>";
-				tmp+="</p>" + "</div>" + "</div>";
+				tmp+="</p>" + "</div>" + "</div>";*/
 
 				tmp+="<div class=\"container_right\">"
 				tmp+="<p><span class=\"font_container\">Name:</span> <span class=\"Space\">" + json_author["name"] + "</span></p>"
