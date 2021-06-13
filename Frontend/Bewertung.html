@@ -55,36 +55,36 @@
             <div id="rating">
                 <p class="headline">Inhalt</p>
                 <div class="stars">
-                    <span class="fa fa-star checked_star"></span>
-                    <span class="fa fa-star checked_star"></span>
-                    <span class="fa fa-star checked_star"></span>
-                    <span class="fa fa-star"></span>
-                    <span class="fa fa-star"></span>
+                    <span class="fa fa-star star_inhalt checked_star" onmouseover="markStars(1,'star_inhalt'); calcAvgStars(); "></span>
+                    <span class="fa fa-star star_inhalt " onmouseover="markStars(2,'star_inhalt'); calcAvgStars();"></span>
+                    <span class="fa fa-star star_inhalt" onmouseover="markStars(3,'star_inhalt'); calcAvgStars();"></span>
+                    <span class="fa fa-star star_inhalt" onmouseover="markStars(4,'star_inhalt'); calcAvgStars();"></span>
+                    <span class="fa fa-star star_inhalt" onmouseover="markStars(5,'star_inhalt'); calcAvgStars();"></span>
                 </div>
 
                 <p class="headline">Stil</p>
                 <div class="stars">
-                    <span class="fa fa-star checked_star"></span>
-                    <span class="fa fa-star checked_star"></span>
-                    <span class="fa fa-star checked_star"></span>
-                    <span class="fa fa-star"></span>
-                    <span class="fa fa-star"></span>
+                    <span class="fa fa-star star_stil checked_star" onmouseover="markStars(1,'star_stil'); calcAvgStars();"></span>
+                    <span class="fa fa-star star_stil" onmouseover="markStars(2,'star_stil'); calcAvgStars();"></span>
+                    <span class="fa fa-star star_stil" onmouseover="markStars(3,'star_stil'); calcAvgStars();"></span>
+                    <span class="fa fa-star star_stil" onmouseover="markStars(4,'star_stil'); calcAvgStars();"></span>
+                    <span class="fa fa-star star_stil" onmouseover="markStars(5,'star_stil'); calcAvgStars();"></span>
                 </div>
                 <p class="headline">Umfang</p>
                 <div class="stars">
-                    <span class="fa fa-star checked_star"></span>
-                    <span class="fa fa-star checked_star"></span>
-                    <span class="fa fa-star checked_star"></span>
-                    <span class="fa fa-star"></span>
-                    <span class="fa fa-star"></span>
+                    <span class="fa fa-star star_umfang checked_star" onmouseover="markStars(1,'star_umfang'); calcAvgStars();"></span>
+                    <span class="fa fa-star star_umfang" onmouseover="markStars(2,'star_umfang'); calcAvgStars();"></span>
+                    <span class="fa fa-star star_umfang" onmouseover="markStars(3,'star_umfang'); calcAvgStars();"></span>
+                    <span class="fa fa-star star_umfang" onmouseover="markStars(4,'star_umfang'); calcAvgStars();"></span>
+                    <span class="fa fa-star star_umfang" onmouseover="markStars(5,'star_umfang'); calcAvgStars();"></span>
                 </div>
                 <p class="headline">Gesamt</p>
                 <div class="stars">
-                    <span class="fa fa-star checked_star"></span>
-                    <span class="fa fa-star checked_star"></span>
-                    <span class="fa fa-star checked_star"></span>
-                    <span class="fa fa-star"></span>
-                    <span class="fa fa-star"></span>
+                    <span class="fa fa-star star_gesamt checked_star"></span>
+                    <span class="fa fa-star star_gesamt"></span>
+                    <span class="fa fa-star star_gesamt"></span>
+                    <span class="fa fa-star star_gesamt"></span>
+                    <span class="fa fa-star star_gesamt"></span>
                 </div>
             </div>
             <div id="select_and_confirm">
@@ -94,7 +94,7 @@
                 </div>
                 <div id="confirm_container">
                     <form method="GET" action="">
-                        <button type="submit" id="confirm">Absenden</button>
+                        <button onclick="submit_stars();" type="submit" id="confirm">Absenden</button>
                     </form>
                 </div>                
             </div>
@@ -113,7 +113,35 @@
     <script>
         $(async () => {
             await loadWarenkorb();
+
         });
+
+
+        function markStars(number,star_class){
+            let stars=document.getElementsByClassName(star_class);
+            for(let i=0;i<number;i++){
+                stars[i].classList.add("checked_star");
+            }
+            for(let i=number; i<stars.length;i++){
+                stars[i].classList.remove("checked_star");
+            }
+        }
+
+        function calcAvgStars(){
+            let avg = Math.round((document.getElementsByClassName("star_inhalt checked_star").length + document.getElementsByClassName("star_stil checked_star").length + document.getElementsByClassName("star_umfang checked_star").length) / 3);
+            markStars(avg,'star_gesamt');
+        }
+
+        function submit_stars(){
+            //BACKEND MUSS ÜBERPRÜFEN RATING JEWEILS ZWISCHEN 1 UND 5 STERNEN IST!
+            console.log("Inhalt: " + document.getElementsByClassName("star_inhalt checked_star").length);
+            console.log("Stil: " + document.getElementsByClassName("star_stil checked_star").length);
+            console.log("Umfang: " + document.getElementsByClassName("star_stil checked_star").length);
+            //Backend muss eh überprüfen also macht es kein Sinn "Gesamt" mitzugeben.
+        }
+
+
+
     </script>
 </body>
 
