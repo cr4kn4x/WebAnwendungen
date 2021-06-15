@@ -43,6 +43,18 @@ class UserDao {
         return false;
     }
 
+    check(email, password) {
+        var sql = 'SELECT ID FROM USER WHERE EMAIL=? AND PASSWORT=?';
+        var statement = this._conn.prepare(sql);
+        var result = statement.get(email, password);
+
+        if (result != undefined) {
+            return result;
+        }else {
+            return false;
+        }
+    }
+
     create(email = '', password = '') {
         var sql = 'INSERT INTO User (Email,Passwort) VALUES (?,?)';
         var statement = this._conn.prepare(sql);

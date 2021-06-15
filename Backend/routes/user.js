@@ -4,6 +4,7 @@ const express = require('express');
 const session = require('express-session');
 var serviceRouter = express.Router();
 const validator = require('validator');
+const path = require('path');
 
 helper.log('- Route User');
 
@@ -50,7 +51,7 @@ serviceRouter.get('/user/existiert/:id', function(request, response) {
 });
 
 
-
+//Registrieren Post
 serviceRouter.post('/Registrieren.html', function(request, response) {
     helper.log('Route User: Client requested creation of new record');
         console.log(request.body);
@@ -69,7 +70,32 @@ serviceRouter.post('/Registrieren.html', function(request, response) {
                 } 
             }
         }
+});
+
+//Login Post
+serviceRouter.post('/login.html', (request,response) => {
+    helper.log("Post Login");
+
+    let email = request.body.email;
+    let password = request.body.pw;
+
+    console.log(email);
+    console.log(password);
+
+    const userDao = new UserDao(request.app.locals.dbConnection);
+
+    let login_check = userDao.check(email, password);
+    helper.log(request)
+    helper.log(request.session)
+    helper.log(request.session.userID)
        
+    if (login_check != false) {
+        response.sendFile(path.join(__dirname, '../../Frontend/Profil.html'));
+        request.session.userID=login_check.ID;
+        console.log("Login valide")
+    }else {
+        response.sendFile(path.join(__dirname, '../../Frontend/Login.html'));
+    }
 });
 
 serviceRouter.delete('/user', function(request, response) {
