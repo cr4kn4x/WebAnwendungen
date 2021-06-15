@@ -59,12 +59,7 @@ try {
 
     // binding endpoints
     const TOPLEVELPATH = '/web2';
-    helper.log('Binding enpoints, top level Path at ' + TOPLEVELPATH);
-
-
-    
-
-    
+    helper.log('Binding enpoints, top level Path at ' + TOPLEVELPATH);      
     
     var serviceRouter = require('./routes/buch.js');
     app.use(TOPLEVELPATH, serviceRouter);

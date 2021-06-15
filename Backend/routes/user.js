@@ -87,11 +87,11 @@ serviceRouter.delete('/user', function(request, response) {
     }
 });
 
-app.get('/user/abmelden', function(request, response) {
+/*app.get('/user/abmelden', function(request, response) {
     helper.log('Route User: Client requested deletion of Session');
     request.session.destroy();   
     response.sendFile(path.join(__dirname, '../Frontend/Login.html'));
 });
-
+*/
 
 module.exports = serviceRouter;
