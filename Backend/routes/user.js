@@ -38,7 +38,6 @@ serviceRouter.get('/user/alle/', function(request, response) {
 
 serviceRouter.get('/user/existiert/:id', function(request, response) {
     helper.log('Route User: Client requested check, if record exists, id=' + request.params.id);
-
     const userDao = new UserDao(request.app.locals.dbConnection);
     try {
         var result = userDao.exists(request.params.id);
@@ -89,6 +88,28 @@ serviceRouter.post('/login.html', (request,response) => {
     }
 });
 
+
+serviceRouter.get('/logout', function(request, response) {
+    console.log(request.session.userID);
+    
+    if(request.session.userID!=undefined){
+        try{
+            request.session.userID=undefined;
+            response.status(200).json(helper.jsonMsgOK({'logout': 'true'}));
+        }
+
+        catch{
+            response.status(200).json(helper.jsonMsgOK({'logout': 'false'}));
+        }
+        
+    }
+
+});
+
+
+
+
+
 serviceRouter.delete('/user', function(request, response) {
     helper.log('Route User: Client requested deletion of record, id=' + request.session.userID);
 
@@ -103,5 +124,10 @@ serviceRouter.delete('/user', function(request, response) {
         response.status(400).json(helper.jsonMsgError(ex.message));
     }
 });
+
+
+
+
+
 
 module.exports = serviceRouter;

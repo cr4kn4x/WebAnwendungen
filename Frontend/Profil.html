@@ -64,9 +64,22 @@
     <script>
         $(async() => {
             $("#abmelden_button").click(async () => {
-                await session_termination();
-                await fetch('/login.html')
+                console.log("CLICK!");
+                let response = await fetch('/web2/logout');
+                let logout_json = await response.json();
+
+                
+                if(response.status == 200 && logout_json.daten.logout=='true') {
+                    //Logout succcesfull!
+                    window.location.replace("http://127.0.0.1:8000/Login.html");
+
+                }else if(response.status == 200 && logout_json.daten.logout=='false') {
+                    console.log("Logout fehlgeschlagen!");
+                }
+
             });
+
+
 
             await $("#delete_button").click(async () => {
                 //Abmelden aufrufen und aus Datenbank löschen
@@ -83,9 +96,7 @@
                 await session_termination();
             });
 
-            async function session_termination() {                
-                await fetch("/user/abmelden");                                
-            }
+            
         });
 
         
