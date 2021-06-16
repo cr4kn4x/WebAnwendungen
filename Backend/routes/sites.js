@@ -6,6 +6,8 @@ const path = require("path");
 
 
 
+
+
 // CSS-Files
 serviceRouter.get('/CSS/:file_name', function(request, response) {
     console.log(request.params.file_name);

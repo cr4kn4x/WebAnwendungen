@@ -57,6 +57,24 @@ try {
     });
     app.use(morgan('dev'));
 
+
+    //Session management
+    const session = require('express-session');
+    app.use(session({
+    name:"SESSION", //ist glaub ich nicht relevant
+    resave:false,
+    saveUninitialized:false,
+    secret:'E6fs1dk4j3Da2S!nD/sdP!8hd=jf9(3LfeFJ/PSKdf%92f($p12§',     // something safe
+
+    cookie: {
+        maxAge: (1000*60*60)*4,   //Session Lifetime
+        sameSite: true,           //??
+    }}))
+    
+
+
+
+
     // binding endpoints
     const TOPLEVELPATH = '/web2';
     helper.log('Binding enpoints, top level Path at ' + TOPLEVELPATH);      
@@ -88,28 +106,14 @@ try {
     serviceRouter = require('./routes/buchgenre.js');
     app.use(TOPLEVELPATH, serviceRouter);
 
-    
   
     //HTML, CSS und Medien
     serviceRouter = require('./routes/sites.js');
     app.use(serviceRouter);
 
-    //Session management
+    
 
-    const session = require('express-session');
-
-    serviceRouter.use(session({
-    name:"SESSION", //ist glaub ich nicht relevant
-    resave:false,
-    saveUninitialized:false,
-    secret:'E6fs1dk4j3Da2S!nD/sdP!8hd=jf9(3LfeFJ/PSKdf%92f($p12§',     // something safe
-
-    cookie: {
-        maxAge: (1000*60*60)*4,   //Session Lifetime
-        sameSite: true,           //??
-    }}))
-
-
+    
     // send default error message if no matching endpoint found
     app.use(function (request, response) {
         helper.log('Error occured, 404, resource not found');

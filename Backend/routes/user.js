@@ -1,10 +1,10 @@
 const helper = require('../helper.js');
 const UserDao = require('../dao/userDao');
 const express = require('express');
-const session = require('express-session');
 var serviceRouter = express.Router();
 const validator = require('validator');
 const path = require('path');
+
 
 helper.log('- Route User');
 
@@ -74,27 +74,19 @@ serviceRouter.post('/Registrieren.html', function(request, response) {
 
 //Login Post
 serviceRouter.post('/login.html', (request,response) => {
-    helper.log("Post Login");
+    if(true){          //Only allow login if user not loged in.
+        let email = request.body.email;
+        let password = request.body.pw;
 
-    let email = request.body.email;
-    let password = request.body.pw;
+        const userDao = new UserDao(request.app.locals.dbConnection);
+        let login_check = userDao.check(email, password);
 
-    console.log(email);
-    console.log(password);
-
-    const userDao = new UserDao(request.app.locals.dbConnection);
-
-    let login_check = userDao.check(email, password);
-    helper.log(request)
-    helper.log(request.session)
-    helper.log(request.session.userID)
-       
-    if (login_check != false) {
-        response.sendFile(path.join(__dirname, '../../Frontend/Profil.html'));
-        request.session.userID=login_check.ID;
-        console.log("Login valide")
-    }else {
-        response.sendFile(path.join(__dirname, '../../Frontend/Login.html'));
+        if (login_check != false) {
+            request.session.userID=login_check.ID;
+            response.status(200).json(helper.jsonMsgOK({'eintrag': 'dd' }));
+        }else {
+            response.status(200).json(helper.jsonMsgOK({'eintrag': 'dd' }));
+        }
     }
 });
 

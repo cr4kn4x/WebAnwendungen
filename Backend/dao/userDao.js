@@ -55,6 +55,7 @@ class UserDao {
         }
     }
 
+
     create(email = '', password = '') {
         var sql = 'INSERT INTO User (Email,Passwort) VALUES (?,?)';
         var statement = this._conn.prepare(sql);
