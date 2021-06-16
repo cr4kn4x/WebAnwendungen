@@ -108,7 +108,6 @@
 				let author_id = getUrlParameterByName("authorID");
 				let json_author = await load_author(author_id);
 				let json_authorbooks = await load_authorbooks(json_author);
-				await load_json_genre(json_author, json_authorbooks);
 
 				await adjustHeight();
 
@@ -129,21 +128,14 @@
 			async function load_authorbooks(json_author) {
 				let response = await fetch('http://localhost:8000/web2/buch/lade_von_autor/' + json_author["id"]);
 				let json_authorbooks = await response.json();
-				return json_authorbooks.daten;				
+				console.log(json_authorbooks);
+				//let json_genre = await 
+				await ajaxToHTML(json_author, json_authorbooks.daten);			
 			}
 
-			async function load_json_genre(json_author, json_authorbooks){
-				const json_genre = [];
-				for (let i = 0; i<json_authorbooks.length; i++){
-					let response = await fetch('http://localhost:8000/web2/buchgenre/gib/' + json_authorbooks[i]["genreid"]);
-					json_genre.push(response.json());
-					
-				}
-				await ajaxToHTML(json_author, json_authorbooks, json_genre);
-			}
 			
 
-			function ajaxToHTML(json_author, json_authorbooks, json_genre) {
+			function ajaxToHTML(json_author, json_authorbooks) {
 				tmp = "<div id=\"top_container\">";;
 				tmp="<div class=\"biographie_buble\" id=\"bio_bb\">";
 				tmp+="<p>";
@@ -169,10 +161,11 @@
 					tmp+="</div>" + "</div>";
 
 					}else {
+						
 						for (let i=0; i<json_authorbooks.length; i++) {
 				
 							tmp+= "<div class=\"Book_container\">" + "<div class=\"author_buble\">";
-							tmp+="<p><div id=\"titelbuch\">" + json_authorbooks[i]["titel"] + "</div>" + "<div id=\"genrebuch\">" + json_genre[i]["bezeichnung"] + "</div>";
+							tmp+="<p><div id=\"titelbuch\">" + json_authorbooks[i]["titel"] + "</div>" + "<div id=\"genrebuch\">" + json_authorbooks[i]["genre"] + "</div>";
 							tmp+=json_authorbooks[i]["preis"] + "&euro; <a href=\"Artikelseite.html?titelID=" + json_authorbooks[i]["id"] + "\"><button type=\"button\">Zum Buch</button></a>";	
 							tmp+="</p>" + "</div>" + "</div>";
 							}

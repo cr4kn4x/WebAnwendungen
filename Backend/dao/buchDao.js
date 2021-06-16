@@ -6,21 +6,58 @@ const BuchbildDao = require("../dao/buchbildDao.js");
 const AutorDao = require("../dao/autorDao.js");
 const BuchgenreDao = require('../dao/buchgenreDao.js');
 
+
 function loadAdditionalData(json_book, dbConnection) {
 
-        console.log(json_book);
 
-        // Bildpfad einfügen
-        buchbildDao = new BuchbildDao(dbConnection);
-        json_book["bildpfad"]=buchbildDao.loadById(json_book["bildid"])["bildpfad"];
-        // Autor Name einfügen
-        autorDao = new AutorDao(dbConnection);
-        json_book["autor_name"]=autorDao.loadById(json_book["authorid"])["name"];
-        // Genre einfügen
-        buchgenreDao = new BuchgenreDao(dbConnection);
-        json_book["genre"]=buchgenreDao.loadById(json_book["genreid"])["bezeichnung"];
-    
+
+    console.log(json_book);
+
+
+
+    // Bildpfad einfügen
+
+    buchbildDao = new BuchbildDao(dbConnection);
+
+    json_book["bildpfad"]=buchbildDao.loadById(json_book["bildid"])["bildpfad"];
+
+    // Autor Name einfügen
+
+    autorDao = new AutorDao(dbConnection);
+
+    json_book["autor_name"]=autorDao.loadById(json_book["authorid"])["name"];
+
+    // Genre einfügen
+
+    buchgenreDao = new BuchgenreDao(dbConnection);
+
+    json_book["genre"]=buchgenreDao.loadById(json_book["genreid"])["bezeichnung"];
+
+
+
     return json_book;
+
+
+
+}
+
+
+
+
+
+
+function loadAdditional_autordata(json_books, dbConnection) {
+
+        console.log(json_books);
+        buchgenreDao = new BuchgenreDao(dbConnection);
+        // Genre einfügen
+        for(let i =0; i<json_books.length; i++){
+            helper.log("Teset")
+            json_books[i]["genre"]=buchgenreDao.loadById(json_books[i]["genreid"])["bezeichnung"];
+        }
+        
+    
+    return json_books;
     
 }
 
@@ -92,7 +129,7 @@ class BuchDao {
         if (helper.isArrayEmpty(result)) 
             return [];      
         
-        return helper.arrayObjectKeysToLower(result);
+        return loadAdditional_autordata(helper.arrayObjectKeysToLower(result),this._conn);
     }
 
     toString() {
