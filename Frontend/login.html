@@ -39,6 +39,12 @@
                         <input type="password" name="password" placeholder="****************" id="passwort">
                     
                     <p id="registrieren_container"><a id="registrieren" href="Registrieren.html">Registrieren</a></p>
+
+                    <div style="height: 10px;">
+                        <p id="login_status" style="display:none; color: red;">Login Fehlgeschlagen!</p>
+                    </div>
+                    
+                    
                     <div id="vergessen_container">
                         <p><a class="vergessen" href="Impressum.html">Passwort vergessen?</a></p>
                         <p class="vergessen">Setzen Sie sich mit uns in Verbindung unter Impressum und Kontakt.</p>
@@ -47,7 +53,7 @@
                     <button id="login_button" type="button">Login</button>
 
                     </form>
-
+                    
                 </div>
             </div>             
         </div>
@@ -62,6 +68,7 @@
         </div>
 
         <script>
+            
             $(async() => {
                 await loadWarenkorb();
 
@@ -84,16 +91,17 @@
                         body: JSON.stringify(newUser),
                     })
                     
-                    let data = await response.json();
+                    let login_json = await response.json();
+
                     
-                    console.log(data);
 
-                    if(response.status == 200) {
-                        
-                        
-                    }else {
-                        
+                    if(response.status == 200 && login_json.daten.login=='true') {
+                        //Login succcesfull!
+                        window.location.replace("http://127.0.0.1:8000/Profil.html");
 
+                    }else if(response.status == 200 && login_json.daten.login=='false') {
+                        //Login failed!
+                        document.getElementById("login_status").style.display="block";
                     }
                     
                     

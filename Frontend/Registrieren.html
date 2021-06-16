@@ -45,8 +45,14 @@
                         <input type="password" name="password2" placeholder="****************" id="passwort_pruefen">
                         <p><button id="registrieren_button" type="button">Registrieren</button></p>
 
+                        <div style="height: 10px;">
+                            <p id="register_status" style="display:none; color: red;">Registrieren Fehlgeschlagen! Bitte überprüfen sie ihre Eingabe</p>
+                        </div>
+
+
+
                     </form>
-                    <p id="login_container"><a id="zum_login" href="Login.html">Haben Sie bereits ein Konto? Hier zum Login.</a></p>
+                    <p style="margin-top: 30px;" id="login_container"><a id="zum_login" href="Login.html">Haben Sie bereits ein Konto? Hier zum Login.</a></p>
                     
 
 
@@ -86,14 +92,18 @@
                         },
                         body: JSON.stringify(newUser),
                     });
-                    
 
-                    if(response.status != 200) {
-                        console.log("Failed to create new User entry!");
-                        return;
-                    }  
-                    else{
-                        console.log(response.body);
+                    let register_json = await response.json();
+
+
+                    if(response.status == 200 && register_json.daten.register=='true') {
+                        //Login succcesfull!
+                        window.location.replace("http://127.0.0.1:8000/login.html");
+
+                    }else if(response.status == 200 && register_json.daten.register=='false') {
+                        //Register failed!
+                
+                        document.getElementById("register_status").style.display="block";
                     }
                     
                     
@@ -101,10 +111,10 @@
                     pwInput.val('');
                     pw_pruefenInput.val('');
 
-                    //session Cookie mit response und auf Profilseite linken
+                    
                 
                 });
-                //await andere Seite laden mit session
+                
             });
 
             

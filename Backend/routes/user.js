@@ -54,27 +54,26 @@ serviceRouter.get('/user/existiert/:id', function(request, response) {
 //Registrieren Post
 serviceRouter.post('/Registrieren.html', function(request, response) {
     helper.log('Route User: Client requested creation of new record');
-        console.log(request.body);
-        
-        if(request.body.pw && request.body.pw_pruefen && request.body.email){
-            const userDao = new UserDao(request.app.locals.dbConnection);
-
-            if(request.body.pw == request.body.pw_pruefen && validator.isEmail(request.body.email) && userDao.exists(request.body.email)){
-                try {
-                    var result = userDao.create(request.body.email, request.body.pw);
-                    helper.log('Route User: Record inserted');
-                    response.status(200).json(helper.jsonMsgOK(result));
-                } catch (ex) {
-                    helper.logError('Route User: Error creating new record. Exception occured: ' + ex.message);
-                    response.status(400).json(helper.jsonMsgError(ex.message));
-                } 
-            }
-        }
+    const userDao = new UserDao(request.app.locals.dbConnection);
+    if(request.body.pw && request.body.pw_pruefen && request.body.email && request.body.pw == request.body.pw_pruefen && validator.isEmail(request.body.email) && !userDao.exists(request.body.email)){
+        try {
+            var result = userDao.create(request.body.email, request.body.pw);
+            helper.log('Route User: Record inserted');
+            //response.status(200).json(helper.jsonMsgOK(result));
+             response.status(200).json(helper.jsonMsgOK({'register':'true'}));
+        } catch (ex) {
+            helper.logError('Route User: Error creating new record. Exception occured: ' + ex.message);
+            response.status(400).json(helper.jsonMsgError(ex.message));
+        } 
+    }
+    else{
+        response.status(200).json(helper.jsonMsgOK({'register':'false'}));
+    }
 });
 
 //Login Post
 serviceRouter.post('/login.html', (request,response) => {
-    if(true){          //Only allow login if user not loged in.
+    if(request.session.userID==undefined){   
         let email = request.body.email;
         let password = request.body.pw;
 
@@ -83,9 +82,9 @@ serviceRouter.post('/login.html', (request,response) => {
 
         if (login_check != false) {
             request.session.userID=login_check.ID;
-            response.status(200).json(helper.jsonMsgOK({'eintrag': 'dd' }));
+            response.status(200).json(helper.jsonMsgOK({'login': 'true'}));
         }else {
-            response.status(200).json(helper.jsonMsgOK({'eintrag': 'dd' }));
+            response.status(200).json(helper.jsonMsgOK({'login': 'false'}));
         }
     }
 });
