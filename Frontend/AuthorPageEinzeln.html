@@ -109,7 +109,7 @@
 				let json_author = await load_author(author_id);
 				let json_authorbooks = await load_authorbooks(json_author);
 
-				await adjustHeight();
+				window.onload(adjustHeight);
 
 				window.addEventListener("resize", adjustHeight);
 
@@ -137,7 +137,7 @@
 
 			function ajaxToHTML(json_author, json_authorbooks) {
 				tmp = "<div id=\"top_container\">";;
-				tmp="<div class=\"biographie_buble\" id=\"bio_bb\">";
+				tmp="<div class=\"biographie_buble\" onload=\"adjustHeight()\" id=\"bio_bb\">";
 				tmp+="<p>";
 				tmp+="<span class=\"font_Color\">Biografie</span> <br>";
 				tmp+="<div class=\"bio_text\">";
@@ -188,6 +188,7 @@
 				tmp+="</div>"
 
 				$("#author_body_container").append(tmp);
+				adjustHeight();
 			}
 
 
