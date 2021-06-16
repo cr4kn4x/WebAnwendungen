@@ -4,6 +4,7 @@
         <link rel="stylesheet" href="sources/stylesheet.css"/>
         <link rel="stylesheet" href="CSS/login.css"/>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="JS/sha256.js"></script>
 		<script src="JS/sessionHandling.js"></script>
         <meta charset="UTF-8"/>
     </head>
@@ -72,14 +73,21 @@
             $(async() => {
                 await loadWarenkorb();
 
+
+               
+
+                
+
                 $('#login_button').click(async () => {
                     const emailInput = $("#email");
                     const pwInput = $("#passwort");
 
+                    
+
                     //evtl bezeichner anpassen
                     const newUser = {
                         email: emailInput.val(),
-                        pw: pwInput.val(),
+                        pw: sha256(pwInput.val()),
                     };
                     
 

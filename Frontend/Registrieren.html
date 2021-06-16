@@ -5,6 +5,7 @@
         <link rel="stylesheet" href="CSS/registrieren.css"/>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 		<script src="JS/sessionHandling.js"></script>
+        <script src="JS/sha256.js"></script>
         <meta charset="UTF-8"/>
     </head>
     
@@ -80,8 +81,8 @@
                     //evtl bezeichner anpassen
                     const newUser = {
                         email: emailInput.val(),
-                        pw: pwInput.val(),
-                        pw_pruefen: pw_pruefenInput.val(),
+                        pw: sha256(pwInput.val()),
+                        pw_pruefen: sha256(pw_pruefenInput.val()),
                     };
                     
 
