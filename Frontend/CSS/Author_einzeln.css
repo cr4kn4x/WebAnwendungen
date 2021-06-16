@@ -239,3 +239,17 @@ img{
 	float:left;
 	width:70%
 }
+
+#titelbuch{
+	width: 35%;
+	float: left;
+}
+
+#genrebuch{
+	width: 35%;
+	display: inline-block;
+}
+
+#keinbuch{
+	margin-left: 41%;
+}
