@@ -63,6 +63,15 @@
 
     <script>
         $(async() => {
+
+            //Bücher vom User laden
+            let ajaxBooks = await fetch("/bestellposition/gib/userEntries");
+            helper.log(ajaxBooks)
+            await ajaxToHTML(ajaxBooks);
+
+            //später überlegen Referenz auf einzelne Buttons --> click --> Id Übergabe
+
+
             $("#abmelden_button").click(async () => {
                 console.log("CLICK!");
                 let response = await fetch('/web2/logout');
@@ -79,8 +88,6 @@
 
             });
 
-
-
             await $("#delete_button").click(async () => {
                 //Abmelden aufrufen und aus Datenbank löschen
 
@@ -91,13 +98,23 @@
                         "Content-Type": "application/json",
                     },
                 });
-
-
                 await session_termination();
-            });
-
-            
+            });            
         });
+       
+
+        function ajaxToHTML(ajaxBooks) {
+            for (let i=0; i<=ajaxBooks.length; i++) {
+                tmp = "<div>"
+                tmp += "<span class=\"bezeichner\>" + titel + "</span>";
+                tmp += "<span class=\"bezeichner\>" + isbn + "</span>";
+                tmp += "<span class=\"bezeichner\>" + autor + "</span>";
+                tmp += "<button id=\"download_button\"" + i + " class=\"buttons\" type=\"button\">Download</button>";
+                tmp += "<button id=\"bewerten_button\"" + i + "class=\"buttons\" type=\"button\">Bewerten</button>";
+                tmp += "</div>";
+                $("#main").append(tmp);
+            }    
+        }
 
         
     </script>

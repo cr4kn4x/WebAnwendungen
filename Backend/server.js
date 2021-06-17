@@ -93,7 +93,9 @@ try {
     
     serviceRouter = require('./routes/user.js');
     app.use(TOPLEVELPATH, serviceRouter);
-    
+
+    serviceRouter = require('./routes/bestellposition.js');
+    app.use(TOPLEVELPATH, serviceRouter);    
 
     serviceRouter = require('./routes/shop.js');
     app.use(TOPLEVELPATH, serviceRouter);
