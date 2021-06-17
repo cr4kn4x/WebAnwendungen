@@ -80,7 +80,7 @@
                     const emailInput = $("#email");
                     const pwInput = $("#passwort");
                     const pw_pruefenInput = $("#passwort_pruefen");
-
+                    console.log("adsg")
                     //evtl bezeichner anpassen
                     const newUser = {
                         email: emailInput.val(),
@@ -126,7 +126,7 @@
             let pw = document.getElementById("passwort");
             let pw_pruefen = document.getElementById("passwort_pruefen");
             let messageText = document.getElementById("msg");
-            //let setPasswordButton = document.getElementById("registrieren_button");
+            let setPasswordButton = document.getElementById("registrieren_button");
             
             
 
@@ -181,9 +181,9 @@
 
             
             function ueberpruefePasswort1() {
-                console.log("asd");
+                
                 if (pw.value == pw_pruefen.value) {
-                    //setPasswordButton.disabled = false;
+                    setPasswordButton.disabled = false;
                     messageText.innerText = "Passwörter stimmen überein";
                     messageText.style.color = "green";
                 }else {
@@ -195,14 +195,14 @@
             
             
           
-
+            /*
             function ueberpruefePasswort(pw, pw_pruefen) {
                 if (pw === pw_pruefen) {
                     return true;
                 }else {
                     return false;
                 }
-            }
+            }*/
         </script>
     </body>
 </html>
