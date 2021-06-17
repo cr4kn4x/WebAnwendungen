@@ -44,7 +44,7 @@
                     <p>Passwort wiederholen:</p>
             
                         <input type="password" name="password2" placeholder="****************" id="passwort_pruefen"> 
-                        <p><button id="registrieren_button" type="button">Registrieren</button></p>
+                        <p><button id="registrieren_button" disabled="true" type="button">Registrieren</button></p>
 
                         <p id="msg"></p>
 
@@ -126,7 +126,7 @@
             let pw = document.getElementById("passwort");
             let pw_pruefen = document.getElementById("passwort_pruefen");
             let messageText = document.getElementById("msg");
-            let setPasswordButton = document.getElementById("registrieren_button");
+            //let setPasswordButton = document.getElementById("registrieren_button");
             
             
 
@@ -168,7 +168,7 @@
                 }
                 else{
                     messageText.style.color = "red";  
-                    setPasswordButton.disabled = true;  
+                    //setPasswordButton.disabled = true;  
 
                 }
 
@@ -183,11 +183,11 @@
             function ueberpruefePasswort1() {
                 console.log("asd");
                 if (pw.value == pw_pruefen.value) {
-                    setPasswordButton.disabled = false;
+                    //setPasswordButton.disabled = false;
                     messageText.innerText = "Passwörter stimmen überein";
                     messageText.style.color = "green";
                 }else {
-                    setPasswordButton.disabled = true;
+                    //setPasswordButton.disabled = true;
                     messageText.style.color = "red";
                     messageText.innerText = "Passwörter stimmen nicht überein";
                 }
