@@ -39,12 +39,14 @@
                     
                     <p>Passwort:</p>
                     
-                        <input type="password" name="password1" placeholder="****************" id="passwort">
+                        <input type="password" name="password1" placeholder="****************" id="passwort" required onkeyup="onPasswordChanged()">
                     
                     <p>Passwort wiederholen:</p>
             
-                        <input type="password" name="password2" placeholder="****************" id="passwort_pruefen">
+                        <input type="password" name="password2" placeholder="****************" id="passwort_pruefen"> 
                         <p><button id="registrieren_button" type="button">Registrieren</button></p>
+
+                        <p id="msg"></p>
 
                         <div style="height: 10px;">
                             <p id="register_status" style="display:none; color: red;">Registrieren Fehlgeschlagen! Bitte überprüfen sie ihre Eingabe</p>
@@ -71,6 +73,7 @@
         <script>
             $(async() => {                
                 await loadWarenkorb();
+                /*password_pruefen.onkeyup = function () {ueberpruefePasswort1(password, password_pruefen,valid)};*/
 
 
                 $("#registrieren_button").click(async() => {
@@ -118,8 +121,77 @@
                 
             });
 
+
+            
+            let pw = document.getElementById("passwort");
+            let pw_pruefen = document.getElementById("passwort_pruefen");
+            let messageText = document.getElementById("msg");
+            let setPasswordButton = document.getElementById("registrieren_button");
+            
             
 
+
+            function onPasswordChanged(){
+                
+                const password = pw.value;
+                const password_pruefen = pw_pruefen.value;
+                var valid = false;
+                let message = "";
+
+                if (password === ""){
+
+                }else if(password.length < 8){
+
+                    message = "Passwort muss mind. 8 Zeichen enthalten";
+
+                }else if (password.search(/[a-z]/) < 0){
+                    message = " Passwort muss mind einen Kleinbuchstaben enthalten";
+                }
+                else if (password.search(/[A-Z]/) < 0){
+                    message = " Passwort muss mind einen Großbuchstaben enthalten";
+                }
+                else if (password.search(/[0-9]/) < 0){
+                    message = " Passwort muss mind eine Zahl enthalten";
+                }
+                else if (password.search(/[#?!@$%&^?*-]/) < 0){
+                    message = " Passwort muss mind ein Sonderzeichen enthalten";
+                }
+                else{
+                    message = "Passwort ist gut";
+                    valid = true;
+                }
+                
+
+                if(valid){
+                    messageText.style.color = "green";
+                    pw_pruefen.onkeyup = function () {ueberpruefePasswort1()};
+                }
+                else{
+                    messageText.style.color = "red";  
+                    setPasswordButton.disabled = true;  
+
+                }
+
+
+                
+                messageText.innerText = message;
+            }
+                
+            
+
+            
+            function ueberpruefePasswort1() {
+                console.log("asd");
+                if (pw.value == pw_pruefen.value) {
+                    setPasswordButton.disabled = false;
+                    messageText.innerText = "Passwörter stimmen überein";
+                    messageText.style.color = "green";
+                }else {
+                    setPasswordButton.disabled = true;
+                    messageText.style.color = "red";
+                    messageText.innerText = "Passwörter stimmen nicht überein";
+                }
+            }
             
             
           
