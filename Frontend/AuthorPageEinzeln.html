@@ -103,13 +103,13 @@
 			$(async () => {
 
 
-
+				 
 
 				let author_id = getUrlParameterByName("authorID");
 				let json_author = await load_author(author_id);
 				let json_authorbooks = await load_authorbooks(json_author);
 
-				window.onload(adjustHeight);
+				
 
 				window.addEventListener("resize", adjustHeight);
 
