@@ -6,27 +6,17 @@ const BuchDao = require("./buchDao");
 
 
 function loadAdditionalData(json_bestellungen, dbConnection) {
-
-    //bestellerid setzen
-    bestellungDao = new BestellungDao(dbConnection);
-
-    for (let i=0; i<json_bestellungen.length; i++) {  
-        //BestellerID aus Bestellung einfügen
-        json_bestellungen[i]["bestellerid"] = bestellungDao.loadById(json_bestellungen[i]["bestellungid"])["bestellerid"];           
-    }
-
-    return json_bestellungen;
-}
-
-
-function loadBooks(json_bestellungen, dbConnection) {
     buchDao = new BuchDao(dbConnection);
 
     //lädt Buchdaten zu passenden Büchern
     for (let i=0; i<json_bestellungen.length; i++) {  
         json_bestellungen[i]["Buch"] = buchDao.loadById(json_bestellungen[i]["buchid"]);   
-    }
+    }  
+
+    return json_bestellungen;
 }
+
+
 class BestellpositionDao {
     constructor(dbConnection) {
         this._conn = dbConnection;
@@ -37,24 +27,16 @@ class BestellpositionDao {
     }
 
     //alle User Bücher laden
-    loadUserEntries() {
-        //Alle Bestellpositionen mit bestellerid laden
-        let bestellungen = this.loadAll();
+    loadUserEntries(id) {
+        var sql = 'SELECT * FROM BESTELLPOSITION WHERE BESTELLUNGID IN (SELECT ID FROM BESTELLUNG WHERE BESTELLERID=?)';
+        var statement = this._conn.prepare(sql);
+        var result = statement.all(id);
 
-        let result = [];
-
-        //prüfen ob bestellerid gleich userID (sollte ja gleich mit session ID sein) --> funktioniert aber noch nicht, da userID gleich undefined
-        for (let i=0; i<bestellungen.length; i++) {
-            helper.log(request.session.userID);
-            if(bestellungen[i]["bestellerid"] == request.session.userID) {
-                //Bestellungen des User an einen Array anhängen
-                result.append(bestellungen[i])
-            }
-        }
-
-        //Array in JSON Format und loadbooks aufrufen
-        return loadBooks(JSON.stringify(result), this._conn);
-    }
+        if (helper.isArrayEmpty(result)) 
+            return [];       
+        
+        return loadAdditionalData(helper.arrayObjectKeysToLower(result), this._conn);
+    }    
     
 
     loadAll() {

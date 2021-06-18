@@ -23,12 +23,12 @@ serviceRouter.get('/bestellposition/gib/alle', function(request, response) {
 
 
 //Route um User Bücher zu laden
-serviceRouter.get('/bestellposition/gib/userEntries', function(request, response) {
+serviceRouter.get('/bestellposition/gib/userEntries/:id', function(request, response) {
     helper.log('Route Bestellposition: Client requested his records');
 
     const bestellpositionDao = new BestellpositionDao(request.app.locals.dbConnection);
     try {
-        var result = bestellpositionDao.loadUserEntries();
+        var result = bestellpositionDao.loadUserEntries(request.params.id);
         helper.log('Route Bestellposition: Records loaded');
         response.status(200).json(helper.jsonMsgOK(result));
     } catch (ex) {

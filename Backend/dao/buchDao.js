@@ -104,11 +104,11 @@ class BuchDao {
 
 
     loadByAuthorId(id) {
-        var sql = 'SELECT * FROM BUCH WHERE authorid=' + id;
+        var sql = 'SELECT * FROM BUCH WHERE authorid=?';
         //        var sql = 'SELECT * FROM BUCH INNER JOIN AUTOR ON BUCH.AUTHORID = AUTOR.ID';
 
         var statement = this._conn.prepare(sql);
-        var result = statement.all();
+        var result = statement.all(id);
 
 
         if (helper.isArrayEmpty(result)) 
