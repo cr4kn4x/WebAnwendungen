@@ -7,6 +7,11 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <meta charset="UTF-8" />
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+   
+    
+
     <script src="JS/sessionHandling.js"></script>
 </head>
 
@@ -49,22 +54,21 @@
                 <p>(inkl. MwSt.)</p>
                 <form class="zahlung">
                     <h2>Zahlungsmethode:</h2>
+                
                     <label>
-                        <input type="radio" name="art" value="paypal">
+                        <input type="radio" id="1" class="payment_button" name="payment_button" checked>   
                         <img src="sources/PayPal.svg.png" width="80px">
-                    </label><br>
-                    <!--<label>
-                        <input type="radio" name="art" value="maestro">
-                        <img src="sources/maestro.png" width="80px">
-                    </label><br>
-                    <label>
-                        <input type="radio" name="art" value="mastercard">
-                        <img src="sources/1000px-Mastercard-logo.svg.png" width="80px">
-                    </label><br>-->
+                    </label>
+
+                    <label style="margin-left: 5%;">
+                        <input type="radio"  id="2" class="payment_button" name="payment_button">
+                        <img src="sources/PayPal.svg.png" width="80px">
+
+                    </label><br><br>
                 </form>
+
                 <br><br>
-                <div><a href="Bestellbestaetigung.html"><button type="button"
-                            style="width: 50%;">Bestellen</button></a></div>
+                <div><button type="button" id="order_button" style="width: 50%;">Bestellen</button></div>
             </div>
         </div>
     </div>
@@ -80,49 +84,94 @@
 
 
     <script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         $(async () => {
+
+            $('#order_button').click(async () => {
+
+            get_payment_option();
+            console.log(get_Books_to_Order());
+
             
+            //evtl bezeichner anpassen
+            const newOrder = {
+                payment_option: get_payment_option(),
+                order_books: get_Books_to_Order()
+            };
+                    
+            let response = await fetch("web2/order", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(newOrder),
+            })
+            
+            
+            let order_response = await response.json(); 
+
+            if(response.status == 200 && order_response.daten.loginRequired=='true') {
+                //Login needed!
+                window.location.replace("http://127.0.0.1:8000/login.html"); 
+
+
+            }else if(response.status == 200 && order_response.daten.loginRequired=='false') {
+                console.log("All fine!");
+
+            }
+            
+
+        }); 
+
+
+        
             if(existsSessionItem("id")){
                 let price_array = await loadBasket();	
                 const reducer = (accumulator, currentValue) => accumulator + currentValue;
                 let gesamtpreis = price_array.reduce(reducer).toFixed(2);
                 $("#gesamtbetrag").text(gesamtpreis.toString().replace(".",",") + "€");
             }
-            
             else{
                 let tmp="<h1 style=\"color:#FF8A11;margin-left:40%; margin-top:15%;\"> Warenkorb ist leer!</h1>";
                 $("#Book_container").append(tmp);
                 $("#gesamtbetrag").text("0.00€");
             }
-            
-            await loadWarenkorb();
-            
         });
 
         async function loadBasket() {
-            
             let books = getSessionItem("id").split(',');
-            console.log(books)
-                
-            preise_books=[];
-
+            let preise_books=[];
             for (let i=0; i<books.length; i++) {
                 let response = await fetch("http://localhost:8000/web2/buch/gib/" + books[i]);
                 let json_books = await response.json()
                 preise_books.push(json_books.daten["preis"])
-                await ajaxToHTML(json_books.daten);
+                ajaxToHTML(json_books.daten);
             }
             return preise_books;
         }
             
 
-        async function calculate_gesamtpreis(json_book){
-            gesamtpreis = json_book["preis"];
-            return gesamtpreis;
-        }
-
         function ajaxToHTML(json_book) {
-            console.log(json_book);
             tmp="<div class=\"author_buble\">";
             tmp+="<div class=\"inside_buble_container\">";
             tmp+="<a class=\"Author_attribute item_url\" href=\"Artikelseite.html?titelID=" + json_book.id +"\"" //
@@ -147,6 +196,7 @@
             $("#Book_container").append(tmp);
         }
 
+
         function deleteArtikel(id){
             let session_items=getSessionItem("id").split(",");
             let new_seesion_items=[];
@@ -155,7 +205,6 @@
                     new_seesion_items.push(session_items[i]);
                 }
             }
-        
             if(new_seesion_items.length>0){
                 setSessionItem("id",new_seesion_items.toString());
             }
@@ -164,6 +213,28 @@
             }
 
             location.reload();
+        }
+
+
+
+        //  ----          Bestellvorgang        ---- 
+        function get_payment_option(){
+            let payment_buttons = document.getElementsByClassName("payment_button");
+            for(let i=0; i<payment_buttons.length;i++){
+                if(payment_buttons[i].checked==true){
+                    return payment_buttons[i].id;
+                }
+            }
+            //Keine Zahlungsmethode ist markiert --> passiert nur bei HTML Modifikation durch den User!
+            return -1;
+        }
+
+
+        function get_Books_to_Order() {
+            if(existsSessionItem("id")){
+                return getSessionItem("id").split(',');
+            }
+            return -1; //.split failed
         }
 
 

@@ -125,18 +125,12 @@ serviceRouter.get('/shop.html', (request,response) => {
         console.log("User ist angemeldet!")
     }
 
-
     response.sendFile(path.join(__dirname, '../../Frontend/shop.html'));
 })
 
 //Warenkorb
 serviceRouter.get('/Warenkorb.html', function(request, response) {
-    console.log(request.session.userID)
-    if(request.session.userID==undefined){
-        response.sendFile(path.join(__dirname, '../../Frontend/login.html'));
-    }else{
-        response.sendFile(path.join(__dirname, '../../Frontend/Warenkorb.html'));
-    }
+    response.sendFile(path.join(__dirname, '../../Frontend/Warenkorb.html'));
 });
 
 //Widerrufsrecht

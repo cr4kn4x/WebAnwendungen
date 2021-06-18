@@ -35,7 +35,6 @@ serviceRouter.get('/zahlungsart/alle', function(request, response) {
 
 serviceRouter.get('/zahlungsart/existiert/:id', function(request, response) {
     helper.log('Service Zahlungsart: Client requested check, if record exists, id=' + request.params.id);
-
     const zahlungsartDao = new ZahlungsartDao(request.app.locals.dbConnection);
     try {
         var result = zahlungsartDao.exists(request.params.id);

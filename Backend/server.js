@@ -113,6 +113,10 @@ try {
     serviceRouter = require('./routes/sites.js');
     app.use(serviceRouter);
 
+
+    //Bestellung
+    serviceRouter = require('./routes/bestellung.js');
+    app.use(TOPLEVELPATH, serviceRouter);
     
 
     
