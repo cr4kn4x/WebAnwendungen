@@ -1,5 +1,6 @@
 const helper = require('../helper.js');
 const UserDao = require('../dao/userDao');
+const ZahlungsartDao = require('../dao/zahlungsartDao')
 const express = require('express');
 var serviceRouter = express.Router();
 const path = require('path');
@@ -16,7 +17,7 @@ serviceRouter.post('/order', (request,response) => {
         let payment_id=request.body.payment_option;
         let books_ids= request.body.order_books
         
-        if(books_ids.length>0){
+        if(books_ids && payment_id && books_ids.length>0 && checkPaymentOption(payment_id) && check_books_id(books_ids)){
             console.log("also catchiung undefindes");
         }
 
@@ -31,6 +32,13 @@ serviceRouter.post('/order', (request,response) => {
 
 
 
+function checkPaymentOption(params) {
+    
+}
+
+function check_books_id(params) {
+    
+}
 
 
 
