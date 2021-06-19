@@ -123,6 +123,7 @@ serviceRouter.delete('/user', function(request, response) {
         helper.logError('Route User: Error deleting record. Exception occured: ' + ex.message);
         response.status(400).json(helper.jsonMsgError(ex.message));
     }
+    
 });
 
 

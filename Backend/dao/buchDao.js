@@ -8,7 +8,7 @@ const BuchgenreDao = require('../dao/buchgenreDao.js');
 
 
 function loadAdditionalData(json_book, dbConnection) {
-    console.log(json_book);
+    
 
     // Bildpfad einfügen
     buchbildDao = new BuchbildDao(dbConnection);
@@ -31,12 +31,9 @@ function loadAdditionalData(json_book, dbConnection) {
 
 
 function loadAdditional_autordata(json_books, dbConnection) {
-
-        console.log(json_books);
         buchgenreDao = new BuchgenreDao(dbConnection);
         // Genre einfügen
         for(let i =0; i<json_books.length; i++){
-            helper.log("Teset")
             json_books[i]["genre"]=buchgenreDao.loadById(json_books[i]["genreid"])["bezeichnung"];
         }
         
@@ -66,11 +63,37 @@ class BuchDao {
             throw new Error('No Record found by id=' + id);
         
         
-
         return loadAdditionalData(helper.objectKeysToLower(result),this._conn);
     }
 
 
+    loadPriceById(id) {
+        var sql = 'SELECT Preis FROM BUCH WHERE ID=?';
+        helper.log(this._conn);
+        var statement = this._conn.prepare(sql);
+        var result = statement.get(id);
+
+
+        if (helper.isUndefined(result)) 
+            throw new Error('No Record found by id=' + id);
+        
+        
+        return helper.objectKeysToLower(result);
+        //return helper.objectKeysToLower(result),this._conn;
+    }
+
+
+
+    exists(id) {
+        var sql = 'SELECT COUNT(ID) AS cnt FROM BUCH WHERE ID=?';
+        var statement = this._conn.prepare(sql);
+        var result = statement.get(id);
+
+        if (result.cnt == 1) 
+            return true;
+
+        return false;
+    }
 
 
 

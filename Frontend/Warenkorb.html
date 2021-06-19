@@ -63,9 +63,11 @@
                     <label style="margin-left: 5%;">
                         <input type="radio"  id="2" class="payment_button" name="payment_button">
                         <img src="sources/PayPal.svg.png" width="80px">
-
                     </label><br><br>
                 </form>
+
+                <input type="checkbox" id="AGB_checkbox" name="AGB_accept" value="AGB_accept">
+                <label for="AGB_accept">Akzeptieren der AGB und zahlungspflichtig bestellen</label> 
 
                 <br><br>
                 <div><button type="button" id="order_button" style="width: 50%;">Bestellen</button></div>
@@ -109,14 +111,13 @@
 
             $('#order_button').click(async () => {
 
-            get_payment_option();
-            console.log(get_Books_to_Order());
 
             
             //evtl bezeichner anpassen
             const newOrder = {
                 payment_option: get_payment_option(),
-                order_books: get_Books_to_Order()
+                order_books: get_Books_to_Order(),
+                agb_accept: check_AGB()  // == 1 if accepted! == -1 if not checked!
             };
                     
             let response = await fetch("web2/order", {
@@ -131,13 +132,11 @@
             let order_response = await response.json(); 
 
             if(response.status == 200 && order_response.daten.loginRequired=='true') {
-                //Login needed!
-                window.location.replace("http://127.0.0.1:8000/login.html"); 
-
-
-            }else if(response.status == 200 && order_response.daten.loginRequired=='false') {
+                window.location.replace("/login.html");
+            }
+            
+            else if(response.status == 200 && order_response.daten.loginRequired=='false') {
                 console.log("All fine!");
-
             }
             
 
@@ -229,12 +228,25 @@
             return -1;
         }
 
+        function check_AGB(){
+            if(document.getElementById("AGB_checkbox").checked){
+                return 1;
+            }
+            return -1;
+        }
+
 
         function get_Books_to_Order() {
             if(existsSessionItem("id")){
-                return getSessionItem("id").split(',');
+                try{
+                    return getSessionItem("id").split(',');
+                }
+                catch{
+                    return -1
+                }
+                
             }
-            return -1; //.split failed
+            return -1; //not existing SessionItem
         }
 
 
