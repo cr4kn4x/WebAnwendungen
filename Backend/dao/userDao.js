@@ -57,8 +57,6 @@ class UserDao {
 
 
     create(email = '', password = '') {
-        console.log(email);
-        console.log(password);
         
         var sql = 'INSERT INTO User (Email,Passwort) VALUES (?,?)';
         var statement = this._conn.prepare(sql);

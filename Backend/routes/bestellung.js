@@ -33,22 +33,26 @@ serviceRouter.post('/order', (request,response) => {
             const buchDao = new BuchDao(request.app.locals.dbConnection);
             let order_status=checkOrder(books_ids, payment_id, accept_agb,zahlungsartDao,buchDao);
 
-            if(order_status[0]==1 && order_status[1]>0){  //order_value>0 --> WIR HABEN NIX ZU VERSCHENKEN!
-
-                const bestellungDao = new BestellungDao(request.app.locals.dbConnection);
-
-                console.log(Date.now());
+            if(order_status[0]==1 && order_status[1]>0){  //order_status[1] > 0 --> WIR HABEN NIX ZU VERSCHENKEN!
                 //ORDER SUCESSFULL!
-                //Flag setzen in session?? wenn dann hier
+                const bestellungDao = new BestellungDao(request.app.locals.dbConnection);
+                const bestpellpositionDao = new BestellpositionDao(request.app.locals.dbConnection);
 
-                const currentDate = new Date();
+                let order_price = order_status[1]; 
+
+                try{
+                    let bestellung_id = bestellungDao.createOrder("TIMESTAMP!!", request.session.userID, payment_id, order_price);   // gibt ID von eingfügter Bestellung zurück
+                    for(let i=0; i<books_ids.length;i++){
+                        bestpellpositionDao.insertOrderPosition(bestellung_id, books_ids[i]);
+                    }
+                }
                 
-                let time_stamp = currentDate.getFullYear +"-"+ currentDate.getMonth + "-" + currentDate.getDay + "-" + currentDate.getHours + "-" + currentDate.getMinutes + "-" + currentDate.getSeconds ;
-                console.log(time_stamp);
-
-                let order_price = order_status[1];  
-                //Bestllung der DB hinzufügen!
-
+                catch{
+                    // Sollte eigentlich nicht passieren, da davor alles validiert wurde. // Aber was wenn doch?
+                }
+            
+            
+                //Flag in session?
 
 
 
@@ -110,6 +114,7 @@ function checkOrder(books_ids, payment_id, accept_agb, zahlungsartDao,buchDao){
         }
     }
     else{
+        
         return -1; // ORDER FAILED // USER NOT ACCEPTED AGB! -->  ++++++ TELL USER ++++
     }
 

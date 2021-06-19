@@ -37,6 +37,20 @@ class BestellpositionDao {
         
         return loadAdditionalData(helper.arrayObjectKeysToLower(result), this._conn);
     }    
+
+
+    insertOrderPosition(order_ID, book_ID){
+
+        var sql = 'INSERT INTO Bestellposition (BestellungID, BuchID) VALUES(?, ?);';
+        var statement = this._conn.prepare(sql);
+        var params = [order_ID, book_ID];
+        var result = statement.run(params);
+
+        if (result.changes != 1) 
+            throw new Error('Could not insert new Record. Data: ' + params);
+
+        return result.lastInsertRowid;
+    }
     
 
     loadAll() {
