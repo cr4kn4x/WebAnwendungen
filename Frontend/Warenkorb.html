@@ -86,27 +86,6 @@
 
 
     <script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         $(async () => {
 
             $('#order_button').click(async () => {
@@ -135,8 +114,9 @@
             
             else if(response.status == 200 && order_response.daten.loginRequired=='false') {
                 console.log("All fine!");
+                clearSession();
+                window.location.replace("/Profil.html");
             }
-
         }); 
 
 

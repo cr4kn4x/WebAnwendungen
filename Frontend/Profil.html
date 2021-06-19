@@ -43,8 +43,6 @@
                 <!-- evtl Kategorien hinzufügen-->
 
                 <div id="button_container">
-                    <button class="buttons" id="download_button" type="button">Download</button>
-                    <button class="buttons" id="bewerten_button" type="button">Bewerten</button>
                     <button class="buttons" id="abmelden_button" type="button">Abmelden</button>
                     <button class="buttons" id="delete_button" type="button">Profil löschen</button>
                 </div>
@@ -65,7 +63,7 @@
         $(async () => {
 
             //Bücher vom User laden, User ID noch einfügen anstatt 1
-            let response = await fetch("/web2/bestellposition/gib/userEntries/1");
+            let response = await fetch("/web2/bestellposition/gib/userEntries");
             let ajaxBooks = await response.json();
             await ajaxToHTML(ajaxBooks.daten);
 

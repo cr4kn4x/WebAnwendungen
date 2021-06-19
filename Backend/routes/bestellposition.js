@@ -25,7 +25,7 @@ serviceRouter.get('/bestellposition/gib/alle', function(request, response) {
 
 
 //Route um User Bücher zu laden
-serviceRouter.get('/bestellposition/gib/userEntries/:id', function(request, response) {
+serviceRouter.get('/bestellposition/gib/userEntries', function(request, response) {
 
     if(request.session.userID!=undefined){
         helper.log('Route Bestellposition: Client requested his records');
