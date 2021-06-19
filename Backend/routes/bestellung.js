@@ -15,47 +15,51 @@ const { timeStamp } = require('console');
 
 
 //Order 
-serviceRouter.post('/order', (request,response) => {
+serviceRouter.post('/bestellung/order', (request,response) => {
     if(request.session.userID==undefined){
         response.status(200).json(helper.jsonMsgOK({'loginRequired': 'true'}));
     }
 
     else{
-
         let payment_id=request.body.payment_option;
         let books_ids= request.body.order_books;
         let accept_agb = request.body.agb_accept;
       
-        
         if(books_ids && payment_id && accept_agb){
-        
+            
             const zahlungsartDao = new ZahlungsartDao(request.app.locals.dbConnection);
             const buchDao = new BuchDao(request.app.locals.dbConnection);
-            let order_status=checkOrder(books_ids, payment_id, accept_agb,zahlungsartDao,buchDao);
+            const bestellpositionDao = new BestellpositionDao(request.app.locals.dbConnection);
+
+            let userID = request.session.userID;
+            let order_status=checkOrder(userID,books_ids, payment_id, accept_agb, zahlungsartDao, buchDao, bestellpositionDao);
+
 
             if(order_status[0]==1 && order_status[1]>0){  //order_status[1] > 0 --> WIR HABEN NIX ZU VERSCHENKEN!
                 //ORDER SUCESSFULL!
                 const bestellungDao = new BestellungDao(request.app.locals.dbConnection);
-                const bestpellpositionDao = new BestellpositionDao(request.app.locals.dbConnection);
-
+                const bestellpositionDao = new BestellpositionDao(request.app.locals.dbConnection);
                 let order_price = order_status[1]; 
 
                 try{
-                    let bestellung_id = bestellungDao.createOrder("TIMESTAMP!!", request.session.userID, payment_id, order_price);   // gibt ID von eingfügter Bestellung zurück
+                    let date = new Date();
+                    let time_stamp = date.getFullYear() + "-" + ( date.getMonth() + 1 ) +  "-" + date.getDate() + " " + date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds();
+                    console.log(time_stamp);
+                    let bestellung_id = bestellungDao.createOrder("Time", request.session.userID, payment_id, order_price);   // gibt ID von eingfügter Bestellung zurück
+                    
                     for(let i=0; i<books_ids.length;i++){
-                        bestpellpositionDao.insertOrderPosition(bestellung_id, books_ids[i]);
+                        console.log("IN");
+                        bestellpositionDao.insertOrderPosition(bestellung_id, books_ids[i]);
                     }
                 }
-                
-                catch{
-                    // Sollte eigentlich nicht passieren, da davor alles validiert wurde. // Aber was wenn doch?
+
+
+                catch(ex){
+                    throw new Error("Bestellung fehlgeschlagen! Reason:" + ex.message);
                 }
             
             
                 //Flag in session?
-
-
-
 
                 //Response für Weiterleitug des clients senden.. 
 
@@ -63,31 +67,25 @@ serviceRouter.post('/order', (request,response) => {
             
             else if(order_status == -1){
                 //NEED TO ACCEPT AGB!
+                response.status(200).json(helper.jsonMsgOK({'loginRequired': 'false','AGBRequired':'true'}));
             }
+
 
             else if(order_status < -1){
                 //Something went completly wrong or user sent a wrong request
 
             }
-                
-        
-          
         }
 
         else{
             //Parameter fehlen.. 
         }
-
-        //temporär!
-        response.status(200).json(helper.jsonMsgOK({'loginRequired': 'false'}));
-
-
     }
 });
 
 
 
-function checkOrder(books_ids, payment_id, accept_agb, zahlungsartDao,buchDao){
+function checkOrder(UserID,books_ids, payment_id, accept_agb, zahlungsartDao, buchDao, bestellpositionDao){
 
     if(accept_agb==1){
         if(zahlungsartDao.exists(payment_id)){
@@ -95,7 +93,7 @@ function checkOrder(books_ids, payment_id, accept_agb, zahlungsartDao,buchDao){
                 let order_price=0;
                 for(let i=0; i<books_ids.length;i++){
 
-                    if(buchDao.exists(books_ids[i])){ //Book ID valid   
+                    if(buchDao.exists(books_ids[i]) && !bestellpositionDao.exists(UserID,books_ids[i])){ //Book ID valid   
                         order_price += buchDao.loadPriceById(books_ids[i]).preis;
                         // Nicht hier zur Datenbank hinzufügen!
                     } 

@@ -112,7 +112,6 @@
             $('#order_button').click(async () => {
 
 
-            
             //evtl bezeichner anpassen
             const newOrder = {
                 payment_option: get_payment_option(),
@@ -120,7 +119,7 @@
                 agb_accept: check_AGB()  // == 1 if accepted! == -1 if not checked!
             };
                     
-            let response = await fetch("web2/order", {
+            let response = await fetch("web2/bestellung/order", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -242,7 +241,6 @@
                 catch{
                     return -1
                 }
-                
             }
             return -1; //not existing SessionItem
         }
