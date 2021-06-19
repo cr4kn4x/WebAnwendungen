@@ -33,23 +33,8 @@
     <div id="main">
         <div id="beschreibung">
             <h1>Bewertungen</h1>
-        </div>
+        </div>       
         <div id="first">
-            <div id="bild"></div>
-            <table>
-                <tr>
-                    <th>Titel:</th>
-                    <td>Moby Dick</td>
-                </tr>
-                <tr>
-                    <th>Autor:</th>
-                    <td>Herman Melville</td>
-                </tr>
-                <tr>
-                    <th>Erscheinungsjahr:</th>
-                    <td>1851</td>
-                </tr>
-            </table>
         </div>
         <div id="second">
             <div id="rating">
@@ -88,10 +73,6 @@
                 </div>
             </div>
             <div id="select_and_confirm">
-                <div id="book">
-                    <a href="Bewertung.html">Moby Dick</a>
-                    <a href="Bewertung.html">Goldene Topf</a>
-                </div>
                 <div id="confirm_container">
                     <form method="GET" action="">
                         <button onclick="submit_stars();" type="submit" id="confirm">Absenden</button>
@@ -113,8 +94,48 @@
     <script>
         $(async () => {
             await loadWarenkorb();
-
+            let book_id = await getUrlParameterByName("titelID");
+            let book = await loadBook(book_id);
+            console.log(book);
+            await ajaxToHTML(book);
         });
+
+        async function loadBook(id) {
+            let response = await fetch("http://localhost:8000/web2/buch/gib/" + id);
+			let json_book = await response.json();
+			return json_book.daten;
+        }
+
+
+        function ajaxToHTML(book) {
+            //tmp = "<div id=\"Buch_img\">";
+            tmp = "<img class=\"img_Buch\" src=\"" + book.bildpfad + "\" alt=\"book_image\"/>";
+            //tmp += "</div>";
+            tmp += "<table>";
+            tmp += "<tr>";
+            tmp += "<th>Titel:</th>";
+            tmp += "<td>" + book.titel + "</td>";
+            tmp += "</tr>";
+            tmp += "<tr>";
+            tmp += "<th>Autor:</th>";
+            tmp += "<td>" + book.autor + "</td>";
+            tmp += "</tr>";
+            tmp += "<tr>";
+            tmp += "<th>Erscheinungsjahr:</th>";
+            tmp += "<td>" + book.erscheinungsjahr + "</td>";
+            tmp += "</tr>";
+            tmp += "</table>";
+            $("#first").append(tmp);
+        }
+
+        function getUrlParameterByName(name,url) {
+			if (!url) url = window.location.href;
+			name = name.replace(/[\[\]]/g, "\\$&");
+			var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"), results = regex.exec(url);
+			if (!results) return null;
+			if (!results[2]) return '';
+			return decodeURIComponent(results[2].replace(/\+/g, " "));
+		}
 
 
         function markStars(number,star_class){
@@ -139,9 +160,6 @@
             console.log("Umfang: " + document.getElementsByClassName("star_stil checked_star").length);
             //Backend muss eh überprüfen also macht es kein Sinn "Gesamt" mitzugeben.
         }
-
-
-
     </script>
 </body>
 

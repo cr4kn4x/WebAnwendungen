@@ -45,7 +45,7 @@ serviceRouter.post('/bestellung/order', (request,response) => {
                     let date = new Date();
                     let time_stamp = date.getFullYear() + "-" + ( date.getMonth() + 1 ) +  "-" + date.getDate() + " " + date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds();
                     console.log(time_stamp);
-                    let bestellung_id = bestellungDao.createOrder("Time", request.session.userID, payment_id, order_price);   // gibt ID von eingfügter Bestellung zurück
+                    let bestellung_id = bestellungDao.createOrder(time_stamp, request.session.userID, payment_id, order_price);   // gibt ID von eingfügter Bestellung zurück
                     
                     for(let i=0; i<books_ids.length;i++){
                         console.log("IN");

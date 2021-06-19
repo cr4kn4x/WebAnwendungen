@@ -70,6 +70,7 @@
             //später überlegen Referenz auf einzelne Buttons --> click --> Id Übergabe
 
 
+
             $("#abmelden_button").click(async () => {
                 console.log("CLICK!");
                 let response = await fetch('/web2/logout');
@@ -78,6 +79,7 @@
                 
                 if(response.status == 200 && logout_json.daten.logout=='true') {
                     //Logout succcesfull!
+                    clearSession();
                     window.location.replace("http://127.0.0.1:8000/Login.html");
 
                 }else if(response.status == 200 && logout_json.daten.logout=='false') {
@@ -100,9 +102,8 @@
             });            
         });
        
-
+        //Download muss noch realisiert werden
         function ajaxToHTML(ajaxBooks) {
-            console.log(ajaxBooks);
             for (let i=0; i<ajaxBooks.length; i++) {
                 tmp = "<div class=\"container_book\">"
                 tmp += "<div class=\"inside_container_book\">";
@@ -114,8 +115,8 @@
                 tmp += "<div class=\"inside_container_book\">";
                 tmp += "<span class=\"bezeichner\">" + ajaxBooks[i].Buch.autor_name + "</span>";
                 tmp += "</div>";
-                tmp += "<button id=\"download_button\" class=\"buttons2\" type=\"button\">Download</button>";
-                tmp += "<button id=\"bewerten_button\" class=\"buttons2\" type=\"button\">Bewerten</button>";
+                tmp += "<a href=\"Artikelseite.html?titelID=" + ajaxBooks[i].Buch.id + "\"><button class=\"buttons2\" type=\"button\">Download</button></a>";
+                tmp += "<a href=\"Bewertung.html?titelID=" + ajaxBooks[i].Buch.id + "\"><button class=\"buttons2\" type=\"button\">Bewerten</button></a>";
                 tmp += "</div>";
                 $("#main").append(tmp);
             }    

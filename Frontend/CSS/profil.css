@@ -89,6 +89,10 @@ button[type="submit"] {
     margin-right: 2%;
 }
 
+.buttons2:hover {
+    cursor: pointer;
+}
+
 .inside_container_book {
     display: flex;
 	align-items: center;
