@@ -6,6 +6,7 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <script src="JS/sha256.js"></script>
 		<script src="JS/sessionHandling.js"></script>
+        <script src="JS/urlParameter.js"></script>
         <meta charset="UTF-8"/>
     </head>
     
@@ -70,18 +71,17 @@
 
         <script>
             
-            $(async() => {
+            $(async() => {  
+                
+
                 await loadWarenkorb();
-
-
-
-
+                
+        
                 $('#login_button').click(async () => {
                     const emailInput = $("#email");
                     const pwInput = $("#passwort");
 
-                    
-
+                
                     //evtl bezeichner anpassen
                     const newUser = {
                         email: emailInput.val(),
@@ -100,10 +100,15 @@
                     let login_json = await response.json();
 
                     
-
                     if(response.status == 200 && login_json.daten.login=='true') {
                         //Login succcesfull!
-                        window.location.replace("http://127.0.0.1:8000/Profil.html");
+                        if(existsUrlParameter("forward")){  // GEHE ZURÜCK ZUR BESTELLUNG!
+                            window.location.replace("/Warenkorb.html");
+                        }
+                        else{
+                            window.location.replace("/Profil.html");
+                        }
+                        
 
                     }else if(response.status == 200 && login_json.daten.login=='false') {
                         //Login failed!
@@ -114,7 +119,13 @@
                     emailInput.val('');
                     pwInput.val('');
                 }); 
+
             });
+
+
+
+            
+
         </script>
     </body>
 </html>

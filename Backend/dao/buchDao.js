@@ -79,7 +79,6 @@ class BuchDao {
         
         
         return helper.objectKeysToLower(result);
-        //return helper.objectKeysToLower(result),this._conn;
     }
 
 
@@ -110,12 +109,9 @@ class BuchDao {
 
         if (helper.isArrayEmpty(result)) 
             return [];      
-        
+    
         for (let i=0; i<result.length; i++){
-
             result[i] = loadAdditionalData(helper.objectKeysToLower(result[i]),this._conn);
-
-
         }
 
         return result;

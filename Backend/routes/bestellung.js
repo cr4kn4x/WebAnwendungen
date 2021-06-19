@@ -5,7 +5,9 @@ const express = require('express');
 var serviceRouter = express.Router();
 const path = require('path');
 const BuchDao = require('../dao/buchDao.js');
-
+const BestellungDao = require('../dao/bestellungDao');
+const BestellpositionDao = require('../dao/bestellpositionDao');
+const { timeStamp } = require('console');
 
 
 
@@ -32,16 +34,27 @@ serviceRouter.post('/order', (request,response) => {
             let order_status=checkOrder(books_ids, payment_id, accept_agb,zahlungsartDao,buchDao);
 
             if(order_status[0]==1 && order_status[1]>0){  //order_value>0 --> WIR HABEN NIX ZU VERSCHENKEN!
+
+                const bestellungDao = new BestellungDao(request.app.locals.dbConnection);
+
+                console.log(Date.now());
                 //ORDER SUCESSFULL!
+                //Flag setzen in session?? wenn dann hier
 
-                //Flag setzen in session?!
+                const currentDate = new Date();
+                
+                let time_stamp = currentDate.getFullYear +"-"+ currentDate.getMonth + "-" + currentDate.getDay + "-" + currentDate.getHours + "-" + currentDate.getMinutes + "-" + currentDate.getSeconds ;
+                console.log(time_stamp);
+
                 let order_price = order_status[1];  
-
                 //Bestllung der DB hinzufügen!
 
 
 
+
+
                 //Response für Weiterleitug des clients senden.. 
+
             }
             
             else if(order_status == -1){
@@ -49,7 +62,8 @@ serviceRouter.post('/order', (request,response) => {
             }
 
             else if(order_status < -1){
-                //Something went completly wrong or user manipulated request
+                //Something went completly wrong or user sent a wrong request
+
             }
                 
         

@@ -128,17 +128,15 @@
                 body: JSON.stringify(newOrder),
             })
             
-            
             let order_response = await response.json(); 
 
             if(response.status == 200 && order_response.daten.loginRequired=='true') {
-                window.location.replace("/login.html");
+                window.location.replace("/login.html?forward=true");
             }
             
             else if(response.status == 200 && order_response.daten.loginRequired=='false') {
                 console.log("All fine!");
             }
-            
 
         }); 
 
