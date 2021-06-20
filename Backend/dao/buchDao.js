@@ -66,6 +66,20 @@ class BuchDao {
         return loadAdditionalData(helper.objectKeysToLower(result),this._conn);
     }
 
+    loadNameByID(id){
+        var sql = 'SELECT Titel FROM BUCH WHERE ID=?';
+        helper.log(this._conn);
+        var statement = this._conn.prepare(sql);
+        var result = statement.get(id);
+
+
+        if (helper.isUndefined(result)) 
+            throw new Error('No Record found by id=' + id);
+        
+
+        return result.Titel;  // Brauche nur den Titel
+    }
+
 
     loadPriceById(id) {
         var sql = 'SELECT Preis FROM BUCH WHERE ID=?';

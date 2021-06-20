@@ -7,7 +7,7 @@ const path = require('path');
 const BuchDao = require('../dao/buchDao.js');
 const BestellungDao = require('../dao/bestellungDao');
 const BestellpositionDao = require('../dao/bestellpositionDao');
-const { timeStamp } = require('console');
+
 
 
 
@@ -95,9 +95,7 @@ function checkOrder(UserID,books_ids, payment_id, accept_agb, zahlungsartDao, bu
 
                     if(buchDao.exists(books_ids[i]) && !bestellpositionDao.exists(UserID,books_ids[i])){ //Book ID valid   
                         order_price += buchDao.loadPriceById(books_ids[i]).preis;
-                        // Nicht hier zur Datenbank hinzufügen!
                     } 
-
                     else{  // Book ID invalid!
                         return -4; // ORDER FAILED // Invalid booksIDs --> DENY
                     }
@@ -112,10 +110,8 @@ function checkOrder(UserID,books_ids, payment_id, accept_agb, zahlungsartDao, bu
         }
     }
     else{
-        
         return -1; // ORDER FAILED // USER NOT ACCEPTED AGB! -->  ++++++ TELL USER ++++
     }
-
 }
 
 

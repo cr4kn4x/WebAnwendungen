@@ -34,14 +34,13 @@ class BestellpositionDao {
 
         if (helper.isArrayEmpty(result)) 
             return [];       
-        
         return loadAdditionalData(helper.arrayObjectKeysToLower(result), this._conn);
     }    
 
 
     exists(userID, BuchID) {
-        console.log(BuchID);
-        var sql = 'SELECT COUNT(BuchID) As cnt FROM (SELECT * FROM Bestellposition WHERE BestellungID = (SELECT ID FROM Bestellung WHERE BestellerID=?)) WHERE BuchID=?;';
+
+        var sql = 'SELECT COUNT(BuchID) As cnt FROM (SELECT * FROM Bestellposition WHERE BestellungID IN (SELECT ID FROM Bestellung WHERE BestellerID=?)) WHERE BuchID=?;';
         var statement = this._conn.prepare(sql);
         var params = [userID, BuchID];
         var result = statement.get(params);
@@ -57,9 +56,6 @@ class BestellpositionDao {
 
     insertOrderPosition(order_ID, book_ID){
 
-        
-        console.log(order_ID);
-        console.log(book_ID);
         
         var sql = 'INSERT INTO Bestellposition (BestellungID, BuchID) VALUES(?, ?);';
         var statement = this._conn.prepare(sql);
