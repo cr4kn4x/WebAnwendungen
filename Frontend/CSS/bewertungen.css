@@ -84,13 +84,6 @@
     margin-left: 2%;
 }
 
-#select_and_confirm {
-    width: 60%;
-    height: 90%;
-    margin: 0% 3%;
-    float: right;
-}
-
 #book {
     width: 100%;
     height: 80%;
@@ -114,20 +107,20 @@
     font-size: 1.5em;
 }
 
-#confirm_container {
-    width: 100%;
-    height: 20%;
-}
-
 #confirm {
+    float: right;
     color: white;
     font-weight: bold;
     font-size: 1em;
     background-color: #FF8A11;
     border: none;
     border-radius: 79px;
-    width: 15%;
-    height: 30%;    
-    margin-left: 80%;
-    margin-top: 8%;
+    width: 10%;
+    height: 5%;    
+    margin-right: 5%;
+    
+}
+
+#confirm:hover {
+    cursor: pointer;
 }

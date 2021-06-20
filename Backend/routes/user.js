@@ -126,9 +126,4 @@ serviceRouter.delete('/user', function(request, response) {
     
 });
 
-
-
-
-
-
 module.exports = serviceRouter;

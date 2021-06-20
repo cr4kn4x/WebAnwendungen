@@ -72,13 +72,7 @@
                     <span class="fa fa-star star_gesamt"></span>
                 </div>
             </div>
-            <div id="select_and_confirm">
-                <div id="confirm_container">
-                    <form method="GET" action="">
-                        <button onclick="submit_stars();" type="submit" id="confirm">Absenden</button>
-                    </form>
-                </div>                
-            </div>
+            <button type="button" id="confirm">Absenden</button>
         </div>
     </div>
 
@@ -96,8 +90,56 @@
             await loadWarenkorb();
             let book_id = await getUrlParameterByName("titelID");
             let book = await loadBook(book_id);
-            console.log(book);
             await ajaxToHTML(book);
+
+            $("#confirm").click(async () => {    
+                //Check ob bewertet werden darf
+
+                let response = await fetch("/web2/bewertungen/check/" + book_id);
+                check = await response.json();
+
+                //Abgleich
+                if (check.daten.ergebnis) {
+                    
+                    //Daten holen
+                    const InhaltInput = document.getElementsByClassName("star_inhalt checked_star").length;
+                    const StilInput = document.getElementsByClassName("star_stil checked_star").length;
+                    const UmfangInput = document.getElementsByClassName("star_umfang checked_star").length;           
+
+                    //neuen Eintrag erstellen
+                    const newEntry = {
+                        BuchID: book_id,
+                        Inhalt: InhaltInput,
+                        Stil: StilInput,
+                        Umfang: UmfangInput
+                    };
+
+                    //Call ins Backend
+                    let response = await fetch("web2/bewertungen/submit", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
+                        body: JSON.stringify(newEntry),
+                    });        
+                    
+                    let bewerten_json = await response.json();
+
+
+                    if(response.status == 200 && bewerten_json.daten.parameter != "false") {
+                        //Pop-UP Bewertung angenommen
+                        alert("Bewertung angenommen!");
+                        window.location.replace("http://127.0.0.1:8000/Profil.html");
+
+                    }else {
+                        //Pop-UP Bewertung fehlgeschlagen
+                        alert("Bewertung fehlgeschlagen!");
+
+                    }  
+                }else {
+                    alert("Something went wrong. Please logout and login again.")
+                }
+            });           
         });
 
         async function loadBook(id) {
@@ -118,11 +160,17 @@
             tmp += "</tr>";
             tmp += "<tr>";
             tmp += "<th>Autor:</th>";
-            tmp += "<td>" + book.autor + "</td>";
+            tmp += "<td>" + book.autor_name + "</td>";
             tmp += "</tr>";
             tmp += "<tr>";
-            tmp += "<th>Erscheinungsjahr:</th>";
-            tmp += "<td>" + book.erscheinungsjahr + "</td>";
+            tmp += "<th>Genre:</th>";
+            tmp += "<td>" + book.genre + "</td>";
+            tmp += "</tr>";
+            tmp += "<th>ISBN:</th>";
+            tmp += "<td>" + book.isbn + "</td>";
+            tmp += "</tr>";
+            tmp += "<th>Gesamtbewertung:</th>";
+            tmp += createStars(book.gesamtbewertung);
             tmp += "</tr>";
             tmp += "</table>";
             $("#first").append(tmp);
@@ -153,13 +201,20 @@
             markStars(avg,'star_gesamt');
         }
 
-        function submit_stars(){
-            //BACKEND MUSS ÜBERPRÜFEN RATING JEWEILS ZWISCHEN 1 UND 5 STERNEN IST!
-            console.log("Inhalt: " + document.getElementsByClassName("star_inhalt checked_star").length);
-            console.log("Stil: " + document.getElementsByClassName("star_stil checked_star").length);
-            console.log("Umfang: " + document.getElementsByClassName("star_stil checked_star").length);
-            //Backend muss eh überprüfen also macht es kein Sinn "Gesamt" mitzugeben.
-        }
+        function createStars(num){
+				var ratingString = "<div class=\"rating_container\">";
+				num = Math.round(num);
+				for(j=0;j<5;j++){
+					if(j<num){
+						ratingString += "<span class=\"fa fa-star checked_star\"></span>";
+					}
+					else{
+						ratingString+= "<span class=\"fa fa-star\"></span>";
+					}
+				}
+				ratingString+="</div>";
+				return ratingString;
+			}
     </script>
 </body>
 

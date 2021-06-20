@@ -118,10 +118,6 @@ class BuchDao {
     }
 
 
-
-
-
-
     loadByAuthorId(id) {
         var sql = 'SELECT * FROM BUCH WHERE authorid=?';
         //        var sql = 'SELECT * FROM BUCH INNER JOIN AUTOR ON BUCH.AUTHORID = AUTOR.ID';
@@ -135,6 +131,18 @@ class BuchDao {
         
         return loadAdditional_autordata(helper.arrayObjectKeysToLower(result),this._conn);
     }
+
+    /* veraltet
+    updateGesamtbewertung(gesamt, buchID) {
+        var sql = 'UPDATE BUCH SET Gesamtbewertung = ? WHERE ID= ?';
+        var statement = this._conn.prepare(sql);
+        var params = [gesamt, buchID];
+        var result = statement.run(params);
+
+        if (result.changes != 1) 
+            throw new Error('Could not insert new Record in Buch. Data: ' + params);
+    }*/
+        
 
     toString() {
         helper.log('BuchDao [_conn=' + this._conn + ']');
