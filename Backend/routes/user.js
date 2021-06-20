@@ -1,5 +1,7 @@
 const helper = require('../helper.js');
 const UserDao = require('../dao/userDao');
+const BuchDao = require('../dao/buchDao');
+const BestellpositionDao = require('../dao/bestellpositionDao');
 const express = require('express');
 var serviceRouter = express.Router();
 const validator = require('validator');
@@ -70,6 +72,7 @@ serviceRouter.post('/Registrieren.html', function(request, response) {
     }
 });
 
+
 //Login Post
 serviceRouter.post('/login.html', (request,response) => {
     if(request.session.userID==undefined){   
@@ -91,7 +94,6 @@ serviceRouter.post('/login.html', (request,response) => {
 
 serviceRouter.get('/logout', function(request, response) {
     console.log(request.session.userID);
-    
     if(request.session.userID!=undefined){
         try{
             request.session.userID=undefined;
@@ -126,6 +128,23 @@ serviceRouter.delete('/user', function(request, response) {
     
 });
 
+
+// Buch download
+serviceRouter.get('/user/download/:bookID', (request,response) => {
+    if(request.session.userID!=undefined){  //user angemeldet?
+        const bestellpositionDao = new BestellpositionDao(request.app.locals.dbConnection);
+        const buchDao = new BuchDao(request.app.locals.dbConnection);
+        if(bestellpositionDao.exists(request.session.userID, request.params.bookID)){  // Wenn dieser Benutzer das Buch bestitzt nur dann darf er downloaden..
+            try{
+                fileName=buchDao.loadNameByID(request.params.bookID);
+                response.download(path.join(__dirname, '../../Backend/sources/books/' + fileName + '.pdf'));
+            }
+            catch{
+                //sth went wrong.. 
+            }
+        }
+    }
+})
 
 
 

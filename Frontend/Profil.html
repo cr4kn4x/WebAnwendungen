@@ -101,8 +101,8 @@
                 await session_termination();
             });            
         });
-       
-        //Download muss noch realisiert werden
+        
+        
         function ajaxToHTML(ajaxBooks) {
             for (let i=0; i<ajaxBooks.length; i++) {
                 tmp = "<div class=\"container_book\">"
@@ -115,7 +115,7 @@
                 tmp += "<div class=\"inside_container_book\">";
                 tmp += "<span class=\"bezeichner\">" + ajaxBooks[i].Buch.autor_name + "</span>";
                 tmp += "</div>";
-                tmp += "<a href=\"Artikelseite.html?titelID=" + ajaxBooks[i].Buch.id + "\"><button class=\"buttons2\" type=\"button\">Download</button></a>";
+                tmp += "<a href=\"web2/user/download/" + ajaxBooks[i].Buch.id + "\"><button class=\"buttons2\" type=\"button\">Download</button></a>";
                 tmp += "<a href=\"Bewertung.html?titelID=" + ajaxBooks[i].Buch.id + "\"><button class=\"buttons2\" type=\"button\">Bewerten</button></a>";
                 tmp += "</div>";
                 $("#main").append(tmp);
