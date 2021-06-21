@@ -17,6 +17,19 @@ function loadAdditionalData(json_bestellungen, dbConnection) {
 }
 
 
+function loadAdditionalDataSuche(json_buch, dbConnection){
+    buchDao = new BuchDao(dbConnection);
+    
+    for (let i=0; i<json_buch.length; i++) {  
+        json_buch[i] = buchDao.loadById(json_buch[i]["id"]);
+    }
+
+    return json_buch;
+
+
+}
+
+
 class BestellpositionDao {
     constructor(dbConnection) {
         this._conn = dbConnection;
@@ -81,28 +94,21 @@ class BestellpositionDao {
 
     loadUserSearch(bestellerID, suchwort){
         
-    
-        
-        //var sql = "SELECT * FROM BUCH WHERE ISBN LIKE '%" + suchwort + "%' OR Titel LIKE '%" + suchwort + "%' OR AuthorID = (SELECT ID FROM Autor WHERE Name LIKE '%" + suchwort + "%')";
-        //var sql = "SELECT BuchID FROM BESTELLPOSITION WHERE BESTELLUNGID IN (SELECT ID FROM BESTELLUNG WHERE BESTELLERID='" + bestellerID + "') AND WHERE BuchID IN (SELECT BuchID FROM Buch WHERE ISBN LIKE '%" + suchwort + "%' OR Titel LIKE '%" + suchwort + "%' OR AuthorID = (SELECT ID FROM Autor WHERE Name LIKE '%" + suchwort + "%')";
-        //var sql = "SELECT * FROM Buch (WHERE BuchID IN (SELECT BuchID FROM BESTELLPOSITION WHERE BESTELLUNGID IN (SELECT ID FROM BESTELLUNG WHERE BESTELLERID='" + bestellerID + "'))"; 
-        //sql += "AND (WHERE BuchID IN (SELECT BuchID FROM Buch WHERE ISBN LIKE '%" + suchwort + "%' OR Titel LIKE '%" + suchwort + "%' OR";
-        //sql += "AuthorID = (SELECT ID FROM Autor WHERE Name LIKE '%" + suchwort + "%'))";
-        
-        var sql = "SELECT * FROM Buch WHERE ID IN (SELECT BuchID FROM BESTELLPOSITION WHERE BESTELLUNGID IN (SELECT ID FROM BESTELLUNG WHERE BESTELLERID='" + bestellerID + "')) AND ID IN ((SELECT ID FROM Buch WHERE Titel LIKE '%" + suchwort + "%' OR ISBN LIKE '%" + suchwort + "%') OR (SELECT ID WHERE AuthorID = (SELECT ID FROM Autor WHERE Name LIKE '%" + suchwort + "%')))";
 
-        //var sql = "SELECT * FROM Buch WHERE ID IN (SELECT BuchID FROM BESTELLPOSITION WHERE BESTELLUNGID IN (SELECT ID FROM BESTELLUNG WHERE BESTELLERID='?')) AND ID IN ((SELECT ID FROM Buch WHERE Titel LIKE '%?%' OR ISBN LIKE '%?%') OR (SELECT ID WHERE AuthorID = (SELECT ID FROM Autor WHERE Name LIKE '%?%')))";
+        var sql = "SELECT * FROM Buch WHERE ID IN (SELECT BuchID FROM BESTELLPOSITION WHERE BESTELLUNGID IN (SELECT ID FROM BESTELLUNG WHERE BESTELLERID='" + bestellerID + "')) AND ID IN (SELECT ID FROM Buch WHERE Titel LIKE '%" + suchwort + "%' OR ISBN LIKE '%" + suchwort + "%') OR (SELECT ID WHERE AuthorID = (SELECT ID FROM Autor WHERE Name LIKE '%" + suchwort + "%'))";
 
         
-
         var statement = this._conn.prepare(sql);
+        console.log("statemantall");
         var result = statement.all();
+        console.log(result);
 
         if (helper.isArrayEmpty(result)) 
             return [];
-    
-        loadAdditionalData(helper.arrayObjectKeysToLower(result),this._conn);
-        return helper.arrayObjectKeysToLower(result);
+        
+        //loadAdditionalData(helper.arrayObjectKeysToLower(result),this._conn);
+        
+        return loadAdditionalDataSuche(helper.arrayObjectKeysToLower(result), this._conn);
 
     
     }
