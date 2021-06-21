@@ -89,15 +89,13 @@
         $(async () => {
 
             $('#order_button').click(async () => {
-
-
             //evtl bezeichner anpassen
             const newOrder = {
                 payment_option: get_payment_option(),
                 order_books: get_Books_to_Order(),
                 agb_accept: check_AGB()  // == 1 if accepted! == -1 if not checked!
             };
-                    
+
             let response = await fetch("web2/bestellung/order", {
                 method: "POST",
                 headers: {
@@ -105,22 +103,19 @@
                 },
                 body: JSON.stringify(newOrder),
             })
-            
+
             let order_response = await response.json(); 
 
             if(response.status == 200 && order_response.daten.loginRequired=='true') {
                 window.location.replace("/login.html?forward=true");
             }
-            
             else if(response.status == 200 && order_response.daten.loginRequired=='false' && order_response.daten.AGBRequired=='true') {
                 document.getElementById('AGB_req').style.color='red';
             }
-
             else if(response.status == 200 && order_response.daten.loginRequired=='false' && order_response.daten.AGBRequired=='false') {
                 clearSession();
                 window.location.replace("/Profil.html");
             }
-
         }); 
 
 
@@ -138,17 +133,52 @@
             }
         });
 
+
         async function loadBasket() {
             let books = getSessionItem("id").split(',');
             let preise_books=[];
+            let owned_Books_IDs=[];
+
+
+            let response_l = await fetch("/web2/bestellposition/gib/userEntries");
+            let owned_Books = await response_l.json();
+
+
+            if(owned_Books.daten!=undefined){
+                for(let i=0; i<owned_Books.daten.length;i++){
+                    owned_Books_IDs.push(owned_Books.daten[i].buchid);
+                }
+            }
+
+            let msg=0;
             for (let i=0; i<books.length; i++) {
                 let response = await fetch("http://localhost:8000/web2/buch/gib/" + books[i]);
-                let json_books = await response.json()
-                preise_books.push(json_books.daten["preis"])
-                ajaxToHTML(json_books.daten);
+                let json_books = await response.json();
+
+
+                if( owned_Books_IDs.includes(json_books.daten["id"]) ){
+                    if(msg==0){alert("Bereits von ihnen gekaufte Bücher wurden aus dem Warenkorb entfernt"); msg=1;}
+                    deleteArtikel(json_books.daten["id"],"false");
+                }
+                
+                else{
+                    preise_books.push(json_books.daten["preis"]);
+                    ajaxToHTML(json_books.daten);
+                }
+                
+                
             }
+
+            if(msg==1){
+                location.reload();
+            }
+            
             return preise_books;
         }
+
+
+
+
             
 
         function ajaxToHTML(json_book) {
@@ -170,14 +200,14 @@
             tmp+="<span class=\"Author_attribute\" style=\"color: #FF8A11;\">" + json_book.preis.toString().replace(".",",") + "&euro;</span>";
             tmp+="</div>";
             tmp+="<div class=\"inside_buble_container\">";
-            tmp+="<span class=\"Author_attribute\" style=\"color: #FF8A11;\">" + "<i style=\"cursor: pointer;\" onclick=\"deleteArtikel(+" + json_book.id + ")\" style=\"font-size:24px\" class=\"fa\">&#xf014;</i>";
+            tmp+="<span class=\"Author_attribute\" style=\"color: #FF8A11;\">" + "<i style=\"cursor: pointer;\" onclick=\"deleteArtikel(+" + json_book.id + ", true)\" style=\"font-size:24px\" class=\"fa\">&#xf014;</i>";
             tmp+="</div>";
             tmp+="</div>";
             $("#Book_container").append(tmp);
         }
 
 
-        function deleteArtikel(id){
+        function deleteArtikel(id, reload){
             let session_items=getSessionItem("id").split(",");
             let new_seesion_items=[];
             for(let i=0; i<session_items.length;i++){
@@ -192,7 +222,16 @@
                 removeSessionItem("id");
             }
 
-            location.reload();
+            
+           
+            if(reload==true){
+                location.reload();
+            }
+            
+            
+        
+            
+            
         }
 
 
@@ -217,6 +256,9 @@
         }
 
 
+        
+
+
         function get_Books_to_Order() {
             if(existsSessionItem("id")){
                 try{
@@ -228,6 +270,8 @@
             }
             return -1; //not existing SessionItem
         }
+
+
 
 
 

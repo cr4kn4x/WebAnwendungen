@@ -55,8 +55,6 @@ class BestellpositionDao {
 
 
     insertOrderPosition(order_ID, book_ID){
-
-        
         var sql = 'INSERT INTO Bestellposition (BestellungID, BuchID) VALUES(?, ?);';
         var statement = this._conn.prepare(sql);
         var params = [order_ID, book_ID];

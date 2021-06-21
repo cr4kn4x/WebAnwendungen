@@ -40,6 +40,10 @@ serviceRouter.get('/bestellposition/gib/userEntries', function(request, response
         }
     }
     
+    else{
+        response.status(200).json(helper.jsonMsgOK({'login': false }));
+    }
+    
 });
 
 module.exports = serviceRouter;
