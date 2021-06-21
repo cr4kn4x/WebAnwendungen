@@ -67,7 +67,7 @@
                 </form>
 
                 <input type="checkbox" id="AGB_checkbox" name="AGB_accept" value="AGB_accept">
-                <label for="AGB_accept">Akzeptieren der AGB und zahlungspflichtig bestellen</label> 
+                <label id="AGB_req" for="AGB_accept">Akzeptieren der AGB und zahlungspflichtig bestellen</label> 
 
                 <br><br>
                 <div><button type="button" id="order_button" style="width: 50%;">Bestellen</button></div>
@@ -112,11 +112,15 @@
                 window.location.replace("/login.html?forward=true");
             }
             
-            else if(response.status == 200 && order_response.daten.loginRequired=='false') {
-                console.log("All fine!");
+            else if(response.status == 200 && order_response.daten.loginRequired=='false' && order_response.daten.AGBRequired=='true') {
+                document.getElementById('AGB_req').style.color='red';
+            }
+
+            else if(response.status == 200 && order_response.daten.loginRequired=='false' && order_response.daten.AGBRequired=='false') {
                 clearSession();
                 window.location.replace("/Profil.html");
             }
+
         }); 
 
 
