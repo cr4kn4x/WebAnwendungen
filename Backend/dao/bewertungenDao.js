@@ -59,20 +59,35 @@ class BewertungenDao {
         }
     }
 
+
     create(buchID, inhalt, stil, umfang, userID) {
         //Gesamtberechnen (vorher bereits geprüft, kann nicht über 5 liegen)
         let gesamt = (inhalt + stil + umfang)/3;
 
-        var sql = 'INSERT INTO Bewertungen (BuchID, Inhalt, Stil, Umfang, Gesamt, UserID) VALUES (?,?,?,?,?,?)';
+        var sql = 'INSERT INTO Bewertungen (BuchID, Inhalt, Stil, Umfang, Gesamt, UserID) VALUES(?, ?, ?, ?, ?, ?);'
         var statement = this._conn.prepare(sql);
         var params = [buchID, inhalt, stil, umfang, gesamt, userID];
         var result = statement.run(params);
-
+        
         if (result.changes != 1) 
             throw new Error('Could not insert new Record. Data: ' + params);
 
-
+        
         var newObj = this.loadById(result.lastInsertRowid);
+        
+
+
+        // TRIGGER ERSATZ // increment AnzahlBew
+        var sql = 'UPDATE Buch SET AnzahlBew=AnzahlBew+1 WHERE ID='+buchID;
+        var statement = this._conn.prepare(sql);
+        var result = statement.run();
+
+        if (result.changes != 1) 
+            throw new Error('Could not increment AnzahlBew. BookID= ' + buchID);
+
+
+        // JDurchschnitt berechnen
+
         return newObj;
     }  
 
