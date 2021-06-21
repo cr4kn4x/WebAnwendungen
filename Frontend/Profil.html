@@ -60,10 +60,25 @@
     </body>
 
     <script>
-        $(async () => {            
+        $(async () => {   
+            
+            if (getUrlParameterByName("search") != null){
+                
+                
+                
+                document.getElementById("suche").value=getUrlParameterByName("search");
+                var suche = getUrlParameterByName("search");
+                console.log(suche);
+                let response = await fetch("/web2/bestellposition/gib/usersearch/" + suche);
+                let sucheresponse = await response.json();
+                await loadBooks(sucheresponse.daten);
+                
+            }      
+
             let response = await fetch("/web2/bestellposition/gib/userEntries");
             let ajaxBooks = await response.json();
-            await loadBooks(ajaxBooks.daten);            
+            await loadBooks(ajaxBooks.daten);
+            
 
             $("#abmelden_button").click(async () => {
                 await abmelden();
@@ -141,6 +156,28 @@
             tmp += "<a href=\"Artikelseite.html?titelID=" + Buch.id + "\"><button class=\"buttons2\" type=\"button\">Download</button></a>";
             tmp += "</div>";
             $("#main").append(tmp);    
-        }             
+        }
+
+        
+        
+
+         
+
+        
+        
+
+
+        function getUrlParameterByName(name,url)
+			{
+				if (!url) url = window.location.href;
+					name = name.replace(/[\[\]]/g, "\\$&");
+					var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"), results = regex.exec(url);
+				if (!results) return null;
+				if (!results[2]) return '';
+				return decodeURIComponent(results[2].replace(/\+/g, " "));
+			}
+
+
+
     </script>
 </html>

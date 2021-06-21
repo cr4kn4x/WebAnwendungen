@@ -78,6 +78,38 @@ class BestellpositionDao {
         return loadAdditionalData(helper.arrayObjectKeysToLower(result), this._conn);
     }
 
+
+    loadUserSearch(bestellerID, suchwort){
+        
+    
+        
+        //var sql = "SELECT * FROM BUCH WHERE ISBN LIKE '%" + suchwort + "%' OR Titel LIKE '%" + suchwort + "%' OR AuthorID = (SELECT ID FROM Autor WHERE Name LIKE '%" + suchwort + "%')";
+        //var sql = "SELECT BuchID FROM BESTELLPOSITION WHERE BESTELLUNGID IN (SELECT ID FROM BESTELLUNG WHERE BESTELLERID='" + bestellerID + "') AND WHERE BuchID IN (SELECT BuchID FROM Buch WHERE ISBN LIKE '%" + suchwort + "%' OR Titel LIKE '%" + suchwort + "%' OR AuthorID = (SELECT ID FROM Autor WHERE Name LIKE '%" + suchwort + "%')";
+        //var sql = "SELECT * FROM Buch (WHERE BuchID IN (SELECT BuchID FROM BESTELLPOSITION WHERE BESTELLUNGID IN (SELECT ID FROM BESTELLUNG WHERE BESTELLERID='" + bestellerID + "'))"; 
+        //sql += "AND (WHERE BuchID IN (SELECT BuchID FROM Buch WHERE ISBN LIKE '%" + suchwort + "%' OR Titel LIKE '%" + suchwort + "%' OR";
+        //sql += "AuthorID = (SELECT ID FROM Autor WHERE Name LIKE '%" + suchwort + "%'))";
+        
+        var sql = "SELECT * FROM Buch WHERE ID IN (SELECT BuchID FROM BESTELLPOSITION WHERE BESTELLUNGID IN (SELECT ID FROM BESTELLUNG WHERE BESTELLERID='" + bestellerID + "')) AND ID IN ((SELECT ID FROM Buch WHERE Titel LIKE '%" + suchwort + "%' OR ISBN LIKE '%" + suchwort + "%') OR (SELECT ID WHERE AuthorID = (SELECT ID FROM Autor WHERE Name LIKE '%" + suchwort + "%')))";
+
+        //var sql = "SELECT * FROM Buch WHERE ID IN (SELECT BuchID FROM BESTELLPOSITION WHERE BESTELLUNGID IN (SELECT ID FROM BESTELLUNG WHERE BESTELLERID='?')) AND ID IN ((SELECT ID FROM Buch WHERE Titel LIKE '%?%' OR ISBN LIKE '%?%') OR (SELECT ID WHERE AuthorID = (SELECT ID FROM Autor WHERE Name LIKE '%?%')))";
+
+        
+
+        var statement = this._conn.prepare(sql);
+        var result = statement.all();
+
+        if (helper.isArrayEmpty(result)) 
+            return [];
+    
+        loadAdditionalData(helper.arrayObjectKeysToLower(result),this._conn);
+        return helper.arrayObjectKeysToLower(result);
+
+    
+    }
+
+
+
+
     toString() {
         helper.log('BestellpositionDao [_conn=' + this._conn + ']');
     }
