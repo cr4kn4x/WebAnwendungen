@@ -36,56 +36,11 @@
 		<div class="author_body_container" id = "author_body_container">
 		
 		
-			
-
-			<!--<div class="Book_container">
-				<div class="author_buble">
-			
-					<p>
-						Der goldene <span class="Word_Spacing">Topf Roman 60,44</span> &euro; <a href="https://www.google.com/"><button type="button">Zum Buch</button></a>
-					</p>
-				
-				</div>
-
-				<div class="author_buble">
-			
-					<p>
-						Der goldene <span class="Word_Spacing">Topf Roman 60,44</span> &euro; <a href="https://www.google.com/"><button type="button">Zum Buch</button></a>
-					</p>
-				
-				</div>
-
-				
-
-				<div class="author_buble">
-			
-					<p>
-						Der goldene <span class="Word_Spacing">Topf Roman 60,44</span> &euro; <a href="https://www.google.com/"><button type="button">Zum Buch</button></a>
-					</p>
-				
-				</div>
-				
-				
-				
-			
-				
-			</div>
-
-			
-			
-
-			<div class="container_right">
-					<p><span class="font_container">Name:</span> <span class="Space">Hermann Hesse</span></p>
-					<p><span class="font_container">Alter:</span><span class="Space"> 78 Jahre </span></p>
-					<p><span class="font_container">Geboren:</span> <span class="Space">22.01.1877</span></p>
-					<p><span class="font_container">Gestorben:</span> <span class="Space">22.01.1921</span></p>
-					<p><span class="font_container">Publikationen:</span> <span class="Space">42</span></p>
-					<p><span class="font_container">Genres:</span> <span class="Space">Roman,<br> Klassiker, Erzählungen, Biografie</span></p>
-			</div>-->
-
-
+	
 
 		</div>
+
+
 			
 
 		<div id="footer">
@@ -103,20 +58,20 @@
 			$(async () => {
 
 
-				 
 
 				let author_id = getUrlParameterByName("authorID");
 				let json_author = await load_author(author_id);
 				let json_authorbooks = await load_authorbooks(json_author);
 
-				
 
 				window.addEventListener("resize", adjustHeight);
-
-				//await ajaxToHTML(json_author.json(), json_books.json());
+				
+				
+		
 				await loadWarenkorb();
 			});
 
+			
 
 
 			async function load_author(author_id) {
@@ -128,9 +83,7 @@
 			async function load_authorbooks(json_author) {
 				let response = await fetch('http://localhost:8000/web2/buch/lade_von_autor/' + json_author["id"]);
 				let json_authorbooks = await response.json();
-				console.log(json_authorbooks);
-				//let json_genre = await 
-				await ajaxToHTML(json_author, json_authorbooks.daten);			
+				await ajaxToHTML(json_author, json_authorbooks.daten);		
 			}
 
 			
@@ -151,12 +104,8 @@
 				tmp+="</div>" + "<div class=\"book_container_gesamt\">";
 				
 
-
 				if (json_authorbooks.length <= 0) {
-						
 					tmp+="<div class=\"Book_container\">" + "<div class=\"author_buble\">";
-					
-					
 					tmp+="<div id=\"keinbuch\"><p>Kein Buch vorhanden.</p></div>";	
 					tmp+="</div>" + "</div>";
 
@@ -173,10 +122,7 @@
 
 
 
-				/*json_authorbooks[i]["id"]
-				tmp+="<div class=\"Book_container\">" + "<div class=\"author_buble\">";
-				tmp+="<p> Der goldene <span class=\"Word_Spacing\">Topf Roman" + "</span> &euro; <a href=\"https://www.google.com/\"><button type=\"button\">Zum Buch</button></a>";
-				tmp+="</p>" + "</div>" + "</div>";*/
+				
 				tmp += "</div>"
 				tmp+="<div class=\"container_right\">"
 				tmp+="<p><span class=\"font_container\">Name:</span> <span class=\"Space\">" + json_author["name"] + "</span></p>"
@@ -188,34 +134,12 @@
 				tmp+="</div>"
 
 				$("#author_body_container").append(tmp);
-				adjustHeight();
 			}
 
 
-			//Funktion um Bücher des Autors zu holen
-			function loadBooks(id) {
-				$.ajax({
-							url: 'http://localhost:8000/web2/buch/lade_von_autor/'+ id,
-							method: 'get',
-							dataType: 'json'
-						}).done(function (response) {
-
-							createHtmlBooks(response.daten);
-
-						}).fail(function (jqXHR, statusText, error) {
-							console.log('Response Code: ' + jqXHR.status + ' - Fehlermeldung: ' + jqXHR.responseText);
-							$('#output').html('Ein Fehler ist aufgetreten');
-						});
-			}
-		
-
-			function createHtmlBooks(author_books) {
-				for (let i=0; i < author_books.length; i++) {
-
-				}
-			}
-
-
+			
+			
+			
 
 
 
@@ -234,17 +158,10 @@
 			
 			function adjustHeight(){
 				var height_author_image;
-				
 				var author_image = document.getElementById('author_img');
 				var bio_buble = document.getElementById('bio_bb');
-
-
 				height_author_image = author_image.offsetHeight;
-				console.log(height_author_image);
-				
 				var tmp = String(height_author_image) + "px";
-				
-				
 				document.getElementById("bio_bb").style.minHeight = tmp;
 			}
 
