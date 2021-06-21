@@ -109,11 +109,14 @@
             if(response.status == 200 && order_response.daten.loginRequired=='true') {
                 window.location.replace("/login.html?forward=true");
             }
+
             else if(response.status == 200 && order_response.daten.loginRequired=='false' && order_response.daten.AGBRequired=='true') {
                 document.getElementById('AGB_req').style.color='red';
             }
+
             else if(response.status == 200 && order_response.daten.loginRequired=='false' && order_response.daten.AGBRequired=='false') {
-                clearSession();
+                removeSessionItem('id');
+                //clearSession();
                 window.location.replace("/Profil.html");
             }
         }); 
@@ -139,10 +142,8 @@
             let preise_books=[];
             let owned_Books_IDs=[];
 
-
             let response_l = await fetch("/web2/bestellposition/gib/userEntries");
             let owned_Books = await response_l.json();
-
 
             if(owned_Books.daten!=undefined){
                 for(let i=0; i<owned_Books.daten.length;i++){
@@ -155,7 +156,6 @@
                 let response = await fetch("http://localhost:8000/web2/buch/gib/" + books[i]);
                 let json_books = await response.json();
 
-
                 if( owned_Books_IDs.includes(json_books.daten["id"]) ){
                     if(msg==0){alert("Bereits von ihnen gekaufte Bücher wurden aus dem Warenkorb entfernt"); msg=1;}
                     deleteArtikel(json_books.daten["id"],"false");
@@ -165,8 +165,7 @@
                     preise_books.push(json_books.daten["preis"]);
                     ajaxToHTML(json_books.daten);
                 }
-                
-                
+
             }
 
             if(msg==1){
@@ -221,18 +220,16 @@
             else{
                 removeSessionItem("id");
             }
-
-            
-           
             if(reload==true){
                 location.reload();
             }
-            
-            
-        
-            
-            
         }
+
+      
+
+
+
+
 
 
 

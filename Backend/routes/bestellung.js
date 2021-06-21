@@ -47,19 +47,17 @@ serviceRouter.post('/bestellung/order', (request,response) => {
                     let bestellung_id = bestellungDao.createOrder(time_stamp, request.session.userID, payment_id, order_price);   // gibt ID von eingfügter Bestellung zurück
                     
                     for(let i=0; i<books_ids.length;i++){
-                        console.log("IN");
                         bestellpositionDao.insertOrderPosition(bestellung_id, books_ids[i]);
                     }
+                    response.status(200).json(helper.jsonMsgOK({'loginRequired': 'false','AGBRequired':'false'}));
                 }
                 
                 catch(ex){
                     throw new Error("Bestellung fehlgeschlagen! Reason:" + ex.message);
                 }
             
-            
                 //Flag in session?
                 //Response für Weiterleitug des clients senden.. 
-
 
             }
             
