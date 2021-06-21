@@ -77,7 +77,7 @@ class BewertungenDao {
         
 
 
-        // TRIGGER ERSATZ // increment AnzahlBew
+        /* TRIGGER ERSATZ // increment AnzahlBew
         var sql = 'UPDATE Buch SET AnzahlBew=AnzahlBew+1 WHERE ID='+buchID;
         var statement = this._conn.prepare(sql);
         var result = statement.run();
@@ -86,11 +86,10 @@ class BewertungenDao {
             throw new Error('Could not increment AnzahlBew. BookID= ' + buchID);
 
 
-        // JDurchschnitt berechnen
+         JDurchschnitt berechnen*/
 
         return newObj;
     }  
-
 
     toString() {
         helper.log('BewertungenDao [_conn=' + this._conn + ']');
