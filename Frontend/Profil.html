@@ -37,7 +37,15 @@
             <form class="searchbar_container">
 				<input type="text" placeholder="Nach Titel, Autor oder ISBN suchen..." id="suche" name="search">
 				<button type="submit" >	<i class="fa fa-search"> </i></button>
+                
+
 			</form>
+
+
+            <button class = "buttons" type="button" id="suchereset">Suche zurücksetzen</button>
+            
+
+
             
             <div id="right_container">
                 <!-- evtl Kategorien hinzufügen-->
@@ -71,14 +79,25 @@
                 console.log(suche);
                 let response = await fetch("/web2/bestellposition/gib/usersearch/" + suche);
                 let sucheresponse = await response.json();
-                await loadBooks(sucheresponse.daten);
+                console.log(sucheresponse);
+                
+                for (let i = 0; i<sucheresponse.daten.length; i++){
+                    let bewertenbutton = await generateBewertenButton(sucheresponse.daten[i]);
+                    await ajaxToHTML(sucheresponse.daten[i], bewertenbutton);
+                }
+                
                 
             }      
-
-            let response = await fetch("/web2/bestellposition/gib/userEntries");
-            let ajaxBooks = await response.json();
-            await loadBooks(ajaxBooks.daten);
+            else{
+                let response = await fetch("/web2/bestellposition/gib/userEntries");
+                let ajaxBooks = await response.json();
+                console.log(ajaxBooks);
+                await loadBooks(ajaxBooks.daten);
+            }
             
+            $("#suchereset").click(async() => {
+                window.location.replace("/Profil.html");
+            });
 
             $("#abmelden_button").click(async () => {
                 await abmelden();
