@@ -217,10 +217,10 @@
 						value=Math.ceil(getUrlParameterByName("p"));
 					}
 
-					tmp=" <div class=\"slidecontainer\"><input id=\"myRange\" name=\"p\" type=\"range\" min=\"0\"";
+					tmp= "<div class=\"slidecontainer\"><input id=\"myRange\" name=\"p\" type=\"range\" min=\"0\"";
 					tmp += "max=\"" + max_preis + "\"";
-					tmp += "value=\"" + value + "\" class=\"slider\"><p><span id=\"Space1\">0&#8364; - </span>";
-					tmp += "<span id=\"demo\">" + value + "</span><span>&#8364; </span><span id=\"Space2\">";
+					tmp += "value=\"" + value + "\" class=\"slider\"><p><span id=\"Space1\">0&#8364;&nbsp;&nbsp; - </span>";
+					tmp += "<span id=\"demo\">" + value + "</span><span>&#8364; </span><span id=\"Space2\">&nbsp;&nbsp;&nbsp;&nbsp;";
 					tmp += max_preis + "&#8364;</span></p></div> ";
 					$("#Price_box").append(tmp);
 

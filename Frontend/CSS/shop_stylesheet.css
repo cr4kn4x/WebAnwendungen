@@ -206,8 +206,9 @@ button[type="submit"] {
 
 
 .slidecontainer {
-    width: 75%;
+    width: 90%;
     display: inline-block;
+    padding-left:10%;
 }
 
   
@@ -221,7 +222,10 @@ button[type="submit"] {
     -webkit-transition: .2s;
     transition: opacity .2s;
 }
-  
+
+
+
+
 .slider:hover {
     opacity: 1;
 }
