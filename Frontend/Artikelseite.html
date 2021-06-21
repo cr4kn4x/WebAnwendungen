@@ -62,7 +62,26 @@
 				let buch = await response.json()
 				await ajaxToHTML(buch.daten)
 				
-				await $("#cart_button").click(() => {					
+
+				//Prevent double
+				let response_l = await fetch("/web2/bestellposition/gib/userEntries");
+            	let owned_Books = await response_l.json();
+
+
+    
+
+				await $("#cart_button").click(() => {		
+
+					if(owned_Books.daten!=undefined){
+                		for(let i=0; i<owned_Books.daten.length;i++){
+							if(owned_Books.daten[i].buchid == book_id){
+								alert("Sie besitzen dieses Buch bereits!")
+								return 0;
+							}
+                		}
+            		}
+					
+
 					if (getSessionItem("id") == null) {
 						setSessionItem("id", book_id)
 					}else if(valueExistsSessionItem("id", book_id) == false) {

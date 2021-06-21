@@ -86,6 +86,7 @@
                 });
             });
 
+
             function ajaxToHTML(item) {  
                 tmp = "<tr>"              
                 tmp += "<td>" + item.titel + "</td>";
@@ -106,7 +107,6 @@
 
             async function loadItems() {                
                 let books = getSessionItem("id").split(',');
-                console.log(books)
                     
                 preise_books=[];
 

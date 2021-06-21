@@ -110,12 +110,10 @@ serviceRouter.get('/logout', function(request, response) {
 
 
 
-
-
 serviceRouter.delete('/user', function(request, response) {
-    helper.log('Route User: Client requested deletion of record, id=' + request.session.userID);
-
+    helper.log('Route User: Client requested deletion of record, id=' + request.session.userID);  
     const userDao = new UserDao(request.app.locals.dbConnection);
+
     try {
         var obj = userDao.loadById(request.session.userID);
         userDao.delete(request.session.userID);
@@ -125,7 +123,6 @@ serviceRouter.delete('/user', function(request, response) {
         helper.logError('Route User: Error deleting record. Exception occured: ' + ex.message);
         response.status(400).json(helper.jsonMsgError(ex.message));
     }
-    
 });
 
 
@@ -145,6 +142,18 @@ serviceRouter.get('/user/download/:bookID', (request,response) => {
         }
     }
 })
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

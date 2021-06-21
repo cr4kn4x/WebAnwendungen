@@ -72,6 +72,7 @@ class UserDao {
     
     delete(id) {
         try {
+            console.log(id);
             var sql = 'DELETE FROM User WHERE ID=?';
             var statement = this._conn.prepare(sql);
             var result = statement.run(id);

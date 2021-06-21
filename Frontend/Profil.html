@@ -44,7 +44,7 @@
 
                 <div id="button_container">
                     <button class="buttons" id="abmelden_button" type="button">Abmelden</button>
-                    <button class="buttons" id="delete_button" type="button">Profil löschen</button>
+                    <button class="buttons" id="delete_button" type="button">Account löschen</button>
                 </div>
             </div>
         </div>
@@ -81,8 +81,26 @@
             
 
             $("#abmelden_button").click(async () => {
-                console.log("CLICK!");
-                let response = await fetch('/web2/logout');
+                await abmelden();
+            });
+
+            $("#delete_button").click(async () => {                        
+                //User aus Datenbank löschen                     
+                let response = await fetch("web2/user", {
+                    method: "DELETE",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                });
+            
+
+               //User abmelden
+               await abmelden();
+            });            
+        });
+
+        async function abmelden() {
+            let response = await fetch('/web2/logout');
                 let logout_json = await response.json();
 
                 
@@ -94,28 +112,10 @@
                 }else if(response.status == 200 && logout_json.daten.logout=='false') {
                     console.log("Logout fehlgeschlagen!");
                 }
-
-            });
-
-            $("#delete_button").click(async () => {
-                //Abmelden aufrufen und aus Datenbank löschen
-
-                
-                let response = await fetch("web2/user", {
-                    method: "DELETE",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                });
-                
-                //Funktion wird noch nicht verwendet, evtl entferenn
-                await session_termination();
-            });            
-        });
+        }
 
         async function loadBooks(ajaxBooks) {
             for (let i=0; i<ajaxBooks.length; i++) {  
-                console.log(ajaxBooks[i].Buch)              
                 let ajaxDownloadButton = await generateBewertenButton(ajaxBooks[i].Buch);
                 await ajaxToHTML(ajaxBooks[i].Buch, ajaxDownloadButton);
             }
