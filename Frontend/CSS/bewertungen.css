@@ -18,7 +18,8 @@
     top: 20%;
     left: 3%;
     border-radius: 79px;
-
+    max-height: 600px;
+    max-width: 350px;
     padding-top: 2%;
     padding-left: 2%;
 }
@@ -39,11 +40,11 @@
     text-align: left;
 }
 
-#first td {
-    padding-top: 5%;
-}
+
 
 #first th {
+    font-size: 1.2em;
+    padding-top:5%;
     font-weight: bold;
 }
 
@@ -55,7 +56,8 @@
     top: 20%;
     right: 3%;
     border-radius: 79px;
-
+    max-height: 600px;
+   
     padding-top: 2%;
     padding-left: 2%;
 }
@@ -124,3 +126,4 @@
 #confirm:hover {
     cursor: pointer;
 }
+

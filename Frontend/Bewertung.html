@@ -152,28 +152,40 @@
 
         function ajaxToHTML(book) {
             //tmp = "<div id=\"Buch_img\">";
+        
             tmp = "<img class=\"img_Buch\" src=\"" + book.bildpfad + "\" alt=\"book_image\"/>";
-            //tmp += "</div>";
+
+
             tmp += "<table>";
             tmp += "<tr>";
             tmp += "<th>Titel:</th>";
-            tmp += "<td>" + book.titel + "</td>";
+            tmp += "<th>" + book.titel + "</th>";     
             tmp += "</tr>";
+
             tmp += "<tr>";
             tmp += "<th>Autor:</th>";
-            tmp += "<td>" + book.autor_name + "</td>";
+            tmp += "<th>" + book.autor_name + "</th>";
             tmp += "</tr>";
+
             tmp += "<tr>";
             tmp += "<th>Genre:</th>";
-            tmp += "<td>" + book.genre + "</td>";
+            tmp += "<th>" + book.genre + "</th>";
             tmp += "</tr>";
+
+            tmp += "<tr>"
             tmp += "<th>ISBN:</th>";
-            tmp += "<td>" + book.isbn + "</td>";
+            tmp += "<th>" + book.isbn + "</th>";
             tmp += "</tr>";
-            tmp += "<th>Gesamtbewertung:</th>";
-            tmp += createStars(book.gesamtbewertung);
-            tmp += "</tr>";
+
+            tmp +="<tr>"
+            tmp += "<th>Bewertung:</th>";
+            tmp += "<th>"+createStars(book.gesamtbewertung,book.anzahlbew);
+            tmp += "</th></tr>";
+
+
             tmp += "</table>";
+
+
             $("#first").append(tmp);
         }
 
@@ -202,7 +214,7 @@
             markStars(avg,'star_gesamt');
         }
 
-        function createStars(num){
+        function createStars(num,anzahlbew){
 				var ratingString = "<div class=\"rating_container\">";
 				num = Math.round(num);
 				for(j=0;j<5;j++){
@@ -213,7 +225,8 @@
 						ratingString+= "<span class=\"fa fa-star\"></span>";
 					}
 				}
-				ratingString+="</div>";
+
+				ratingString+="<span>&nbsp;("+anzahlbew+")</span></div>";
 				return ratingString;
 			}
     </script>
