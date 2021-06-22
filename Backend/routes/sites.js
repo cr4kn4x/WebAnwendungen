@@ -7,36 +7,85 @@ const path = require("path");
 
 
 
+//-----
+
+const fs = require('fs');
+
+
+
+
+
+
+
+
+
+
+//-----
+
+
+
 
 
 // CSS-Files
 serviceRouter.get('/CSS/:file_name', function(request, response) {
-    console.log(request.params.file_name);
-    response.sendFile(path.join(__dirname,'../../Frontend/CSS/'+request.params.file_name));
+    const CSS_PATH = path.join(__dirname, '../../Frontend/CSS');
+    fs.readdir(CSS_PATH, function (err, files) {
+        if (err) { return console.log('Unable to scan directory: ' + err); } 
+
+        if(files.includes(request.params.file_name)){
+            response.sendFile(path.join(__dirname,'../../Frontend/CSS/'+request.params.file_name));
+        }
+    });
 });
 
 // JS-Files
 serviceRouter.get('/JS/:file_name', function(request, response) {
-    console.log(request.params.file_name);
-    response.sendFile(path.join(__dirname,'../../Frontend/JS/'+request.params.file_name));
+
+    const JS_PATH = path.join(__dirname, '../../Frontend/JS');
+    fs.readdir(JS_PATH, function (err, files) {
+        if (err) { return console.log('Unable to scan directory: ' + err); }
+
+        if(files.includes(request.params.file_name)){
+            response.sendFile(path.join(__dirname,'../../Frontend/JS/'+request.params.file_name));
+        }
+    });
+
 });
 
 // static sources
 serviceRouter.get('/sources/:file_name', function(request, response) {
-    console.log(request.params.file_name);
-    response.sendFile(path.join(__dirname, '../../Frontend/sources/'+request.params.file_name));
+    const SOURCES_PATH = path.join(__dirname, '../../Frontend/sources');
+    fs.readdir(SOURCES_PATH, function (err, files) {
+        if (err) { return console.log('Unable to scan directory: ' + err); }
+
+        if(files.includes(request.params.file_name)){
+            response.sendFile(path.join(__dirname,'../../Frontend/sources/'+request.params.file_name));
+        }
+    });
 });
 
 // book images
 serviceRouter.get('/Backend/sources/bookImages/:file_name', function(request, response) {
-    console.log(request.params.file_name);
-    response.sendFile(path.join(__dirname, '../../Backend/sources/bookImages/'+request.params.file_name));
+    const BOOKIMG_PATH = path.join(__dirname, '../../Backend/sources/bookImages');
+    fs.readdir(BOOKIMG_PATH, function (err, files) {
+        if (err) { return console.log('Unable to scan directory: ' + err); }
+
+        if(files.includes(request.params.file_name)){
+            response.sendFile(path.join(__dirname, '../../Backend/sources/bookImages/'+request.params.file_name));
+        }
+    });
 });
 
 // author images
 serviceRouter.get('/Backend/sources/authorImages/:file_name', function(request, response) {
-    console.log(request.params.file_name);
-    response.sendFile(path.join(__dirname, '../../Backend/sources/authorImages/'+request.params.file_name));
+    const AUTHORIMG_PATH = path.join(__dirname, '../../Backend/sources/authorImages');
+    fs.readdir(AUTHORIMG_PATH, function (err, files) {
+        if (err) { return console.log('Unable to scan directory: ' + err); }
+
+        if(files.includes(request.params.file_name)){
+            response.sendFile(path.join(__dirname, '../../Backend/sources/authorImages/'+request.params.file_name));
+        }
+    });
 });
 
 
