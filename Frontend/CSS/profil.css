@@ -36,25 +36,20 @@ button[type="submit"] {
 
 #right_container {
     float: right;
-    width: 10%;
-    height: 30%;
+    width: 15%;
+    height: auto;
     margin-right: 5%;
-    padding-top: 32%;
 }
 
 .buttons {
     background-color: #FF8A11;
     color: white;
-    float:right;
     min-width:180px;
 	font-size:1.3em;
     width:15%;
 	height:40px;
     border-radius:100px;
     border:0px;
-    margin-left: 1%;
-    margin-top: 4%;
-    position: relative;
 }
 
 .buttons:hover {
@@ -63,7 +58,7 @@ button[type="submit"] {
 
 #button_container {
     width: 100%;
-    height: 100%;
+    margin-top: 100%;
 }
 
 .container_book {
@@ -135,8 +130,25 @@ button[type="submit"] {
     border:0px;
 }
 
+#suchereset:hover {
+    cursor: pointer;
+}
+
 #boxsuche{
     width: 90%;
     
     
 }
+
+#abmelden_button{
+    margin-bottom: 3%;
+    display: block;
+}
+
+#delete_button{
+    display: block;
+}
+/*
+margin-left: 1%;
+    margin-top: 4%;
+    margin-bottom: 10%;*/
