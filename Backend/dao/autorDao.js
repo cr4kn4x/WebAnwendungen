@@ -33,22 +33,10 @@ class AutorDao {
         return helper.arrayObjectKeysToLower(result);
     }
 
-  /*   loadByAuthorId() {
-        var sql = 'SELECT * FROM AUTOR INNER JOIN BUCH ON AUTOR.ID = BUCH.AUTHORID ORDER BY authorid';
-        var statement = this._conn.prepare(sql);
-        var result = statement.all();
-
-
-        if (helper.isArrayEmpty(result)) 
-            return [];      
-        
-        return helper.arrayObjectKeysToLower(result);
-    } */
-
     loadById(id) {
-        var sql = 'SELECT * FROM Autor WHERE ID=' + id;
+        var sql = 'SELECT * FROM Autor WHERE ID=?';
         var statement = this._conn.prepare(sql);
-        var result = statement.get();
+        var result = statement.get(id);
 
         if (helper.isUndefined(result)) 
             throw new Error('No Record found by id=' + id);
