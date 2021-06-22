@@ -119,18 +119,21 @@
                 await abmelden();
             });
 
-            $("#delete_button").click(async () => {                        
-                //User aus Datenbank löschen                     
-                let response = await fetch("web2/user", {
-                    method: "DELETE",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                });
-            
+            $("#delete_button").click(async () => {        
+                
 
-               //User abmelden
-               await abmelden();
+                if(confirm("Are you sure you want to delete your Account?")) {
+                    //User aus Datenbank löschen                     
+                    let response = await fetch("web2/user", {
+                        method: "DELETE",
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
+                    });
+
+                    //User abmelden
+                    await abmelden();
+                }             
             });            
         });
 
