@@ -39,11 +39,11 @@
     color: #FF8A11;
     text-decoration: none;
     font-size: 1.4em;
-    padding-right: 10%;
+    margin-right: 10%;
 }
 
 #selectNav a:hover {
-    border-top: solid #FF8A11 2px;
+    border-bottom: solid #FF8A11 2px;
 }
 
 #warenkorb {
@@ -75,9 +75,8 @@
 
 #footer {
     background-color: #444048;
-    width: 95%;
+    width: 100%;
     padding-top:3%;
-    padding-right: 5%;
     min-height: 70px;
 }
 
@@ -87,11 +86,13 @@
     margin: 0% 10%;
     float: left;
     padding-top:0.5%;
+    margin-left: 15%;
+
 }
 
 
 #selectFooter a:hover {
-    border-top: solid #FF8A11 2px;
+    border-bottom: solid #FF8A11 2px;
 }
 
 #copyright {
@@ -100,4 +101,5 @@
     width: 38px;
     height: 40px;
     float: right;
+    margin-right: 2%;
 }

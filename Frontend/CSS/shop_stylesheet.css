@@ -51,11 +51,11 @@ body {margin:0;
     color: #FF8A11;
     text-decoration: none;
     font-size: 1.4em;
-    padding-right: 10%;
+    margin-right: 10%;
 }
 
 #selectNav a:hover {
-    border-top: solid #FF8A11 2px;
+    border-bottom: solid #FF8A11 2px;
 }
 
 #warenkorb {
@@ -96,17 +96,17 @@ body {margin:0;
 #footer a {
     color: #FF8A11;
     text-decoration: none;
-    padding-right: 20%;
+    margin-right: 20%;
 }
 
 #selectFooter {
-    margin-left: 30%;
+    margin-left: 25%;
     padding-top: 2%;
-    width: 46%;
+    width: 60%;
 }
 
 #selectFooter a:hover {
-    border-top: solid #FF8A11 2px;
+    border-bottom: solid #FF8A11 2px;
 }
 
 #copyright {
