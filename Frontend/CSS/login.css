@@ -5,6 +5,8 @@
     margin: 5% 25%;
     background-color: #444048;
     border-radius: 20px;
+    min-width: 500px;
+    min-height: 330px;
    
 }
 
