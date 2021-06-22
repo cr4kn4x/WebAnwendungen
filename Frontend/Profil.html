@@ -81,6 +81,11 @@
                 console.log(suche);
                 let response = await fetch("/web2/bestellposition/gib/usersearch/" + suche);
                 let sucheresponse = await response.json();
+                
+                if (sucheresponse.daten.length == 0){
+                    $("#main").append("<h1 class=\"noresult\" >Keine Suchergebnisse gefunden</h1>");
+                }
+                
                 console.log(sucheresponse);
                 
                 for (let i = 0; i<sucheresponse.daten.length; i++){
@@ -91,10 +96,20 @@
                 
             }      
             else{
+
+                
                 let response = await fetch("/web2/bestellposition/gib/userEntries");
                 let ajaxBooks = await response.json();
-                console.log(ajaxBooks);
-                await loadBooks(ajaxBooks.daten);
+                if (ajaxBooks.daten.length == 0){
+                    console.log("Keine Bücher");
+                    $("#main").append("<h1 class=\"noresult\" >Keine Suchergebnisse gefunden</h1>");
+                }
+                else{
+
+                    
+                    await loadBooks(ajaxBooks.daten);
+                }
+                
             }
             
             $("#suchereset").click(async() => {
