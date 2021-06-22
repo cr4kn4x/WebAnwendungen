@@ -53,7 +53,7 @@
                    
                 </table>   
                 <form method="GET" action="">
-                    <button type="submit" id="printer"></a>               
+                    <button type="submit" onclick="window.print(); return false;"  id="printer"></a>               
                 </form> 
             </div>
         </div>
@@ -80,9 +80,6 @@
 
                 $("#gesamtbetrag").text(gesamtpreis.toString().replace(".",",") + "€");
 
-                await $("#printer").click(() => {
-                    window.print()
-                });
 
             });
 
