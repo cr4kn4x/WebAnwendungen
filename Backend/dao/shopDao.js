@@ -170,41 +170,28 @@ class ShopDao {
 
         var params = [];
         
-        
+
         var sql= "SELECT * FROM BUCH WHERE (" ;
 
-        
         for(var i = 0; i<finalkats.length; i++){
-
             sql += " GenreID = '?'";
             params.push(finalkats[i]);
-
             if(i < finalkats.length - 1){
-
                 sql += " OR "
-
             }
-
-            
-
-
         }
-
         sql += ") AND ("
 
         
         for(var i = 0; i<finalrats.length; i++){
-
             sql += " ROUND(Gesamtbewertung) = ?";
             params.push(finalrats[i]);
-
             if(i < finalrats.length - 1){
 
                 sql += " OR "
 
             }
         }
-
         sql += ") AND (Preis <= ? )";
         params.push(parseFloat(preis));
 
