@@ -11,7 +11,6 @@
 }
 
 #first {
-    
     position: absolute;
     background-color: #444048;
     width: 20%;
@@ -57,7 +56,8 @@
     top: 20%;
     right: 3%;
     border-radius: 79px;
-
+    max-height: 600px;
+   
     padding-top: 2%;
     padding-left: 2%;
 }
