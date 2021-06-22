@@ -6,15 +6,28 @@
     padding-left: 2%;
 }
 
+
+button:hover{
+    cursor:pointer;
+}
+
+.sub_main{
+    min-width: 1600px;
+    width: auto;
+    height: 1000px;
+}
+
 #first {
+    background-color:beige ;
     background: url(../sources/eBook-Reader-in-Buecherregal-658x370-0e0b935072d99e2a.jpg);
-    background-size: contain;
-    background-repeat: no-repeat;
-    width: 35%;
-    height: 49%;
+    float:left;
+    display: block;
+    width: 400px;
+    height: 400px;
     border-radius: 79px;
     margin: 2%;
 }
+
 
 #subtext {
     color: whitesmoke;
@@ -25,12 +38,12 @@
 }
 
 #second {
-    position: absolute;
+    height: 600px;
+    width: 860px;
+    margin-left: 30%;
+    display: block;
+    position: relative;
     background-color: #444048;
-    width: 55%;
-    height: 60%;
-    top: 20%;
-    right: 3%;
     border-radius: 79px;
     padding-top: 2%;
     padding-left: 2%;
@@ -78,6 +91,12 @@
 #second span {
     color: #FF8A11;
 }
+
+.container{
+    min-height: 200px;
+    min-width: 150px;
+}
+
 #second button.logos {
     background-size: contain;
     background-repeat: no-repeat;
