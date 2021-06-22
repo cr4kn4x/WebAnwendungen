@@ -19,6 +19,7 @@ serviceRouter.get('/buch/gib/:id', function(request, response) {
     }
 });
 
+
 serviceRouter.get('/buch/lade_von_autor/:id', function(request, response) {
     helper.log('Route Buch: Client requested records from author, id=' + request.params.id);
 

@@ -68,22 +68,21 @@
 
         <script>
             $(async () => {
-                if(existsSessionItem("id")){
-                    let price_array = await loadItems();	
-                    const reducer = (accumulator, currentValue) => accumulator + currentValue;
-                    let gesamtpreis = price_array.reduce(reducer).toFixed(2);
-                    $("#gesamtbetrag").text(gesamtpreis.toString().replace(".",",") + "€");
-                }else {
-                    let tmp="<h1 style=\"color:#FF8A11;margin-left:40%; margin-top:15%;\"> Ein Fehler ist aufgetreten</h1>";
-                    $("#container_table").append(tmp);
-                    $("#gesamtbetrag").text("0.00€");
-                }
-            
-                await clearSession();
+
+                let price_array = await loadItems();	
+
+                
+                const reducer = (accumulator, currentValue) => accumulator + currentValue;
+                let gesamtpreis = price_array.reduce(reducer).toFixed(2);
+                
+
+
+                $("#gesamtbetrag").text(gesamtpreis.toString().replace(".",",") + "€");
 
                 await $("#printer").click(() => {
                     window.print()
                 });
+
             });
 
 
@@ -96,6 +95,7 @@
                 $("#container_table").append(tmp);
             }
 
+
             function ajaxToHTML2() {                 
                 tmp = "<tr>"
                 tmp += "<td class=\"ergebnis\">Gesamtbetrag</td>";
@@ -105,10 +105,39 @@
                 $("#container_table").append(tmp);
             }
 
-            async function loadItems() {                
-                let books = getSessionItem("id").split(',');
-                    
-                preise_books=[];
+
+            async function loadItems() {         
+                let books = [];
+                let preise_books=[];
+                
+
+                
+
+                let response = await fetch('web2/bestellung/getArtikelOfOrder', {
+                    method: "GET",
+                    headers: {
+                        'Accept':  'application/json',
+                        'Content-Type': 'application/json',
+                        'Cache': 'no-cache'
+                    },
+                    credentials: "same-origin",
+                })
+
+
+                let json_order_books = await response.json();
+
+            
+
+                if(json_order_books.fehler==true){
+                    alert("Ein Fehler ist aufgetreten!");
+                }
+
+                console.log(json_order_books.daten);
+
+                for(let i=0; i<json_order_books.daten.length;i++){
+                    books.push(json_order_books.daten[i].buchid);
+                }
+
 
                 for (let i=0; i<books.length; i++) {
                     let response = await fetch("http://localhost:8000/web2/buch/gib/" + books[i]);
@@ -116,10 +145,12 @@
                     preise_books.push(json_books.daten["preis"])
                     await ajaxToHTML(json_books.daten);
                 }
+
                 await ajaxToHTML2();
                 return preise_books;
             }
             
+
             async function calculate_gesamtpreis(json_book){
                 gesamtpreis = json_book["preis"];
                 return gesamtpreis;

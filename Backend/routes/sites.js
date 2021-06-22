@@ -1,6 +1,7 @@
 const helper = require('../helper.js');
 const express = require('express');
 var serviceRouter = express.Router();
+const BestellungDao = require('../dao/bestellungDao');
 helper.log('- HTML, CSS, Media Route');
 const path = require("path");
 
@@ -64,10 +65,6 @@ serviceRouter.get('/AuthorPageEinzeln.html', function(request, response) {
     response.sendFile(path.join(__dirname, '../../Frontend/AuthorPageEinzeln.html'));
 });
 
-//Bestellbestätigung
-serviceRouter.get('/Bestellbestaetigung.html', function(request, response) {
-    response.sendFile(path.join(__dirname, '../../Frontend/Bestellbestaetigung.html'));
-});
 
 //Bewertung
 serviceRouter.get('/Bewertung.html', function(request, response) {
@@ -107,16 +104,15 @@ serviceRouter.get('/Profil.html', (request,response) => {
     }
 })
 
+
 //Registrieren
 serviceRouter.get('/Registrieren.html', (request,response) => {
-    
     response.sendFile(path.join(__dirname, '../../Frontend/Registrieren.html'));
 })
 
 //Shop
 serviceRouter.get('/shop.html', (request,response) => {
-    console.log(request.session.userID)
-
+    
     if(request.session.userID == undefined){
         console.log("USER nicht angemeldet!")
     }
@@ -137,6 +133,43 @@ serviceRouter.get('/Warenkorb.html', function(request, response) {
 serviceRouter.get('/Widerrufsrecht.html', function(request, response) {
     response.sendFile(path.join(__dirname, '../../Frontend/Widerrufsrecht.html'));
 });
+
+
+//Bestellbestätigung
+serviceRouter.get('/Bestellbestaetigung.html', function(request, response) {
+
+    let bestellung_id = request.session.order;
+    console.log("Bestellbestätigung: ");
+    console.log(request.session.order);
+
+
+    const bestellungDao = new BestellungDao(request.app.locals.dbConnection);
+
+    if( request.session.userID != undefined && bestellung_id != undefined && bestellungDao.exists(bestellung_id)  ){  //USER kommt direkt von der Bestellung.
+        response.sendFile(path.join(__dirname, '../../Frontend/Bestellbestaetigung.html'));
+    }
+
+    else{
+        //Einfach auf den Shop wenn die Seite aufgerufen wird, obwohl sie es eigentlich nicht sein sollte
+        response.sendFile(path.join(__dirname, '../../Frontend/Shop.html'));
+    }
+
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

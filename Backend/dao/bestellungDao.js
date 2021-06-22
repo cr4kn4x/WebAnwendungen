@@ -25,6 +25,23 @@ class BestellungDao {
     } 
     
 
+
+
+    exists(id) {
+        var sql = 'SELECT COUNT(ID) AS cnt FROM Bestellung WHERE ID=?';
+        var statement = this._conn.prepare(sql);
+        var result = statement.get(id);
+
+        if (result.cnt == 1) 
+            return true;
+
+        return false;
+    }
+
+
+
+
+
     loadById(id) {
         var sql = 'SELECT * FROM Bestellung WHERE ID=?';
         var statement = this._conn.prepare(sql);

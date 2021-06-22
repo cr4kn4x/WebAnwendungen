@@ -1,5 +1,4 @@
 const helper = require('../helper.js');
-const UserDao = require('../dao/userDao');
 const ZahlungsartDao = require('../dao/zahlungsartDao')
 const express = require('express');
 var serviceRouter = express.Router();
@@ -10,7 +9,10 @@ const BestellpositionDao = require('../dao/bestellpositionDao');
 
 
 
+//
 
+
+  
 
 
 
@@ -36,7 +38,7 @@ serviceRouter.post('/bestellung/order', (request,response) => {
 
 
             if(order_status[0]==1 && order_status[1]>0){  //order_status[1] > 0 --> WIR HABEN NIX ZU VERSCHENKEN!
-                //ORDER SUCESSFULL!
+                //ORDER IS LEGIT!
                 const bestellungDao = new BestellungDao(request.app.locals.dbConnection);
                 const bestellpositionDao = new BestellpositionDao(request.app.locals.dbConnection);
                 let order_price = order_status[1]; 
@@ -46,18 +48,27 @@ serviceRouter.post('/bestellung/order', (request,response) => {
                     let time_stamp = date.getFullYear() + "-" + ( date.getMonth() + 1 ) +  "-" + date.getDate() + " " + date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds();
                     let bestellung_id = bestellungDao.createOrder(time_stamp, request.session.userID, payment_id, order_price);   // gibt ID von eingfügter Bestellung zurück
                     
+                    
+
                     for(let i=0; i<books_ids.length;i++){
                         bestellpositionDao.insertOrderPosition(bestellung_id, books_ids[i]);
                     }
+
+                    
+                    request.session.order=bestellung_id; // SET FLAG FOR BESTELLBESTÄTIGUNG
+                    console.log("SET request.session.order : ")
+                    console.log(request.session.order);
+
+                    
                     response.status(200).json(helper.jsonMsgOK({'loginRequired': 'false','AGBRequired':'false'}));
                 }
                 
                 catch(ex){
                     throw new Error("Bestellung fehlgeschlagen! Reason:" + ex.message);
                 }
-            
-                //Flag in session?
-                //Response für Weiterleitug des clients senden.. 
+                
+                
+
 
             }
             
@@ -66,13 +77,11 @@ serviceRouter.post('/bestellung/order', (request,response) => {
                 response.status(200).json(helper.jsonMsgOK({'loginRequired': 'false','AGBRequired':'true'}));
             }
 
-
             else if(order_status < -1){
                 //Something went completly wrong or user sent a wrong request
 
             }
         }
-
         else{
             //Parameter fehlen.. 
         }
@@ -82,7 +91,6 @@ serviceRouter.post('/bestellung/order', (request,response) => {
 
 
 function checkOrder(UserID,books_ids, payment_id, accept_agb, zahlungsartDao, buchDao, bestellpositionDao){
-
     if(accept_agb==1){
         if(zahlungsartDao.exists(payment_id)){
             if(books_ids.length>0){
@@ -109,6 +117,31 @@ function checkOrder(UserID,books_ids, payment_id, accept_agb, zahlungsartDao, bu
         return -1; // ORDER FAILED // USER NOT ACCEPTED AGB! -->  ++++++ TELL USER ++++
     }
 }
+
+
+serviceRouter.get('/bestellung/getArtikelOfOrder', function(request,response)  {
+
+    const bestellungDao = new BestellungDao(request.app.locals.dbConnection);
+
+    if( request.session.userID != undefined && request.session.order != undefined && bestellungDao.exists(request.session.order)  ){  //USER kommt direkt von der Bestellung. // gleicher check wie beim Get für Bestellbestätigung HTML
+        
+        const bestellpositionDao = new BestellpositionDao(request.app.locals.dbConnection);
+
+        try { 
+            
+            var result = bestellpositionDao.loadBestellungsEntries(request.session.order);
+            helper.log('Route Bestellungen: Records loaded');
+            request.session.order=undefined; // Bestellbestätigung einmal abgerufen dann closen
+            response.status(200).json(helper.jsonMsgOK(result));
+        } 
+        catch (ex) {
+            helper.logError('Service Adresse: Error loading records by id. Exception occured: ' + ex.message);
+            response.status(400).json(helper.jsonMsgError(ex.message));
+        }
+    }
+
+
+});
 
 
 

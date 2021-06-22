@@ -39,6 +39,20 @@ class BestellpositionDao {
         return this._conn;
     }
 
+
+    //alle Bücher einer Bestellung laden by id
+    loadBestellungsEntries(id){
+        var sql = 'SELECT * FROM BESTELLPOSITION WHERE BESTELLUNGID=?';
+        var statement = this._conn.prepare(sql);
+        var result = statement.all(id);
+
+        if (helper.isArrayEmpty(result)) 
+            return [];       
+        return loadAdditionalData(helper.arrayObjectKeysToLower(result), this._conn);
+    }
+
+
+
     //alle User Bücher laden
     loadUserEntries(id) {
         var sql = 'SELECT * FROM BESTELLPOSITION WHERE BESTELLUNGID IN (SELECT ID FROM BESTELLUNG WHERE BESTELLERID=?)';

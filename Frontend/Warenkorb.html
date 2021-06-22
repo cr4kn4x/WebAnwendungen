@@ -116,8 +116,7 @@
 
             else if(response.status == 200 && order_response.daten.loginRequired=='false' && order_response.daten.AGBRequired=='false') {
                 removeSessionItem('id');
-                //clearSession();
-                window.location.replace("/Profil.html");
+                window.location.replace("/Bestellbestaetigung.html");
             }
         }); 
 
