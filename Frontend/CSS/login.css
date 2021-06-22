@@ -5,12 +5,15 @@
     margin: 5% 25%;
     background-color: #444048;
     border-radius: 20px;
+   
 }
 
 #inner_login {
     margin: 5%;
     height: 100%;
     color: white;
+    display: inline-block;
+    width: 90%;
 }
 
 #inner_login a {
@@ -19,7 +22,7 @@
 
 #page_titel {
     font-size: 2em;
-    margin-bottom: 5%;
+    margin-bottom: 3%;
 }
 
 #inner_login input {
@@ -32,7 +35,7 @@
 }
 
 #registrieren_container {
-    margin-bottom: 5%;
+    margin-bottom: 3%;
 }
 
 #registrieren {
@@ -40,7 +43,7 @@
 }
 
 #vergessen_container {
-    margin: 7% 0%;
+    margin-top: 0%;
 }
 
 .vergessen {
@@ -57,8 +60,9 @@
 	height:40px;
     border-radius:100px;
     border:0px;
-    margin-top: 10%;
-    position: relative;
+    margin-top: 1%;
+    margin-left: 10%;
+    
 }
 
 #login_button:hover{
