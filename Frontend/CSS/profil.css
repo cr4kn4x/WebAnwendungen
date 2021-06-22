@@ -124,7 +124,19 @@ button[type="submit"] {
 }
 
 #suchereset{
-    width: 30%;
-    margin-top: 1%;
-    margin-right: 10%;
+    width: 10%;
+    background-color: #FF8A11;
+    color: white;
+    min-width:180px;
+	font-size:1.3em;
+    width:15%;
+	height:40px;
+    border-radius:100px;
+    border:0px;
+}
+
+#boxsuche{
+    width: 90%;
+    
+    
 }
