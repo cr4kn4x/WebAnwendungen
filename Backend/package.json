@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www"
+    "start": "node server.js",
+    "test": "jest --coverage"
   },
   "dependencies": {
     "app": "^0.1.0",
@@ -15,6 +16,7 @@
     "express-fileupload": "^1.2.1",
     "express-fileuploader": "0.0.7",
     "express-session": "^1.17.2",
+    "jest": "^27.0.5",
     "lodash": "^4.17.21",
     "luxon": "^1.26.0",
     "morgan": "~1.9.1",
