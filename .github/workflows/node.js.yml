@@ -28,3 +28,12 @@ jobs:
     - run: npm ci
     - run: npm run build --if-present
     - run: npm test
+
+    - name: install dependencies API
+    - run: npm ci
+    - working-directory: ./backend
+    
+     
+    - name: start API
+    - run: npm start
+    - working-directory: ./backend
