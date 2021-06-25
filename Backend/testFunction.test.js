@@ -1,4 +1,4 @@
-const functions = require(./testFunction);
+const functions = require('./testFunction');
 
 
 test('Add num1=2 to num2=2', () => {
