@@ -31,5 +31,4 @@ jobs:
     - run: npm run build --if-present
       working-directory: Backend
       
-#    - run: npm test
-#      working-directory: Backend
+
