@@ -136,7 +136,15 @@ try {
         helper.log('-----------------------------------------\n\n');
     });
 
+    module.exports = app;
+
+    
 } catch (ex) {
     helper.logError(ex);
 }
+
+
+
+
+
 
