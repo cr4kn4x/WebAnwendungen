@@ -7,5 +7,5 @@ class TestFunction{
 
 }
 
-https://github.com/cr4kn4x/WebAnwendungen/blob/master/Backend/testFunction.js
+
 module.exports = TestFunction;
