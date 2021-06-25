@@ -1,5 +1,6 @@
-function add(num1,num2){
-  return num1+num2; 
-}
+const add = (a, b) => a + b;
+const mul = (a, b) => a * b;
+const sub = (a, b) => a - b;
+const div = (a, b) => a / b;
 
-module.exports = add;
+module.exports = { add, mul, sub, div };
