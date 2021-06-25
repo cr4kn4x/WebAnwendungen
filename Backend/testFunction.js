@@ -1,4 +1,4 @@
-class TestFunctions{
+class TestFunction{
   
   add(num1, num2){
     return num1+num2;
@@ -7,5 +7,5 @@ class TestFunctions{
 
 }
 
-
-module.exports = TestFunctions;
+https://github.com/cr4kn4x/WebAnwendungen/blob/master/Backend/testFunction.js
+module.exports = TestFunction;
