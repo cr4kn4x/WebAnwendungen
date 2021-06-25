@@ -8,4 +8,4 @@ class TestFunctions{
 }
 
 
-moudle.exports = TestFunctions;
+module.exports = TestFunctions;
