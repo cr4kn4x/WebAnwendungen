@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "node server.js",
-    "test": "jest --no-cache  --detectOpenHandles --runInBand --forceExit" 
+    "test": "jest --no-cache  --detectOpenHandles --runInBand --forceExit --verbose" 
   },
   "dependencies": {
     "app": "^0.1.0",
